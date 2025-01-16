@@ -10,13 +10,16 @@ from langchain_community.utilities.sql_database import SQLDatabase
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_openai import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
-#from langgraph.prebuilt import create_react_agent
 from sqlalchemy import create_engine
 from langchain_community.agent_toolkits.sql.toolkit import SQLDatabaseToolkit
 from langchain.agents import AgentExecutor, create_tool_calling_agent
+from langchain.callbacks.tracers import LangChainTracer
+
+tracer = LangChainTracer()
+from langchain_core.tracers.context import tracing_v2_enabled
 
 # Constants
-DEBUGGING = False
+DEBUGGING = True
 PAGE_TITLE = "Capital Humain"
 INITIAL_MESSAGE = "Comment puis-je vous aider ? | How can I help you ?"
 MODEL_CONFIG = {
@@ -103,7 +106,7 @@ async def process_events(agent_executor, message_placeholder):
     ):
         if event["event"] == "on_chat_model_stream":
             content = event["data"]["chunk"].content
-            #print(content)
+            #print(content), print(event)
             if content :
                 accumulated_text += content
                 message_placeholder.empty()
@@ -140,17 +143,21 @@ def main():
                     expand_new_thoughts=True,
                     collapse_completed_thoughts=True,
                 )
-                response = agent_executor.invoke(
-                    {"input": st.session_state.messages[-1]["content"]},
-                    {"callbacks": [st_callback]},
-                )
+                with tracing_v2_enabled():
+                    response = agent_executor.invoke(
+                        {"input": st.session_state.messages[-1]["content"]},
+                        {"callbacks": [st_callback]},
+                    )
                 st.write(response["output"])
                 message = {"role": "assistant", "content": response["output"]}
             else:
-                asyncio.run(process_events(agent_executor, message_placeholder))
+                with tracing_v2_enabled():
+                    asyncio.run(process_events(agent_executor, message_placeholder))
                 message = {"role": "assistant", "content": st.session_state["accumulated_text"]}
             
             st.session_state.messages.append(message)
 
 if __name__ == "__main__":
     main()
+
+    
