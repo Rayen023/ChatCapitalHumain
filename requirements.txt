@@ -5,4 +5,4 @@ langchain-community
 langchain-experimental
 sqlalchemy
 langgraph
-psychopg2
+psycopg2
