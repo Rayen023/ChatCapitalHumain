@@ -1,6 +1,4 @@
 import asyncio
-#import os
-#from typing import Dict, List
 
 import streamlit as st
 from langchain import hub
@@ -17,6 +15,25 @@ from langchain.callbacks.tracers import LangChainTracer
 
 tracer = LangChainTracer()
 from langchain_core.tracers.context import tracing_v2_enabled
+
+import os
+from langchain.callbacks.tracers import LangChainTracer
+from langsmith import Client
+
+# You can create a client instance with an api key and api url
+client = Client(
+  api_key=os.getenv("LANGSMITH_API_KEY"),  # Update appropriately for self-hosted installations
+  api_url=os.getenv("LANGSMITH_ENDPOINT"),  # Update appropriately for self-hosted installations
+)
+
+# You can pass the client and project_name to the LangChainTracer instance
+tracer = LangChainTracer(client=client, )
+
+
+# LangChain Python also supports a context manager which allows passing the client and project_name
+
+
+
 
 # Constants
 DEBUGGING = True
@@ -102,7 +119,7 @@ async def process_events(agent_executor, message_placeholder):
     """Process agent events and update UI"""
     accumulated_text = ""
     async for event in agent_executor.astream_events(
-        {"input": st.session_state.messages[-1]["content"]}, version="v2"
+        {"input": st.session_state.messages[-1]["content"]},{"callbacks": [tracer]}, version="v2", 
     ):
         if event["event"] == "on_chat_model_stream":
             content = event["data"]["chunk"].content
@@ -143,15 +160,15 @@ def main():
                     expand_new_thoughts=True,
                     collapse_completed_thoughts=True,
                 )
-                with tracing_v2_enabled():
+                with tracing_v2_enabled(client=client, project_name=os.getenv("LANGSMITH_PROJECT")):
                     response = agent_executor.invoke(
                         {"input": st.session_state.messages[-1]["content"]},
-                        {"callbacks": [st_callback]},
+                        {"callbacks": [st_callback, tracer]},
                     )
                 st.write(response["output"])
                 message = {"role": "assistant", "content": response["output"]}
             else:
-                with tracing_v2_enabled():
+                with tracing_v2_enabled(client=client, project_name=os.getenv("LANGSMITH_PROJECT")):
                     asyncio.run(process_events(agent_executor, message_placeholder))
                 message = {"role": "assistant", "content": st.session_state["accumulated_text"]}
             
