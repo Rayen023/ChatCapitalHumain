@@ -25,15 +25,7 @@ client = Client(
   api_key=os.getenv("LANGSMITH_API_KEY"),  # Update appropriately for self-hosted installations
   api_url=os.getenv("LANGSMITH_ENDPOINT"),  # Update appropriately for self-hosted installations
 )
-
-# You can pass the client and project_name to the LangChainTracer instance
 tracer = LangChainTracer(client=client, )
-
-
-# LangChain Python also supports a context manager which allows passing the client and project_name
-
-
-
 
 # Constants
 DEBUGGING = True
@@ -50,7 +42,15 @@ MODEL_CONFIG = {
 }
 
 # Page setup
-st.set_page_config(page_title=PAGE_TITLE)
+st.set_page_config(page_title=PAGE_TITLE,
+                       page_icon="deer.png",
+)
+
+st.logo(
+    "deer.png",  
+    icon_image="deer.png",  
+    size="large",
+)
 
 def init_session_state():
     """Initialize session state variables"""
@@ -60,11 +60,9 @@ def init_session_state():
         engine = create_engine(st.secrets["db_url"])
         st.session_state.db = SQLDatabase(engine)
     if "system_message" not in st.session_state:
-        prompt_template = hub.pull("langchain-ai/sql-agent-system-prompt")
-        with open("prompt_info.txt", "r", encoding="utf-8") as file:
+        with open("full_prompt.txt", "r", encoding="utf-8") as file:
             prompt_temp = file.read()
-        system_message = prompt_template.format(dialect="PostgreSQL", top_k=5)
-        st.session_state.system_message = system_message + "\n" + prompt_temp
+        st.session_state.system_message = prompt_temp
 
 def clear_chat_history():
     """Reset chat history"""
@@ -73,17 +71,21 @@ def clear_chat_history():
 def setup_sidebar():
     """Setup sidebar elements"""
     with st.sidebar:
-        st.title(PAGE_TITLE)
-        st.button("Nouveau chat", on_click=clear_chat_history, icon=":material/edit_square:")
+        #st.title(PAGE_TITLE)
+        st.button("Nouveau chat", on_click=clear_chat_history, icon=":material/edit_square:",  use_container_width=True )
 
 def setup_chat_interface():
     """Setup chat interface and message history"""
     history = ChatMessageHistory()
     for message in st.session_state.messages:
-        with st.chat_message(message["role"]):
-            st.write(message["content"])
-            prefix = "AI : " if message["role"] == "assistant" else ""
-            history.add_user_message(prefix + message["content"])
+        if message["role"] == "assistant":
+            with st.chat_message(message["role"],  avatar="deer.png"):
+                st.write(message["content"])
+                history.add_user_message("AI : " + message["content"])
+        else:
+            with st.chat_message(message["role"],  avatar="avataruser.png"):
+                st.write(message["content"])
+                history.add_user_message(message["content"])
     return history
 
 @st.cache_resource
@@ -152,7 +154,7 @@ def main():
     agent_executor = create_agent(st.session_state.db, memory)
 
     if st.session_state.messages[-1]["role"] != "assistant":
-        with st.chat_message("assistant"):
+        with st.chat_message("assistant", avatar = "deer.png"):
             message_placeholder = st.empty()
             if DEBUGGING:
                 st_callback = StreamlitCallbackHandler(
