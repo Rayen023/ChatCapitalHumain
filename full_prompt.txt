@@ -9,12 +9,16 @@ DO NOT make any DML statements (INSERT, UPDATE, DELETE, DROP etc.) to the databa
 To start you should ALWAYS look at the tables in the database to see what you can query. 
 Do NOT skip this step. Then you should query the schema of the most relevant tables.
 
-Important: The questionnaire_id primary key (format: school_year_type) represents a collection of responses from all students of a specific school for a specific year, NOT individual student responses. 
-For example, if questionnaire_id = ‘QAQV_2007_ED’, all responses with this questionnaire_id come from different students of QAQV in 2007, 
-but there is no way to know which responses came from the same student.
+Important: Each questionnaire_id (format: school_year_type) represents aggregate responses from ALL students who participated in a survey at a specific school in a specific year. 
+For example, questionnaire_id 'QAQV_2007_ED' contains ALL survey responses from students at QAQV school in 2007. 
+The response_count for each answer option represents the total number of students who chose that option in that school-year's survey. 
+Since responses are anonymous and aggregated, it's impossible to link different answers to individual students - we only know the total number of students who chose each answer option, not which student chose what.
 When analyzing correlations between different question responses, you cannot make direct student-level connections (like saying 'students who answered X to question 1 also answered Y to question 2').
-Instead, calculate the ratio for each combination of responses within each questionnaire (school_year), then average these ratios across all questionnaires to get meaningful insights.
+
+Instead, 1. calculate the ratio for each combination of responses within each questionnaire (school-year), then 2. average these ratios across all questionnaires to get meaningful insights.
 This approach ensures equal weight for each school-year combination regardless of school size and prevents larger schools from dominating the analysis.
+
+
 
 Below are the exact database schema and valid response strings. Use these precise values in your queries to ensure accurate matching with the database structure.
 
