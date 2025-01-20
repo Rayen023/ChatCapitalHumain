@@ -14,55 +14,14 @@ For example, questionnaire_id 'QAQV_2007_ED' contains ALL survey responses from 
 The response_count for each answer option represents the total number of students who chose that option in that school-year's survey. 
 Since responses are anonymous and aggregated, it's impossible to link different answers to individual students - we only know the total number of students who chose each answer option, not which student chose what.
 When analyzing correlations between different question responses, you cannot make direct student-level connections (like saying 'students who answered X to question 1 also answered Y to question 2').
-
-Instead, 1. calculate the ratio for each combination of responses within each questionnaire (school-year), then 2. average these ratios across all questionnaires to get meaningful insights.
+ 
+METHODOLOGY FOR ANALYZING SURVEY RESPONSES When analyzing relationships between different questions :
+STEP-BY-STEP ANALYSIS PROCESS:
+1- First group all data by questionnaire_id (format: school_year_type). This ensures each school-year combination is treated as one unit
+2- For each questionnaire_id: Sum response_count for each answer option and calculate ratios for each combination within each questionnaire
+3-	Then average these combination ratios across questionnaires
+IMPORTANT: Never calculate correlations using raw response counts
 This approach ensures equal weight for each school-year combination regardless of school size and prevents larger schools from dominating the analysis.
-
-METHODOLOGY FOR ANALYZING SURVEY RESPONSES
-1.	BASIC PRINCIPLES:
-•	Each questionnaire_id represents aggregate responses from all students at one school in one year
-•	Never analyze raw response counts directly across all responses
-•	Always calculate ratios within each questionnaire first, then average across questionnaires
-2.	STEP-BY-STEP ANALYSIS PROCESS:
-a) Initial Grouping:
-•	First group all data by questionnaire_id (format: school_year_type)
-•	This ensures each school-year combination is treated as one unit
-b) Calculate Individual Questionnaire Ratios:
-•	For each questionnaire_id:
-o	Count responses for each answer option/category
-o	Calculate ratio = (Count of specific response / Total responses for that questionnaire) × 100
-o	Store these ratios separately for each questionnaire
-c) Calculate Final Percentages:
-•	Sum the ratios for each response option across all questionnaires
-•	Divide by total number of questionnaires
-•	Final Percentage = (Sum of questionnaire ratios / Number of questionnaires)
-3.	SQL IMPLEMENTATION:
-•	Use GROUP BY questionnaire_id first
-•	Calculate ratios using CAST AS FLOAT or DECIMAL for accurate division
-•	Use subqueries or CTEs to handle the two-step aggregation process
-•	Always include error handling for zero denominators
-4.	IMPORTANT CONSIDERATIONS:
-•	Exclude "Non répondu" responses when calculating percentages if analyzing actual choices
-•	Consider whether to include questionnaires with very low response rates
-•	Document any filters or exclusions applied to the data
-5.	WHY THIS METHOD:
-•	Prevents larger schools from skewing results
-•	Gives equal weight to each school-year combination
-•	Accounts for varying school sizes and response rates
-•	Maintains statistical validity when comparing across years or schools
-•	Respects the hierarchical nature of the data
-6.	REPORTING RESULTS:
-•	Always specify the number of questionnaires included in the analysis
-•	Report both percentages and the underlying number of questionnaires
-•	Note any exclusions or special handling of the data
-•	Include confidence intervals when appropriate
-7.	CROSS-TABULATION ANALYSIS:
-•	When analyzing relationships between two questions:
-o	Calculate ratios for each combination within each questionnaire
-o	Then average these combination ratios across questionnaires
-o	Never calculate correlations using raw response counts
-This methodology ensures consistent and statistically sound analysis of the survey data while respecting its hierarchical structure and preventing larger schools from dominating the results.
-
 
 Below are the exact database schema and valid response strings. Use these precise values in your queries to ensure accurate matching with the database structure.
 
