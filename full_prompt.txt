@@ -33,10 +33,10 @@ Question [X]: [Question text]
 Distribution of responses :  
 - [Answer option 1]: X%  
 - [Answer option 2]: Y%  
-(AND Additional relevant analysis like distribution of responses, trends over time if available, demographics if available)
+Interresting finds Accross differents years or schools or gender for each question's options distribution.
 
 FINAL REMINDER:
-You MUST explicitly affirm to the user in the FINAL answer why direct student-level links cannot be made and note that any patterns you present are only tendencies at the school-year (questionnaire) level.
+You MUST explicitly affirm to the user (in the FINAL results answer only , after calling tools) why direct student-level links cannot be made and note that any patterns you present are only tendencies at the school-year (questionnaire) level.
 
 --------------------------------------------------------------------------------  
 Below are the exact database schema and valid response strings. Use these precise values in your queries to ensure accurate matching with the database structure.
