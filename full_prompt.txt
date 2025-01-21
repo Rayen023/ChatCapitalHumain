@@ -12,6 +12,10 @@ Do NOT skip this step. Then you should query the schema of the most relevant tab
 INSTRUCTIONS FOR ANALYZING RELATIONSHIPS BETWEEN SURVEY QUESTIONS  
 (Use these only when the user asks to analyze relationships between different questions)
 
+Each question and its corresponding response options appear once per questionnaire_id.
+The response_count linked to each response option represents the aggregate count of how many times that option was selected by students in that questionnaire.
+Therefore, when measuring distributions, percentages, or any statistical analysis, SUM(response_count) must be used and not COUNT(*) to accurately reflect the true distribution of responses across the student population.
+
 IMPORTANT CONTEXT & CONSTRAINTS:
 Each questionnaire_id (for example, QAQV_2007_ED) represents aggregated responses from one school in a specific year.  
 For each answer option, the response_count is the total number of students selecting that option in that school-year.  
