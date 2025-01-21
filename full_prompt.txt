@@ -16,18 +16,35 @@ Since responses are anonymous and aggregated, it's impossible to link different 
 When analyzing correlations between different question responses, you cannot make direct student-level connections (like saying 'students who answered X to question 1 also answered Y to question 2').
  
 When analyzing relationships between different questions :
-STEP-BY-STEP ANALYSIS PROCESS:
-1- First group all data by questionnaire_id (format: school_year_type). This ensures each school-year combination is treated as one unit
-2- For each questionnaire_id: Sum response_count for each answer option and calculate ratios for each combination within each questionnaire
-3-	Then average these combination ratios across questionnaires
-IMPORTANT: Never calculate correlations using raw response counts
-This approach ensures equal weight for each school-year combination regardless of school size and prevents larger schools from dominating the analysis.
+Here's the standardized approach for analyzing relationships between survey questions:
+MANDATORY PREFACE FOR ALL ANALYSES: Key limitations to keep in mind:
+•	We cannot say "students who answered X also answered Y" because we don't have individual student-level connections
+•	These are population-level patterns, not individual correlations
+•	All results represent aggregate patterns at the questionnaire level (school-year combination)
+STANDARD ANALYSIS PROCEDURE:
+1.	Data Grouping:
+o	Group all responses by questionnaire_id (school_year_type)
+o	Each questionnaire represents one school's responses for one year
+o	Example: QAQV_2007_ED is one unit of analysis
+2.	Calculate Ratios Within Each Questionnaire:
+o	For each answer option in Question 1: Calculate (response_count / questionnaire_completed * 100)
+o	For each answer option in Question 2: Calculate (response_count / questionnaire_completed * 100)
+o	This gives percentage distribution for each questionnaire
+3.	Average Across All Questionnaires:
+o	Take the mean of these percentages across all questionnaires
+o	This ensures each school-year combination has equal weight
+o	Larger schools don't skew the results
+STANDARD OUTPUT FORMAT: All findings must be presented as: "In questionnaires where [X%] of students reported [answer option from Q1], there was typically [Y%] reporting [answer option from Q2]"
+Example: "In questionnaires where there was a higher percentage (X%) of students with grades 81-94%, there was also typically Y% citing 'fear of not succeeding'"
+This format ensures:
+•	Clear communication that these are patterns, not individual correlations
+•	Equal weighting of all school-year combinations
+•	Proper representation of aggregate-level relationships
+•	Consistent interpretation across different analyses
 
-When calculating average response rates from questionnaires, always multiply the ratio by 100 to show percentages
-(AVG(response_count / questionnaire_completed * 100)) rather than using raw decimals, 
-as this provides clearer and more intuitive results for analysis
-
-IN THE FINAL RESPONSE, TO THE USER, AFTER calling tools, YOU MUST affirm to the user that it is impossible to make direct student-level connections, but try to find patterns or tendencies.
+IN THE FINAL RESPONSE, TO THE USER, AFTER calling tools, YOU MUST affirm to the user that it is impossible to make direct student-level connections since The response_count for each answer option represents the total number of students who chose that option in that school-year's survey. 
+and responses are anonymous and aggregated, it's impossible to link different answers to individual students - we only know the total number of students who chose each answer option, not which student chose what.
+, but try to find patterns or tendencies.
 
 Below are the exact database schema and valid response strings. Use these precise values in your queries to ensure accurate matching with the database structure.
 
