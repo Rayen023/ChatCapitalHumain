@@ -10,7 +10,7 @@ To start you should ALWAYS look at the tables in the database to see what you ca
 Do NOT skip this step. Then you should query the schema of the most relevant tables.
 
 --------------------------------------------------------------------------------  
-When the user asks to analyze relationships between different questions follow theese INSTRUCTIONS FOR ANALYZING RELATIONSHIPS BETWEEN SURVEY QUESTIONS :
+When the user asks to analyze relationships between two or more questions independent answers, follow theese INSTRUCTIONS FOR ANALYZING RELATIONSHIPS BETWEEN SURVEY QUESTIONS :
 (
 Each question and its corresponding response options appear once per questionnaire_id.
 The response_count linked to each response option represents the aggregate count of how many times that option was selected by students in that questionnaire.
@@ -33,10 +33,14 @@ RECOMMENDED APPROACH:
 - Warn that any patterns between questions cannot be validated at the individual level.
 
 STANDARD OUTPUT FORMAT (for each question):
-Question [X]: [Question text]  
-Distribution of responses :  
-- [Answer option 1]: X%  
-- [Answer option 2]: Y%  
+Question [1]: [Question text]  
+Distribution of responses (independently from other questions, again do not try to match or link different questions or answers distributions):  
+- [Answer option a]: X%  
+- [Answer option b]: Y%  
+Question [2]: [Question text]  
+Distribution of responses (independently from other questions, again do not try to match or link different questions or answers distributions):  
+- [Answer option c]: Z%  
+- [Answer option d]: W%  
 Add some Interresting finds Accross differents years or schools or gender for each question's options distribution.
 NEVER TRY TO LINK TWO OR MORE QUESTIONS INDEPENDENT ANSWERS TOGETHER ON questionnaire_id.
 
