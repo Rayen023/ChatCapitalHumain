@@ -32,8 +32,11 @@ DEBUGGING = True
 PAGE_TITLE = "Capital Humain"
 INITIAL_MESSAGE = "Comment puis-je vous aider ? | How can I help you ?"
 MODEL_CONFIG = {
-    "model_name": "anthropic/claude-3.5-sonnet:beta",
-    #"model_name": "openai/gpt-4o-mini",
+    #"model_name": "anthropic/claude-3.5-sonnet:beta",
+    #"model_name": "google/gemini-2.0-pro-exp-02-05:free",
+    "model_name": "google/gemini-2.0-flash-001",
+    #"model_name": "openai/o3-mini",
+    #"model_name": "openai/o3-mini-high",
     "temperature":0,
     "max_tokens":8096,
     "timeout":None,
