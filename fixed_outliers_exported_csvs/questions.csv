@@ -1,0 +1,53 @@
+question_id,question_text,type_id
+1,Dans quelle province canadienne ou ailleurs avez-vous étudié ?,3
+2,Durant vos études quelles étaient vos sources de financement ?,3
+3,Seriez-vous intéressé/e à faire un retour aux études ?,3
+4,Existe-t-il des obstacles qui vous empêchent de poursuivre des études ?,3
+5,Seriez-vous intéressé/e à recevoir de l'information pour vous aider dans la poursuite de vos études ?,3
+6,Dans quel type d'institution avez-vous étudié ?,3
+7,Quel était votre régime d'études ?,3
+8,Quel était le niveau de votre programme d'études ?,3
+9,Dans quel domaine d'études étiez-vous inscrit/e ?,3
+10,Avez-vous complété vos études ?,3
+11,Dans quelle province canadienne ou autre pays travaillez-vous ?,4
+12,Envisagez-vous de changer d'emploi dans la prochaine année ?,4
+13,Quelle est la principale raison pour laquelle vous envisagez de changer d'emploi ?,4
+14,Dans quelle région de la province travaillez-vous ?,4
+15,Dans quelle catégorie de profession ou métier travaillez-vous ?,4
+16,Indiquez les deux cours que vous avez les plus appréciés durant votre secondaire,1
+17,"Sur le plan de vos relations avec les autres élèves, êtes-vous satisfait/e de votre séjour au secondaire ?",1
+18,"Sur le plan de vos relations avec le personnel de l'école, êtes-vous satisfait/e de votre séjour au secondaire ?",1
+19,Que prévoyez-vous faire en septembre prochain ?,1
+20,Indiquez dans quel domaine vous avez l'intention de poursuivre vos études postsecondaires ?,1
+21,Est-ce que les services d'orientation que vous avez utilisés ont répondu à vos besoins ?,1
+22,"À la fin de vos études postsecondaires, si vous aviez une offre d'emploi dans la Péninsule acadienne, est-ce que vous l'accepteriez ?",1
+23,"Lorsque vous aurez terminé vos études postsecondaires, indiquez où vous prévoyez travailler ?",1
+24,Indiquez le nom de l'institution que vous pensez fréquenter l'an prochain ?,1
+25,"Durant vos études postsecondaires, quelles seront vos sources de financement ?",1
+26,Quel moyen de transport local pensez-vous utiliser le plus régulièrement pendant votre première année d'études ?,1
+27,Quelle est la raison pour laquelle vous ne prévoyez pas poursuivre des études postsecondaire ?,1
+28,"Depuis septembre dernier, avez-vous occupé un emploi rénuméré ?",1
+29,Est-ce que le fait de terminer votre 12e année est important pour vous ?,1
+30,"En général, quels sont vos résultats scolaires en 10e 11e et 12e année ?",1
+31,"En général, vos cours sont de quel niveau scolaire ?",1
+32,"En général, êtes-vous satisfait/e de vos résultats scolaires ?",1
+33,Présentement êtes-vous en attente ou à la recherche d'emploi ?,5
+34,"Au cours des 2 dernières années, combien d'employeurs avez-vous eus ?",5
+35,"Au cours des deux dernières années, combien de mois d'expérience de travail avez-vous accumulés ?",5
+36,Depuis combien de temps êtes-vous sans emploi ?,5
+37,Quelle est la principale raison pour laquelle vous n'avez pas travaillé durant cette période ?,5
+38,Seriez-vous intéressé/e par une expérience de travail dans votre communauté ?,5
+39,Seriez-vous intéressé à recevoir des l'information concernant une expérience de travail dans votre communauté ?,5
+40,Êtes-vous disponible pour travailler maintenant ?,5
+41,Quel type d'emploi recherchez-vous ?,5
+42,Dans quelle province canadienne ou autre pays aimeriez-vous travailler ?,5
+43,Dans quelle région de la province aimeriez-vous travailler ?,5
+44,Avez-vous eu un emploi au cours des 2 dernières années ?,5
+45,Depuis combien d'années demeurez-vous à l'extérieur de la Péninsule acadienne ?,2
+46,Pour quelle raison avez-vous quitté la Péninsule acadienne ?,2
+47,Avez-vous l'intention de vous établir dans la Péninsule acadienne au cours des cinq prochaines années ?,2
+48,Quel est votre niveau d'éducation le plus élevé ?,2
+49,Que consirérez-vous comme étant votre principale occupation en ce moment ?,2
+50,Quel est votre état civil présentement ?,2
+51,De quelle localité de la Péninsule acadienne êtes-vous originaire ?,2
+52,Où demeurez-vous présentement ?,2

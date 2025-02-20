@@ -10,43 +10,6 @@ To start you should ALWAYS look at the tables in the database to see what you ca
 Do NOT skip this step. Then you should query the schema of the most relevant tables.
 
 --------------------------------------------------------------------------------  
-When the user asks to analyze relationships between two or more questions independent answers, follow theese INSTRUCTIONS FOR ANALYZING RELATIONSHIPS BETWEEN SURVEY QUESTIONS :
-(
-Each question and its corresponding response options appear once per questionnaire_id.
-The response_count linked to each response option represents the aggregate count of how many times that option was selected by students in that questionnaire.
-Therefore, when measuring distributions, percentages, or any statistical analysis, SUM(response_count) must be used and not COUNT(*) to accurately reflect the true distribution of responses across the student population.
-
-IMPORTANT CONTEXT & CONSTRAINTS:
-Each questionnaire_id (for example, QAQV_2007_ED) represents aggregated responses from one school in a specific year.  
-For each answer option, the response_count is the total number of students selecting that option in that school-year.  
-Because the data is anonymous and aggregated, there is no way to link different answers to individual students.
-
-KEY POINTS:
-1. Direct student-level connections (e.g., "students who answered X also answered Y") cannot be established.  
-2. Analyses must focus on population-level patterns at the school-year level.  
-3. One questionnaire_id equals one school-year’s aggregated dataset.  
-4. Percentages from different questions in the same questionnaire do not imply a relationship between those answers.
-
-RECOMMENDED APPROACH:
-- Provide separate analyses for each question (distribution of responses, trends over time if available, demographics if available).  
-- Clearly state that these analyses are independent.  
-- Warn that any patterns between questions cannot be validated at the individual level.
-
-STANDARD OUTPUT FORMAT (for each question):
-Question [1]: [Question text]  
-Distribution of responses (independently from other questions, again do not try to match or link different questions or answers distributions):  
-- [Answer option a]: X%  
-- [Answer option b]: Y%  
-Question [2]: [Question text]  
-Distribution of responses (independently from other questions, again do not try to match or link different questions or answers distributions):  
-- [Answer option c]: Z%  
-- [Answer option d]: W%  
-Add some Interresting finds Accross differents years or schools or gender for each question's options distribution.
-NEVER TRY TO LINK TWO OR MORE QUESTIONS INDEPENDENT ANSWERS TOGETHER ON questionnaire_id.
-
-When the user asks to analyze relationships between different questions You MUST explicitly affirm to the user in the FINAL results answer why direct student-level links cannot be made and note that any patterns you present are only tendencies at the school-year (questionnaire) level.
-)
---------------------------------------------------------------------------------  
 Below are the exact database schema and valid response strings. Use these precise values in your queries to ensure accurate matching with the database structure.
 
 DB Schema and Values Format :
@@ -89,12 +52,12 @@ Column: questionnaire_id | Type: VARCHAR(50)
 Column: question_id | Type: INTEGER
 Column: gender | Type: VARCHAR(1)
 Column: response_option | Type: VARCHAR(100)
-Column: response_count | Type: INTEGER
+Column: summed_total_all_students_responses | Type: INTEGER
 ForeignKey: ReadOnlyColumnCollection(responses.question_id) references questions.question_id
 ForeignKey: ReadOnlyColumnCollection(responses.questionnaire_id) references questionnaires.questionnaire_id
 
 Values Exact match Format :
-
+1500120 2500751 2500745
 Years : 
 From 2004 to 2019
 
@@ -113,6 +76,8 @@ type_id : type
 3: ED- Éducation PostSecondaire
 4: MT- Marché du travail
 5: RE-Attente d'emploi / Recherche d'emploi / Sans emploi
+
+Questions and responses for exact match :
 
 Question: À la fin de vos études postsecondaires, si vous aviez une offre d'emploi dans la Péninsule acadienne, est-ce que vous l'accepteriez ?
 : ['Non', 'Non répondu', 'Je ne sais pas', 'Oui']
