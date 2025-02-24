@@ -1,4 +1,4 @@
-streamlit==1.42
+streamlit
 langchain
 langchain-openai
 langchain-community
@@ -7,3 +7,4 @@ sqlalchemy
 langgraph
 psycopg2-binary
 authlib
+pymongo
