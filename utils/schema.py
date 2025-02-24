@@ -1,6 +1,3 @@
-# show_db.py
-
-# show_db.py
 import streamlit as st
 
 

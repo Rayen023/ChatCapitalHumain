@@ -1,0 +1,31 @@
+2025-02-24 17:37:05,762 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-24 17:40:22,798 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-24 17:40:29,751 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-24 17:40:47,793 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-24 17:40:58,541 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-24 17:41:10,113 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-24 17:45:36,427 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-24 17:45:42,890 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-24 17:46:15,264 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-24 18:01:51,629 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-24 18:01:53,214 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-24 18:01:55,370 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-24 18:02:01,841 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-24 18:04:05,232 - utils.utils - ERROR - Error loading conversations: 'AsyncIOMotorCursor' object is not iterable
+2025-02-24 18:04:24,566 - utils.utils - ERROR - Error loading conversations: 'AsyncIOMotorCursor' object is not iterable
+2025-02-24 18:05:20,914 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-24 18:05:22,332 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-24 18:05:23,942 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-24 18:05:25,453 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-24 18:12:06,856 - utils.utils - ERROR - Error loading conversations: Task <Task pending name='Task-6360' coro=<load_user_conversations_async() running at /home/recherche-a/OneDrive_recherche_a/Linux_onedrive/Projects_linux/LLMs/ChatCapitalHumain/utils/sidebar.py:36> cb=[_run_until_complete_cb() at /usr/lib/python3.12/asyncio/base_events.py:181]> got Future <Future pending> attached to a different loop
+2025-02-24 18:12:29,741 - utils.utils - ERROR - Error loading conversations: Task <Task pending name='Task-6585' coro=<load_user_conversations_async() running at /home/recherche-a/OneDrive_recherche_a/Linux_onedrive/Projects_linux/LLMs/ChatCapitalHumain/utils/sidebar.py:36> cb=[_run_until_complete_cb() at /usr/lib/python3.12/asyncio/base_events.py:181]> got Future <Future pending> attached to a different loop
+2025-02-24 18:14:15,499 - utils.utils - ERROR - Error loading conversations: Task <Task pending name='Task-6993' coro=<load_user_conversations_async() running at /home/recherche-a/OneDrive_recherche_a/Linux_onedrive/Projects_linux/LLMs/ChatCapitalHumain/utils/sidebar.py:55> cb=[_chain_future.<locals>._call_set_state() at /usr/lib/python3.12/asyncio/futures.py:396]> got Future <Future pending> attached to a different loop
+2025-02-24 18:14:42,823 - utils.utils - ERROR - Error loading conversations: Task <Task pending name='Task-7224' coro=<load_user_conversations_async() running at /home/recherche-a/OneDrive_recherche_a/Linux_onedrive/Projects_linux/LLMs/ChatCapitalHumain/utils/sidebar.py:55> cb=[_chain_future.<locals>._call_set_state() at /usr/lib/python3.12/asyncio/futures.py:396]> got Future <Future pending> attached to a different loop
+2025-02-24 18:14:47,114 - utils.utils - ERROR - Error loading conversations: Task <Task pending name='Task-7409' coro=<load_user_conversations_async() running at /home/recherche-a/OneDrive_recherche_a/Linux_onedrive/Projects_linux/LLMs/ChatCapitalHumain/utils/sidebar.py:55> cb=[_chain_future.<locals>._call_set_state() at /usr/lib/python3.12/asyncio/futures.py:396]> got Future <Future pending> attached to a different loop
+2025-02-24 18:14:47,495 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-24 18:14:49,254 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-24 18:14:51,305 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-24 18:15:12,241 - utils.utils - ERROR - Error loading conversations: Task <Task pending name='Task-7718' coro=<load_user_conversations_async() running at /home/recherche-a/OneDrive_recherche_a/Linux_onedrive/Projects_linux/LLMs/ChatCapitalHumain/utils/sidebar.py:55> cb=[_chain_future.<locals>._call_set_state() at /usr/lib/python3.12/asyncio/futures.py:396]> got Future <Future pending> attached to a different loop
+2025-02-24 18:15:12,555 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-24 18:15:14,755 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-24 18:15:53,186 - utils.utils - ERROR - Error loading conversations: Task <Task pending name='Task-8061' coro=<load_user_conversations_async() running at /home/recherche-a/OneDrive_recherche_a/Linux_onedrive/Projects_linux/LLMs/ChatCapitalHumain/utils/sidebar.py:55> cb=[_chain_future.<locals>._call_set_state() at /usr/lib/python3.12/asyncio/futures.py:396]> got Future <Future pending> attached to a different loop
