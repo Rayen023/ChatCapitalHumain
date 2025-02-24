@@ -87,17 +87,18 @@ def clear_chat_history():
     """Reset chat history"""
     st.session_state.messages = [{"role": "assistant", "content": INITIAL_MESSAGE}]
 
+with st.sidebar:
+    if not st.experimental_user.is_logged_in:
+        if st.button("Log in with Google"):
+            st.login()
+    if st.experimental_user.is_logged_in:
+        if st.button("Log out"):
+            st.logout()
+        st.write(f"Hello, {st.experimental_user.to_dict()}")
 
 def setup_sidebar():
     """Setup sidebar elements"""
     with st.sidebar:
-        if not st.experimental_user.get("is_logged_in", False):
-            if st.button("Login"):
-                st.login()
-        else:
-            if st.button("Log out"):
-                st.logout()
-            st.write(f"Hello, {st.experimental_user.name}!")
         # st.title(PAGE_TITLE)
         st.button(
             "Nouveau chat",
