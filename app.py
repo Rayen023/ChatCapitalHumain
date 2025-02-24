@@ -22,13 +22,7 @@ from langsmith import Client
 
 from show_db import show_schema_in_sidebar
 
-if not st.experimental_user.get("is_logged_in", False):
-    if st.button("Login"):
-        st.login()
-else:
-    if st.button("Log out"):
-        st.logout()
-    st.write(f"Hello, {st.experimental_user.name}!")
+
 
 
 # You can create a client instance with an api key and api url
@@ -97,6 +91,13 @@ def clear_chat_history():
 def setup_sidebar():
     """Setup sidebar elements"""
     with st.sidebar:
+        if not st.experimental_user.get("is_logged_in", False):
+            if st.button("Login"):
+                st.login()
+        else:
+            if st.button("Log out"):
+                st.logout()
+            st.write(f"Hello, {st.experimental_user.name}!")
         # st.title(PAGE_TITLE)
         st.button(
             "Nouveau chat",
