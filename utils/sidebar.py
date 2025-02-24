@@ -1,11 +1,13 @@
+import asyncio
 import uuid
 
 import streamlit as st
 from langchain_core.messages import AIMessage, HumanMessage
-from pymongo.mongo_client import MongoClient
-from pymongo.server_api import ServerApi
 
-from utils.connection import collection
+from utils.connection import (  # Ensure _background_loop is exported
+    _background_loop,
+    collection,
+)
 from utils.schema import show_schema_in_sidebar
 from utils.utils import get_env_variable, logger
 
@@ -27,16 +29,17 @@ def dict_to_message(d):
     return None
 
 
-def load_user_conversations(email):
+# --- Asynchronous Loading Functions ---
+
+
+async def load_user_conversations_async(email):
     """
-    Retrieve all conversation logs for the logged in user.
+    Retrieve all conversation logs for the given user asynchronously.
     Returns a list of conversation documents sorted by timestamp descending.
     """
     try:
-        client = MongoClient(get_env_variable("MONGO_URI"), server_api=ServerApi("1"))
-        db = client["capitalhumain_db"]
-        collection = db["capitalhumain_convs"]
-        convs = list(collection.find({"email": email}))
+        cursor = collection.find({"email": email})
+        convs = await cursor.to_list(length=None)
         convs.sort(key=lambda x: x.get("timestamp", ""), reverse=True)
         return convs
     except Exception as e:
@@ -44,24 +47,50 @@ def load_user_conversations(email):
         return []
 
 
-def load_conversation(thread_id):
+def load_user_conversations(email):
     """
-    Load a specific conversation by thread_id.
+    Synchronous wrapper for load_user_conversations_async using the background loop.
     """
     try:
-        client = MongoClient(get_env_variable("MONGO_URI"), server_api=ServerApi("1"))
-        db = client["capitalhumain_db"]
-        collection = db["capitalhumain_convs"]
-        conv = collection.find_one({"_id": thread_id})
+        future = asyncio.run_coroutine_threadsafe(
+            load_user_conversations_async(email), _background_loop
+        )
+        return future.result(timeout=5)
+    except Exception as e:
+        logger.error("Error running asyncio for load_user_conversations: %s", str(e))
+        return []
+
+
+async def load_conversation_async(thread_id):
+    """
+    Load a specific conversation by thread_id asynchronously.
+    """
+    try:
+        conv = await collection.find_one({"_id": thread_id})
         return conv
     except Exception as e:
         logger.error("Error loading conversation %s: %s", thread_id, str(e))
         return None
 
 
+def load_conversation(thread_id):
+    """
+    Synchronous wrapper for load_conversation_async using the background loop.
+    """
+    try:
+        future = asyncio.run_coroutine_threadsafe(
+            load_conversation_async(thread_id), _background_loop
+        )
+        return future.result(timeout=5)
+    except Exception as e:
+        logger.error("Error running asyncio for load_conversation: %s", str(e))
+        return None
+
+
 def setup_sidebar_controls():
     """Configure sidebar elements including new chat and conversation loading."""
     with st.sidebar:
+        # Handle authentication buttons
         if st.experimental_user.get("is_logged_in", True):
             if st.button("Log out"):
                 st.logout()
@@ -69,14 +98,14 @@ def setup_sidebar_controls():
         else:
             if st.button("Log in with Google"):
                 st.login()
+            user_email = None
 
-        # If user is logged in, show a selectbox to load saved conversations
-
+        # If user is logged in, load saved conversations
         if user_email:
             st.write(f"Hello, {user_email}")
             convs = load_user_conversations(user_email)
             if convs:
-                # Prepare a mapping of display label to thread_id
+                # Create a mapping of display labels to thread_id values
                 conv_options = {
                     f"{conv.get('timestamp', 'Unknown')} - {conv.get('_id')}": conv.get(
                         "_id"
@@ -94,6 +123,6 @@ def setup_sidebar_controls():
                             dict_to_message(m) for m in conv_data["messages"]
                         ]
                         st.session_state["thread_id"] = selected_thread_id
-                        st.rerun()  # Rerun to update the chat display
+                        st.rerun()  # Rerun the app to update the chat display
 
         show_schema_in_sidebar()

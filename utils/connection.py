@@ -1,15 +1,27 @@
-# Initialize the async MongoDB client (cache this as needed)
+# utils/connection.py
+import asyncio
+import threading
+
 import motor.motor_asyncio
-import streamlit as st
 
 from utils.utils import get_env_variable
 
-
-@st.cache_resource
-def get_mongo_collection():
-    client = motor.motor_asyncio.AsyncIOMotorClient(get_env_variable("MONGO_URI"))
-    db = client["capitalhumain_db"]
-    return db["capitalhumain_convs"]
+# Create a global background event loop
+_background_loop = asyncio.new_event_loop()
 
 
-collection = get_mongo_collection()
+def start_background_loop(loop):
+    asyncio.set_event_loop(loop)
+    loop.run_forever()
+
+
+threading.Thread(
+    target=start_background_loop, args=(_background_loop,), daemon=True
+).start()
+
+# Create the Motor client using the background loop
+client = motor.motor_asyncio.AsyncIOMotorClient(
+    get_env_variable("MONGO_URI"), io_loop=_background_loop
+)
+db = client["capitalhumain_db"]
+collection = db["capitalhumain_convs"]

@@ -29,3 +29,4 @@
 2025-02-24 18:15:12,555 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
 2025-02-24 18:15:14,755 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
 2025-02-24 18:15:53,186 - utils.utils - ERROR - Error loading conversations: Task <Task pending name='Task-8061' coro=<load_user_conversations_async() running at /home/recherche-a/OneDrive_recherche_a/Linux_onedrive/Projects_linux/LLMs/ChatCapitalHumain/utils/sidebar.py:55> cb=[_chain_future.<locals>._call_set_state() at /usr/lib/python3.12/asyncio/futures.py:396]> got Future <Future pending> attached to a different loop
+2025-02-24 18:20:35,260 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
