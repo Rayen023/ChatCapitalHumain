@@ -11,6 +11,12 @@ from st_callable_util import (
 
 load_dotenv()
 
+# create uuid for the session
+import uuid
+
+if "thread_id" not in st.session_state:
+    st.session_state["thread_id"] = str(uuid.uuid4())
+
 st.title("StreamLit 🤝 LangGraph")
 st.markdown("#### StreamlitCallBackHandler Full Implementation")
 
@@ -40,7 +46,9 @@ if prompt := st.chat_input():
         )  # Placeholder for visually updating AI's response after events end
         # create a new placeholder for streaming messages and other events, and give it context
         st_callback = get_streamlit_cb(st.empty())
-        response = invoke_our_graph(prompt, [st_callback], 1)
+        response = invoke_our_graph(
+            prompt, [st_callback], st.session_state["thread_id"]
+        )
         last_msg = response["messages"][-1].content
         st.session_state.messages.append(
             AIMessage(content=last_msg)
