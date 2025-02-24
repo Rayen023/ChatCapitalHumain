@@ -107,9 +107,7 @@ def setup_sidebar_controls():
             if convs:
                 # Create a mapping of display labels to thread_id values
                 conv_options = {
-                    f"{conv.get('timestamp', 'Unknown')} - {conv.get('_id')}": conv.get(
-                        "_id"
-                    )
+                    f"{conv.get('timestamp', 'Unknown')}": conv.get("_id")
                     for conv in convs
                 }
                 selected_conv_display = st.selectbox(
