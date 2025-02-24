@@ -8,3 +8,4 @@ langgraph
 psycopg2-binary
 authlib
 pymongo
+motor
