@@ -6,3 +6,4 @@ langchain-experimental
 sqlalchemy
 langgraph
 psycopg2-binary
+authlib

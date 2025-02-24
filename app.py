@@ -22,6 +22,15 @@ from langsmith import Client
 
 from show_db import show_schema_in_sidebar
 
+if not st.experimental_user.get("is_logged_in", False):
+    if st.button("Login"):
+        st.login()
+else:
+    if st.button("Log out"):
+        st.logout()
+    st.write(f"Hello, {st.experimental_user.name}!")
+
+
 # You can create a client instance with an api key and api url
 client = Client(
     api_key=os.getenv(
