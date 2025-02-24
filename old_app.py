@@ -22,9 +22,6 @@ from langsmith import Client
 
 from show_db import show_schema_in_sidebar
 
-
-
-
 # You can create a client instance with an api key and api url
 client = Client(
     api_key=os.getenv(
@@ -58,12 +55,12 @@ MODEL_CONFIG = {
 # Page setup
 st.set_page_config(
     page_title=PAGE_TITLE,
-    page_icon="deer.png",
+    page_icon="images/deer.png",
 )
 
 st.logo(
-    "deer.png",
-    icon_image="deer.png",
+    "images/deer.png",
+    icon_image="images/deer.png",
     size="large",
 )
 
@@ -78,7 +75,9 @@ def init_session_state():
         # save db to csv
 
     if "system_message" not in st.session_state:
-        with open("full_prompt_no_answer_n_ask.txt", "r", encoding="utf-8") as file:
+        with open(
+            "prompt_templates/full_prompt_no_answer_n_ask.txt", "r", encoding="utf-8"
+        ) as file:
             prompt_temp = file.read()
         st.session_state.system_message = prompt_temp
 
@@ -86,6 +85,7 @@ def init_session_state():
 def clear_chat_history():
     """Reset chat history"""
     st.session_state.messages = [{"role": "assistant", "content": INITIAL_MESSAGE}]
+
 
 with st.sidebar:
     if not st.experimental_user.is_logged_in:
@@ -95,6 +95,7 @@ with st.sidebar:
         if st.button("Log out"):
             st.logout()
         st.write(f"Hello, {st.experimental_user.to_dict()}")
+
 
 def setup_sidebar():
     """Setup sidebar elements"""
@@ -115,11 +116,11 @@ def setup_chat_interface():
     history = ChatMessageHistory()
     for message in st.session_state.messages:
         if message["role"] == "assistant":
-            with st.chat_message(message["role"], avatar="deer.png"):
+            with st.chat_message(message["role"], avatar="images/deer.png"):
                 st.write(message["content"])
                 history.add_user_message("AI : " + message["content"])
         else:
-            with st.chat_message(message["role"], avatar="avataruser.png"):
+            with st.chat_message(message["role"], avatar="images/avataruser.png"):
                 st.write(message["content"])
                 history.add_user_message(message["content"])
     return history
@@ -143,7 +144,7 @@ def create_agent(db, memory):
     llm = ChatOpenAI(
         openai_api_key=st.secrets["OPENROUTER_API_KEY"],
         openai_api_base=st.secrets["OPENROUTER_BASE_URL"],
-        **MODEL_CONFIG
+        **MODEL_CONFIG,
     )
     toolkit = SQLDatabaseToolkit(db=db, llm=llm)
 
@@ -196,7 +197,7 @@ def main():
     agent_executor = create_agent(st.session_state.db, memory)
 
     if st.session_state.messages[-1]["role"] != "assistant":
-        with st.chat_message("assistant", avatar="deer.png"):
+        with st.chat_message("assistant", avatar="images/deer.png"):
             message_placeholder = st.empty()
             if DEBUGGING:
                 st_callback = StreamlitCallbackHandler(
