@@ -4,6 +4,8 @@ import streamlit as st
 from langchain_community.agent_toolkits.sql.toolkit import SQLDatabaseToolkit
 from langchain_community.utilities.sql_database import SQLDatabase
 from langchain_core.messages import BaseMessage
+from langchain_core.tools import Tool
+from langchain_experimental.utilities import PythonREPL
 from langchain_openai import ChatOpenAI
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, START, StateGraph
@@ -16,6 +18,7 @@ MODEL_CONFIG = {
     # "model_name": "anthropic/claude-3.5-sonnet:beta",
     # "model_name": "google/gemini-2.0-pro-exp-02-05:free",
     "model_name": "google/gemini-2.0-flash-001",
+    # "model_name": "anthropic/claude-3.7-sonnet",
     # "model_name": "openai/o3-mini",
     # "model_name": "openai/o3-mini-high",
     "temperature": 0,
@@ -44,8 +47,18 @@ llm = ChatOpenAI(
 
 toolkit = SQLDatabaseToolkit(db=st.session_state.db, llm=llm)
 
-tools = toolkit.get_tools()
+python_repl = PythonREPL()
 
+
+repl_tool = Tool(
+    name="python_repl",
+    description="A Python shell. Use this to execute python commands. Input should be a valid python command. Use to plot charts using only streamlit chart elements, matplotlib is not support in the interface and to print tables use st.dataframe.",
+    func=python_repl.run,
+)
+
+
+tools = toolkit.get_tools()
+tools.append(repl_tool)
 
 llm_with_tools = llm.bind_tools(tools)
 
