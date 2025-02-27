@@ -40,25 +40,35 @@ class QueryProposal(BaseModel):
     explanation: str = Field(
         description="Explanation of how these tables, columns, and fields would be used to answer the query",
     )
+    instruction_set: str = Field(
+        description="Instructions for the SQL agent to formulate the query",
+    )
+    is_accepted_by_human_analyst: bool = Field(
+        description="Whether the proposal was accepted by the human analyst",
+    )
 
 
 class AnalysisResult(BaseModel):
-    is_answerable: bool = Field(
+    is_db_related_and_answerable: bool = Field(
         description="Whether the query can be answered with the available database",
     )
-    explanation: str = Field(
-        description="Explanation of why the query is or is not answerable",
-    )
-    query_proposal: Optional[QueryProposal] = Field(
-        description="Proposal for query structure if answerable", default=None
+    response: str = Field(
+        description="Conversational Response or Explanation of why the query is not answerable",
     )
 
+# class CheckSchemaFormulateInstructions(BaseModel):    
+#     query_proposal: Optional[QueryProposal] = Field(
+#         description="Proposal for query structure if answerable", default=None
+#     )
 
 class DatabaseQueryState(TypedDict):
     user_request: str  # The original user query
+    message_history: List[HumanMessage | AIMessage] # History of messages
     analysis_result: Optional[AnalysisResult]  # Result of query analysis
+    query_proposal: Optional[QueryProposal]  # Proposal for query structure if answerable
     human_analyst_feedback: Optional[str]  # Feedback from human expert
-    final_query_instructions: Optional[str]  # Final instructions for SQL agent
+    query_results: Optional[str]  # Results of the query
+    final_answer: Optional[str]  # Final instructions for SQL agent
 
 
 SCHEMA_TEMPLATE_PATH = "schema_template.txt"
@@ -67,53 +77,54 @@ if "schema_template" not in st.session_state:
         prompt_temp = file.read()
     st.session_state.schema_template = prompt_temp
 
-
-# System prompt for query analysis
-query_analysis_instructions = """You are a database query assistant with access to questionnaire response data.
-
-Database Overview:
-- The database contains data for each year and questionnaire.
-- For every year, each questionnaire includes multiple questions, each offering several answer options.
-- For each answer option, the total number of male and female respondents is recorded.
-- Important: Data is aggregated at the school level only, not individual students.
-
-Your task is to analyze the user's request and determine:
-1. Is the request answerable with the available data?
-2. If NOT answerable, explain why (especially if it tries to link multiple questions). 
-3. If answerable, suggest the tables, columns, and fields needed for the query.
-
-Remember: It is IMPOSSIBLE to answer queries that attempt to link responses across multiple questions.
-
-Examples:
-- Answerable: "What is the total number of male and female responses for question X in school Y for the year 2015?"
-- NOT answerable: "How many students who answered question A also answered question B?"
----
-
-Note : For greetings, general non related questions on different subjects, also set to not answerable but in the explanation field answer it normally in a conversational polite manner as a helpful general chatbot.
-
-{schema_template}
-
-""".format(
-    schema_template=st.session_state.schema_template
-)
-
-
 # Function to analyze the user request
 def analyze_request(state: DatabaseQueryState):
     """Analyze whether the user request can be answered with the database"""
+    query_analysis_instructions = """You are a database query assistant with access to questionnaire response data.
+    Note : As a conversational chatbot you have access to previous messages history and you have memory of past conversations.
 
+    Database Overview:
+    - The database contains data for each year and questionnaire.
+    - For every year, each questionnaire includes multiple questions, each offering several answer options.
+    - For each answer option, the total number of male and female respondents is recorded.
+    - Important: Data is aggregated at the school level only, not individual students. Thus : It is IMPOSSIBLE to answer queries that attempt to link responses across multiple questions.
+
+    Examples:
+    - Answerable: "What is the total number of male and female responses for question X in school Y for the year 2015?"
+    - Answerable: "What is the total number of students for question X ? aggregate by year, school and gender"
+    - Answerable: "What is the number of students that go to school on foot in 2018 per school ?"
+    - NOT answerable: "How many students who answered question A also answered question B?"
+    - NOT answerable: "What is the total number of students that go to school on foot and have good grades ? aggregate by school and gender"
+    ---
+    if db related and answerable:
+    set is_db_related_and_answerable to True
+    and in the response field reformulate the user request to a full well formulated instruction in natural language do not try to convert to SQL.
+
+    Note : For greetings, general non related questions on different subjects, also set to not answerable but in the response field answer it normally in a conversational polite manner as a helpful general chatbot.
+    """
     # Format system message
     user_request = state["user_request"]
+    history = state["message_history"]
+
+    # Convert message history to the correct format
+    messages_history = [
+        ("ai", msg.content) if isinstance(msg, AIMessage) else ("human", msg.content)
+        for msg in history
+        if isinstance(msg, AIMessage) or isinstance(msg, HumanMessage)
+    ]
 
     # Create structured LLM call
     structured_llm = llm.with_structured_output(AnalysisResult)
     messages = [
         (
             "system",
-            query_analysis_instructions,
+              query_analysis_instructions 
+              + "Messages History: " 
         ),
-        ("human", "User_request: " + user_request),
+        *messages_history,  # Unpacking the list of tuples
+        ('human', "User_request: " + user_request)
     ]
+    print(messages)
 
     # Generate analysis
     analysis_result = structured_llm.invoke(messages)
@@ -121,66 +132,78 @@ def analyze_request(state: DatabaseQueryState):
     # Return updated state
     return {"analysis_result": analysis_result}
 
-
-# Function for human feedback step
-def human_feedback(state: DatabaseQueryState):
-    """No-op node that should be interrupted for human feedback"""
-    pass
-
-
-# Function to finalize query instructions
-def finalize_query(state: DatabaseQueryState):
-    """Create final query instructions based on the analysis and human feedback"""
-
-    user_request = state["user_request"]
-    analysis_result = state["analysis_result"]
-    human_analyst_feedback = state.get("human_analyst_feedback", "")
-
-    # System message for finalizing query
-    system_message = f"""Based on the user's request, the analysis of whether it's answerable, and human expert feedback, create the final SQL query instructions.
-
-User Request: {user_request}
-
-Analysis: {analysis_result.explanation}
-
-Proposed Tables: {', '.join(analysis_result.query_proposal.tables) if analysis_result.query_proposal else 'None'}
-Proposed Columns: {', '.join(analysis_result.query_proposal.columns) if analysis_result.query_proposal else 'None'}
-Proposed Fields: {', '.join(analysis_result.query_proposal.fields) if analysis_result.query_proposal else 'None'}
-
-Human Expert Feedback: {human_analyst_feedback}
-
-Create a clear and well-formatted set of instructions for the SQL agent."""
-
-    # Generate final instructions
-    response = llm.invoke([SystemMessage(content=system_message)])
-
-    # Return updated state
-    return {"final_query_instructions": response.content}
-
-
 # Conditional edge function to route based on answerability
 def route_after_analysis(state: DatabaseQueryState):
     """Determine next step based on whether query is answerable"""
 
     analysis_result = state["analysis_result"]
 
-    if analysis_result.is_answerable:
-        return "human_feedback"
+    if analysis_result.is_db_related_and_answerable:
+        return "check_schema_formulate_instructions"
     else:
         return END
 
+def check_schema_formulate_instructions(state: DatabaseQueryState):
+    """Create final query instructions based on the analysis and human feedback"""
 
-# Conditional edge function after human feedback
-def should_continue(state: DatabaseQueryState):
+    reformulated_request = state["analysis_result"].response
+    human_analyst_feedback = state.get("human_analyst_feedback", "")
+
+    # System message for finalizing query
+    system_message = f"""Based on the user's request, the DB schema, and human expert feedback, create the final SQL query instructions.
+    You are a database query assistant with access to questionnaire response data.
+    Note : As a conversational chatbot you have access to previous messages history and you have memory of past conversations.
+
+    Database Overview:
+    - The database contains data for each year and questionnaire.
+    - For every year, each questionnaire includes multiple questions, each offering several answer options.
+    - For each answer option, the total number of male and female respondents is recorded.
+    - Important: Data is aggregated at the school level only, not individual students.
+
+    User request: {reformulated_request}
+    Human Expert Feedback: {human_analyst_feedback}
+    DB Schema: {st.session_state.schema_template}
+
+    Task:
+    1. Identify the tables, columns, and fields needed to answer the User request.
+    2. Add an explanation of how these tables, columns, and fields would be used to answer the User request.
+    3. Create a clear and well-formatted set of instructions for the SQL agent. #TODO clarify this point.
+    4. Depending on the human expert feedback, you may need to adjust the query proposal.
+    5. If the human expert feedback accepts the proposals, keep the rest of fields as is and set the 'is_accepted_by_human_analyst' field to True.
+
+    is_accepted_by_human_analyst should be set to False by default.
+    Set the 'is_accepted_by_human_analyst' field to True only if the human expert feedback contains words such as yes, correct, etc...
+    If empty set to False.
+    Always set is_accepted_by_human_analyst to False
+"""
+    structured_llm = llm.with_structured_output(QueryProposal)
+    query_proposal = structured_llm.invoke(system_message)
+    
+    return {"query_proposal": query_proposal }
+
+
+def route_after_feedback(state: DatabaseQueryState):
     """Route based on presence of human feedback"""
 
-    human_analyst_feedback = state.get("human_analyst_feedback", None)
+    query_proposal = state["query_proposal"]
 
-    if human_analyst_feedback:
-        return "finalize_query"
+    # Return updated state
+    if query_proposal.is_accepted_by_human_analyst == True:
+        return "run_query"
+    return "human_feedback"
 
-    # If no human feedback, end
-    return END
+# Function for human feedback step
+def human_feedback(state: DatabaseQueryState):
+    """No-op node that should be interrupted for human feedback"""
+    pass
+
+def run_query(state: DatabaseQueryState):
+    """Run the query"""
+    pass
+
+def finalize_query(state: DatabaseQueryState):
+    pass
+
 
 
 # Build the graph
@@ -188,17 +211,21 @@ builder = StateGraph(DatabaseQueryState)
 
 # Add nodes
 builder.add_node("analyze_request", analyze_request)
+builder.add_node("check_schema_formulate_instructions", check_schema_formulate_instructions)
 builder.add_node("human_feedback", human_feedback)
+builder.add_node("run_query", run_query)
 builder.add_node("finalize_query", finalize_query)
 
 # Add edges
 builder.add_edge(START, "analyze_request")
 builder.add_conditional_edges(
-    "analyze_request", route_after_analysis, ["human_feedback", END]
+    "analyze_request", route_after_analysis, ["check_schema_formulate_instructions", END]
 )
 builder.add_conditional_edges(
-    "human_feedback", should_continue, ["finalize_query", END]
+    "check_schema_formulate_instructions", route_after_feedback, ["human_feedback", "run_query"]
 )
+builder.add_edge("human_feedback", "check_schema_formulate_instructions")
+builder.add_edge("run_query", "finalize_query")
 builder.add_edge("finalize_query", END)
 
 # Compile the graph
@@ -265,7 +292,7 @@ def invoke_our_graph(user_input, callables, thread_id):
     # Invoke the graph with the current messages and callback configuration
     return (
         graph.invoke(
-            {"user_request": user_input},
+            {"user_request": user_input, "message_history": st.session_state["messages"]},
             config={"callbacks": callables, "configurable": {"thread_id": thread_id}},
         ),
         graph,

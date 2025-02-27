@@ -101,11 +101,11 @@ if user_message:
         )
         print("state", state)
         st.warning(graph_response)
-        st.info(graph_response["analysis_result"].explanation)
+        st.info(graph_response["analysis_result"].response)
         st.session_state["messages"].append(
-            AIMessage(content=graph_response["analysis_result"].explanation)
+            AIMessage(content=graph_response["analysis_result"].response)
         )
-        response_placeholder.write(graph_response["analysis_result"].explanation)
+        response_placeholder.write(graph_response["analysis_result"].response)
 
         # TODO check state of the graph_response, if feedback in its name :
 
