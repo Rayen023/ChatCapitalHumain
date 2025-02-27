@@ -37,7 +37,6 @@ langchain_tracer = LangChainTracer(client=langsmith_client)
 
 # Application constants
 USER_AVATAR_PATH = "images/avataruser.png"
-SYSTEM_PROMPT_PATH = "prompt_templates/full_prompt_no_answer_n_ask.txt"
 WELCOME_MESSAGE = "Comment puis-je vous aider ? | How can I help you ?"
 
 # Page configuration
@@ -68,7 +67,7 @@ with st.sidebar:
         use_container_width=True,
     )
 
-#setup_sidebar_controls()
+# setup_sidebar_controls()
 
 # Display chat history
 for message in st.session_state["messages"]:
@@ -91,31 +90,55 @@ if user_message:
         graph_response, graph = invoke_our_graph(
             user_message, [streamlit_callback], st.session_state["thread_id"]
         )
-        #final_response = graph_response["messages"][-1].content
-        #st.session_state["messages"].append(AIMessage(content=final_response))
-        #response_placeholder.write(final_response)
-        response_placeholder.write(graph_response)
-        response_placeholder.write(graph_response["analysis_result"])
-        #TODO check state of the graph_response, if feedback in its name :
+        # final_response = graph_response["messages"][-1].content
+        # st.session_state["messages"].append(AIMessage(content=final_response))
+        # response_placeholder.write(final_response)
 
-        #if graph_response["analysis_result"].is_answerable == True:
-        further_feedack = st.text_input("Veuillez donner plus de détails pour une meilleure réponse")
-        #if further_feedack:
-        print("further feedback", further_feedack)
-        graph.update_state({"configurable": {"thread_id":st.session_state["thread_id"]}}, {"human_analyst_feedback": 
-                        "inclut aussi comme bons resultats tout ayant a partir de plus de 55%"}, as_node="human_feedback")
-        
-        for event in graph.stream(None, {"configurable": {"thread_id":st.session_state["thread_id"]}}, stream_mode="updates"):
-            print("--Node--")
-            node_name = next(iter(event.keys()))
-            print(node_name)
-        final_state = graph.get_state({"configurable": {"thread_id":st.session_state["thread_id"]}})
-        print(final_state.values.get('final_query_instructions'))
-            
-        st.session_state["messages"].append(AIMessage(content=str(graph_response)))
+        # With multi_agents
 
+        state = graph.get_state(
+            {"configurable": {"thread_id": st.session_state["thread_id"]}}
+        )
+        print("state", state)
+        st.warning(graph_response)
+        st.info(graph_response["analysis_result"].explanation)
+        st.session_state["messages"].append(
+            AIMessage(content=graph_response["analysis_result"].explanation)
+        )
+        response_placeholder.write(graph_response["analysis_result"].explanation)
+
+        # TODO check state of the graph_response, if feedback in its name :
+
+        # # if graph_response["analysis_result"].is_answerable == True:
+        # further_feedack = st.text_input(
+        #     "Veuillez donner plus de détails pour une meilleure réponse"
+        # )
+        # # if further_feedack:
+        # print("further feedback", further_feedack)
+        # graph.update_state(
+        #     {"configurable": {"thread_id": st.session_state["thread_id"]}},
+        #     {
+        #         "human_analyst_feedback": "inclut aussi comme bons resultats tout ayant a partir de plus de 55%"
+        #     },
+        #     as_node="human_feedback",
+        # )
+
+        # for event in graph.stream(
+        #     None,
+        #     {"configurable": {"thread_id": st.session_state["thread_id"]}},
+        #     stream_mode="updates",
+        # ):
+        #     print("--Node--")
+        #     node_name = next(iter(event.keys()))
+        #     print(node_name)
+        # final_state = graph.get_state(
+        #     {"configurable": {"thread_id": st.session_state["thread_id"]}}
+        # )
+        # print(final_state.values.get("final_query_instructions"))
+
+        # st.session_state["messages"].append(AIMessage(content=str(graph_response)))
 
     # Save the conversation only after the assistant has responded,
     # and only if the user is logged in (i.e. email exists)
-    #if st.experimental_user.get("email"):
-        #save_chat_logs()
+    # if st.experimental_user.get("email"):
+    # save_chat_logs()
