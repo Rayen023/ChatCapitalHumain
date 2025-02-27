@@ -59,14 +59,6 @@ def reset_chat_history():
     st.session_state["thread_id"] = str(uuid.uuid4())
 
 
-with st.sidebar:
-    st.button(
-        "Nouveau chat",
-        on_click=reset_chat_history,
-        icon=":material/edit_square:",
-        use_container_width=True,
-    )
-
 # setup_sidebar_controls()
 
 # Display chat history
@@ -75,6 +67,41 @@ for message in st.session_state["messages"]:
         st.chat_message("assistant", avatar=APP_ICON_PATH).write(message.content)
     elif isinstance(message, HumanMessage):
         st.chat_message("user", avatar=USER_AVATAR_PATH).write(message.content)
+
+
+# Add this function to your app
+def toggle_debug_panel():
+    """Toggle the visibility of the debug panel."""
+    if "show_debug_panel" not in st.session_state:
+        st.session_state["show_debug_panel"] = True
+    else:
+        st.session_state["show_debug_panel"] = not st.session_state["show_debug_panel"]
+
+
+# Update your sidebar section
+with st.sidebar:
+    st.button(
+        "Nouveau chat",
+        on_click=reset_chat_history,
+        icon=":material/edit_square:",
+        use_container_width=True,
+    )
+
+    # Debug button to show session state
+    st.button(
+        "Show Session State",
+        on_click=toggle_debug_panel,
+        key="debug_button",
+        use_container_width=True,
+    )
+
+    # Display session state when debug panel is open
+    if "show_debug_panel" in st.session_state and st.session_state["show_debug_panel"]:
+        st.write("### Session State Contents")
+        for key in sorted(st.session_state.keys()):
+            with st.expander(f"Key: {key}"):
+                st.write(st.session_state[key])
+
 
 # Handle new user input
 user_message = st.chat_input("Message ChatCapitalHumain...")
@@ -105,7 +132,12 @@ if user_message:
         st.session_state["messages"].append(
             AIMessage(content=graph_response["analysis_result"].response)
         )
-        response_placeholder.write(graph_response["analysis_result"].response)
+        response_placeholder.write(graph_response)
+        if graph_response.get("final_answer"):
+            st.session_state["messages"].append(
+                AIMessage(content=graph_response["final_answer"])
+            )
+            response_placeholder.write(graph_response["final_answer"])
 
         # TODO check state of the graph_response, if feedback in its name :
 
