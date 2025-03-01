@@ -1,12 +1,9 @@
 from typing import List, Optional
 
 import streamlit as st
-from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain_community.agent_toolkits.sql.toolkit import SQLDatabaseToolkit
-from langchain_community.callbacks.streamlit import StreamlitCallbackHandler
 from langchain_community.utilities.sql_database import SQLDatabase
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.tools import Tool
 from langchain_experimental.utilities import PythonREPL
 from langgraph.checkpoint.memory import MemorySaver
@@ -21,8 +18,8 @@ from utils.utils import get_llm
 MODEL_CONFIG = {
     # "model_name": "anthropic/claude-3.5-sonnet:beta",
     # "model_name": "openai/gpt-4o-mini",
-    # "model_name": "google/gemini-2.0-flash-001",
-    "model_name": "anthropic/claude-3.7-sonnet",
+    "model_name": "google/gemini-2.0-flash-001",
+    #"model_name": "anthropic/claude-3.7-sonnet",
     # "model_name": "openai/o3-mini",
     # "model_name": "openai/o3-mini-high",
     "temperature": 0,
@@ -37,17 +34,14 @@ llm = get_llm(MODEL_CONFIG)
 
 # Define our structured data models
 class QueryProposal(BaseModel):
-    tables: List[str] = Field(
-        description="The tables in the database that would be used to answer the query",
-    )
-    columns: List[str] = Field(
-        description="The columns from the tables that would be relevant for the query",
+    questions_text: List[str] = Field(
+        description="The questions exact text whose answers are most relevant for the query",
     )
     fields: List[str] = Field(
         description="The specific fields or values to filter or select in the query",
     )
     explanation: str = Field(
-        description="Explanation of how these tables, columns, and fields would be used to answer the query with instructions in SQL and what SQL functions can be used",
+        description="Explanation of how the tables, fields would be used to answer the query with instructions in SQL and what SQL functions can be used",
     )
     is_accepted_by_human_analyst: bool = Field(
         description="Whether the proposal was accepted by the human analyst, Must be set to False by default",
@@ -81,39 +75,92 @@ class DatabaseQueryState(TypedDict):
     final_answer: Optional[str]  # Final instructions for SQL agent
 
 
-SCHEMA_TEMPLATE_PATH = "schema_template.txt"
-if "schema_template" not in st.session_state:
-    with open(SCHEMA_TEMPLATE_PATH, "r", encoding="utf-8") as file:
-        prompt_temp = file.read()
-    st.session_state.schema_template = prompt_temp
 
 
 # Function to analyze the user request
 def analyze_request(state: DatabaseQueryState):
     """Analyze whether the user request can be answered with the database"""
-    query_analysis_instructions = """You are a database query assistant with access to questionnaire response data.
-    Note : As a conversational chatbot you have access to previous messages history and you have memory of past conversations.
+    query_analysis_instructions = """
 
-    Database Overview:
-    - The database contains data for each year and questionnaire.
-    - For every year, each questionnaire includes multiple questions, each offering several answer options.
-    - For each answer option, the total number of male and female respondents is recorded.
-    - Important: Data is aggregated at the school level only, not individual students. Thus : It is IMPOSSIBLE to answer queries that attempt to link responses across multiple questions.
+### **Role and Context**
 
-    Examples:
-    - Answerable: "What is the total number of male and female responses for question X in school Y for the year 2015?"
-    - Answerable: "What is the total number of students for question X ? aggregate by year, school and gender"
-    - Answerable: "What is the number of students that go to school on foot in 2018 per school ?"
-    - Answerable: "Nombre d'etudiant qui ont de bons resultats scolaires en 2018?"
-    - NOT answerable: "How many students who answered question A also answered question B?"
-    - NOT answerable: "What is the total number of students that go to school on foot and have good grades ? aggregate by school and gender"
-    ---
-    if db related and answerable:
-    set is_db_related_and_answerable to True
-    and in the response field reformulate the user request to a full well formulated instruction in natural language do not try to convert to SQL.
+You are the **first agent** in a chain of agents. Your task:
+1. Interact seamlessly with the user. YOu have access to previous messages history and you have memory of past conversations.
+2. Determine whether their query requires data from the **Capital Humain** database (spanning 2004–2019) or if it is a general/non-database question.
+3. Forward the user’s query in the correct format, indicating whether it is (a) database-related and answerable, or (b) not database-related / not answerable.
 
-    Note : For greetings, general non related questions on different subjects, also set to not answerable but in the response field answer it normally in a conversational polite manner as a helpful general chatbot.
-    """
+---
+
+### **Output Format**
+
+You must provide **two fields**:
+1. **is_db_related_and_answerable**: a boolean (`True` or `False`)
+2. **response**: a string with your answer or explanation
+
+---
+
+### **Decision Logic**
+
+1. **If the user’s query is NOT related to the database**  
+   - Example: simple greetings, general knowledge, conversation, etc.  
+   - **Set** `is_db_related_and_answerable = False`.  
+   - **In the `response` field**, answer the user as a normal conversational chatbot would.
+
+2. **If the user’s query IS related to the database**  
+   The **Capital Humain** database covers:
+   - **Schools** (2004–2019):
+     1. Aux quatre vents  
+     2. Centre La Fontaine  
+     3. Secondaire Népisiguit  
+     4. Louis-Mailloux  
+     5. Marie-Esther  
+     6. Roland-Pépin  
+     7. W.-A.-Losier  
+   - **Questionnaires** (each with multiple questions and response breakdowns by gender):  
+     1. Questions Générales  
+     2. SD – Renseignements Socio-Démographiques  
+     3. ED – Éducation PostSecondaire  
+     4. MT – Marché du travail  
+     5. RE – Attente d'emploi / Recherche d'emploi / Sans emploi
+
+   **Important constraints**:  
+   - Data is aggregated **only** by:
+     - School  
+     - Year  
+     - Questionnaire  
+     - Gender  
+   - There is **no way to correlate** individual student answers **across different questions**.  
+
+   Therefore:
+   1. **If the user’s request attempts to correlate or link answers from multiple distinct questions**:  
+      - **Set** `is_db_related_and_answerable = False`.  
+      - **In the `response` field**, explain why this answer is impossible (cross-question correlation is not supported by the database).
+
+   2. **If the user’s request is about one question (or multiple sub-answers of the same question)** and does not require cross-question correlation:  
+      - **Set** `is_db_related_and_answerable = True`.  
+      - **In the `response` field**, restate the user’s query clearly and concisely so it can be passed on to the database query agents.
+
+---
+
+### **Examples**
+
+**Answerable (set `is_db_related_and_answerable = True` and return the query):**  
+- “What is the total number of male and female responses for question X in school Y for 2015?”  
+- “How many students chose to go to school by foot or by bus in 2018, by school?”  
+  - (*These both concern a single question or its various answer choices, without linking separate questions.*)
+
+**Not Answerable (set `is_db_related_and_answerable = False` and explain):**  
+- “How many students who answered question A also answered question B?” (This is cross-question correlation.)  
+- “How many students go to school on foot **and** have good grades, by school and gender?” (Again, involves two separate questions: transportation method and grades.)
+
+---
+
+Use this decision tree and output format in every interaction:
+- If **DB-related & answerable** → `True` + restate query  
+- Otherwise → `False` + normal conversational answer or explanation  
+
+This ensures a consistent, structured approach to every user query.
+ """
     # Format system message
     user_request = state["user_request"]
     history = state["message_history"]
@@ -132,8 +179,6 @@ def analyze_request(state: DatabaseQueryState):
         *messages_history,  # Unpacking the list of tuples
         ("human", "User_request: " + user_request),
     ]
-    print(messages)
-
     # Generate analysis
     analysis_result = structured_llm.invoke(messages)
 
@@ -157,56 +202,37 @@ def check_schema_formulate_instructions(state: DatabaseQueryState):
     """Create final query instructions based on the analysis and human feedback"""
 
     reformulated_request = state["analysis_result"].response
-    human_analyst_feedback = state.get("human_analyst_feedback", "Not checked yet")
+    human_analyst_feedback = state.get("human_analyst_feedback", "Not checked by human expert yet")
     previous_query_proposal = state.get("query_proposal", None)
 
-    # System message for finalizing query
-    #     system_message = f"""Based on the user's request, the DB schema, and human expert feedback, create the final SQL query instructions.
-    #     You are a database query assistant with access to questionnaire response data.
-    #     Note : As a conversational chatbot you have access to previous messages history and you have memory of past conversations.
-    #     Always set is_accepted_by_human_analyst to False
+    system_message = f"""
+    You are an agent in a multi-agent workflow. Your role is to analyze database queries by:
+    1. Examining the provided database schema
+    2. Understanding the user's request
+    3. Identifying necessary questions and corresponding fields to answer the query
 
-    #     Database Overview:
-    #     - The database contains data for each year and questionnaire.
-    #     - For every year, each questionnaire includes multiple questions, each offering several answer options.
-    #     - For each answer option, the total number of male and female respondents is recorded.
-    #     - Important: Data is aggregated at the school level only, not individual students.
+    WORKFLOW:
+    - First, you will suggest query components to a human expert for review
+    - Only after receiving positive feedback will you forward instructions to the SQL agent
 
-    #     User request: {reformulated_request}
-    #     Previous Query Proposal: {previous_query_proposal}
-    #     Human Expert Feedback: {human_analyst_feedback}
-    #     DB Schema: {st.session_state.schema_template}
+    INPUT:
+    - User request: {reformulated_request}
+    - Previous field suggestions: {previous_query_proposal}
+    - Human expert feedback: {human_analyst_feedback}
+    - Database schema: {st.session_state.schema_template}
 
-    #     Task:
-    #     1. Identify the tables, columns, and fields needed to answer the User request.
-    #     2. Add an explanation of how these tables, columns, and fields would be used to answer the User request.
-    #     If human expert feedback is not provided, set the 'is_accepted_by_human_analyst' field to False and continue.
-    #     else :
-    #         3. Depending on the human expert feedback, you may need to adjust the query proposal.
-    #         4. If the human expert feedback accepts the proposals : Human Expert Feedback: contains words such as coorect or yes : keep the rest of fields as is and set the 'is_accepted_by_human_analyst' field to True.
-    # """
-    system_message = f"""Based on the user's request, the DB schema, and human expert feedback, create the final SQL query instructions.
-    You are a database query assistant with access to questionnaire response data.
-    Note : As a conversational chatbot you have access to previous messages history and you have memory of past conversations.
-    Always set is_accepted_by_human_analyst to True
+    TASK:
+    1. Identify the specific questions_text and database fields needed to answer the user request
+    - Use exact field names from the schema for accurate processing
+    - Be precise and comprehensive in your selections
 
+    2. Provide a clear explanation of how these tables and fields would be used to fulfill the request
 
-    Database Overview:
-    - The database contains data for each year and questionnaire.
-    - For every year, each questionnaire includes multiple questions, each offering several answer options.
-    - For each answer option, the total number of male and female respondents is recorded.
-    - Important: Data is aggregated at the school level only, not individual students.
-
-    User request: {reformulated_request}
-    Previous Query Proposal: {previous_query_proposal}
-    Human Expert Feedback: {human_analyst_feedback}
-    DB Schema: {st.session_state.schema_template}
-
-    Task:
-    1. Identify the tables, columns, and fields needed to answer the User request.
-    2. Add an explanation of how these tables, columns, and fields would be used to answer the User request.
-        3. Depending on the human expert feedback, you may need to adjust the query proposal.
-"""
+    3. Set approval status:
+    - If no human feedback is provided yet: set 'is_accepted_by_human_analyst' to False
+    - If human feedback contains approval words (e.g., "correct" or "yes"): set 'is_accepted_by_human_analyst' to True
+    - If human feedback suggests changes: adjust your proposal accordingly before submitting
+    """
 
     structured_llm = llm.with_structured_output(QueryProposal)
     query_proposal = structured_llm.invoke(system_message)
@@ -235,27 +261,33 @@ def run_query(state: DatabaseQueryState):
     """Run the query"""
     reformulated_request = state["analysis_result"].response
     query_proposal = state["query_proposal"]
-    tables = query_proposal.tables
-    columns = query_proposal.columns
+    questions_text = query_proposal.questions_text
     fields = query_proposal.fields
     explanation = query_proposal.explanation
 
-    run_query_template = f"""System: You are an agent designed to interact with a SQL database.
-        Given an input question, create a syntactically correct PostgreSQL query to run, then look at the results of the query and return the answer.
-        You can order the results by a relevant column to return the most interesting examples in the database.
-        You have access to tools for interacting with the database.
-        Only use the below tools. Only use the information returned by the below tools to construct your final answer.
-        You MUST double check your query before executing it. If you get an error while executing a query, rewrite the query and try again.
+    run_query_template = f"""
+        You are a PostgreSQL query agent. Your task is to generate and execute SQL queries based on user requests, following guidelines and return a final response with results found.
 
-        DO NOT make any DML statements (INSERT, UPDATE, DELETE, DROP etc.) to the database. !!
-        To start you should ALWAYS look at the tables in the database to see what you can query. 
-        Answer the user request: {reformulated_request} using the following tables, columns, and fields:
-        Tables: {tables}
-        Columns: {columns}
-        Fields: {fields}
-        And follow the instructions: {explanation}
-        
-        Using the tools provided, Excecute the necessary SQL query to answer the user request using all information provided.
+        GUIDELINES:
+        - Always start by examining the database tables
+        - Create syntactically correct PostgreSQL queries
+        - If you encounter errors, rewrite and retry the query
+        - NEVER execute DML statements (INSERT, UPDATE, DELETE, DROP, etc.)
+        - Only use the tools provided to interact with the database
+        - Only use information returned by these tools in your final answer
+
+        USER REQUEST:
+        {reformulated_request}
+
+        DATABASE ELEMENTS TO USE:
+        - Questions: {questions_text}
+        - Response options: {fields}
+        - Usage instructions: {explanation}
+
+        IMPORTANT: Use these exact strings in your query as they match the database structure.
+
+        ACTION:
+        Execute the appropriate SQL query that addresses the user request using all provided information.
         """
 
     llm = get_llm(MODEL_CONFIG)
@@ -266,11 +298,6 @@ def run_query(state: DatabaseQueryState):
     tools = toolkit.get_tools()
 
     llm_with_tools = llm.bind_tools(tools)
-    print("*" * 100)
-    print(run_query_template)
-    print("*" * 100)
-
-    # response = llm_with_tools.invoke(run_query_template)
 
     agent_executor = create_react_agent(llm_with_tools, tools)
     for step in agent_executor.stream(
@@ -278,16 +305,6 @@ def run_query(state: DatabaseQueryState):
         stream_mode="values",
     ):
         step["messages"][-1].pretty_print()
-    print("*" * 100)
-    print("*" * 100)
-    print("*" * 100)
-    print("*" * 100)
-    print("*" * 100)
-    print("*" * 100)
-    print("*" * 100)
-
-    print("response", step["messages"][-1])
-    print("*" * 100)
 
     return {"query_results": step["messages"][-1].content}
 
@@ -297,19 +314,31 @@ def finalize_query(state: DatabaseQueryState):
     reformulated_request = state["analysis_result"].response
     query_results = state["query_results"]
 
-    finalize_query_template = f"""System: You are an agent responsible for finalizing the query results.
-    Given the user request: {reformulated_request}
-    The query results are: {query_results}
-    Provide the final answer to the user in a clear and well-formulated manner.
-    And plot the results in a chart if possible.
-        
-        """
+    finalize_query_template = f"""
+    System: You are a result visualization and formatting agent.
+
+    INPUT:
+    - User request: {reformulated_request}
+    - Query results: {query_results}
+
+    TASK:
+    1. Provide a clear, well-formatted answer based on the query results
+    2. Create visualization using ONLY Streamlit components
+
+    VISUALIZATION REQUIREMENTS:
+    - ONLY use Streamlit chart elements (st.line_chart, st.bar_chart, st.area_chart, etc.)
+    - NEVER use matplotlib, pyplot, seaborn or other external plotting libraries
+    - For data display, use st.dataframe() exclusively
+
+    in your final formaated response include:
+    1. First provide the textual answer to the user query
+    2. Then include a code block with visualization code
+    """
 
     python_repl = PythonREPL()
-
     repl_tool = Tool(
         name="python_repl",
-        description="A Python shell. Use this to execute python commands. Input should be a valid python command. Use to plot charts using only streamlit chart elements, matplotlib is not support in the interface and to print tables use st.dataframe.",
+        description="A Python shell for executing code. Use this to create exactly ONE Streamlit visualization. NEVER use matplotlib or other external plotting libraries. For data display, use ONLY st.dataframe().",
         func=python_repl.run,
     )
 
@@ -324,16 +353,6 @@ def finalize_query(state: DatabaseQueryState):
         stream_mode="values",
     ):
         step["messages"][-1].pretty_print()
-    print("*" * 100)
-    print("*" * 100)
-    print("*" * 100)
-    print("*" * 100)
-    print("*" * 100)
-    print("*" * 100)
-    print("*" * 100)
-
-    print("response", step["messages"][-1])
-    print("*" * 100)
 
     return {"final_answer": step["messages"][-1].content}
 
@@ -371,10 +390,6 @@ memory = MemorySaver()
 graph = builder.compile(interrupt_before=["human_feedback"], checkpointer=memory)
 
 
-# Example usage
-# config = {"configurable": {"thread_id": "123"}}
-# result = graph.invoke({"user_request": "What is the total number of male students who answered 'Yes' to Question 3 in 2018?"}, config)
-
 # Display the graph
 # import os
 # import subprocess
@@ -395,46 +410,3 @@ graph = builder.compile(interrupt_before=["human_feedback"], checkpointer=memory
 #     subprocess.call(["open", filename])
 # else:  # Linux and others
 #     subprocess.call(["xdg-open", filename])
-
-# # Input
-# #user_request = "Nombre d'etudiant qui ont de bons resultats scolaires et vont sur pieds a l'ecole"
-# user_request = "Nombre d'etudiant qui ont de bons resultats scolaires en 2018"
-# #user_request = "Bonjour"
-
-# thread = {"configurable": {"thread_id": "1"}}
-
-# # Run the graph until the first interruption
-# for event in graph.stream({"user_request":user_request}, thread, stream_mode="values"):
-#     print(event)
-
-# state = graph.get_state(thread)
-# print(state.next)
-
-# # If we are satisfied, then we simply supply no feedback
-# further_feedack = "seems correct"
-# graph.update_state(thread, {"human_analyst_feedback":
-#                             further_feedack}, as_node="human_feedback")
-
-# for event in graph.stream(None, thread, stream_mode="updates"):
-#     print("--Node--")
-#     node_name = next(iter(event.keys()))
-#     print(node_name)
-
-
-# final_state = graph.get_state(thread)
-# print(final_state.values.get('final_query_instructions'))
-def invoke_our_graph(user_input, callables, thread_id):
-    # Ensure the callables parameter is a list as you can have multiple callbacks
-    if not isinstance(callables, list):
-        raise TypeError("callables must be a list")
-    # Invoke the graph with the current messages and callback configuration
-    return (
-        graph.invoke(
-            {
-                "user_request": user_input,
-                "message_history": st.session_state["messages"],
-            },
-            config={"callbacks": callables, "configurable": {"thread_id": thread_id}},
-        ),
-        graph,
-    )

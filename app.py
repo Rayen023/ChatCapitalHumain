@@ -21,7 +21,7 @@ from langsmith import Client
 from utils.database import save_chat_logs
 
 # Import your existing utilities (adjust if needed)
-from utils.graph_classes import invoke_our_graph
+from utils.graph_classes import graph
 from utils.sidebar import setup_sidebar_controls
 from utils.st_callable_util import get_streamlit_cb
 
@@ -102,8 +102,12 @@ with st.sidebar:
             with st.expander(f"Key: {key}"):
                 st.write(st.session_state[key])
 
+SCHEMA_TEMPLATE_PATH = "schema_template.txt"
+if "schema_template" not in st.session_state:
+    with open(SCHEMA_TEMPLATE_PATH, "r", encoding="utf-8") as file:
+        prompt_temp = file.read()
+    st.session_state.schema_template = prompt_temp
 
-# Handle new user input
 user_message = st.chat_input("Message ChatCapitalHumain...")
 if user_message:
     # Display and record the user's message
@@ -114,63 +118,50 @@ if user_message:
     with st.chat_message("assistant", avatar=APP_ICON_PATH):
         response_placeholder = st.empty()
         streamlit_callback = get_streamlit_cb(st.empty())
-        graph_response, graph = invoke_our_graph(
-            user_message, [streamlit_callback], st.session_state["thread_id"]
-        )
-        # final_response = graph_response["messages"][-1].content
-        # st.session_state["messages"].append(AIMessage(content=final_response))
-        # response_placeholder.write(final_response)
+        config = {"callbacks": [streamlit_callback], "configurable": {"thread_id": st.session_state["thread_id"]}}
+        if "in_human_feedback_state" not in st.session_state or st.session_state.get("in_human_feedback_state", None) == False:
+            for event in graph.stream({
+                    "user_request": user_message,
+                    "message_history": st.session_state["messages"],
+                }, config = config, stream_mode="updates"):
+                #st.info(event)
+                
+                if event.get("analyze_request", None):
+                    if event["analyze_request"]["analysis_result"].is_db_related_and_answerable == False:
+                        st.session_state["messages"].append(AIMessage(content=event["analyze_request"]["analysis_result"].response))
+                        response_placeholder.write(event["analyze_request"]["analysis_result"].response)
+                if event.get("check_schema_formulate_instructions",None):
+                    if event["check_schema_formulate_instructions"]["query_proposal"].is_accepted_by_human_analyst == False:
+                        st.session_state["messages"].append(AIMessage(content=event["check_schema_formulate_instructions"]["query_proposal"].explanation))
+                        response_placeholder.write(event["check_schema_formulate_instructions"]["query_proposal"].explanation)
+                        st.session_state["in_human_feedback_state"] = True
+                        user_message = None
+                    else: 
+                        st.session_state["in_human_feedback_state"] = False
 
-        # With multi_agents
+if "in_human_feedback_state" in st.session_state and st.session_state["in_human_feedback_state"] == True and user_message:
+    st.session_state["messages"].append(HumanMessage(content=user_message))
+    streamlit_callback = get_streamlit_cb(st.empty())
+    config = {"callbacks": [streamlit_callback], "configurable": {"thread_id": st.session_state["thread_id"]}}
+    graph.update_state(config, {"human_analyst_feedback": user_message}, as_node="human_feedback")
+    #st.session_state["in_human_feedback_state"] = False
+    
+    for event in graph.stream(None, config = config, stream_mode="updates"):
+        st.info(event)
+        response_placeholder = st.empty()
+        if event.get("check_schema_formulate_instructions",None):
+            if event["check_schema_formulate_instructions"]["query_proposal"].is_accepted_by_human_analyst == False:
+                st.session_state["messages"].append(AIMessage(content=event["check_schema_formulate_instructions"]["query_proposal"].explanation))
+                response_placeholder.write(event["check_schema_formulate_instructions"]["query_proposal"].explanation)
+                st.session_state["in_human_feedback_state"] = True
+            else: 
+                st.session_state["in_human_feedback_state"] = False
+                user_message = None
+        if event.get("finalize_query", None):
+            st.session_state["messages"].append(AIMessage(content=event["finalize_query"]["final_answer"]))
+            response_placeholder.write(event["finalize_query"]["final_answer"])
+        #st.rerun()
 
-        state = graph.get_state(
-            {"configurable": {"thread_id": st.session_state["thread_id"]}}
-        )
-        print("state", state)
-        st.warning(graph_response)
-        st.info(graph_response["analysis_result"].response)
-        st.session_state["messages"].append(
-            AIMessage(content=graph_response["analysis_result"].response)
-        )
-        response_placeholder.write(graph_response)
-        if graph_response.get("final_answer"):
-            st.session_state["messages"].append(
-                AIMessage(content=graph_response["final_answer"])
-            )
-            response_placeholder.write(graph_response["final_answer"])
 
-        # TODO check state of the graph_response, if feedback in its name :
-
-        # # if graph_response["analysis_result"].is_answerable == True:
-        # further_feedack = st.text_input(
-        #     "Veuillez donner plus de détails pour une meilleure réponse"
-        # )
-        # # if further_feedack:
-        # print("further feedback", further_feedack)
-        # graph.update_state(
-        #     {"configurable": {"thread_id": st.session_state["thread_id"]}},
-        #     {
-        #         "human_analyst_feedback": "inclut aussi comme bons resultats tout ayant a partir de plus de 55%"
-        #     },
-        #     as_node="human_feedback",
-        # )
-
-        # for event in graph.stream(
-        #     None,
-        #     {"configurable": {"thread_id": st.session_state["thread_id"]}},
-        #     stream_mode="updates",
-        # ):
-        #     print("--Node--")
-        #     node_name = next(iter(event.keys()))
-        #     print(node_name)
-        # final_state = graph.get_state(
-        #     {"configurable": {"thread_id": st.session_state["thread_id"]}}
-        # )
-        # print(final_state.values.get("final_query_instructions"))
-
-        # st.session_state["messages"].append(AIMessage(content=str(graph_response)))
-
-    # Save the conversation only after the assistant has responded,
-    # and only if the user is logged in (i.e. email exists)
-    # if st.experimental_user.get("email"):
-    # save_chat_logs()
+    #if st.experimental_user.get("email"):
+        # save_chat_logs()
