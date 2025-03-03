@@ -67,7 +67,9 @@ def get_streamlit_cb(parent_container: DeltaGenerator) -> BaseCallbackHandler:
         return wrapper
 
     # Create an instance of Streamlit's StreamlitCallbackHandler with the provided Streamlit container
-    st_cb = StreamlitCallbackHandler(parent_container)
+    st_cb = StreamlitCallbackHandler(
+        parent_container, expand_new_thoughts=False, collapse_completed_thoughts=True
+    )
 
     # Iterate over all methods of the StreamlitCallbackHandler instance
     for method_name, method_func in inspect.getmembers(

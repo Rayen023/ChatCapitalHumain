@@ -127,6 +127,8 @@ You are the **first agent** in a chain of agents. Your task:
 2. Determine whether their query requires data from the **Capital Humain** database (spanning 2004–2019) or if it is a general/non-database question.
 3. Forward the user’s query in the correct format, indicating whether it is (a) database-related and answerable, or (b) not database-related / not answerable.
 
+You may answer general questions or tasks that do not require database access as a normal conversational chatbot would. but set is_db_related_and_answerable to False.
+
 ---
 
 ### **Output Format**
@@ -375,6 +377,7 @@ def finalize_query(state: DatabaseQueryState):
     1. First provide the textual answer to the user query
     2. Then include a code block with visualization code
     """
+    # 2. Then include a code block with visualization code
 
     python_repl = PythonREPL()
     repl_tool = Tool(
