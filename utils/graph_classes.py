@@ -24,10 +24,6 @@ DEFAULT_MODEL_CONFIG = {
     "streaming": True,
 }
 
-# Initialize session state for MODEL_CONFIG if not present
-if "MODEL_CONFIG" not in st.session_state:
-    st.session_state["MODEL_CONFIG"] = DEFAULT_MODEL_CONFIG.copy()
-
 
 def update_model():
     # Update the model config with the selected model
@@ -36,7 +32,8 @@ def update_model():
     st.session_state["llm"] = get_llm(st.session_state["MODEL_CONFIG"])
 
 
-# Initialize LLM in session state if not present
+if "MODEL_CONFIG" not in st.session_state:
+    st.session_state["MODEL_CONFIG"] = DEFAULT_MODEL_CONFIG.copy()
 if "llm" not in st.session_state:
     st.session_state["llm"] = get_llm(st.session_state["MODEL_CONFIG"])
 
@@ -52,6 +49,8 @@ def display_model_selector():
             "openai/o3-mini",
             "openai/o3-mini-high",
         ]
+        if "MODEL_CONFIG" not in st.session_state:
+            st.session_state["MODEL_CONFIG"] = DEFAULT_MODEL_CONFIG.copy()
 
         # Get the index of the currently selected model
         current_model = st.session_state["MODEL_CONFIG"]["model_name"]
