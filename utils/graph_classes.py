@@ -15,25 +15,33 @@ from typing_extensions import TypedDict
 
 from utils.utils import get_llm
 
-MODEL_CONFIG = {
-    # "model_name": "anthropic/claude-3.5-sonnet:beta",
-    # "model_name": "openai/gpt-4o-mini",
-    # "model_name": "google/gemini-2.0-flash-001",
+DEFAULT_MODEL_CONFIG = {
     "model_name": "anthropic/claude-3.7-sonnet",
-    # "model_name": "openai/o3-mini",
-    # "model_name": "openai/o3-mini-high",
     "temperature": 0,
     "max_tokens": 8096,
     "timeout": None,
     "max_retries": 2,
     "streaming": True,
 }
+
+# Initialize session state for MODEL_CONFIG if not present
 if "MODEL_CONFIG" not in st.session_state:
-    st.session_state["MODEL_CONFIG"] = MODEL_CONFIG
+    st.session_state["MODEL_CONFIG"] = DEFAULT_MODEL_CONFIG.copy()
 
 
-def change_model_config():
-    st.session_state["MODEL_CONFIG"] = MODEL_CONFIG
+def update_model():
+    # Update the model config with the selected model
+    st.session_state["MODEL_CONFIG"]["model_name"] = st.session_state["selected_model"]
+    # Reinitialize the LLM with the new configuration
+    st.session_state["llm"] = get_llm(st.session_state["MODEL_CONFIG"])
+
+
+# Initialize LLM in session state if not present
+if "llm" not in st.session_state:
+    st.session_state["llm"] = get_llm(st.session_state["MODEL_CONFIG"])
+
+
+def display_model_selector():
     with st.sidebar:
         # Model selection dropdown
         model_options = [
@@ -45,21 +53,20 @@ def change_model_config():
             "openai/o3-mini-high",
         ]
 
-        if "selected_model" not in st.session_state:
-            st.session_state["selected_model"] = MODEL_CONFIG["model_name"]
+        # Get the index of the currently selected model
+        current_model = st.session_state["MODEL_CONFIG"]["model_name"]
+        try:
+            default_index = model_options.index(current_model)
+        except ValueError:
+            default_index = (
+                2  # Default to claude-3.7-sonnet if current model not in list
+            )
 
-        def update_model():
-            st.session_state["MODEL_CONFIG"]["model_name"] = st.session_state[
-                "selected_model"
-            ]
-            st.session_state["llm"] = get_llm(st.session_state["MODEL_CONFIG"])
-
-        st.session_state["llm"] = get_llm(st.session_state["MODEL_CONFIG"])
-
+        # Create the selectbox without using key="selected_model"
         selected_model = st.selectbox(
             "Select Model",
             options=model_options,
-            index=model_options.index(st.session_state["selected_model"]),
+            index=default_index,
             key="selected_model",
             on_change=update_model,
         )

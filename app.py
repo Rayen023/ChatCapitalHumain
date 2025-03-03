@@ -21,11 +21,11 @@ from langsmith import Client
 from utils.database import save_chat_logs
 
 # Import your existing utilities (adjust if needed)
-from utils.graph_classes import change_model_config, graph
+from utils.graph_classes import display_model_selector, graph
 from utils.sidebar import setup_sidebar_controls
 from utils.st_callable_util import get_streamlit_cb
 
-change_model_config()
+display_model_selector()
 # Load environment variables
 load_dotenv()
 
