@@ -15,15 +15,6 @@ from typing_extensions import TypedDict
 
 from utils.utils import get_llm
 
-DEFAULT_MODEL_CONFIG = {
-    "model_name": "anthropic/claude-3.7-sonnet",
-    "temperature": 0,
-    "max_tokens": 8096,
-    "timeout": None,
-    "max_retries": 2,
-    "streaming": True,
-}
-
 
 def update_model():
     # Update the model config with the selected model
@@ -32,15 +23,22 @@ def update_model():
     st.session_state["llm"] = get_llm(st.session_state["MODEL_CONFIG"])
 
 
-if "MODEL_CONFIG" not in st.session_state:
-    st.session_state["MODEL_CONFIG"] = DEFAULT_MODEL_CONFIG.copy()
-if "llm" not in st.session_state:
-    st.session_state["llm"] = get_llm(st.session_state["MODEL_CONFIG"])
-
-
 def display_model_selector():
     with st.sidebar:
         # Model selection dropdown
+        DEFAULT_MODEL_CONFIG = {
+            "model_name": "anthropic/claude-3.7-sonnet",
+            "temperature": 0,
+            "max_tokens": 8096,
+            "timeout": None,
+            "max_retries": 2,
+            "streaming": True,
+        }
+        if "MODEL_CONFIG" not in st.session_state:
+            st.session_state["MODEL_CONFIG"] = DEFAULT_MODEL_CONFIG.copy()
+        if "llm" not in st.session_state:
+            st.session_state["llm"] = get_llm(st.session_state["MODEL_CONFIG"])
+
         model_options = [
             "google/gemini-2.0-flash-001",
             "anthropic/claude-3.5-sonnet:beta",
@@ -49,8 +47,6 @@ def display_model_selector():
             "openai/o3-mini",
             "openai/o3-mini-high",
         ]
-        if "MODEL_CONFIG" not in st.session_state:
-            st.session_state["MODEL_CONFIG"] = DEFAULT_MODEL_CONFIG.copy()
 
         # Get the index of the currently selected model
         current_model = st.session_state["MODEL_CONFIG"]["model_name"]
@@ -69,10 +65,6 @@ def display_model_selector():
             key="selected_model",
             on_change=update_model,
         )
-
-
-if "llm" not in st.session_state:
-    st.session_state["llm"] = get_llm(st.session_state["MODEL_CONFIG"])
 
 
 # Define our structured data models
