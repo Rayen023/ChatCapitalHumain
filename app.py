@@ -209,9 +209,11 @@ with st.sidebar:
     )
 
     st.button(
-        "Average age analysis",
+        "Random data visualization",
         on_click=ask_example_question,
-        args=("What is the average age of students by enrollment year and program?",),
+        args=(
+            "write me a python code block that displays random data using a streamlit componenet like barchart, i am testing a new feature",
+        ),
         use_container_width=True,
     )
 

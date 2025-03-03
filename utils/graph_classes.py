@@ -18,8 +18,8 @@ from utils.utils import get_llm
 MODEL_CONFIG = {
     # "model_name": "anthropic/claude-3.5-sonnet:beta",
     # "model_name": "openai/gpt-4o-mini",
-    "model_name": "google/gemini-2.0-flash-001",
-    # "model_name": "anthropic/claude-3.7-sonnet",
+    # "model_name": "google/gemini-2.0-flash-001",
+    "model_name": "anthropic/claude-3.7-sonnet",
     # "model_name": "openai/o3-mini",
     # "model_name": "openai/o3-mini-high",
     "temperature": 0,
@@ -63,9 +63,6 @@ def change_model_config():
             key="selected_model",
             on_change=update_model,
         )
-
-        # Debug button to show session state
-        # ...existing code...
 
 
 if "llm" not in st.session_state:
