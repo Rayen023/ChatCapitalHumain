@@ -21,10 +21,11 @@ from langsmith import Client
 from utils.database import save_chat_logs
 
 # Import your existing utilities (adjust if needed)
-from utils.graph_classes import graph
+from utils.graph_classes import change_model_config, graph
 from utils.sidebar import setup_sidebar_controls
 from utils.st_callable_util import get_streamlit_cb
 
+change_model_config()
 # Load environment variables
 load_dotenv()
 
@@ -57,6 +58,10 @@ def reset_chat_history():
     """Reset chat history to initial state and create a new thread_id."""
     st.session_state["messages"] = [AIMessage(content=WELCOME_MESSAGE)]
     st.session_state["thread_id"] = str(uuid.uuid4())
+    if "in_human_feedback_state" in st.session_state:
+        del st.session_state["in_human_feedback_state"]
+    if "schema_template" in st.session_state:
+        del st.session_state["schema_template"]
 
 
 # setup_sidebar_controls()
@@ -95,6 +100,40 @@ with st.sidebar:
         use_container_width=True,
     )
 
+    # Add example question section
+    st.write("### Example Questions")
+
+    # Function to send example question as user message
+    def ask_example_question(question):
+        st.session_state["messages"].append(HumanMessage(content=question))
+        st.session_state["_example_question"] = question
+
+    # Example question buttons
+    st.button(
+        "Students by transport mode",
+        on_click=ask_example_question,
+        args=(
+            "How many students went to school on foot in 2018, aggregate by school and gender?",
+        ),
+        use_container_width=True,
+    )
+
+    st.button(
+        "Average age analysis",
+        on_click=ask_example_question,
+        args=("What is the average age of students by enrollment year and program?",),
+        use_container_width=True,
+    )
+
+    st.button(
+        "Financial aid comparison",
+        on_click=ask_example_question,
+        args=(
+            "Compare the percentage of students receiving financial aid between 2017 and 2019 by department.",
+        ),
+        use_container_width=True,
+    )
+
     # Display session state when debug panel is open
     if "show_debug_panel" in st.session_state and st.session_state["show_debug_panel"]:
         st.write("### Session State Contents")
@@ -102,66 +141,151 @@ with st.sidebar:
             with st.expander(f"Key: {key}"):
                 st.write(st.session_state[key])
 
-SCHEMA_TEMPLATE_PATH = "schema_template.txt"
+import os
+
+from utils.schema import show_schema_in_sidebar
+
+show_schema_in_sidebar()
+
+
+SCHEMA_TEMPLATE_PATH = os.path.join("utils", "schema_template.txt")
 if "schema_template" not in st.session_state:
     with open(SCHEMA_TEMPLATE_PATH, "r", encoding="utf-8") as file:
         prompt_temp = file.read()
     st.session_state.schema_template = prompt_temp
 
-user_message = st.chat_input("Message ChatCapitalHumain...")
-if user_message:
-    # Display and record the user's message
-    st.chat_message("user", avatar=USER_AVATAR_PATH).write(user_message)
-    st.session_state["messages"].append(HumanMessage(content=user_message))
+prompt = st.chat_input("Message ChatCapitalHumain...")
+if prompt:
+    st.session_state["messages"].append(HumanMessage(content=prompt))
+    st.chat_message("user", avatar=USER_AVATAR_PATH).write(prompt)
+
+# Add this near the end of the file, before any other conditional blocks
+if "_example_question" in st.session_state:
+    st.session_state["messages"].append(
+        HumanMessage(content=st.session_state["_example_question"])
+    )
+    st.chat_message("user", avatar=USER_AVATAR_PATH).write(
+        st.session_state["_example_question"]
+    )
+    # Display the message in the chat
+    # st.chat_message("user", avatar=USER_AVATAR_PATH).write(user_message)
+
+    # Remove the temporary state to prevent reprocessing
+    del st.session_state["_example_question"]
+
+    # Force a rerun to process the message
+    # st.rerun()
+
+
+if isinstance(st.session_state.messages[-1], HumanMessage):
+    user_message = st.session_state.messages[-1].content
 
     # Generate assistant response via your graph
     with st.chat_message("assistant", avatar=APP_ICON_PATH):
         response_placeholder = st.empty()
         streamlit_callback = get_streamlit_cb(st.empty())
-        config = {"callbacks": [streamlit_callback], "configurable": {"thread_id": st.session_state["thread_id"]}}
-        if "in_human_feedback_state" not in st.session_state or st.session_state.get("in_human_feedback_state", None) == False:
-            for event in graph.stream({
+        config = {
+            "callbacks": [streamlit_callback],
+            "configurable": {"thread_id": st.session_state["thread_id"]},
+        }
+        if (
+            "in_human_feedback_state" not in st.session_state
+            or st.session_state.get("in_human_feedback_state", None) == False
+        ):
+            for event in graph.stream(
+                {
                     "user_request": user_message,
                     "message_history": st.session_state["messages"],
-                }, config = config, stream_mode="updates"):
-                #st.info(event)
-                
+                },
+                config=config,
+                stream_mode="updates",
+            ):
+                # st.info(event)
+
                 if event.get("analyze_request", None):
-                    if event["analyze_request"]["analysis_result"].is_db_related_and_answerable == False:
-                        st.session_state["messages"].append(AIMessage(content=event["analyze_request"]["analysis_result"].response))
-                        response_placeholder.write(event["analyze_request"]["analysis_result"].response)
-                if event.get("check_schema_formulate_instructions",None):
-                    if event["check_schema_formulate_instructions"]["query_proposal"].is_accepted_by_human_analyst == False:
-                        st.session_state["messages"].append(AIMessage(content=event["check_schema_formulate_instructions"]["query_proposal"].explanation))
-                        response_placeholder.write(event["check_schema_formulate_instructions"]["query_proposal"].explanation)
+                    if (
+                        event["analyze_request"][
+                            "analysis_result"
+                        ].is_db_related_and_answerable
+                        == False
+                    ):
+                        st.session_state["messages"].append(
+                            AIMessage(
+                                content=event["analyze_request"][
+                                    "analysis_result"
+                                ].response
+                            )
+                        )
+                        response_placeholder.write(
+                            event["analyze_request"]["analysis_result"].response
+                        )
+                if event.get("check_schema_formulate_instructions", None):
+                    if (
+                        event["check_schema_formulate_instructions"][
+                            "query_proposal"
+                        ].is_accepted_by_human_analyst
+                        == False
+                    ):
+                        st.session_state["messages"].append(
+                            AIMessage(
+                                content=event["check_schema_formulate_instructions"][
+                                    "query_proposal"
+                                ].explanation
+                            )
+                        )
+                        response_placeholder.write(
+                            event["check_schema_formulate_instructions"][
+                                "query_proposal"
+                            ].explanation
+                        )
                         st.session_state["in_human_feedback_state"] = True
                         user_message = None
-                    else: 
+                    else:
                         st.session_state["in_human_feedback_state"] = False
 
-if "in_human_feedback_state" in st.session_state and st.session_state["in_human_feedback_state"] == True and user_message:
-    st.session_state["messages"].append(HumanMessage(content=user_message))
+if st.session_state.get("in_human_feedback_state", False):
     streamlit_callback = get_streamlit_cb(st.empty())
-    config = {"callbacks": [streamlit_callback], "configurable": {"thread_id": st.session_state["thread_id"]}}
-    graph.update_state(config, {"human_analyst_feedback": user_message}, as_node="human_feedback")
-    #st.session_state["in_human_feedback_state"] = False
-    
-    for event in graph.stream(None, config = config, stream_mode="updates"):
+    config = {
+        "callbacks": [streamlit_callback],
+        "configurable": {"thread_id": st.session_state["thread_id"]},
+    }
+    graph.update_state(
+        config, {"human_analyst_feedback": user_message}, as_node="human_feedback"
+    )
+    # st.session_state["in_human_feedback_state"] = False
+
+    for event in graph.stream(None, config=config, stream_mode="updates"):
         st.info(event)
         response_placeholder = st.empty()
-        if event.get("check_schema_formulate_instructions",None):
-            if event["check_schema_formulate_instructions"]["query_proposal"].is_accepted_by_human_analyst == False:
-                st.session_state["messages"].append(AIMessage(content=event["check_schema_formulate_instructions"]["query_proposal"].explanation))
-                response_placeholder.write(event["check_schema_formulate_instructions"]["query_proposal"].explanation)
+        if event.get("check_schema_formulate_instructions", None):
+            if (
+                event["check_schema_formulate_instructions"][
+                    "query_proposal"
+                ].is_accepted_by_human_analyst
+                == False
+            ):
+                st.session_state["messages"].append(
+                    AIMessage(
+                        content=event["check_schema_formulate_instructions"][
+                            "query_proposal"
+                        ].explanation
+                    )
+                )
+                response_placeholder.write(
+                    event["check_schema_formulate_instructions"][
+                        "query_proposal"
+                    ].explanation
+                )
                 st.session_state["in_human_feedback_state"] = True
-            else: 
+            else:
                 st.session_state["in_human_feedback_state"] = False
                 user_message = None
         if event.get("finalize_query", None):
-            st.session_state["messages"].append(AIMessage(content=event["finalize_query"]["final_answer"]))
+            st.session_state["messages"].append(
+                AIMessage(content=event["finalize_query"]["final_answer"])
+            )
             response_placeholder.write(event["finalize_query"]["final_answer"])
-        #st.rerun()
+        # st.rerun()
 
-
-    #if st.experimental_user.get("email"):
-        # save_chat_logs()
+    # if st.experimental_user.get("email"):
+    # save_chat_logs()

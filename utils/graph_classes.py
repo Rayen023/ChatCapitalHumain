@@ -19,7 +19,7 @@ MODEL_CONFIG = {
     # "model_name": "anthropic/claude-3.5-sonnet:beta",
     # "model_name": "openai/gpt-4o-mini",
     "model_name": "google/gemini-2.0-flash-001",
-    #"model_name": "anthropic/claude-3.7-sonnet",
+    # "model_name": "anthropic/claude-3.7-sonnet",
     # "model_name": "openai/o3-mini",
     # "model_name": "openai/o3-mini-high",
     "temperature": 0,
@@ -28,8 +28,48 @@ MODEL_CONFIG = {
     "max_retries": 2,
     "streaming": True,
 }
+if "MODEL_CONFIG" not in st.session_state:
+    st.session_state["MODEL_CONFIG"] = MODEL_CONFIG
 
-llm = get_llm(MODEL_CONFIG)
+
+def change_model_config():
+    st.session_state["MODEL_CONFIG"] = MODEL_CONFIG
+    with st.sidebar:
+        # Model selection dropdown
+        model_options = [
+            "google/gemini-2.0-flash-001",
+            "anthropic/claude-3.5-sonnet:beta",
+            "anthropic/claude-3.7-sonnet",
+            "openai/gpt-4o-mini",
+            "openai/o3-mini",
+            "openai/o3-mini-high",
+        ]
+
+        if "selected_model" not in st.session_state:
+            st.session_state["selected_model"] = MODEL_CONFIG["model_name"]
+
+        def update_model():
+            st.session_state["MODEL_CONFIG"]["model_name"] = st.session_state[
+                "selected_model"
+            ]
+            st.session_state["llm"] = get_llm(st.session_state["MODEL_CONFIG"])
+
+        st.session_state["llm"] = get_llm(st.session_state["MODEL_CONFIG"])
+
+        selected_model = st.selectbox(
+            "Select Model",
+            options=model_options,
+            index=model_options.index(st.session_state["selected_model"]),
+            key="selected_model",
+            on_change=update_model,
+        )
+
+        # Debug button to show session state
+        # ...existing code...
+
+
+if "llm" not in st.session_state:
+    st.session_state["llm"] = get_llm(st.session_state["MODEL_CONFIG"])
 
 
 # Define our structured data models
@@ -73,8 +113,6 @@ class DatabaseQueryState(TypedDict):
     human_analyst_feedback: Optional[str]  # Feedback from human expert
     query_results: Optional[str]  # Results of the query
     final_answer: Optional[str]  # Final instructions for SQL agent
-
-
 
 
 # Function to analyze the user request
@@ -173,7 +211,7 @@ This ensures a consistent, structured approach to every user query.
     ]
 
     # Create structured LLM call
-    structured_llm = llm.with_structured_output(AnalysisResult)
+    structured_llm = st.session_state["llm"].with_structured_output(AnalysisResult)
     messages = [
         ("system", query_analysis_instructions + "Messages History: "),
         *messages_history,  # Unpacking the list of tuples
@@ -202,7 +240,9 @@ def check_schema_formulate_instructions(state: DatabaseQueryState):
     """Create final query instructions based on the analysis and human feedback"""
 
     reformulated_request = state["analysis_result"].response
-    human_analyst_feedback = state.get("human_analyst_feedback", "Not checked by human expert yet")
+    human_analyst_feedback = state.get(
+        "human_analyst_feedback", "Not checked by human expert yet"
+    )
     previous_query_proposal = state.get("query_proposal", None)
 
     system_message = f"""
@@ -234,7 +274,7 @@ def check_schema_formulate_instructions(state: DatabaseQueryState):
     - If human feedback suggests changes: adjust your proposal accordingly before submitting
     """
 
-    structured_llm = llm.with_structured_output(QueryProposal)
+    structured_llm = st.session_state["llm"].with_structured_output(QueryProposal)
     query_proposal = structured_llm.invoke(system_message)
 
     return {"query_proposal": query_proposal}
@@ -290,14 +330,15 @@ def run_query(state: DatabaseQueryState):
         Execute the appropriate SQL query that addresses the user request using all provided information.
         """
 
-    llm = get_llm(MODEL_CONFIG)
+    # llm = get_llm(st.session_state["MODEL_CONFIG"])
+
     engine = create_engine(st.secrets["db_url"])
     db = SQLDatabase(engine)
 
-    toolkit = SQLDatabaseToolkit(db=db, llm=llm)
+    toolkit = SQLDatabaseToolkit(db=db, llm=st.session_state["llm"])
     tools = toolkit.get_tools()
 
-    llm_with_tools = llm.bind_tools(tools)
+    llm_with_tools = st.session_state["llm"].bind_tools(tools)
 
     agent_executor = create_react_agent(llm_with_tools, tools)
     for step in agent_executor.stream(
@@ -342,10 +383,10 @@ def finalize_query(state: DatabaseQueryState):
         func=python_repl.run,
     )
 
-    llm = get_llm(MODEL_CONFIG)
+    # llm = get_llm(st.session_state["MODEL_CONFIG"])
     tools = [repl_tool]
 
-    llm_with_tools = llm.bind_tools(tools)
+    llm_with_tools = st.session_state["llm"].bind_tools(tools)
 
     agent_executor = create_react_agent(llm_with_tools, tools)
     for step in agent_executor.stream(
