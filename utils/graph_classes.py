@@ -375,6 +375,7 @@ def finalize_query(state: DatabaseQueryState):
     3. Le bloc de code doit contenir le code python pour visualiser les résultats de la requête
     
     NOTE : Si vous utilisez st.bar_chart() avec des DataFrames pandas, assurez-vous de ne passer qu'un index à colonne unique plutôt qu'un index multi-niveaux. Les fonctions de graphiques intégrées de Streamlit attendent des structures de données simples et ne peuvent pas interpréter les indices hiérarchiques créés avec df.set_index([multiple_columns]). Pour éviter l'erreur "not in index", utilisez soit une seule colonne comme index, remodelez vos données avec pivot(), ou passez à des bibliothèques de visualisation plus flexibles comme Matplotlib lorsque vous devez représenter des données sur plusieurs dimensions catégorielles simultanément. Pour les visualisations complexes avec des données groupées, st.altair_chart() offre un meilleur support pour les structures de données hiérarchiques.
+    Utilise soit diffenrentes fonctions de graphiques de Streamlit (st.line_chart, st.bar_chart, st.area_chart,st.altair_chart(), etc.) ou ajoute key = 'id_unique' pour eviter que streamlit traite les graphes comme une seule widget.
     """
 
     final_llm_model_config = st.session_state["MODEL_CONFIG"].copy()
