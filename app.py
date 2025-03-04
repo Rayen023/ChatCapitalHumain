@@ -140,9 +140,9 @@ def process_graph_event(event, response_placeholder):
             questions_text = query_proposal.questions_text
             response_options = query_proposal.response_options
 
-            response = f"{explanation}\n\n Questions : {questions_text}\n\n Response Options : {response_options}"
             feedback_note = "\n\n 💡 NOTE : Veuillez valider si les étapes suggérées sont correctes en répondant par **OUI** ou **CORRECT**, sinon, veuillez indiquer les **modifications/suggestions** pour les étapes alternatives."
-            response = explanation + feedback_note
+            response = f"{explanation}\n\n Questions : {questions_text}\n\n Response Options : {response_options}\n\n Feedback : {feedback_note}"
+
 
             st.session_state["messages"].append(AIMessage(content=response))
             add_visualization_buttons_to_message(response_placeholder, response)
