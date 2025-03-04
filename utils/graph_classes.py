@@ -91,12 +91,6 @@ class AnalysisResult(BaseModel):
     )
 
 
-# class CheckSchemaFormulateInstructions(BaseModel):
-#     query_proposal: Optional[QueryProposal] = Field(
-#         description="Proposal for query structure if answerable", default=None
-#     )
-
-
 class DatabaseQueryState(TypedDict):
     user_request: str  # The original user query
     message_history: List[HumanMessage | AIMessage]  # History of messages
@@ -114,35 +108,35 @@ def analyze_request(state: DatabaseQueryState):
     """Analyze whether the user request can be answered with the database"""
     query_analysis_instructions = """
 
-### **Role and Context**
+### **Rôle et Contexte**
 
-You are the **first agent** in a chain of agents. Your task:
-1. Interact seamlessly with the user. YOu have access to previous messages history and you have memory of past conversations.
-2. Determine whether their query requires data from the **Capital Humain** database (spanning 2004–2019) or if it is a general/non-database question.
-3. Forward the user’s query in the correct format, indicating whether it is (a) database-related and answerable, or (b) not database-related / not answerable.
+Vous êtes le **premier agent** dans une chaîne d'agents. Votre tâche :
+1. Interagir de manière fluide avec l'utilisateur. Vous avez accès à l'historique des messages précédents et vous avez une mémoire des conversations passées.
+2. Déterminer si sa requête nécessite des données de la base de données **Capital Humain** (couvrant 2004-2019) ou s'il s'agit d'une question générale/non liée à la base de données.
+3. Transmettre la requête de l'utilisateur dans le format correct, en indiquant si elle est (a) liée à la base de données et répondable, ou (b) non liée à la base de données / non répondable.
 
-You may answer general questions or tasks that do not require database access as a normal conversational chatbot would. but set is_db_related_and_answerable to False.
-
----
-
-### **Output Format**
-
-You must provide **two fields**:
-1. **is_db_related_and_answerable**: a boolean (`True` or `False`)
-2. **response**: a string with your answer or explanation
+Vous pouvez répondre à des questions générales ou à des tâches qui ne nécessitent pas d'accès à la base de données comme le ferait un chatbot conversationnel normal, mais définir is_db_related_and_answerable à False.
 
 ---
 
-### **Decision Logic**
+### **Format de Sortie**
 
-1. **If the user’s query is NOT related to the database**  
-   - Example: simple greetings, general knowledge, conversation, etc.  
-   - **Set** `is_db_related_and_answerable = False`.  
-   - **In the `response` field**, answer the user as a normal conversational chatbot would.
+Vous devez fournir **deux champs** :
+1. **is_db_related_and_answerable** : un booléen (`True` ou `False`)
+2. **response** : une chaîne avec votre réponse ou explication
 
-2. **If the user’s query IS related to the database**  
-   The **Capital Humain** database covers:
-   - **Schools** (2004–2019):
+---
+
+### **Logique de Décision**
+
+1. **Si la requête de l'utilisateur n'est PAS liée à la base de données**  
+   - Exemple : simples salutations, connaissances générales, conversation, etc.  
+   - **Définir** `is_db_related_and_answerable = False`.  
+   - **Dans le champ `response`**, répondez à l'utilisateur comme le ferait un chatbot conversationnel normal.
+
+2. **Si la requête de l'utilisateur EST liée à la base de données**  
+   La base de données **Capital Humain** couvre :
+   - **Écoles** (2004-2019) :
      1. Aux quatre vents  
      2. Centre La Fontaine  
      3. Secondaire Népisiguit  
@@ -150,50 +144,50 @@ You must provide **two fields**:
      5. Marie-Esther  
      6. Roland-Pépin  
      7. W.-A.-Losier  
-   - **Questionnaires** (each with multiple questions and response breakdowns by gender):  
+   - **Questionnaires** (chacun avec plusieurs questions et répartition des réponses par sexe) :  
      1. Questions Générales  
      2. SD – Renseignements Socio-Démographiques  
      3. ED – Éducation PostSecondaire  
      4. MT – Marché du travail  
      5. RE – Attente d'emploi / Recherche d'emploi / Sans emploi
 
-   **Important constraints**:  
-   - Data is aggregated **only** by:
-     - School  
-     - Year  
+   **Contraintes importantes** :  
+   - Les données sont agrégées **uniquement** par :
+     - École  
+     - Année  
      - Questionnaire  
-     - Gender  
-   - There is **no way to correlate** individual student answers **across different questions**.  
+     - Sexe  
+   - Il n'y a **aucun moyen de corréler** les réponses individuelles des élèves **à travers différentes questions**.  
 
-   Therefore:
-   1. **If the user’s request attempts to correlate or link answers from multiple distinct questions**:  
-      - **Set** `is_db_related_and_answerable = False`.  
-      - **In the `response` field**, explain why this answer is impossible (cross-question correlation is not supported by the database).
+   Par conséquent :
+   1. **Si la demande de l'utilisateur tente de corréler ou de lier des réponses de plusieurs questions distinctes** :  
+      - **Définir** `is_db_related_and_answerable = False`.  
+      - **Dans le champ `response`**, expliquez pourquoi cette réponse est impossible (la corrélation entre questions n'est pas prise en charge par la base de données).
 
-   2. **If the user’s request is about one question (or multiple sub-answers of the same question)** and does not require cross-question correlation:  
-      - **Set** `is_db_related_and_answerable = True`.  
-      - **In the `response` field**, restate the user’s query clearly and concisely so it can be passed on to the database query agents.
-
----
-
-### **Examples**
-
-**Answerable (set `is_db_related_and_answerable = True` and return the query):**  
-- “What is the total number of male and female responses for question X in school Y for 2015?”  
-- “How many students chose to go to school by foot or by bus in 2018, by school?”  
-  - (*These both concern a single question or its various answer choices, without linking separate questions.*)
-
-**Not Answerable (set `is_db_related_and_answerable = False` and explain):**  
-- “How many students who answered question A also answered question B?” (This is cross-question correlation.)  
-- “How many students go to school on foot **and** have good grades, by school and gender?” (Again, involves two separate questions: transportation method and grades.)
+   2. **Si la demande de l'utilisateur concerne une question (ou plusieurs sous-réponses de la même question)** et ne nécessite pas de corrélation entre questions :  
+      - **Définir** `is_db_related_and_answerable = True`.  
+      - **Dans le champ `response`**, reformulez la requête de l'utilisateur de manière claire et concise afin qu'elle puisse être transmise aux agents de requête de base de données.
 
 ---
 
-Use this decision tree and output format in every interaction:
-- If **DB-related & answerable** → `True` + restate query  
-- Otherwise → `False` + normal conversational answer or explanation  
+### **Exemples**
 
-This ensures a consistent, structured approach to every user query.
+**Répondable (définir `is_db_related_and_answerable = True` et retourner la requête) :**  
+- "Quel est le nombre total de réponses masculines et féminines pour la question X dans l'école Y pour 2015 ?"  
+- "Combien d'élèves ont choisi d'aller à l'école à pied ou en bus en 2018, par école ?"  
+  - (*Ces deux questions concernent une seule question ou ses différents choix de réponse, sans lier des questions séparées.*)
+
+**Non Répondable (définir `is_db_related_and_answerable = False` et expliquer) :**  
+- "Combien d'élèves qui ont répondu à la question A ont également répondu à la question B ?" (Il s'agit d'une corrélation entre questions.)  
+- "Combien d'élèves vont à l'école à pied **et** ont de bonnes notes, par école et par sexe ?" (Encore une fois, cela implique deux questions distinctes : le mode de transport et les notes.)
+
+---
+
+Utilisez cet arbre de décision et ce format de sortie dans chaque interaction :
+- Si **liée à la BD & répondable** → `True` + reformuler la requête  
+- Sinon → `False` + réponse conversationnelle normale ou explication  
+
+Cela garantit une approche cohérente et structurée pour chaque requête utilisateur.
  """
     # Format system message
     user_request = state["user_request"]
@@ -242,32 +236,32 @@ def check_schema_formulate_instructions(state: DatabaseQueryState):
     previous_query_proposal = state.get("query_proposal", None)
 
     system_message = f"""
-    You are an agent in a multi-agent workflow. Your role is to analyze database queries by:
-    1. Examining the provided database schema
-    2. Understanding the user's request
-    3. Identifying necessary questions and corresponding fields to answer the query
+    Vous êtes un agent dans un flux de travail multi-agents. Votre rôle est d'analyser les requêtes de base de données en :
+    1. Examinant le schéma de base de données fourni
+    2. Comprenant la demande de l'utilisateur
+    3. Identifiant les questions nécessaires et les champs correspondants pour répondre à la requête
 
-    WORKFLOW:
-    - First, you will suggest query components to a human expert for review
-    - Only after receiving positive feedback will you forward instructions to the SQL agent
+    FLUX DE TRAVAIL :
+    - D'abord, vous suggérerez des composants de requête à un expert humain pour révision
+    - Seulement après avoir reçu un retour positif, vous transmettrez les instructions à l'agent SQL
 
-    INPUT:
-    - User request: {reformulated_request}
-    - Previous field suggestions: {previous_query_proposal}
-    - Human expert feedback: {human_analyst_feedback}
-    - Database schema: {st.session_state.schema_template}
+    ENTRÉE :
+    - Demande utilisateur : {reformulated_request}
+    - Suggestions de champs précédentes : {previous_query_proposal}
+    - Retour d'expert humain : {human_analyst_feedback}
+    - Schéma de base de données : {st.session_state.schema_template}
 
-    TASK:
-    1. Identify the specific questions_text and database fields needed to answer the user request
-    - Use exact field names from the schema for accurate processing
-    - Be precise and comprehensive in your selections
+    TÂCHE :
+    1. Identifiez les questions_text spécifiques et les champs de base de données nécessaires pour répondre à la demande de l'utilisateur
+    - Utilisez les noms exacts des champs du schéma pour un traitement précis
+    - Soyez précis et exhaustif dans vos sélections
 
-    2. Provide a clear explanation of how these tables and fields would be used to fulfill the request
+    2. Fournissez une explication claire de la façon dont ces tables et champs seraient utilisés pour répondre à la demande
 
-    3. Set approval status:
-    - If no human feedback is provided yet: set 'is_accepted_by_human_analyst' to False
-    - If human feedback contains approval words (e.g., "correct" or "yes"): set 'is_accepted_by_human_analyst' to True
-    - If human feedback suggests changes: adjust your proposal accordingly before submitting
+    3. Définissez le statut d'approbation :
+    - Si aucun retour humain n'est encore fourni : définissez 'is_accepted_by_human_analyst' à False
+    - Si le retour humain contient des mots d'approbation (par ex., "correct" ou "oui") : définissez 'is_accepted_by_human_analyst' à True
+    - Si le retour humain suggère des changements : ajustez votre proposition en conséquence avant de la soumettre
     """
     schema_llm_model_config = st.session_state["MODEL_CONFIG"].copy()
     schema_llm_model_config["model_name"] = "google/gemini-2.0-flash-001"
@@ -306,28 +300,28 @@ def run_query(state: DatabaseQueryState):
     explanation = query_proposal.explanation
 
     run_query_template = f"""
-        You are a PostgreSQL query agent. Your task is to generate and execute SQL queries based on user requests, following guidelines and return a final response with results found.
+        Vous êtes un agent de requête PostgreSQL. Votre tâche est de générer et d'exécuter des requêtes SQL basées sur les demandes des utilisateurs, en suivant les directives et en retournant une réponse finale avec les résultats trouvés.
 
-        GUIDELINES:
-        - Always start by examining the database tables
-        - Create syntactically correct PostgreSQL queries
-        - If you encounter errors, rewrite and retry the query
-        - NEVER execute DML statements (INSERT, UPDATE, DELETE, DROP, etc.)
-        - Only use the tools provided to interact with the database
-        - Only use information returned by these tools in your final answer
+        DIRECTIVES :
+        - Commencez toujours par examiner les tables de la base de données
+        - Créez des requêtes PostgreSQL syntaxiquement correctes
+        - Si vous rencontrez des erreurs, réécrivez et réessayez la requête
+        - N'exécutez JAMAIS d'instructions DML (INSERT, UPDATE, DELETE, DROP, etc.)
+        - Utilisez uniquement les outils fournis pour interagir avec la base de données
+        - Utilisez uniquement les informations retournées par ces outils dans votre réponse finale
 
-        USER REQUEST:
+        DEMANDE UTILISATEUR :
         {reformulated_request}
 
-        DATABASE ELEMENTS TO USE:
-        - Questions: {questions_text}
-        - Response options: {fields}
-        - Usage instructions: {explanation}
+        ÉLÉMENTS DE BASE DE DONNÉES À UTILISER :
+        - Questions : {questions_text}
+        - Options de réponse : {fields}
+        - Instructions d'utilisation : {explanation}
 
-        IMPORTANT: Use these exact strings in your query as they match the database structure.
+        IMPORTANT : Utilisez ces chaînes exactes dans votre requête car elles correspondent à la structure de la base de données.
 
-        ACTION:
-        Execute the appropriate SQL query that addresses the user request using all provided information.
+        ACTION :
+        Exécutez la requête SQL appropriée qui répond à la demande de l'utilisateur en utilisant toutes les informations fournies.
         """
 
     # llm = get_llm(st.session_state["MODEL_CONFIG"])
@@ -356,29 +350,29 @@ def finalize_query(state: DatabaseQueryState):
     query_results = state["query_results"]
 
     finalize_query_template = f"""
-    System: You are a result visualization and formatting agent.
+    Système : Vous êtes un agent de visualisation et de formatage de résultats.
 
-    INPUT:
-    - User request: {reformulated_request}
-    - Query results: {query_results}
+    ENTRÉE :
+    - Demande utilisateur : {reformulated_request}
+    - Résultats de requête : {query_results}
 
-    TASK:
-    Given the results provided by the previous agent and the user request, your task is to:
-    1. Provide a clear, well-formatted answer based on the query results
-    2. Return a python script for visualization of the results using ONLY Streamlit components
-    Your response must include the final answer to the user query and a code block for visualization when possible.
+    TÂCHE :
+    Compte tenu des résultats fournis par l'agent précédent et de la demande de l'utilisateur, votre tâche est de :
+    1. Fournir une réponse claire et bien formatée basée sur les résultats de la requête
+    2. Retourner un script python pour la visualisation des résultats en utilisant UNIQUEMENT les composants Streamlit
+    Votre réponse doit inclure la réponse finale à la requête de l'utilisateur et un bloc de code pour la visualisation lorsque c'est possible.
 
-    VISUALIZATION REQUIREMENTS:
-    - ONLY use Streamlit chart elements (st.line_chart, st.bar_chart, st.area_chart, etc.)
-    - NEVER use matplotlib, pyplot, seaborn or other external plotting libraries
-    - For data display, use st.dataframe() exclusively
+    EXIGENCES DE VISUALISATION :
+    - Utilisez UNIQUEMENT les éléments graphiques Streamlit (st.line_chart, st.bar_chart, st.area_chart, etc.)
+    - N'utilisez JAMAIS matplotlib, pyplot, seaborn ou d'autres bibliothèques de tracé externes
+    - Pour l'affichage des données, utilisez exclusivement st.dataframe()
 
-    in your final formaated response include:
-    1. First provide the textual answer to the user query
-    2. Then include a code block with visualization code, it must start with ```python and end with ```
-    3. The code block should contain the python code to visualize the query results
+    Dans votre réponse formatée finale, incluez :
+    1. D'abord, fournissez la réponse textuelle à la requête de l'utilisateur
+    2. Ensuite, incluez un bloc de code avec le code de visualisation, il doit commencer par ```python et se terminer par ```
+    3. Le bloc de code doit contenir le code python pour visualiser les résultats de la requête
     
-    NOte : If using st.bar_chart() with pandas DataFrames, ensure you only pass a single-column index rather than a multi-level index. Streamlit's built-in charting functions expect simple data structures and cannot interpret hierarchical indices created with df.set_index([multiple_columns]). To avoid the "not in index" error, either use a single column as the index, reshape your data with pivot(), or switch to more flexible visualization libraries like Altair or Matplotlib when you need to represent data across multiple categorical dimensions simultaneously. For complex visualizations with grouped data, st.altair_chart() provides better support for hierarchical data structures.
+    NOTE : Si vous utilisez st.bar_chart() avec des DataFrames pandas, assurez-vous de ne passer qu'un index à colonne unique plutôt qu'un index multi-niveaux. Les fonctions de graphiques intégrées de Streamlit attendent des structures de données simples et ne peuvent pas interpréter les indices hiérarchiques créés avec df.set_index([multiple_columns]). Pour éviter l'erreur "not in index", utilisez soit une seule colonne comme index, remodelez vos données avec pivot(), ou passez à des bibliothèques de visualisation plus flexibles comme Altair ou Matplotlib lorsque vous devez représenter des données sur plusieurs dimensions catégorielles simultanément. Pour les visualisations complexes avec des données groupées, st.altair_chart() offre un meilleur support pour les structures de données hiérarchiques.
     """
 
     final_llm_model_config = st.session_state["MODEL_CONFIG"].copy()
@@ -442,25 +436,3 @@ builder.add_edge("finalize_query", END)
 # Compile the graph
 memory = MemorySaver()
 graph = builder.compile(interrupt_before=["human_feedback"], checkpointer=memory)
-
-
-# Display the graph
-# import os
-# import subprocess
-# import sys
-
-# # Get the PNG data from your graph
-# png_data = graph.get_graph(xray=1).draw_mermaid_png()
-
-# # Write the PNG data to a file
-# filename = "graph.png"
-# with open(filename, "wb") as f:
-#     f.write(png_data)
-
-# # Open the file using the default image viewer based on your OS
-# if sys.platform.startswith("win"):
-#     os.startfile(filename)
-# elif sys.platform == "darwin":  # macOS
-#     subprocess.call(["open", filename])
-# else:  # Linux and others
-#     subprocess.call(["xdg-open", filename])

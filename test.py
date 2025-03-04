@@ -1,9 +1,8 @@
 import pandas as pd
 import streamlit as st
 
-# Data from the table
 data = {
-    "School Name": [
+    "École": [
         "Aux quatre vents",
         "Aux quatre vents",
         "Centre La Fontaine",
@@ -19,24 +18,20 @@ data = {
         "W.-A.-Losier",
         "W.-A.-Losier",
     ],
-    "Gender": ["F", "M", "F", "M", "F", "M", "F", "M", "F", "M", "F", "M", "F", "M"],
-    "Number of Students": [7, 1, 3, 0, 13, 3, 4, 2, 8, 7, 22, 8, 23, 4],
+    "Genre": ["F", "M", "F", "M", "F", "M", "F", "M", "F", "M", "F", "M", "F", "M"],
+    "Nombre d'étudiants": [7, 1, 3, 0, 13, 3, 4, 2, 8, 7, 22, 8, 23, 4],
 }
 
 df = pd.DataFrame(data)
 
-st.title("Students Who Walked to School in 2018")
-
-st.header("Data Table")
 st.dataframe(df)
 
-st.header("Number of Students by School and Gender")
-st.bar_chart(df.set_index(["School Name", "Gender"])["Number of Students"])
+st.subheader("Nombre d'étudiants allant à l'école à pied par école")
+df_pivot = df.pivot(index="École", columns="Genre", values="Nombre d'étudiants").fillna(
+    0
+)
+st.bar_chart(df_pivot)
 
-st.header("Number of Students by Gender")
-gender_counts = df.groupby("Gender")["Number of Students"].sum()
+st.subheader("Nombre d'étudiants allant à l'école à pied par genre")
+gender_counts = df.groupby("Genre")["Nombre d'étudiants"].sum()
 st.bar_chart(gender_counts)
-
-st.header("Number of Students by School")
-school_counts = df.groupby("School Name")["Number of Students"].sum()
-st.bar_chart(school_counts)
