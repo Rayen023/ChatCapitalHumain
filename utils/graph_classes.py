@@ -41,10 +41,9 @@ def display_model_selector():
 
         model_options = [
             "google/gemini-2.0-flash-001",
-            "anthropic/claude-3.5-sonnet:beta",
+            "anthropic/claude-3.5-sonnet",
             "anthropic/claude-3.7-sonnet",
-            "openai/gpt-4o-mini",
-            "openai/o3-mini",
+            #"openai/o3-mini",
             "openai/o3-mini-high",
         ]
 
