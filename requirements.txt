@@ -12,3 +12,4 @@ authlib
 pymongo
 motor
 matplotlib
+plotly
