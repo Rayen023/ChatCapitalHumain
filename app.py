@@ -137,6 +137,10 @@ def process_graph_event(event, response_placeholder):
         query_proposal = event["check_schema_formulate_instructions"]["query_proposal"]
         if not query_proposal.is_accepted_by_human_analyst:
             explanation = query_proposal.explanation
+            questions_text = query_proposal.questions_text
+            response_options = query_proposal.response_options
+
+            response = f"{explanation}\n\n Questions : {questions_text}\n\n Response Options : {response_options}"
             feedback_note = "\n\n 💡 NOTE : Veuillez valider si les étapes suggérées sont correctes en répondant par **OUI** ou **CORRECT**, sinon, veuillez indiquer les **modifications/suggestions** pour les étapes alternatives."
             response = explanation + feedback_note
 

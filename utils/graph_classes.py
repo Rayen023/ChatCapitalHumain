@@ -71,11 +71,11 @@ class QueryProposal(BaseModel):
     questions_text: List[str] = Field(
         description="The questions exact text whose answers are most relevant for the query",
     )
-    fields: List[str] = Field(
-        description="The specific fields or values to filter or select in the query",
+    response_options: List[str] = Field(
+        description="The specific response options values under questions_text that can be used to answer the query",
     )
     explanation: str = Field(
-        description="Explanation of how the tables, fields would be used to answer the query with instructions in SQL and what SQL functions can be used",
+        description="Explanation of how the tables, fields, question and responses exact texts would be used to answer the query with instructions in SQL and what SQL functions can be used",
     )
     is_accepted_by_human_analyst: bool = Field(
         description="Whether the proposal was accepted by the human analyst, Must be set to False by default",
@@ -184,8 +184,8 @@ Vous devez fournir **deux champs** :
 ---
 
 Utilisez cet arbre de décision et ce format de sortie dans chaque interaction :
-- Si **liée à la BD & répondable** → `True` + reformuler la requête  
-- Sinon → `False` + réponse conversationnelle normale ou explication  
+- Si **liée à la BD & répondable** → `True` + reformuler la requête et ta response passe à l'agent suivant dans le chaîne
+- Sinon → `False` + réponse conversationnelle normale ou explication et ta response à l'utilisateur directement
 
 Cela garantit une approche cohérente et structurée pour chaque requête utilisateur.
  """
@@ -247,7 +247,7 @@ def check_schema_formulate_instructions(state: DatabaseQueryState):
 
     ENTRÉE :
     - Demande utilisateur : {reformulated_request}
-    - Suggestions de champs précédentes : {previous_query_proposal}
+    - Suggestions précédentes : {previous_query_proposal}
     - Retour d'expert humain : {human_analyst_feedback}
     - Schéma de base de données : {st.session_state.schema_template}
 
@@ -296,7 +296,7 @@ def run_query(state: DatabaseQueryState):
     reformulated_request = state["analysis_result"].response
     query_proposal = state["query_proposal"]
     questions_text = query_proposal.questions_text
-    fields = query_proposal.fields
+    response_options = query_proposal.response_options
     explanation = query_proposal.explanation
 
     run_query_template = f"""
@@ -315,7 +315,7 @@ def run_query(state: DatabaseQueryState):
 
         ÉLÉMENTS DE BASE DE DONNÉES À UTILISER :
         - Questions : {questions_text}
-        - Options de réponse : {fields}
+        - Options de réponse : {response_options}
         - Instructions d'utilisation : {explanation}
 
         IMPORTANT : Utilisez ces chaînes exactes dans votre requête car elles correspondent à la structure de la base de données.
@@ -364,7 +364,7 @@ def finalize_query(state: DatabaseQueryState):
 
     EXIGENCES DE VISUALISATION :
     - Utilisez UNIQUEMENT les éléments graphiques Streamlit (st.line_chart, st.bar_chart, st.area_chart, etc.)
-    - N'utilisez JAMAIS matplotlib, pyplot, seaborn ou d'autres bibliothèques de tracé externes
+    - N'utilisez JAMAIS pyplot, seaborn, pillow ou d'autres bibliothèques de tracé externes
     - Pour l'affichage des données, utilisez exclusivement st.dataframe()
 
     Dans votre réponse formatée finale, incluez :
@@ -372,7 +372,7 @@ def finalize_query(state: DatabaseQueryState):
     2. Ensuite, incluez un bloc de code avec le code de visualisation, il doit commencer par ```python et se terminer par ```
     3. Le bloc de code doit contenir le code python pour visualiser les résultats de la requête
     
-    NOTE : Si vous utilisez st.bar_chart() avec des DataFrames pandas, assurez-vous de ne passer qu'un index à colonne unique plutôt qu'un index multi-niveaux. Les fonctions de graphiques intégrées de Streamlit attendent des structures de données simples et ne peuvent pas interpréter les indices hiérarchiques créés avec df.set_index([multiple_columns]). Pour éviter l'erreur "not in index", utilisez soit une seule colonne comme index, remodelez vos données avec pivot(), ou passez à des bibliothèques de visualisation plus flexibles comme Altair ou Matplotlib lorsque vous devez représenter des données sur plusieurs dimensions catégorielles simultanément. Pour les visualisations complexes avec des données groupées, st.altair_chart() offre un meilleur support pour les structures de données hiérarchiques.
+    NOTE : Si vous utilisez st.bar_chart() avec des DataFrames pandas, assurez-vous de ne passer qu'un index à colonne unique plutôt qu'un index multi-niveaux. Les fonctions de graphiques intégrées de Streamlit attendent des structures de données simples et ne peuvent pas interpréter les indices hiérarchiques créés avec df.set_index([multiple_columns]). Pour éviter l'erreur "not in index", utilisez soit une seule colonne comme index, remodelez vos données avec pivot(), ou passez à des bibliothèques de visualisation plus flexibles comme Matplotlib lorsque vous devez représenter des données sur plusieurs dimensions catégorielles simultanément. Pour les visualisations complexes avec des données groupées, st.altair_chart() offre un meilleur support pour les structures de données hiérarchiques.
     """
 
     final_llm_model_config = st.session_state["MODEL_CONFIG"].copy()
