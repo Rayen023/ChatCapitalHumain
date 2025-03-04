@@ -250,6 +250,8 @@ def check_schema_formulate_instructions(state: DatabaseQueryState):
     - Suggestions précédentes : {previous_query_proposal}
     - Retour d'expert humain : {human_analyst_feedback}
     - Schéma de base de données : {st.session_state.schema_template}
+    
+    Column: summed_students_responses | Type: INTEGER | Description: Sum of students responses for a question thus the Function SUM not COUNT should be mostly used with this column, make sure to always include this explanation in your responses
 
     TÂCHE :
     1. Identifiez les questions_text spécifiques et les champs de base de données nécessaires pour répondre à la demande de l'utilisateur
