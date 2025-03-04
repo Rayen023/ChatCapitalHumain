@@ -43,7 +43,7 @@ def display_model_selector():
             "google/gemini-2.0-flash-001",
             "anthropic/claude-3.5-sonnet",
             "anthropic/claude-3.7-sonnet",
-            #"openai/o3-mini",
+            # "openai/o3-mini",
             "openai/o3-mini-high",
         ]
 
@@ -274,7 +274,7 @@ def check_schema_formulate_instructions(state: DatabaseQueryState):
     schema_llm = get_llm(schema_llm_model_config)
     structured_llm = schema_llm.with_structured_output(QueryProposal)
 
-    #structured_llm = st.session_state["llm"].with_structured_output(QueryProposal)
+    # structured_llm = st.session_state["llm"].with_structured_output(QueryProposal)
     query_proposal = structured_llm.invoke(system_message)
 
     return {"query_proposal": query_proposal}
@@ -366,6 +366,7 @@ def finalize_query(state: DatabaseQueryState):
     Given the results provided by the previous agent and the user request, your task is to:
     1. Provide a clear, well-formatted answer based on the query results
     2. Return a python script for visualization of the results using ONLY Streamlit components
+    Your response must include the final answer to the user query and a code block for visualization when possible.
 
     VISUALIZATION REQUIREMENTS:
     - ONLY use Streamlit chart elements (st.line_chart, st.bar_chart, st.area_chart, etc.)
@@ -376,6 +377,8 @@ def finalize_query(state: DatabaseQueryState):
     1. First provide the textual answer to the user query
     2. Then include a code block with visualization code, it must start with ```python and end with ```
     3. The code block should contain the python code to visualize the query results
+    
+    NOte : If using st.bar_chart() with pandas DataFrames, ensure you only pass a single-column index rather than a multi-level index. Streamlit's built-in charting functions expect simple data structures and cannot interpret hierarchical indices created with df.set_index([multiple_columns]). To avoid the "not in index" error, either use a single column as the index, reshape your data with pivot(), or switch to more flexible visualization libraries like Altair or Matplotlib when you need to represent data across multiple categorical dimensions simultaneously. For complex visualizations with grouped data, st.altair_chart() provides better support for hierarchical data structures.
     """
 
     final_llm_model_config = st.session_state["MODEL_CONFIG"].copy()
@@ -404,7 +407,6 @@ def finalize_query(state: DatabaseQueryState):
     #     stream_mode="values",
     # ):
     #     step["messages"][-1].pretty_print()
-
 
     return {"final_answer": final_result.content}
 
