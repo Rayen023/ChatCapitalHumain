@@ -52,7 +52,7 @@ Column: questionnaire_id | Type: VARCHAR(50)
 Column: question_id | Type: INTEGER
 Column: gender | Type: VARCHAR(1)
 Column: response_option | Type: VARCHAR(100)
-Column: summed_total_all_students_responses | Type: INTEGER
+Column: summed_students_responses | Type: INTEGER
 ForeignKey: ReadOnlyColumnCollection(responses.question_id) references questions.question_id
 ForeignKey: ReadOnlyColumnCollection(responses.questionnaire_id) references questionnaires.questionnaire_id
 

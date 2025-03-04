@@ -240,22 +240,24 @@ from utils.schema import show_schema_in_sidebar
 show_schema_in_sidebar()
 
 
-def add_visualization_buttons_to_message(chat_message, message_content):
+def add_visualization_buttons_to_message(chat_message_container, message_content):
     """
     Adds visualization buttons for Python code blocks in an AI message.
 
     Args:
-        chat_message: The Streamlit chat message container
+        chat_message_container: The Streamlit chat message container
         message_content (str): The content of the message to process
     """
+    chat_message_container = st.chat_message("assistant", avatar=APP_ICON_PATH)
+    chat_message_container.write(message_content)
     matches = find_code_blocks(message_content)
     if matches:
         # Add a small visual separator
-        chat_message.markdown("---")
+        chat_message_container.markdown("---")
         # Add buttons at the bottom of the message
         for i, match in enumerate(matches):
             code_content = match.group(1)
-            chat_message.button(
+            chat_message_container.button(
                 f"📊 Visualize Code Block {i+1}",
                 on_click=plot_school_data,
                 use_container_width=True,
@@ -297,119 +299,115 @@ if isinstance(st.session_state.messages[-1], HumanMessage):
     user_message = st.session_state.messages[-1].content
 
     # Generate assistant response via your graph
-    with st.chat_message("assistant", avatar=APP_ICON_PATH):
-        response_placeholder = st.empty()
-        streamlit_callback = get_streamlit_cb(st.empty())
-        config = {
-            "callbacks": [streamlit_callback],
-            "configurable": {"thread_id": st.session_state["thread_id"]},
-        }
-        if (
-            st.session_state.get("in_human_feedback_state", False) is False
-        ):  # ss.get return False if key not found else returns its value, which nust be false or doesn't exist for the condition to be true
-            for event in graph.stream(
-                {
-                    "user_request": user_message,
-                    "message_history": st.session_state["messages"],
-                },
-                config=config,
-                stream_mode="updates",
-            ):
-                # st.info(event)
+    #with st.chat_message("assistant", avatar=APP_ICON_PATH):
+    response_placeholder = st.empty()
+    streamlit_callback = get_streamlit_cb(st.empty())
+    config = {
+        "callbacks": [streamlit_callback],
+        "configurable": {"thread_id": st.session_state["thread_id"]},
+    }
+    if (
+        st.session_state.get("in_human_feedback_state", False) is False
+    ):  # ss.get return False if key not found else returns its value, which nust be false or doesn't exist for the condition to be true
+        for event in graph.stream(
+            {
+                "user_request": user_message,
+                "message_history": st.session_state["messages"],
+            },
+            config=config,
+            stream_mode="updates",
+        ):
+            # st.info(event)
 
-                if event.get("analyze_request", None):
-                    if (
-                        event["analyze_request"][
-                            "analysis_result"
-                        ].is_db_related_and_answerable
-                        == False
-                    ):
-                        st.session_state["messages"].append(
-                            AIMessage(
-                                content=event["analyze_request"][
-                                    "analysis_result"
-                                ].response
-                            )
-                        )
-                        response_placeholder.write(
-                            event["analyze_request"]["analysis_result"].response
-                        )
-                if event.get("check_schema_formulate_instructions", None):
-                    if (
-                        event["check_schema_formulate_instructions"][
-                            "query_proposal"
-                        ].is_accepted_by_human_analyst
-                        == False
-                    ):
-                        response_explanation = event[
-                            "check_schema_formulate_instructions"
-                        ]["query_proposal"].explanation
-
-                        response_explanation = (
-                            response_explanation
-                            + """\n\n 💡 NOTE : Veuillez valider si les étapes suggérées sont correctes en répondant par **OUI** ou **CORRECT**, sinon, veuillez indiquer les **modifications/suggestions** pour les étapes alternatives."""
-                        )
-
-                        st.session_state["messages"].append(
-                            AIMessage(content=response_explanation)
-                        )
-                        response_placeholder.write(response_explanation)
-                        st.session_state["in_human_feedback_state"] = True
-                        user_message = None
-                    else:
-                        st.session_state["in_human_feedback_state"] = False
-
-        if (
-            st.session_state.get("in_human_feedback_state", False) and user_message
-        ):  # ss.get return False if key not found else returns its value
-            # streamlit_callback = get_streamlit_cb(st.empty())
-            # config = {
-            #     "callbacks": [streamlit_callback],
-            #     "configurable": {"thread_id": st.session_state["thread_id"]},
-            # }
-            graph.update_state(
-                config,
-                {"human_analyst_feedback": user_message},
-                as_node="human_feedback",
-            )
-            # st.session_state["in_human_feedback_state"] = False
-
-            for event in graph.stream(None, config=config, stream_mode="updates"):
-                # st.info(event)
-                if event.get("check_schema_formulate_instructions", None):
-                    if (
-                        event["check_schema_formulate_instructions"][
-                            "query_proposal"
-                        ].is_accepted_by_human_analyst
-                        == False
-                    ):
-
-                        response_explanation = event[
-                            "check_schema_formulate_instructions"
-                        ]["query_proposal"].explanation
-
-                        response_explanation = (
-                            response_explanation
-                            + """\n\n 💡 NOTE : Veuillez valider si les étapes suggérées sont correctes en répondant par **OUI** ou **CORRECT**, sinon, veuillez indiquer les **modifications/suggestions** pour les étapes alternatives."""
-                        )
-
-                        st.session_state["messages"].append(
-                            AIMessage(content=response_explanation)
-                        )
-                        response_placeholder.write(response_explanation)
-
-                        st.session_state["in_human_feedback_state"] = True
-                    else:
-                        st.session_state["in_human_feedback_state"] = False
-                        user_message = None
-                if event.get("finalize_query", None):
+            if event.get("analyze_request", None):
+                if (
+                    event["analyze_request"][
+                        "analysis_result"
+                    ].is_db_related_and_answerable
+                    == False
+                ):
                     st.session_state["messages"].append(
-                        AIMessage(content=event["finalize_query"]["final_answer"])
+                        AIMessage(
+                            content=event["analyze_request"][
+                                "analysis_result"
+                            ].response
+                        )
                     )
-                    response_placeholder.write(event["finalize_query"]["final_answer"])
-                    st.warning(event["finalize_query"]["final_answer"])
-                    st.info(event["finalize_query"]["final_answer"][-1])
-            # st.rerun()
+                    add_visualization_buttons_to_message(response_placeholder, event["analyze_request"]["analysis_result"].response)
+            if event.get("check_schema_formulate_instructions", None):
+                if (
+                    event["check_schema_formulate_instructions"][
+                        "query_proposal"
+                    ].is_accepted_by_human_analyst
+                    == False
+                ):
+                    response_explanation = event[
+                        "check_schema_formulate_instructions"
+                    ]["query_proposal"].explanation
 
+                    response_explanation = (
+                        response_explanation
+                        + """\n\n 💡 NOTE : Veuillez valider si les étapes suggérées sont correctes en répondant par **OUI** ou **CORRECT**, sinon, veuillez indiquer les **modifications/suggestions** pour les étapes alternatives."""
+                    )
+
+                    st.session_state["messages"].append(
+                        AIMessage(content=response_explanation)
+                    )
+                    add_visualization_buttons_to_message(response_placeholder, response_explanation)
+                    st.session_state["in_human_feedback_state"] = True
+                    user_message = None
+                else:
+                    st.session_state["in_human_feedback_state"] = False
+
+    if (
+        st.session_state.get("in_human_feedback_state", False) and user_message
+    ):  # ss.get return False if key not found else returns its value
+        # streamlit_callback = get_streamlit_cb(st.empty())
+        # config = {
+        #     "callbacks": [streamlit_callback],
+        #     "configurable": {"thread_id": st.session_state["thread_id"]},
+        # }
+        graph.update_state(
+            config,
+            {"human_analyst_feedback": user_message},
+            as_node="human_feedback",
+        )
+        # st.session_state["in_human_feedback_state"] = False
+
+        for event in graph.stream(None, config=config, stream_mode="updates"):
+            # st.info(event)
+            if event.get("check_schema_formulate_instructions", None):
+                if (
+                    event["check_schema_formulate_instructions"][
+                        "query_proposal"
+                    ].is_accepted_by_human_analyst
+                    == False
+                ):
+
+                    response_explanation = event[
+                        "check_schema_formulate_instructions"
+                    ]["query_proposal"].explanation
+
+                    response_explanation = (
+                        response_explanation
+                        + """\n\n 💡 NOTE : Veuillez valider si les étapes suggérées sont correctes en répondant par **OUI** ou **CORRECT**, sinon, veuillez indiquer les **modifications/suggestions** pour les étapes alternatives."""
+                    )
+
+                    st.session_state["messages"].append(
+                        AIMessage(content=response_explanation)
+                    )
+                    add_visualization_buttons_to_message(response_placeholder, response_explanation)
+
+                    st.session_state["in_human_feedback_state"] = True
+                else:
+                    st.session_state["in_human_feedback_state"] = False
+                    user_message = None
+            if event.get("finalize_query", None):
+                st.session_state["messages"].append(
+                    AIMessage(content=event["finalize_query"]["final_answer"])
+                )
+                add_visualization_buttons_to_message(response_placeholder, event["finalize_query"]["final_answer"]) 
+                             
+                    
         # if st.experimental_user.get("email"):
         # save_chat_logs()

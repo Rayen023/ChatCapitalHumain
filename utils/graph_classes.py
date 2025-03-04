@@ -270,8 +270,12 @@ def check_schema_formulate_instructions(state: DatabaseQueryState):
     - If human feedback contains approval words (e.g., "correct" or "yes"): set 'is_accepted_by_human_analyst' to True
     - If human feedback suggests changes: adjust your proposal accordingly before submitting
     """
+    schema_llm_model_config = st.session_state["MODEL_CONFIG"].copy()
+    schema_llm_model_config["model_name"] = "google/gemini-2.0-flash-001"
+    schema_llm = get_llm(schema_llm_model_config)
+    structured_llm = schema_llm.with_structured_output(QueryProposal)
 
-    structured_llm = st.session_state["llm"].with_structured_output(QueryProposal)
+    #structured_llm = st.session_state["llm"].with_structured_output(QueryProposal)
     query_proposal = structured_llm.invoke(system_message)
 
     return {"query_proposal": query_proposal}
@@ -360,8 +364,9 @@ def finalize_query(state: DatabaseQueryState):
     - Query results: {query_results}
 
     TASK:
+    Given the results provided by the previous agent and the user request, your task is to:
     1. Provide a clear, well-formatted answer based on the query results
-    2. Create visualization using ONLY Streamlit components
+    2. Return a python script for visualization of the results using ONLY Streamlit components
 
     VISUALIZATION REQUIREMENTS:
     - ONLY use Streamlit chart elements (st.line_chart, st.bar_chart, st.area_chart, etc.)
@@ -370,30 +375,39 @@ def finalize_query(state: DatabaseQueryState):
 
     in your final formaated response include:
     1. First provide the textual answer to the user query
-    2. Then include a code block with visualization code
+    2. Then include a code block with visualization code, it must start with ```python and end with ```
+    3. The code block should contain the python code to visualize the query results
     """
+
+    final_llm_model_config = st.session_state["MODEL_CONFIG"].copy()
+    final_llm_model_config["model_name"] = "google/gemini-2.0-flash-001"
+    final_llm = get_llm(final_llm_model_config)
+    # st.session_state["MODEL_CONFIG"]["model_name"] = st.session_state["selected_model"]
+    # st.session_state["llm"] = get_llm(st.session_state["MODEL_CONFIG"])
+    final_result = final_llm.invoke(finalize_query_template)
     # 2. Then include a code block with visualization code
 
-    python_repl = PythonREPL()
-    repl_tool = Tool(
-        name="python_repl",
-        description="A Python shell for executing code. Use this to create exactly ONE Streamlit visualization. NEVER use matplotlib or other external plotting libraries. For data display, use ONLY st.dataframe().",
-        func=python_repl.run,
-    )
+    # python_repl = PythonREPL()
+    # repl_tool = Tool(
+    #     name="python_repl",
+    #     description="A Python shell for executing code. Use this to create exactly ONE Streamlit visualization. NEVER use matplotlib or other external plotting libraries. For data display, use ONLY st.dataframe().",
+    #     func=python_repl.run,
+    # )
 
-    # llm = get_llm(st.session_state["MODEL_CONFIG"])
-    tools = [repl_tool]
+    # # llm = get_llm(st.session_state["MODEL_CONFIG"])
+    # tools = [repl_tool]
 
-    llm_with_tools = st.session_state["llm"].bind_tools(tools)
+    # llm_with_tools = st.session_state["llm"].bind_tools(tools)
 
-    agent_executor = create_react_agent(llm_with_tools, tools)
-    for step in agent_executor.stream(
-        {"messages": [{"role": "user", "content": finalize_query_template}]},
-        stream_mode="values",
-    ):
-        step["messages"][-1].pretty_print()
+    # agent_executor = create_react_agent(llm_with_tools, tools)
+    # for step in agent_executor.stream(
+    #     {"messages": [{"role": "user", "content": finalize_query_template}]},
+    #     stream_mode="values",
+    # ):
+    #     step["messages"][-1].pretty_print()
 
-    return {"final_answer": step["messages"][-1].content}
+
+    return {"final_answer": final_result.content}
 
 
 # Build the graph
