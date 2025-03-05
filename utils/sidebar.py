@@ -87,22 +87,21 @@ def load_conversation(thread_id):
         return None
 
 
-def setup_sidebar_controls():
+def enable_login():
     """Configure sidebar elements including new chat and conversation loading."""
     with st.sidebar:
-        # Handle authentication buttons
         if st.experimental_user.get("is_logged_in", True):
-            if st.button("Log out"):
+            if st.button("Log out", use_container_width=True):
                 st.logout()
             user_email = st.experimental_user.get("email")
         else:
-            if st.button("Log in with Google"):
+            if st.button("Log in with Google", use_container_width=True):
                 st.login()
             user_email = None
 
         # If user is logged in, load saved conversations
         if user_email:
-            st.write(f"Hello, {user_email}")
+            st.write(f"Bonjour, {user_email}")
             convs = load_user_conversations(user_email)
             if convs:
                 # Create a mapping of display labels to thread_id values
@@ -113,7 +112,7 @@ def setup_sidebar_controls():
                 selected_conv_display = st.selectbox(
                     "Load Conversation", list(conv_options.keys())
                 )
-                if st.button("Load Selected Conversation"):
+                if st.button("Load Selected Conversation", use_container_width=True):
                     selected_thread_id = conv_options[selected_conv_display]
                     conv_data = load_conversation(selected_thread_id)
                     if conv_data and "messages" in conv_data:
@@ -122,5 +121,3 @@ def setup_sidebar_controls():
                         ]
                         st.session_state["thread_id"] = selected_thread_id
                         st.rerun()  # Rerun the app to update the chat display
-
-        show_schema_in_sidebar()

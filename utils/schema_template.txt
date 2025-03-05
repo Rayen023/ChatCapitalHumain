@@ -79,159 +79,161 @@ type_id : type
 
 Questions and responses for exact match :
 
-type_id : 3 || question_id : 1 : À la fin de vos études postsecondaires, si vous aviez une offre d'emploi dans la Péninsule acadienne, est-ce que vous l'accepteriez ?
+type_id : 1 || question_id : 16 : Indiquez les deux cours que vous avez les plus appréciés durant votre secondaire
+: ['46. Sciences familiales', "45. Sc. De l'environnement", '52. Technologie', '18. Droit', '22. Éducation coopérative', '36. IPEJ', '49. Sciences sociales', '10. Biologie', '29. Français', '39. Mécanique des moteurs', "35. Intro. Science de l'info.", '48. Sciences humaines', '50. Systèmes mécaniques', '14. Chimie', '42. Physique', '47. Sciences générales', '37. Leadership', "54. Trait. De l'information", '3. Alimentation et nutrition', '44. Saisie sur clavier', '12. Braille Nameth', '20. Éduc. Du consommateur', '5. Anglais', '53. Textiles et habillement', '9. Atelier de métaux', '2. Agriculture', '40. Menuiserie', '19. Économie', '6. Art dramatique', '33. Informatique appliqué', '1. Act.Quot.(handicap vis.)', '43. Relations familiales', '11. Braille abrégé', '13. Charpenterie', '30. Géographie', '28. Formation personnelle', '17. Développement humain', '15. Comptabilité', '27. Espagnol', '51. Techno. (handicap visuel)', '26. Entreprenariat', '7. Arts Industriels', '34. Initiation au travail', '41. Musique', '25. Électronique', '24. Électricité', '31. Histoire', '32. Informatique', '38. Mathématiques', '8. Arts visuels', '16. Dessin industriel', '4. Allemand', '21. Éducation aux valeur', '23. Éducation physique']
+
+type_id : 1 || question_id : 17 : Sur le plan de vos relations avec les autres élèves, êtes-vous satisfait/e de votre séjour au secondaire ?
+: ['Satisfait/e', 'Très insatisfait/e', 'Insatisfait/e', 'Non répondu', 'Très satisfait/e']
+
+type_id : 1 || question_id : 18 : Sur le plan de vos relations avec le personnel de l'école, êtes-vous satisfait/e de votre séjour au secondaire ?
+: ['Satisfait/e', 'Très insatisfait/e', 'Insatisfait/e', 'Non répondu', 'Très satisfait/e']
+
+type_id : 1 || question_id : 19 : Que prévoyez-vous faire en septembre prochain ?
+: ['Marché du travail', 'Année sabbatique', 'Programmes jeunesse', 'Ligne de hockey', 'Formation professionnelle', 'Retours aux études secondaires', 'Voyage pour Missionnaire', 'Cégep', 'Études collégiales', 'Ne sais pas', 'Non répondu', 'Voyager', 'Études universitaires', 'Écoles des pêches', 'Indécis du domaine souhaiter', 'Programme jeunesse', 'Cours se donne seulement aux 2 ans', 'Pas assez de bonnes notes', 'Cours par correspondance', 'Armée']
+
+type_id : 1 || question_id : 20 : Indiquez dans quel domaine vous avez l'intention de poursuivre vos études postsecondaires ?
+: ['Mathématiques, informatique et sciences physiques', 'Sciences agricoles et biologiques et services de la nutrition et de l’alimentation', 'Professions de la santé et technologies connexes', 'Commerce, gestion et administration des affaires', 'Beaux-arts et arts appliqués', 'Lettres, sciences humaines et disciplines connexes', 'Enseignement, loisirs et orientation', 'Sciences sociales et disciplines connexes', 'Génie et sciences appliquées', 'Sans spécialisation', 'Non répondu', 'Techniques et métiers des sciences appliquées']
+
+type_id : 1 || question_id : 21 : Est-ce que les services d'orientation que vous avez utilisés ont répondu à vos besoins ?
+: ['Pas utilisés', 'Peu', 'Bien', 'Pas du tout', 'Très bien', 'Non répondu']
+
+type_id : 1 || question_id : 22 : À la fin de vos études postsecondaires, si vous aviez une offre d'emploi dans la Péninsule acadienne, est-ce que vous l'accepteriez ?
 : ['Non', 'Non répondu', 'Je ne sais pas', 'Oui']
 
-type_id : 3 || question_id : 2 : Au cours des 2 dernières années, combien d'employeurs avez-vous eus ?
-: ['Un', 'Aucun', 'Plus de deux', 'Non répondu', 'Deux']
+type_id : 1 || question_id : 23 : Lorsque vous aurez terminé vos études postsecondaires, indiquez où vous prévoyez travailler ?
+: ['4. Charlotte (N.-B.)', '19. Nouvelle-Écosse', '20. Ontario', '26. Yukon', '35. Canada', '17. IPE', '31. Autre', '11. Restigouche (N.-B.)', '24. Alberta', '27. Territoire du Nord-Ouest', '16. York (N.-B.)', '33. Autre(s) province(s)', '23. Saskatchewan', '6. Kent (N.-B.)', '1. Dans la Péninsule acadienne', '32. Nouveau-Brunswick', '12. Sunbury (N.-B.)', '2. Albert (N.-B.)', '10. Queens (N.-B.)', '21. Québec', '18. Terre-Neuve', '3. Carleton (N.-B.)', '9. Northumberland (N.-B.)', '7. Kings (N.-B.)', '30. Angleterre', '29. France', '8. Madawaska (N.-B.)', '14. Victoria (N.-B.)', '28. État-Unis', '13. Saint-Jean (N.-B.)', '22. Manitoba', '5. Gloucester (N.-B.)', '15 Westorland (N.-B.)', '34. Autre(s) pays', '25. Colombie-Britanique']
 
-type_id : 3 || question_id : 3 : Au cours des deux dernières années, combien de mois d'expérience de travail avez-vous accumulés ?
-: ['Moins de 6 mois', '12 à 18 mois', '18 à 24 mois', '6 à 12 mois', 'Non répondu']
+type_id : 1 || question_id : 24 : Indiquez le nom de l'institution que vous pensez fréquenter l'an prochain ?
+: ['Université de Sherbrooke', 'University Mount Allison', 'Notre-Dame-de-Foy', 'Université Western', 'Recording Arts Canada', 'Oulton College', 'CITÉ COLLÉGIALE', 'Eastern College', 'MEDES Institutes', 'SALON CAROUSSEL', 'Université de Moncton - campus Moncton', 'NDI', 'Université Laval', 'Académie de Police (Régina)', 'CCNB (PA)', 'UNIVERSITE LAVAL', 'NBCC Miramichi Campus', 'CCNB MIRAMICHI', 'Nav Canada', 'College de la Garde Cotière Canadienne', 'Université St-Francis Xavier', 'ESSENCE INSTITUT', 'UNIVERSITÉ DE MONTRÉAL', 'École de coiffure Rose-Hélène', 'Autre', 'CCNB Moncton', 'OULTON COLLEGE', '2. Bourses étudiantes', '4. Économie personnelle', 'ACADEMY OF LEARNING MIRAMICHI', 'Brenda dog grooming', 'Académie paramédicale de lAtlantique', 'Universdad de Boenos', 'NAIT', '1. Prêt étudiant', "UNIVERSITÉ D'OTTAWA", 'UNIVERSITÉ STE-ANNE', 'CCNB (Bathurst)', 'ÉCOLE DES PÊCHES', 'THE ART INSTITUTE OF TORONTO', '6. Autre', 'MEMORIAL UNIVERSITY', 'St-Thomas University', 'Cégep', 'Université d Acadia', 'COLLÈGE LASALLE', "École nationale opération de machinerie lourde", 'Université de Guelph', 'Mount Allison', 'Académie La Coupe Plus', 'CCNB (Campbelton)', 'Université de Moncton - campus Edmunston', 'Université McGill', 'COLLÈGE BORÉAL', 'College de technologie forestiere des Maritimes', 'COLLÈGE MILITAIRE ROYAL DU CANADA', 'CCNB Campbellton-Cours distance', 'Centre de formation de la Haute-Gaspésie', 'Institut humanitaire', 'University of Mobile', 'Le Collège Atlantic de Massage thérapeutique', 'centre de formation professionnelle , Trois Rivières. qc', 'CRIF', 'Université de Montréal', 'CCNB (Edmunston)', 'CCNB (Autre)', 'CITE COLLÉGIALE', "Dalhousie  University", "Université St Mary's", "ECOLE DES MÉTIERS DE L'INDUSTRIE DE LA CONSTRUCTION", "INST. TECH.D'AGROALIMENTAIRE", "Université de l'Ile du Prince Edouard", '3. Contribution des parents', 'Campus Notre Dame de Foy', 'NBCC MONCTON', 'UCAM', 'Université de Moncton - campus Bathurst', "Université du Nouveau-Brunswick", 'Université de Concardia', 'CCNB Fredericton', 'Collège Acadie, Université Ste-Anne', 'Amor Esthétique', 'Université Hearst', 'Maritime College of forest technololgy', 'ÉCOLE DE COIFFURE DE LA PÉNINSULE', 'UNIVERSITÉ LAURENTIENNE', 'UNIVERSITÉ DE MONCTON(CAMPUS DE SHIPPAGAN ET MONCTON)', "École National du Théatre du Canada", 'Da Vinci College', 'Cégep de Ste Foy', 'Université de Moncton - campus Shippagan', 'Université de Toronto, campus St-George', 'Institut Maritime du Québec', 'JON RAYMOND', 'MEDES', 'Université du Québec', 'Collège Atlantique de massages thérapeutique', 'CEGEP DE LAPOCATIÈRE', 'Amoura Esthetic', '5. Travail à temps partiel', 'Non répondu', 'CCNB (Dieppe)', 'St Thomas University', 'Université du Canadienne', "BRENDA'S ACADEMY OF PROFESSIONNAL DOG GROOMING", 'Holland College', 'Université de Dalhousie', 'NBCC', 'Université libre de Bruxelles', 'Medavie HealtEd', 'Complexe Capital Hélicoptère', 'NBCC Monction', 'Bathurst Hair academy', 'Collège Merici', 'UNB', 'Cégep de Rimouski']
 
-type_id : 3 || question_id : 4 : Avez-vous complété vos études ?
-: ['Non répondu', 'Non', 'Oui']
+type_id : 1 || question_id : 25 : Durant vos études postsecondaires, quelles seront vos sources de financement ?
+: ['3. Contribution des parents', '2. Bourses étudiantes', '4. Économie personnelle', '1. Prêt étudiant', '5. Travail à temps partiel', '6. Autre']
 
-type_id : 3 || question_id : 5 : Avez-vous eu un emploi au cours des 2 dernières années ?
-: ['Non répondu', 'Non', 'Oui']
+type_id : 1 || question_id : 26 : Quel moyen de transport local pensez-vous utiliser le plus régulièrement pendant votre première année d'études ?
+: ['11. Covoiturage', '10. Taxi', '7. Voiture frère/sœur', '3. Voiture de mes parents', '1. À pied', '8. Transport en commun', '2. Ma propre voiture/motocyclette', '6. Métro', '5. Autobus', '12. Autre', '9. Bicyclette', '6. Autre', '4. Voiture d\'un ami/e ami/e']
 
-type_id : 3 || question_id : 6 : Avez-vous l'intention de vous établir dans la Péninsule acadienne au cours des cinq prochaines années ?
+type_id : 1 || question_id : 27 : Quelle est la raison pour laquelle vous ne prévoyez pas poursuivre des études postsecondaire ?
+: ['Accès au marché du travail', 'Peur de ne pas réussir', 'Cours non disponible', 'Aucune idée du domaine à choisir', 'Manque d’intérêt pour les études/formation', 'Je travaille ou prévois travailler', 'Autre', 'Prendre un an', 'Armée', 'Problèmes monétaires', 'Non répondu']
+
+type_id : 1 || question_id : 28 : Depuis septembre dernier, avez-vous occupé un emploi rénuméré ?
+: ['5. Autres', '1. Non', '4. à l\'occasion (ex. 1-2 fois par semaine)', '2. Temps partiel fin de semaine', '3. Temps partiel à la semaine']
+
+type_id : 1 || question_id : 29 : Est-ce que le fait de terminer votre 12e année est important pour vous ?
+: ['Important', 'Peu important', 'Pas du tout important', 'Très important', 'Non répondu']
+
+type_id : 1 || question_id : 30 : En général, quels sont vos résultats scolaires en 10e 11e et 12e année ?
+: ['de 81 % à 94 %', 'de 56 % à 65 %', 'de 95 % à 100 %', 'moins de 55 %', 'de 66 % à 80 %', 'Non répondu']
+
+type_id : 1 || question_id : 31 : En général, vos cours sont de quel niveau scolaire ?
+: ['Adaptation scolaire', 'PCE', 'Régulier', 'Compétences essentielles', 'Choix', 'Non répondu', 'Modifié']
+
+type_id : 1 || question_id : 32 : En général, êtes-vous satisfait/e de vos résultats scolaires ?
+: ['Satisfait/e', 'Très insatisfait/e', 'Insatisfait/e', 'Non répondu', 'Très satisfait/e']
+
+type_id : 2 || question_id : 45 : Depuis combien d'années demeurez-vous à l'extérieur de la Péninsule acadienne ?
+: ['moins d\'un an', 'Deux ans', 'Un an', 'Trois ans', 'Plus de quatre', 'Non répondu', 'Quatre ans']
+
+type_id : 2 || question_id : 46 : Pour quelle raison avez-vous quitté la Péninsule acadienne ?
+: ['Travail', 'Non répondu', 'Étude', 'Autre']
+
+type_id : 2 || question_id : 47 : Avez-vous l'intention de vous établir dans la Péninsule acadienne au cours des cinq prochaines années ?
 : ['Non répondu', 'Non', 'Ne sais pas', 'Oui']
 
-type_id : 3 || question_id : 7 : Dans quel domaine d'études étiez-vous inscrit/e ?
-: ['Mathématiques, informatique et sciences physiques', 'Professions de la santé et technologies connexes', 'Commerce, gestion et administration des affaires', 'Beaux-arts et arts appliqués', 'Lettres, sciences humaines et disciplines connexes', 'Enseignement, loisirs et orientation', 'Sciences sociales et disciplines connexes', 'Non repondu', 'Génie et sciences appliquées', 'Sans spécialisation', 'Non répondu', 'Techniques et métiers des sciences appliquées']
+type_id : 2 || question_id : 48 : Quel est votre niveau d'éducation le plus élevé ?
+: ['Formation personnelle', 'Secondaire (12 ième année)', 'Secondaire', 'Secondaire non-complété', 'DEG non-complété', 'Universitaire (baccalauréat)', 'non répondu', 'Formation professionnelle', 'Universitaire (Doctorat)', 'Non répondu', 'Collégial', 'Universitaire (Maîtrise)', 'DESPA complété', 'DESPA non complété', 'Universitaire (Baccalauréat)', 'DESPA Complété', 'DEG complété', 'Secondaire (12 ième complété)', 'Autre']
 
-type_id : 3 || question_id : 8 : Dans quel type d'institution avez-vous étudié ?
+type_id : 2 || question_id : 49 : Que consirérez-vous comme étant votre principale occupation en ce moment ?
+: ['Recherche d\'emploi / sans emploi', 'Termine mes études secondaires', 'Études universitaires', 'Formation professionnelle ', 'Retours aux études secondaires', 'Recherche d\'emploi', 'Recherche d\'emploi / Sans emploi', 'Autre', 'Marché du travail', 'Armée', 'Programme jeunesse', 'Non répondu', 'Termine mes études postsecondaires', 'non répondu']
+
+type_id : 2 || question_id : 50 : Quel est votre état civil présentement ?
+: ['Divorcé/e', 'Veuf / veuve', 'Célibataire', 'Marié/e', 'Conjoint/e de fait', 'Séparé/e', 'Non répondu']
+
+type_id : 2 || question_id : 51 : De quelle localité de la Péninsule acadienne êtes-vous originaire ?
+: A very long list of localities (over 300 entries), including: 'AIRDRIE', 'ROBICHAUD SETTLEMENT', 'POINTE-A-BOULEAU', 'ANSE-BLEUE', 'Granby', ... 'BELLEDUNE', ... 'BATHURST', ... 'NON RÉPONDU', 'Quispamsis', ... 'MONCTON', ... 'BELLEDUNE', 'SAINT-SAUVEUR', ... etc.
+(Refer to original data for the complete list.)
+
+type_id : 2 || question_id : 52 : Où demeurez-vous présentement ?
+: ['Péninsule acadienne', 'Ailleurs au N.-B.', 'Ailleurs au Canada', 'Dans un autre pays', 'Non répondu']
+
+type_id : 3 || question_id : 1 : Dans quelle province canadienne ou ailleurs avez-vous étudié ?
+: ['Angleterre', 'Québec', 'Manitoba', 'Non répondu', 'Alberta', 'Saskatchewan', 'Colombie-Britannique', 'Ontario', 'France', 'Île-du-Prince-Édouard', 'Nouveau-Brunswick', 'Nouvelle-Écosse', 'Terre-Neuve']
+
+type_id : 3 || question_id : 2 : Durant vos études quelles étaient vos sources de financement ?
+: ['Bourse étudiants', 'Prêts étudiant', 'Économie personnelle', 'Travail à temps partiel', "Plan enregistré d'épargne-études", 'Autre', 'Travail à temps plein', 'Prêts/bourse étudiant', 'Bourse étudiante', "Programme d'aide fédéral", 'Travaille à temps plein', "Plan enregistré d'épargnes-études", "Programme d'aide provincial", 'Travaille à temps partiel', 'Non répondu', 'Contribution des parents']
+
+type_id : 3 || question_id : 3 : Seriez-vous intéressé/e à faire un retour aux études ?
+: ['Non', 'Ne sais pas', 'Présentement aux études', 'Non répondu', 'Oui']
+
+type_id : 3 || question_id : 4 : Existe-t-il des obstacles qui vous empêchent de poursuivre des études ?
+: ['Non répondu', 'Non', 'Oui']
+
+type_id : 3 || question_id : 5 : Seriez-vous intéressé/e à recevoir de l'information pour vous aider dans la poursuite de vos études ?
+: ['Non répondu', 'Non', 'Oui']
+
+type_id : 3 || question_id : 6 : Dans quel type d'institution avez-vous étudié ?
 : ['Universitaire', 'Non répondu', 'Collégial', 'École privée']
 
-type_id : 3 || question_id : 9 : Dans quelle catégorie de profession ou métier travaillez-vous ?
-: ['Commerce de détail', 'Arts, spectacles et loisirs', 'Fabrication', 'Services professionnels, scientifiques et technique', 'Agriculture, forestierie, pêche et chasse', "Services admistratifs, services de soutien, services de gestion de déchets et d'assainissement", 'Finance et assurances ', 'Commerce en gros', "Insdustrie de l'information - industrie culturelle", 'Transport et entreposage', 'Non répondu', 'Services publiques', 'Hébergement et services de restauration', "Gestion de sociétés et d'entreprises", 'Autre services (sauf administration publique)', "Services d'enseignement", 'Soins de santé et assistance sociale', 'Extraction minière, extraction de pétrole et de gaz ', 'Services immobiliers, service de location', 'Construction', 'Administration publiques']
+type_id : 3 || question_id : 7 : Quel était votre régime d'études ?
+: ['Temps plein', 'Non répondu', 'Temps partiel']
 
-type_id : 3 || question_id : 10 : Dans quelle province canadienne ou ailleurs avez-vous étudié ?
-: ['(Angleterre)', '(Québec)', '(Manitoba)', '(Non répondu)', '(Alberta)', '(Saskatchewan)', '(Colombie-Britannique)', '(Ontario)', '(France)', '(Île-du-Prince-Édouard)', '(Nouveau-Brunswick)', '(Nouvelle-Écosse)', '(Terre-Neuve)']
+type_id : 3 || question_id : 8 : Quel était le niveau de votre programme d'études ?
+: ['Troisième cycle ( doctorat )', 'Deuxième cycle ( maîtrise )', 'Premier cycle universitaire( bacc., certificat)', 'Diplôme', 'Certificat', 'Non repondu', 'Cours préparatoire ( 13e année )', 'Sciences de la santé', 'Non répondu']
 
-type_id : 4 || question_id : 11 : Dans quelle province canadienne ou autre pays aimeriez-vous travailler ?
-: ['Alberta', 'Saskatchewan', 'Autre', 'Colombie-Britanique', 'Ontario', 'Terre-Neuve', 'Nouveau-Brunswick', 'Québec', 'Non répondu', 'non répondu']
+type_id : 3 || question_id : 9 : Dans quel domaine d'études étiez-vous inscrit/e ?
+: ['Mathématiques, informatique et sciences physiques', 'Professions de la santé et technologies connexes', 'Commerce, gestion et administration des affaires', 'Beaux-arts et arts appliqués', 'Lettres, sciences humaines et disciplines connexes', 'Enseignement, loisirs et orientation', 'Sciences sociales et disciplines connexes', 'Non repondu', 'Génie et sciences appliquées', 'Sans spécialisation', 'Non répondu', 'Techniques et métiers des sciences appliquées']
 
-type_id : 4 || question_id : 12 : Dans quelle province canadienne ou autre pays travaillez-vous ?
-: ['(Angleterre)', '(Québec)', '(Manitoba)', '(Non répondu)', '(Territoires-du-Nord-Ouest)', '(Alberta)', '(Saskatchewan)', '(Colombie-Britannique)', '(Nunavut)', '(Ontario)', '(France)', '(Île-du-Prince-Édouard)', '(Nouveau-Brunswick)', '(Suisse)', '(Nouvelle-Écosse)', '(Terre-Neuve)']
+type_id : 3 || question_id : 10 : Avez-vous complété vos études ?
+: ['Non répondu', 'Non', 'Oui']
 
-type_id : 4 || question_id : 13 : Dans quelle région de la province aimeriez-vous travailler ?
-: ['Nord-Est', 'Saskatchewan', 'Nord', 'Sud-ESt', 'Nord-Ouest', 'Sud', 'Colombie-Britannique', 'Autre', 'Terre-Neuve', 'Nouveau-Brunswick', 'Sud-Est', 'Non répondu', 'Sud-Ouest']
+type_id : 4 || question_id : 11 : Dans quelle province canadienne ou autre pays travaillez-vous ?
+: ['Angleterre', 'Québec', 'Manitoba', 'Non répondu', 'Territoires-du-Nord-Ouest', 'Alberta', 'Saskatchewan', 'Colombie-Britannique', 'Nunavut', 'Ontario', 'France', 'Île-du-Prince-Édouard', 'Nouveau-Brunswick', 'Suisse', 'Nouvelle-Écosse', 'Terre-Neuve']
+
+type_id : 4 || question_id : 12 : Envisagez-vous de changer d'emploi dans la prochaine année ?
+: ['Non répondu', 'Non', 'Oui']
+
+type_id : 4 || question_id : 13 : Quelle est la principale raison pour laquelle vous envisagez de changer d'emploi ?
+: ["Je veux travailler plus près de chez moi", "J'ai besoin d'un changement", "Mon travail actuel ne correspond pas à mon expérience et à ma formation", "Je travaille à temps plein et je préférerais travailler à temps partiel", "Je recherche la sécurité d'emploi", "Je désire retourner aux études"]
 
 type_id : 4 || question_id : 14 : Dans quelle région de la province travaillez-vous ?
 : ['Nord-Est', 'Ouest', 'Nord', 'Nord-Ouest', 'Sud', 'Autre', 'Centre', 'Est', 'Non Répondu', 'Sud-Est', 'Non répondu', 'Sud-Ouest', 'non répondu']
 
-type_id : 4 || question_id : 15 : De quelle localité de la Péninsule acadienne êtes-vous originaire ?
-: ['AIRDRIE', 'ROBICHAUD SETTLEMENT', 'POINTE-A-BOULEAU', 'ANSE-BLEUE', 'Granby', 'BALMORAL', 'GATINEAU', 'Lugar', 'HAUT-SHIPPAGAN', 'PARIS, FRANCE', 'PAQUETVILLE', 'PETIT-TRACADIE', 'ST SAUVEUR', 'DALHOUSIE', 'Saint-Sauveur', 'HAUT-LAMÈQUE', 'SAINTE-MARIE-SAINT-RAPHAEL', 'BERESFORD', 'MISCOU', 'SORMANY', 'TREMBLAY', 'ATHOLVILLE', 'ST- ARTHUR', 'LAVILLETTE', 'PETITE RIVIÈRE DE L ÎLE', 'MIRAMICHI ROAD', 'POKEMOUCHE', 'VILLAGE ST-LAURENT', 'XX', 'ST-AMATEUR', 'STE-ROSE', 'ILES DE LA MADELAINE', 'TRACADIE-SHEILA', 'BAIE DE PETIT-POKEMOUCHE', 'CAISSIE ROAD', 'CANTON DES BASQUE', 'SOUTH TETAGOUCHE', 'BEAVERDAM', 'BURNSVILLE', 'DUGUAYVILLE', 'GLOUCESTER', 'Buckland', 'POINTE À TOM', 'FAIR-ISLE', 'PETIT- ROCHER', 'NEW CARLISLE', 'TRACADIE-BEACH', 'ST-LÉOLIN', 'BEAUPORT', 'PETIT LAMÈQUE', 'DUGAS', 'ROBERTVILLE', 'SAINT-ARTHUR', 'HAUT-ST-SIMON', 'LOSIER SETTLEMENT', 'ROCHEVILLE', 'MCLEOD', 'PEACE RIVER', 'BURN CHURCH', 'POINTE DES ROBICHAUD', 'SAUMAREZ', 'DALHOUSIE JUNCTION', 'GLENCOE', 'Mckendrick', 'Ste-Thérèse', 'CHIASSON OFFICE', 'MAISONNETTE', 'CHURCH POINT', 'VAL-DOUCET', 'Saint Jéröme', 'QUÉBEC', 'LAMÈQUE', 'BOIS-BLANC', 'OTTAWA', 'Saint Quentin', 'SHIPPAGAN', 'SAINTE-ANNE', 'NORTH TETAGOUCHE', 'TILLEY-ROAD', 'MASCOUCHE', 'MONTRÉAL', 'DAUVERSIERE', 'ST-SIMON', 'ST-WILFRED', 'STE-LOUISE', 'SAINTE-ROSE', 'BAS-PAQUETVILLE', 'VAL-COMEAU', 'ALDERWOOD', 'INKERMAN', 'LEECH', 'BURNT CHURCH', 'Saint-Amateur', 'Nouvelle (Québec)', 'Ontario', 'BAS-CARAQUET', 'SAINTE-LOUISE', 'RANG ST-GEORGES', 'SAINT-LÉOLIN', 'RIO GRANDE', 'TRUDEL', 'PETIT-ROCHER', 'PETIT PAQUETVILLE', 'Saint Jean', 'PETIT POKEMOUCHE', 'Saint-Maure', 'STYMIEST ROAD', 'DUNLOP', 'ST-JEAN', 'BENOIT', 'STE-ANNE GLOUCESTER', 'Matapédia', 'ST-MAURE', 'YELLOW KNIFE', 'BOIS-GAGNON', 'NÉGUAC', 'DUNDEE', 'BIG RIVER', 'MADRAN', 'HAUT-PAQUETVILLE', 'SAINT-WILFRED', 'BLACK-ROCK', 'DUGAS-OFFICE', 'NOUVELLE-ÉCOSSE', 'TIDE HEAD', 'SAINT-SIMON', 'CARAQUET', 'NON RÉPONDU', 'DIEPPE', 'POINTE LA NIM', 'VAL DAMOUR', 'Kingston', 'LAGACÉVILLE', 'ALLAINVILLE', 'SIX-ROADS', 'Cantley', 'EEL RIVER COVE', 'Ancienne Lorette', 'POINTE-SAUVAGE', 'Beauharnois', 'CHEMIN DU COTEAU ', 'ALCIDA', 'Saint-Laurent', 'COTEAU-ROAD', 'POINTE CANOT', "VAL D'OR", 'JOLIETTE', 'NOTRE-DAME-DES-ÉRABLES', 'POINTE-BRÛLÉE', 'INKERMAN-FERRY', 'NIGADOO', 'FOUR ROADS', 'RIVIÈRE-À-LA-TRUITE', 'NEW JERSEY', 'PETIT ROCHER', 'HAUT-SHEILA', 'BAS-NÉGUAC', 'Ste Irenée', 'ST-QUENTIN', 'PONT-LANDRY', 'HACHEYVILLE', 'CHICOUTIMI', 'Malauze', 'BRANTVILLE', 'PETIT-ROCHER NORD', 'ALLARDVILLE', 'POKESUDIE', 'EVANGÉLINE', 'MALTEMPEC', 'ST-IRÉNÉE', 'ALLADVILLE', 'GRANDE-ANSE', 'PETIT-ROCHER OUEST', 'LAVAL', 'HULL', 'POINTE-VERTE', 'MIRAMICHI', 'ST-LEOLIN', 'QUISPAMSIS', 'COMEAU SETTLEMENT', 'MIDDLE RIVER', 'Sainte-Thérèse Sud', 'CAMPBELLTON', 'SUDBURY', 'VILLAGE-DES-POIRIERS', 'Point La Nim', 'OAK POINT', 'BLAIR ATHOL', 'ROGERSVILLE', 'EDMUNSTON', 'TETAGOUCHE NORD', 'GAUVREAU', 'LE GOULET', 'MONCTON', 'Sainte-Rosette', 'PETIT-SHIPPAGAN', 'SAVOIE LANDING', 'BARTIBOG', 'BERTRAND', 'ROUGH WATERS', 'GRAND SAULT', 'ST-ISIDORE', 'LAPLANTE', 'NICHOLAS DENYS', 'LANDRY OFFICE', 'EEL RIVER CROSSING', 'ST-HYACINTHE', 'BOUCTOUCHE', 'VILLAGE BLANCHARD', 'PIGEON-HILL', 'CAP-BATEAU', 'Prévost', 'TETAGOUCHE SUD', 'RIVIÈRE-DU-PORTAGE', 'EEL RIVER', 'PONT-LA-FRANCE', 'ST-LÉONARD', 'Richardsville', 'TABUSINTAC', 'PETIT-ROCHER,', 'POINTE-ALEXANDRE', 'CHARLO', 'STE-ROSETTE', 'BATHURST', 'POINTE A LA CROIX', 'PETIT-ROCHER SUD', 'HAUT RIVIÈRE-DU-PORTAGE', 'Courtney', 'ST-PONS', 'St-Hilaire', 'ST-SAUVEUR', 'SAINTE-CÉCILE', 'BELLEDUNE']
+type_id : 4 || question_id : 15 : Dans quelle catégorie de profession ou métier travaillez-vous ?
+: ['Commerce de détail', 'Arts, spectacles et loisirs', 'Fabrication', 'Services professionnels, scientifiques et technique', 'Agriculture, forestierie, pêche et chasse', "Services administratifs, services de soutien, services de gestion de déchets et d'assainissement", 'Finance et assurances', 'Commerce en gros', "Industrie de l'information - industrie culturelle", 'Transport et entreposage', 'Non répondu', 'Services publiques', 'Hébergement et services de restauration', "Gestion de sociétés et d'entreprises", 'Autre services (sauf administration publique)', "Services d'enseignement", 'Soins de santé et assistance sociale', 'Extraction minière, extraction de pétrole et de gaz', 'Services immobiliers, service de location', 'Construction', 'Administration publiques']
 
-type_id : 1 || question_id : 16 : Depuis combien d'années demeurez-vous à l'extérieur de la Péninsule acadienne ?
-: ["moins d'un an", 'Deux ans', 'Un an', 'Trois ans', 'Plus de quatre', 'Non répondu', 'Quatre ans']
+type_id : 5 || question_id : 33 : Présentement êtes-vous en attente ou à la recherche d'emploi ?
+: ['Recherche d\'emploi', 'Non', 'Attente d\'emploi', 'Non répondu', 'Oui']
 
-type_id : 1 || question_id : 17 : Depuis combien de temps êtes-vous sans emploi ?
+type_id : 5 || question_id : 34 : Au cours des 2 dernières années, combien d'employeurs avez-vous eus ?
+: ['Un', 'Aucun', 'Plus de deux', 'Non répondu', 'Deux']
+
+type_id : 5 || question_id : 35 : Au cours des deux dernières années, combien de mois d'expérience de travail avez-vous accumulés ?
+: ['Moins de 6 mois', '12 à 18 mois', '18 à 24 mois', '6 à 12 mois', 'Non répondu']
+
+type_id : 5 || question_id : 36 : Depuis combien de temps êtes-vous sans emploi ?
 : ['Moins de 6 mois', 'Plus de 2 ans', '1 à 2 ans', '6 à 12 mois', 'Non répondu']
 
-type_id : 1 || question_id : 18 : Depuis septembre dernier, avez-vous occupé un emploi rénuméré ?
-: ['5. Autres', '1. Non', "4. à l'occasion (ex. 1-2 fois par semaine)", '2. Temps partiel fin de semaine', '3. Temps partiel à la semaine']
+type_id : 5 || question_id : 37 : Quelle est la principale raison pour laquelle vous n'avez pas travaillé durant cette période ?
+: ['Attente d\'un rappel au travail après mise à pied', 'Invalidité', 'Accidenté', 'Rémunération insuffisante pour quitter l\'A-S ou A-E', 'Changement de propriétaire', 'Chômage / travail saisonnier', 'Déménagement', 'Pas de voiture', 'Conflit de travail', 'Incapacité de trouver un emploi lié à ma formation', 'Accouchement', 'Attente du début d\'un emploi', 'Chômage de quelques semaines', 'Retour aux études', 'Responsabilité personnelles ou familiales', 'Non répondu', 'Maladie']
 
-type_id : 1 || question_id : 19 : Durant vos études postsecondaires, quelles seront vos sources de financement ?
-: ['3. Contribution des parents', '2. Bourses étudiantes', '4. Économie personnelle', '1. Prêt étudiant', '5. Travail à temps partiel', '6. Autre']
-
-type_id : 1 || question_id : 20 : Durant vos études quelles étaient vos sources de financement ?
-: ['Bourse étudiants', 'Prêts étudiant', 'Économie personnelle', 'Travail à temps partiel', "Plan enregistré d'épargne-études", 'Autre', 'Travail à temps plein', 'Prêts/bourse étudiant', 'Bourse étudiante', "Programme d'aide fédéral", 'Travaillle à temps plein', "Plan enregistré d'épargnes-études", "Programme d'aide provincial", 'Travaille à temps partiel', 'Non répondu', 'Contribution des parents']
-
-type_id : 1 || question_id : 21 : En général, êtes-vous satisfait/e de vos résultats scolaires ?
-: ['Satisfait/e', 'Très insatisfait/e', 'Insatisfait/e', 'Non répondu', 'Très satisfait/e']
-
-type_id : 1 || question_id : 22 : En général, quels sont vos résultats scolaires en 10e 11e et 12e année ?
-: ['de 81 % à 94 %', 'de 56 % à 65 %', 'de 95 % à 100 %', 'moins de 55 %', 'de 66 % à 80 %', 'Non répondu']
-
-type_id : 1 || question_id : 23 : En général, vos cours sont de quel niveau scolaire ?
-: ['Adaptation scolaire', 'PCE', 'Régulier', 'Compétences essentielles', 'Choix', 'Non répondu', 'Modifié']
-
-type_id : 1 || question_id : 24 : Envisagez-vous de changer d'emploi dans la prochaine année ?
+type_id : 5 || question_id : 38 : Seriez-vous intéressé/e par une expérience de travail dans votre communauté ?
 : ['Non répondu', 'Non', 'Oui']
 
-type_id : 1 || question_id : 25 : Est-ce que le fait de terminer votre 12e année est important pour vous ?
-: ['1', 'Peu important', 'Pas du tout important', 'Très important', 'Non répondu']
-
-type_id : 1 || question_id : 26 : Est-ce que les services d'orientation que vous avez utilisés ont répondu à vos besoins ?
-: ['Pas utilisés', 'Peu', 'Bien', 'Pas du tout', 'Très bien', 'Non répondu']
-
-type_id : 1 || question_id : 27 : Êtes-vous disponible pour travailler maintenant ?
+type_id : 5 || question_id : 39 : Seriez-vous intéressé à recevoir des l'information concernant une expérience de travail dans votre communauté ?
 : ['Non', 'Non répondu', 'Oui']
 
-type_id : 1 || question_id : 28 : Existe-t-il des obstacles qui vous empêchent de poursuivre des études ?
-: ['Non répondu', 'Non', 'Oui']
-
-type_id : 1 || question_id : 29 : Indiquez dans quel domaine vous avez l'intention de poursuivre vos études postsecondaires ?
-: ['Mathématiques, informatique et sciences physiques', 'Sciences agricoles et biologiques et services de la nutrition et de l&rsquo;alimentation', 'Professions de la santé et technologies connexes', 'Commerce, gestion et administration des affaires', 'Beaux-arts et arts appliqués', 'Lettres, sciences humaines et disciplines connexes', 'Enseignement, loisirs et orientation', 'Sciences sociales et disciplines connexes', 'Génie et sciences appliquées', 'Sans spécialisation', 'Non répondu', 'Techniques et métiers des sciences appliquées']
-
-type_id : 1 || question_id : 30 : Indiquez le nom de l'institution que vous pensez fréquenter l'an prochain ?
-: ['Université de Sherbrooke', 'University Mount Allison', 'Notre-Dame-de-Foy', 'Université Western', 'Recording Arts Canada', 'Oulton College', 'CITÉ COLLÉGIALE', 'Eastern College', 'MEDES Institutes', 'SALON CAROUSSEL', 'Université de Moncton - campus Moncton', 'NDI', 'Université Laval', 'Académie de Police (Régina)', 'CCNB (PA)', 'UNIVERSITE LAVAL', 'NBCC Miramichi Campus', 'CCNB MIRAMICHI', 'Nav Canada', 'College de la Garde Cotière Canadienne', 'Université St-Francis Xavier', 'ESSENCE INSTITUT', 'UNIVERSITÉ DE MONTRÉAL', 'École de coiffure Rose-Hélène', 'Autre', 'CCNB Moncton', 'OULTON COLLEGE', '2. Bourses étudiantes', '4. Économie personnelle', 'ACADEMY OF LEARNING MIRAMICHI', 'Brenda dog grooming', 'Académie paramédicale de lAtlantique', 'Universdad de Boenos', 'NAIT', '1. Prêt étudiant', "UNIVERSITÉ D'OTTAWA", 'UNIVERSITÉ STE-ANNE', 'CCNB (Bathurst)', 'ÉCOLE DES PÊCHES', 'THE ART INSTITUTE OF TORONTO', '6. Autre', 'MEMORIAL UNIVERSITY', 'St-Thomas University', 'Cégep', 'Université d Acadia', 'COLLÈGE LASALLE', 'École nationale opération de machinerie lourde', 'Université de Guelph', 'Mount Allison', 'Académie La Coupe Plus', 'CCNB (Campbelton)', 'Université de Moncton - campus Edmunston', 'Université McGill', 'COLLÈGE BORÉAL', 'College de technologie forestiere des Maritimes', 'COLLÈGE MILITAIRE ROYAL DU CANADA', 'CCNB Campbellton-Cours distance', 'Centre de formation de la Haute-Gaspésie', 'Institut humanitaire', 'University of Mobile', 'Le Collège Atlantic de Massage thérapeutique', 'centre de formation professionnelle , Trois Rivières. qc', 'CRIF', 'Université de Montréal', 'CCNB (Edmunston)', 'CCNB (Autre)', 'CITE COLLÉGIALE', 'Dalhousie  University', "Université St Mary's", "ECOLE DES MÉTIERS DE L'INDUSTRIE DE LA CONSTRUCTION", "INST. TECH.D'AGROALIMENTAIRE", "Université de l'Ile du Prince Edouard", '3. Contribution des parents', 'Campus Notre Dame de Foy', 'NBCC MONCTON', 'UCAM', 'Université de Moncton - campus Bathurst', 'Université du Nouveau-Brunswick', 'Université de Concardia', 'CCNB Fredericton', 'Collège Acadie, Université Ste-Anne', 'Amor Esthétique', 'Université Hearst', 'Maritime College of forest technololgy', 'ÉCOLE DE COIFFURE DE LA PÉNINSULE', 'UNIVERSITÉ LAURENTIENNE', 'UNIVERSITÉ DE MONCTON(CAMPUS DE SHIPPAGAN ET MONCTON)', 'École National du Théatre du Canada', 'Da Vinci College', 'Cégep de Ste Foy', 'Université de Moncton - campus Shippagan', 'Université de Toronto, campus St-George', 'Institut Maritime du Québec', 'JON RAYMOND', 'MEDES', 'Université du Québec', 'Collège Atlantique de massages thérapeutique', 'CEGEP DE LAPOCATIÈRE', 'Amoura Esthetic', '5. Travail à temps partiel', 'Non répondu', 'CCNB (Dieppe)', 'St Thomas University', 'Université du Canadienne', "BRENDA'S ACADEMY OF PROFESSIONNAL DOG GROOMING", 'Holland College', 'Université de Dalhousie', 'NBCC', 'Université libre de Bruxelles', 'Medavie HealtEd', 'Complexe Capital Hélicoptère', 'NBCC Monction', 'Bathurst Hair academy', 'Collège Merici', 'UNB', 'Cégep de Rimouski']
-
-type_id : 1 || question_id : 31 : Indiquez les deux cours que vous avez les plus appréciés durant votre secondaire
-: ['46. Sciences familiales', "45. Sc. De l'environnement", '52. Technologie', '18. Droit', '22. Éducation coopérative', '36. IPEJ', '49. Sciences sociales', '10. Biologie', '29. Français', '39. Mécanique des moteurs', "35. Intro. Science de l'info.", '48. Sciences humaines', '50. Systèmes mécaniques', '14. Chimie', '42. Physique', '47. Sciences générales', '37. Leadership', "54. Trait. De l'information", '3. Alimentation et nutrition', '44. Saisie sur clavier', '12. Braille Nameth', '20. Éduc. Du consommateur', '5. Anglais', '53. Textiles et habillement', '9. Atelier de métaux', '2. Agriculture', '40. Menuiserie', '19. Économie', '6. Art dramatique', '33. Informatique appliqué', '1. Act.Quot.(handicap vis.)', '43. Relations familiales', '11. Braille abrégé', '13. Charpenterie', '30. Géographie', '28. Formation personnelle', '17. Développement humain', '15. Comptabilité', '27. Espagnol', '51. Techno. (handicap visuel)', '26. Entreprenariat', '7. Arts Industriels', '34. Initiation au travail', '41. Musique', '25. Électronique', '24. Électricité', '31. Histoire', '32. Informatique', '38. Mathématiques', '8. Arts visuels', '16. Dessin industriel', '4. Allemand', '21. Éducation aux valeur', '23. Éducation physique']
-
-type_id : 1 || question_id : 32 : Lorsque vous aurez terminé vos études postsecondaires, indiquez où vous prévoyez travailler ?
-: ['4. Charlotte (N.-B.)', '19. Nouvelle-Écosse', '20. Ontario', '26. Yukon', '35. Canada', '17. IPE', '31. Autre', '11. Restigouche (N.-B.)', '24. Alberta', '27. Territoire du Nord-Ouest', '16. York (N.-B.)', '33. Autre(s) province(s)', '23. Saskatchewan', '6. Kent (N.-B.)', '1. Dans la Péninsule acadienne', '32. Nouveau-Brunswick', '12. Sunbury (N.-B.)', '2. Albert (N.-B.)', '10. Queens (N.-B.)', '21. Québec', '18. Terre-Neuve', '3. Carleton (N.-B.)', '9. Northumberland (N.-B.)', '7. Kings (N.-B.)', '30. Angleterre', '29. France', '8. Madawaska (N.-B.)', '14. Victoria (N.-B.)', '28. État-Unis', '13. Saint-Jean (N.-B.)', '22. Manitoba', '5. Gloucester (N.-B.)', '15 Westorland (N.-B.)', '34. Autre(s) pays', '25. Colombie-Britanique']
-
-type_id : 5 || question_id : 33 : Où demeurez-vous présentement ?
-: ['Péninsule acadienne', 'Ailleurs au N.-B.', 'Ailleurs au Canada', 'Dans un autre pays', 'Non répondu']
-
-type_id : 5 || question_id : 34 : Pour quelle raison avez-vous quitté la Péninsule acadienne ?
-: ['Travail', 'Non répondu', 'Étude', 'Autre']
-
-type_id : 5 || question_id : 35 : Présentement êtes-vous en attente ou à la recherche d'emploi ?
-: ["Recherche d'emploi", 'Non', "Attente d'emploi", 'Non répondu', 'Oui']
-
-type_id : 5 || question_id : 36 : Que consirérez-vous comme étant votre principale occupation en ce moment ?
-: ["Recherche d'emploi / sans emploi", 'Termine mes études secondaires', 'Études universitaires', 'Formation professionnelle ', 'Retours aux études secondaires', "Recherche d'emploi", "Recherche d'emploi / Sans emploi", 'Autre', 'Marché du travail', 'Armée', 'Programme jeunesse', 'Non répondu', 'Termine mes études postsecondaires', 'non répondu']
-
-type_id : 5 || question_id : 37 : Que prévoyez-vous faire en septembre prochain ?
-: ['Marché du travail', 'Année sabbatique ', 'Programmes jeunesse', 'Ligne de hockey', 'Formation professionnelle ', 'Retours aux études secondaires', 'Voyage pour Missionnaire ', 'Cégep ', 'Études collégiales ', 'Ne sais pas ', 'Non répondu', 'Voyager ', 'Études universitaires', 'Écoles des pêches ', 'Indécis du domaine souhaiter ', 'Programme jeunesse', 'Cours se donne seulement aux 2 ans ', 'Pas assez de bonnes notes', 'Cours par correspondance ', 'Armée']
-
-type_id : 5 || question_id : 38 : Quel est votre état civil présentement ?
-: ['Divorcé/e', 'Veuf / veuve', 'Célibataire', 'Marié/e', 'Conjoint/e de fait', 'Séparé/e', 'Non répondu']
-
-type_id : 5 || question_id : 39 : Quel est votre niveau d'éducation le plus élevé ?
-: ['Formation personnelle', 'Secondaire (12 ième année)', 'Secondaire', 'Secondaire non-complété', 'DEG non-complété', 'Universitaire (baccalauréat)', 'non répondu', 'Formation professionnelle', 'Universitaire (Doctorat)', 'Non répondu', 'Collégial', 'Universitaire (Maîtrise)', 'DESPA complété', 'DESPA non complété', 'Universitaire (Baccalauréat)', 'DESPA Complété', 'DEG complété', 'Secondaire (12 ième complété)', 'Autre']
-
-type_id : 5 || question_id : 40 : Quel était le niveau de votre programme d'études ?
-: ['Troisième cycle ( doctorat )', 'Deuxième cycle ( maîtrise )', 'Premier cycle universitaire( bacc., certificat)', 'Diplôme', 'Certificat', 'Non repondu', 'Cours préparatoire ( 13e année )', 'Sciences de la santé', 'Non répondu']
-
-type_id : 5 || question_id : 41 : Quel était votre régime d'études ?
-: ['Temps plein', 'Non répondu', 'Temps partiel']
-
-type_id : 5 || question_id : 42 : Quel moyen de transport local pensez-vous utiliser le plus régulièrement pendant votre première année d'études ?
-: ['11. Covoiturage', '10. Taxi', '7. Voiture frère/sœur', '3. Voiture de mes parents', '1. À pied', '8. Transport en commun', '2. Ma propre voiture/motocyclette', '6. Métro', '5. Autobus', '12. Autre', '9. Bicyclette', '6. Autre', "4. Voiture d'un ami/e ami/e"]
-
-type_id : 5 || question_id : 43 : Quel type d'emploi recherchez-vous ?
-: ['Commerce de détail', 'Arts, spectacles et loisirs', 'Fabrication', 'Services professionnels, scientifiques et technique', 'Agriculture, forestierie, pêche et chasse', "Services admistratifs, services de soutien, services de gestion de déchets et d'assainissement", 'Finance et assurances ', 'Commerce en gros', "Insdustrie de l'information - industrie culturelle", 'Transport et entreposage', 'Non répondu', 'Services publiques', 'Hébergement et services de restauration', "Gestion de sociétés et d'entreprises", 'Autre services (sauf administration publique)', "Services d'enseignement", 'Soins de santé et assistance sociale', 'Extraction minière, extraction de pétrole et de gaz ', 'Construction', 'Administration publiques']
-
-type_id : 5 || question_id : 44 : Quelle est la principale raison pour laquelle vous envisagez de changer d'emploi ?
-: ['Je veux travailler plus près de chez moi', "J'ai besoin d'un changement", 'Mon travail actuel ne correspond pas à mon expérience et à ma formation', 'Je travaille à temps plein et je préférerais travailler à temps partiel', "Je recherche la sécurité d'emploi", 'Je désire retourner aux études']
-
-type_id : 2 || question_id : 45 : Quelle est la principale raison pour laquelle vous n'avez pas travaillé durant cette période ?
-: ["Attente d'un rappel au travail après mise à pied", 'Invalidité', 'Accidenté', "Rémunération insuffisante pour quitter l'A-S ou A-E", 'Changement de propriétaire', 'Chômage / travail saisonnier', 'Déménagement', 'Pas de voiture', 'Conflit de travail', 'Incapacité de trouver un emploi lié à ma formation', 'Accouchement', "Attente du début d'un emploi", 'Chômage de quelques semaines', 'Retour aux études', 'Responsabilité personnelles ou familiales', 'Non répondu', 'Maladie']
-
-type_id : 2 || question_id : 46 : Quelle est la raison pour laquelle vous ne prévoyez pas poursuivre des études postsecondaire ?
-: ['Accès au marché du travail', 'Peur de ne pas réussir', 'Cours non disponible', 'Aucune idée du domaine à choisir', 'Manque d’intérêt pour les études/formation', 'Je travaille ou prévois travailler', 'Autre', 'Prendre un an', 'Armée', 'Problèmes monétaires', 'Non répondu']
-
-type_id : 2 || question_id : 47 : Seriez-vous intéressé à recevoir des l'information concernant une expérience de travail dans votre communauté ?
+type_id : 5 || question_id : 40 : Êtes-vous disponible pour travailler maintenant ?
 : ['Non', 'Non répondu', 'Oui']
 
-type_id : 2 || question_id : 48 : Seriez-vous intéressé/e à faire un retour aux études ?
-: ['Non', 'Ne sais pas', 'Présentement aux études', 'Non répondu', 'Oui']
+type_id : 5 || question_id : 41 : Quel type d'emploi recherchez-vous ?
+: ['Commerce de détail', 'Arts, spectacles et loisirs', 'Fabrication', 'Services professionnels, scientifiques et technique', 'Agriculture, forestierie, pêche et chasse', 'Services admistratifs, services de soutien, services de gestion de déchets et d\'assainissement', 'Finance et assurances ', 'Commerce en gros', 'Insdustrie de l\'information - industrie culturelle', 'Transport et entreposage', 'Non répondu', 'Services publiques', 'Hébergement et services de restauration', 'Gestion de sociétés et d\'entreprises', 'Autre services (sauf administration publique)', 'Services d\'enseignement', 'Soins de santé et assistance sociale', 'Extraction minière, extraction de pétrole et de gaz ', 'Construction', 'Administration publiques']
 
-type_id : 2 || question_id : 49 : Seriez-vous intéressé/e à recevoir de l'information pour vous aider dans la poursuite de vos études ?
+type_id : 5 || question_id : 42 : Dans quelle province canadienne ou autre pays aimeriez-vous travailler ?
+: ['Alberta', 'Saskatchewan', 'Autre', 'Colombie-Britanique', 'Ontario', 'Terre-Neuve', 'Nouveau-Brunswick', 'Québec', 'Non répondu', 'non répondu']
+
+type_id : 5 || question_id : 43 : Dans quelle région de la province aimeriez-vous travailler ?
+: ['Nord-Est', 'Saskatchewan', 'Nord', 'Sud-ESt', 'Nord-Ouest', 'Sud', 'Colombie-Britanique', 'Autre', 'Terre-Neuve', 'Nouveau-Brunswick', 'Sud-Est', 'Non répondu', 'Sud-Ouest']
+
+type_id : 5 || question_id : 44 : Avez-vous eu un emploi au cours des 2 dernières années ?
 : ['Non répondu', 'Non', 'Oui']
 
-type_id : 2 || question_id : 50 : Seriez-vous intéressé/e par une expérience de travail dans votre communauté ?
-: ['Non répondu', 'Non', 'Oui']
-
-type_id : 2 || question_id : 51 : Sur le plan de vos relations avec le personnel de l'école, êtes-vous satisfait/e de votre séjour au secondaire ?
-: ['Satisfait/e', 'Très insatisfait/e', 'Insatisfait/e', 'Non répondu', 'Très satisfait/e']
-
-type_id : 2 || question_id : 52 : Sur le plan de vos relations avec les autres élèves, êtes-vous satisfait/e de votre séjour au secondaire ?
-: ['Satisfait/e', 'Très insatisfait/e', 'Insatisfait/e', 'Non répondu', 'Très satisfait/e']
 

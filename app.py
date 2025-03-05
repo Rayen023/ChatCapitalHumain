@@ -12,8 +12,9 @@ from langsmith import Client
 from utils.database import save_chat_logs
 from utils.graph_classes import display_model_selector, graph
 from utils.schema import show_schema_in_sidebar
+from utils.sidebar import enable_login
 from utils.st_callable_util import get_streamlit_cb
-from utils.utils import add_visualization_buttons_to_message
+from utils.utils import add_visualization_buttons_to_message, format_response
 
 # Application constants
 APP_TITLE = "Capital Humain"
@@ -67,13 +68,37 @@ def display_chat_history():
     for message in st.session_state["messages"]:
         if isinstance(message, AIMessage):
             add_visualization_buttons_to_message(st.empty(), message.content)
+            print(len(message.content.split(" ")))
         elif isinstance(message, HumanMessage):
             st.chat_message("user", avatar=USER_AVATAR_PATH).write(message.content)
+
+
+def rerun_last_question():
+    st.rerun()
+
+    # config = {
+    #     "configurable": {"thread_id": st.session_state["thread_id"]},
+    # }
+    # st.warning(f" state : {graph.get_state(config)}")
+    # print(graph.get_state(config).tasks)
+    # print(graph.get_state(config).values)
+    # if "final_answer" in graph.get_state(config).values:
+    #     graph.update_state(
+    #         config,
+    #         {
+    #             "query_results": None,
+    #             "final_answer": None,
+    #         },
+    #         as_node="run_query",
+    #     )
+    # st.session_state["messages"].pop(-1)
 
 
 def setup_sidebar():
     """Configure and display the sidebar."""
     with st.sidebar:
+        st.markdown("---")
+
         st.button(
             "Nouveau chat",
             on_click=reset_chat_history,
@@ -81,38 +106,43 @@ def setup_sidebar():
             use_container_width=True,
         )
 
+        # st.button(
+        #     ":material/autorenew:",
+        #     on_click=rerun_last_question,
+        #     key="rerun_last_question",
+        # )
+
+        st.markdown("---")
+        # enable_login()
+        st.markdown("---")
+
+        # Example questions section
+        st.write("### Example Questions")
+
+        example_questions = [
+            "Comment les sources de financement des élèves se distribuent selon l’école en 2018 ?",
+            "Quels étaient les différents moyens de transport utilisés par les élèves pour aller à l'école en 2018, ventilés par genre ?",
+            "Quelle est la corrélation entre les résultats scolaires en 10e, 11e et 12e année et les projets des élèves pour septembre, selon leur genre ?",
+            "Comment les résultats scolaires en 10e, 11e et 12e année sont-ils liés aux raisons de ne pas poursuivre des études postsecondaires ?",
+            "Comment l’intention de s’établir dans la Péninsule acadienne varie-t-elle selon le niveau d’éducation et l’occupation actuelle ?",
+        ]
+
+        for question in example_questions:
+            st.button(
+                question,
+                on_click=ask_example_question,
+                args=(question,),
+                use_container_width=True,
+            )
+        st.markdown("---")
+
         st.button(
             "Show Session State",
             on_click=toggle_debug_panel,
             key="debug_button",
             use_container_width=True,
         )
-
-        # Example questions section
-        st.write("### Example Questions")
-
-        example_questions = [
-            (
-                "Students by transport mode",
-                "How many students went to school on foot in 2018, aggregate by school and gender?",
-            ),
-            (
-                "Random data visualization",
-                "write me a python code block that displays random data using a streamlit componenet like barchart, i am testing a new feature",
-            ),
-            (
-                "Financial aid comparison",
-                "Compare the percentage of students receiving financial aid between 2017 and 2019 by department.",
-            ),
-        ]
-
-        for label, question in example_questions:
-            st.button(
-                label,
-                on_click=ask_example_question,
-                args=(question,),
-                use_container_width=True,
-            )
+        st.markdown("---")
 
         # Debug panel
         if st.session_state.get("show_debug_panel", False):
@@ -136,14 +166,8 @@ def process_graph_event(event, response_placeholder):
     elif event.get("check_schema_formulate_instructions"):
         query_proposal = event["check_schema_formulate_instructions"]["query_proposal"]
         if not query_proposal.is_accepted_by_human_analyst:
-            user_request_after_feedback = query_proposal.user_request_after_feedback
-            explanation = query_proposal.explanation
-            questions_text = query_proposal.questions_text
-            response_options = query_proposal.response_options
 
-            feedback_note = "\n\n 💡 NOTE : Veuillez valider si les étapes suggérées sont correctes en répondant par **OUI** ou **CORRECT**, sinon, veuillez indiquer les **modifications/suggestions** pour les étapes alternatives."
-            response = f"{explanation}\n\n Questions : {questions_text}\n\n Response Options : {response_options}\n\n User_request : {user_request_after_feedback} {feedback_note}"
-
+            response = format_response(query_proposal)
 
             st.session_state["messages"].append(AIMessage(content=response))
             add_visualization_buttons_to_message(response_placeholder, response)
@@ -152,7 +176,7 @@ def process_graph_event(event, response_placeholder):
             st.session_state["in_human_feedback_state"] = False
 
     elif event.get("finalize_query"):
-        
+
         final_answer = event["finalize_query"]["final_answer"]
         st.session_state["messages"].append(AIMessage(content=final_answer))
         add_visualization_buttons_to_message(response_placeholder, final_answer)
@@ -161,15 +185,17 @@ def process_graph_event(event, response_placeholder):
         }
 
         graph.update_state(
-                config,
-                {"query_proposal": None,
-                 "human_analyst_feedback": None,
-                 "query_results": None,
-                 "final_answer": None,
-                 "analysis_result": None,
-                 "user_request": None,
-                 "message_history": None},
-            )
+            config,
+            {
+                "query_proposal": None,
+                "human_analyst_feedback": None,
+                "query_results": None,
+                "final_answer": None,
+                "analysis_result": None,
+                "user_request": None,
+                "message_history": None,
+            },
+        )
 
 
 def main():
@@ -232,8 +258,18 @@ def main():
                 "message_history": st.session_state["messages"],
             }
 
-            for event in graph.stream(input_data, config=config, stream_mode="updates"):
-                process_graph_event(event, response_placeholder)
+            try:
+                for event in graph.stream(
+                    input_data, config=config, stream_mode="updates"
+                ):
+                    process_graph_event(event, response_placeholder)
+            except Exception as e:
+                # st.session_state["selected_model"] = "anthropic/claude-3.7-sonnet" # This return errorss
+                # update_model()
+
+                st.error(
+                    "Une erreur temporaire s'est produite. Vous pouvez résoudre ce problème en sélectionnant un autre modèle dans le coin supérieur droit de la page et réessayer."
+                )
 
         elif user_message:
             # Process human feedback
@@ -242,15 +278,16 @@ def main():
                 {"human_analyst_feedback": user_message},
                 as_node="human_feedback",
             )
-
-            for event in graph.stream(None, config=config, stream_mode="updates"):
-                process_graph_event(event, response_placeholder)
-                
-            
-
-            # Optional: Save chat logs
-            # if st.experimental_user.get("email"):
-            #     save_chat_logs()
+            try:
+                for event in graph.stream(None, config=config, stream_mode="updates"):
+                    process_graph_event(event, response_placeholder)
+            except Exception as e:
+                st.error(
+                    "Une erreur temporaire s'est produite. Vous pouvez résoudre ce problème en sélectionnant un autre modèle dans le coin supérieur droit de la page et réessayer."
+                )
+        # Optional: Save chat logs
+        # if st.experimental_user.get("email"):
+        # save_chat_logs()
 
 
 if __name__ == "__main__":

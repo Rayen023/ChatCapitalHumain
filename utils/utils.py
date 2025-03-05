@@ -1,4 +1,5 @@
 import io
+import json
 import logging
 import os
 import re
@@ -25,15 +26,21 @@ def get_llm(MODEL_CONFIG):
         model = model[len("google/") :]
         return ChatGoogleGenerativeAI(model=model, **config)
     elif model.startswith("anthropic/"):
-        model = model[len("anthropic/") :]
-        return ChatAnthropic(model="claude-3-7-sonnet-20250219", **config)
-    else:
         return ChatOpenAI(
             model_name=model,
             openai_api_key=st.secrets["OPENROUTER_API_KEY"],
             openai_api_base=st.secrets["OPENROUTER_BASE_URL"],
             **config,
         )
+    else:
+        model = model[len("anthropic/") :]
+        return ChatAnthropic(model="claude-3-7-sonnet-20250219", **config)
+        # return ChatOpenAI(
+        #     model_name="anthropic/claude-3.7-sonnet:beta",
+        #     openai_api_key=st.secrets["OPENROUTER_API_KEY"],
+        #     openai_api_base=st.secrets["OPENROUTER_BASE_URL"],
+        #     **config,
+        # )
 
 
 logging.basicConfig(
@@ -153,3 +160,43 @@ def add_visualization_buttons_to_message(chat_message_container, message_content
                 args=(code_content,),
                 key=f"viz_{uuid.uuid4()}",
             )
+
+
+def format_response(query_proposal):
+    questions_responses = query_proposal.questions_responses
+    user_request_after_feedback = query_proposal.user_request_after_feedback
+    explanation = query_proposal.explanation
+
+    try:
+        # Try to evaluate the string as a Python expression (list of dicts)
+        parsed_questions = eval(questions_responses)
+
+        # Verify it's actually a list of dictionaries
+        if isinstance(parsed_questions, list) and all(
+            isinstance(item, dict) for item in parsed_questions
+        ):
+
+            # Format the list of dictionaries nicely with each question in a readable format
+            formatted_questions = []
+            for i, question in enumerate(parsed_questions, 1):
+                q_str = f"Question {i}:\n"
+                for key, value in question.items():
+                    q_str += f"  - {key}: {value}\n"
+                formatted_questions.append(q_str)
+
+            # Join all formatted questions
+            questions_str = "\n".join(formatted_questions)
+        else:
+            # If it's not a list of dictionaries, use the original string
+            questions_str = questions_responses
+
+    except Exception:
+        # If parsing fails, use the original string without modification
+        questions_str = questions_responses
+
+    # Format the final response
+    feedback_note = "\n\n 💡 NOTE : Veuillez valider si les étapes suggérées sont correctes en répondant par **OUI** ou **CORRECT**, sinon, veuillez indiquer les **modifications/suggestions** pour les étapes alternatives."
+
+    response = f"{explanation} \n User_request : {user_request_after_feedback} \n\n Questions : \n{questions_str}\n\n {feedback_note}"
+
+    return response
