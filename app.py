@@ -136,12 +136,13 @@ def process_graph_event(event, response_placeholder):
     elif event.get("check_schema_formulate_instructions"):
         query_proposal = event["check_schema_formulate_instructions"]["query_proposal"]
         if not query_proposal.is_accepted_by_human_analyst:
+            user_request_after_feedback = query_proposal.user_request_after_feedback
             explanation = query_proposal.explanation
             questions_text = query_proposal.questions_text
             response_options = query_proposal.response_options
 
             feedback_note = "\n\n 💡 NOTE : Veuillez valider si les étapes suggérées sont correctes en répondant par **OUI** ou **CORRECT**, sinon, veuillez indiquer les **modifications/suggestions** pour les étapes alternatives."
-            response = f"{explanation}\n\n Questions : {questions_text}\n\n Response Options : {response_options} {feedback_note}"
+            response = f"{explanation}\n\n Questions : {questions_text}\n\n Response Options : {response_options}\n\n User_request : {user_request_after_feedback} {feedback_note}"
 
 
             st.session_state["messages"].append(AIMessage(content=response))
@@ -151,9 +152,24 @@ def process_graph_event(event, response_placeholder):
             st.session_state["in_human_feedback_state"] = False
 
     elif event.get("finalize_query"):
+        
         final_answer = event["finalize_query"]["final_answer"]
         st.session_state["messages"].append(AIMessage(content=final_answer))
         add_visualization_buttons_to_message(response_placeholder, final_answer)
+        config = {
+            "configurable": {"thread_id": st.session_state["thread_id"]},
+        }
+
+        graph.update_state(
+                config,
+                {"query_proposal": None,
+                 "human_analyst_feedback": None,
+                 "query_results": None,
+                 "final_answer": None,
+                 "analysis_result": None,
+                 "user_request": None,
+                 "message_history": None},
+            )
 
 
 def main():
@@ -229,6 +245,8 @@ def main():
 
             for event in graph.stream(None, config=config, stream_mode="updates"):
                 process_graph_event(event, response_placeholder)
+                
+            
 
             # Optional: Save chat logs
             # if st.experimental_user.get("email"):

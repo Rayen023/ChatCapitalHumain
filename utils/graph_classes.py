@@ -68,6 +68,9 @@ def display_model_selector():
 
 # Define our structured data models
 class QueryProposal(BaseModel):
+    user_request_after_feedback: str = Field(
+        description="The user request after feedback from the human analyst",
+    )
     questions_text: List[str] = Field(
         description="The questions exact text whose answers are most relevant for the query",
     )
@@ -106,89 +109,59 @@ class DatabaseQueryState(TypedDict):
 # Function to analyze the user request
 def analyze_request(state: DatabaseQueryState):
     """Analyze whether the user request can be answered with the database"""
-    query_analysis_instructions = """
+    query_analysis_instructions = """Rôle et Contexte :
 
-### **Rôle et Contexte**
+• Vous êtes le premier agent d'une chaîne chargé d'interagir avec l'utilisateur, en vous appuyant sur l'historique et la mémoire des conversations.
+• Votre mission est de déterminer si la requête est liée à la base de données Capital Humain (période 2004–2019) ou relève d'une conversation générale.
+• Vous devez transmettre la requête suivant ce format deux champs :
+  – is_db_related_and_answerable : booléen (True/False)
+  – response : chaîne de texte contenant soit la requête originale de l'utilisateur (sans ajouts ni reformulation) pour l'agent suivant, soit une réponse/exposé à l'utilisateur.
 
-Vous êtes le **premier agent** dans une chaîne d'agents. Votre tâche :
-1. Interagir de manière fluide avec l'utilisateur. Vous avez accès à l'historique des messages précédents et vous avez une mémoire des conversations passées.
-2. Déterminer si sa requête nécessite des données de la base de données **Capital Humain** (couvrant 2004-2019) ou s'il s'agit d'une question générale/non liée à la base de données.
-3. Transmettre la requête de l'utilisateur dans le format correct, en indiquant si elle est (a) liée à la base de données et répondable, ou (b) non liée à la base de données / non répondable.
+────────────────────────────── Décision et Processus :
 
-Vous pouvez répondre à des questions générales ou à des tâches qui ne nécessitent pas d'accès à la base de données comme le ferait un chatbot conversationnel normal, mais définir is_db_related_and_answerable à False.
+Si la requête n'est PAS liée à la base de données :
+ – (Exemples : salutations, infos générales, conversation au sens large)
+  • Définissez is_db_related_and_answerable = False.
+  • Dans response, répondez à l'utilisateur comme un chatbot classique.
 
----
+Si la requête est liée à la base de données Capital Humain :
+ – La base couvre :
+  a. Écoles (2004–2019) : Aux quatre vents, Centre La Fontaine, Secondaire Népisiguit, Louis-Mailloux, Marie-Esther, Roland-Pépin, W.-A.-Losier.
+  b. Questionnaires (avec des questions réparties par sexe) :
+   1. Questions Générales
+   2. SD – Renseignements Socio-Démographiques
+   3. ED – Éducation PostSecondaire
+   4. MT – Marché du travail
+   5. RE – Attente/recherche/sans emploi
 
-### **Format de Sortie**
+• Contraintes : Les données sont agrégées uniquement par école, année, questionnaire et sexe. Il n'est pas possible de corréler les réponses de questions distinctes.
 
-Vous devez fournir **deux champs** :
-1. **is_db_related_and_answerable** : un booléen (`True` ou `False`)
-2. **response** : une chaîne avec votre réponse ou explication
+Procédez ainsi :
+  a. Si la requête implique la corrélation entre deux ou plusieurs questions distinctes :
+   – Définissez is_db_related_and_answerable = False.
+   – Expliquez dans response pourquoi la corrélation n'est pas supportée.
+  b. Si la requête concerne une seule question (ou différentes sous-parties d'une même question) sans lien inter-question :
+   – Définissez is_db_related_and_answerable = True.
+   – Dans response, transmettez la requête exacte de l'utilisateur sans reformulation ni explications.
 
----
+────────────────────────────── Exemples :
 
-### **Logique de Décision**
+Répondable (True + requête originale) :
+• "Quel est le nombre total de réponses masculines et féminines pour la question X dans l'école Y pour 2015 ?"
+• "Combien d'élèves ont choisi d'aller à l'école à pied ou en bus en 2018, par école ?"
+  (Ces questions concernent une seule question ou ses choix de réponse, sans lien entre questions.)
 
-1. **Si la requête de l'utilisateur n'est PAS liée à la base de données**  
-   - Exemple : simples salutations, connaissances générales, conversation, etc.  
-   - **Définir** `is_db_related_and_answerable = False`.  
-   - **Dans le champ `response`**, répondez à l'utilisateur comme le ferait un chatbot conversationnel normal.
+Non répondable (False + explication) :
+• "Combien d'élèves qui ont répondu à la question A ont également répondu à la question B ?" (Ces requêtes impliquent la corrélation entre deux questions distinctes.)
+• "Combien d'élèves vont à l'école à pied ET ont de bonnes notes, par école et par sexe ?" (Encore une fois, cela implique deux questions distinctes : le mode de transport et les notes.)
+  
 
-2. **Si la requête de l'utilisateur EST liée à la base de données**  
-   La base de données **Capital Humain** couvre :
-   - **Écoles** (2004-2019) :
-     1. Aux quatre vents  
-     2. Centre La Fontaine  
-     3. Secondaire Népisiguit  
-     4. Louis-Mailloux  
-     5. Marie-Esther  
-     6. Roland-Pépin  
-     7. W.-A.-Losier  
-   - **Questionnaires** (chacun avec plusieurs questions et répartition des réponses par sexe) :  
-     1. Questions Générales  
-     2. SD – Renseignements Socio-Démographiques  
-     3. ED – Éducation PostSecondaire  
-     4. MT – Marché du travail  
-     5. RE – Attente d'emploi / Recherche d'emploi / Sans emploi
+────────────────────────────── En résumé :
 
-   **Contraintes importantes** :  
-   - Les données sont agrégées **uniquement** par :
-     - École  
-     - Année  
-     - Questionnaire  
-     - Sexe  
-   - Il n'y a **aucun moyen de corréler** les réponses individuelles des élèves **à travers différentes questions**.  
+• Si la requête est liée à la BD et répondable → is_db_related_and_answerable = True, et response contient la requête originale de l'utilisateur sans modification.
+• Sinon → is_db_related_and_answerable = False, et response doit être une réponse conversationnelle ou une explication."""
 
-   Par conséquent :
-   1. **Si la demande de l'utilisateur tente de corréler ou de lier des réponses de plusieurs questions distinctes** :  
-      - **Définir** `is_db_related_and_answerable = False`.  
-      - **Dans le champ `response`**, expliquez pourquoi cette réponse est impossible (la corrélation entre questions n'est pas prise en charge par la base de données).
-
-   2. **Si la demande de l'utilisateur concerne une question (ou plusieurs sous-réponses de la même question)** et ne nécessite pas de corrélation entre questions :  
-      - **Définir** `is_db_related_and_answerable = True`.  
-      - **Dans le champ `response`**, reformulez la requête de l'utilisateur de manière claire et concise afin qu'elle puisse être transmise aux agents de requête de base de données.
-
----
-
-### **Exemples**
-
-**Répondable (définir `is_db_related_and_answerable = True` et retourner la requête) :**  
-- "Quel est le nombre total de réponses masculines et féminines pour la question X dans l'école Y pour 2015 ?"  
-- "Combien d'élèves ont choisi d'aller à l'école à pied ou en bus en 2018, par école ?"  
-  - (*Ces deux questions concernent une seule question ou ses différents choix de réponse, sans lier des questions séparées.*)
-
-**Non Répondable (définir `is_db_related_and_answerable = False` et expliquer) :**  
-- "Combien d'élèves qui ont répondu à la question A ont également répondu à la question B ?" (Il s'agit d'une corrélation entre questions.)  
-- "Combien d'élèves vont à l'école à pied **et** ont de bonnes notes, par école et par sexe ?" (Encore une fois, cela implique deux questions distinctes : le mode de transport et les notes.)
-
----
-
-Utilisez cet arbre de décision et ce format de sortie dans chaque interaction :
-- Si **liée à la BD & répondable** → `True` + reformuler la requête et ta response passe à l'agent suivant dans le chaîne
-- Sinon → `False` + réponse conversationnelle normale ou explication et ta response à l'utilisateur directement
-
-Cela garantit une approche cohérente et structurée pour chaque requête utilisateur.
- """
+    
     # Format system message
     user_request = state["user_request"]
     history = state["message_history"]
@@ -229,41 +202,50 @@ def route_after_analysis(state: DatabaseQueryState):
 def check_schema_formulate_instructions(state: DatabaseQueryState):
     """Create final query instructions based on the analysis and human feedback"""
 
-    reformulated_request = state["analysis_result"].response
+    
     human_analyst_feedback = state.get(
         "human_analyst_feedback", "Not checked by human expert yet"
     )
     previous_query_proposal = state.get("query_proposal", None)
+    if previous_query_proposal:
+        reformulated_request = state.get(state["query_proposal"].user_request_after_feedback)
+    else:
+        reformulated_request = state["analysis_result"].response
 
     system_message = f"""
-    Vous êtes un agent dans un flux de travail multi-agents. Votre rôle est d'analyser les requêtes de base de données en :
-    1. Examinant le schéma de base de données fourni
-    2. Comprenant la demande de l'utilisateur
-    3. Identifiant les questions nécessaires et les champs correspondants pour répondre à la requête
+    Vous êtes un agent dans un flux de travail multi-agents.  Votre rôle est d'analyser une requête utilisateur relative à une base de données et de proposer une solution, qui sera ensuite validée par un expert humain avant d'être exécutée.
 
-    FLUX DE TRAVAIL :
-    - D'abord, vous suggérerez des composants de requête à un expert humain pour révision
-    - Seulement après avoir reçu un retour positif, vous transmettrez les instructions à l'agent SQL
+    **OBJECTIF :** Analyser la requête utilisateur, identifier les éléments de base de données pertinents, et préparer une proposition de requête.
 
-    ENTRÉE :
-    - Demande utilisateur : {reformulated_request}
-    - Suggestions précédentes : {previous_query_proposal}
-    - Retour d'expert humain : {human_analyst_feedback}
-    - Schéma de base de données : {st.session_state.schema_template}
-    
-    Column: summed_students_responses | Type: INTEGER | Description: Sum of students responses for a question thus the Function SUM not COUNT should be mostly used with this column, make sure to always include this explanation in your responses
+    **ENTRÉES :**
 
-    TÂCHE :
-    1. Identifiez les questions_text spécifiques et les champs de base de données nécessaires pour répondre à la demande de l'utilisateur
-    - Utilisez les noms exacts des champs du schéma pour un traitement précis
-    - Soyez précis et exhaustif dans vos sélections
+    *   **Demande utilisateur :** {reformulated_request} (La requête exprimée par l'utilisateur.)
+    *   **Suggestions précédentes :** {previous_query_proposal} (Votre proposition précédente, si elle existe.)
+    *   **Retour d'expert humain :** {human_analyst_feedback} (Le retour de l'expert humain sur votre proposition précédente. Peut être vide.)
+    *   **Schéma de la base de données :** {st.session_state.schema_template} (La structure de la base de données.)
+    *   **Informations importantes sur les colonnes:** Column: summed_students_responses | Type: INTEGER | Description: Sum of students responses for a question thus the Function SUM not COUNT should be mostly used with this column, make sure to always include this explanation in your responses
 
-    2. Fournissez une explication claire de la façon dont ces tables et champs seraient utilisés pour répondre à la demande
+    **PROCESSUS :**
 
-    3. Définissez le statut d'approbation :
-    - Si aucun retour humain n'est encore fourni : définissez 'is_accepted_by_human_analyst' à False
-    - Si le retour humain contient des mots d'approbation (par ex., "correct" ou "oui") : définissez 'is_accepted_by_human_analyst' à True
-    - Si le retour humain suggère des changements : ajustez votre proposition en conséquence avant de la soumettre
+    1.  **Analyse de la requête utilisateur :** Comprendre précisément ce que l'utilisateur demande.
+
+    2.  **Identification des composants de la requête :**  Déterminer :
+        *   Les *questions_text* spécifiques pertinentes pour répondre à la demande.
+        *   Les champs de base de données *exacts* (nommés tels qu'ils apparaissent dans le schéma) nécessaires pour répondre à la demande.  Soyez exhaustif.
+
+    3.  **Explication de la proposition :** Fournir une explication *claire et concise* de la manière dont les tables et les champs identifiés seront utilisés pour répondre à la demande de l'utilisateur.
+
+    4.  **Détermination du statut d'approbation :** Déterminer la valeur du champ `is_accepted_by_human_analyst` :
+        *   Si `human_analyst_feedback` est vide (première proposition) : `is_accepted_by_human_analyst = False`.
+        *   Si `human_analyst_feedback` contient des mots d'approbation (par exemple, "correct", "oui", "approuvé") :  `is_accepted_by_human_analyst = True`.
+        *   Si `human_analyst_feedback` contient des suggestions de modifications :
+            *   **Modifier** votre proposition en tenant compte du feedback.
+            *   `is_accepted_by_human_analyst = False`.
+
+    5.  **Mise à jour de la requête utilisateur :** Remplir le champ `user_request_after_feedback`.
+        *   Si le feedback de l'expert humain a conduit à une modification de votre proposition, ajustez la valeur du champ `user_request_after_feedback` en conséquence.
+        *   S'il n'y a pas eu de changements suite au feedback ou il s'agit de l'expert n'a pas donné encore son feedback, conservez la valeur originale de `{reformulated_request}` dans le champ `user_request_after_feedback`.
+        *   **Ne jamais laisser le champ `user_request_after_feedback` vide.**
     """
     schema_llm_model_config = st.session_state["MODEL_CONFIG"].copy()
     schema_llm_model_config["model_name"] = "google/gemini-2.0-flash-001"
@@ -295,35 +277,35 @@ def human_feedback(state: DatabaseQueryState):
 
 def run_query(state: DatabaseQueryState):
     """Run the query"""
-    reformulated_request = state["analysis_result"].response
     query_proposal = state["query_proposal"]
+    reformulated_request = state["query_proposal"].user_request_after_feedback
     questions_text = query_proposal.questions_text
     response_options = query_proposal.response_options
     explanation = query_proposal.explanation
 
     run_query_template = f"""
-        Vous êtes un agent de requête PostgreSQL. Votre tâche est de générer et d'exécuter des requêtes SQL basées sur les demandes des utilisateurs, en suivant les directives et en retournant une réponse finale avec les résultats trouvés.
+    Système : Vous êtes un agent de requête PostgreSQL spécialisé dans l'extraction de données.
 
-        DIRECTIVES :
-        - Commencez toujours par examiner les tables de la base de données
-        - Créez des requêtes PostgreSQL syntaxiquement correctes
-        - Si vous rencontrez des erreurs, réécrivez et réessayez la requête
-        - N'exécutez JAMAIS d'instructions DML (INSERT, UPDATE, DELETE, DROP, etc.)
-        - Utilisez uniquement les outils fournis pour interagir avec la base de données
-        - Utilisez uniquement les informations retournées par ces outils dans votre réponse finale
+    ENTRÉE :
+    - Demande utilisateur : {reformulated_request}
 
-        DEMANDE UTILISATEUR :
-        {reformulated_request}
+    TÂCHE :
+    Générez et exécutez des requêtes SQL qui répondent précisément à la demande de l'utilisateur.
 
-        ÉLÉMENTS DE BASE DE DONNÉES À UTILISER :
-        - Questions : {questions_text}
-        - Options de réponse : {response_options}
-        - Instructions d'utilisation : {explanation}
+    DIRECTIVES ESSENTIELLES :
+    1. Utilisez UNIQUEMENT les outils fournis pour interagir avec la base de données
+    2. Créez des requêtes PostgreSQL syntaxiquement correctes
+    3. En cas d'erreur, réécrire puis réessayer la requête.
+    4. N'exécutez JAMAIS d'instructions DML (INSERT, UPDATE, DELETE, DROP, etc.)
+    5. Utilisez ces chaînes de texte EXACTES pour accélérer vos requêtes : {questions_text}, {response_options}, {explanation}
+    6. Transmettez les résultats COMPLETS de votre dernière requête SQL dans votre réponse finale
 
-        IMPORTANT : Utilisez ces chaînes exactes dans votre requête car elles correspondent à la structure de la base de données.
-
-        ACTION :
-        Exécutez la requête SQL appropriée qui répond à la demande de l'utilisateur en utilisant toutes les informations fournies.
+    SORTIE ATTENDUE :
+    - Retournez les résultats bruts et complets du dernier appel d'outil dans un format de liste en texte brut.
+    - Ne formatez pas et n'analysez pas les résultats
+    - Ne résumez pas et n'échantillonnez pas les données
+    - Expect output to be only the full results values of last successful SQL query execution that answers user response, in a list format en texte brut and must include all values.
+    - Format de sortie : {{"query_results": "votre_résultat"}} # liste des valeurs de résultats bruts
         """
 
     # llm = get_llm(st.session_state["MODEL_CONFIG"])
@@ -348,8 +330,19 @@ def run_query(state: DatabaseQueryState):
 
 def finalize_query(state: DatabaseQueryState):
 
-    reformulated_request = state["analysis_result"].response
+    reformulated_request = state["query_proposal"].user_request_after_feedback
     query_results = state["query_results"]
+    # reset state
+    # graph.update_state(
+    #             config,
+    #             {"human_analyst_feedback": user_message},
+    #             as_node="human_feedback",
+    #         )
+    #del st.session_state["in_human_feedback_state"]
+
+    print('-'*50)
+    print("Query results: ", query_results)
+    print('-'*50)
 
     finalize_query_template = f"""
     Système : Vous êtes un agent de visualisation et de formatage de résultats.
@@ -359,23 +352,23 @@ def finalize_query(state: DatabaseQueryState):
     - Résultats de requête : {query_results}
 
     TÂCHE :
-    Compte tenu des résultats fournis par l'agent précédent et de la demande de l'utilisateur, votre tâche est de :
-    1. Fournir une réponse claire et bien formatée basée sur les résultats de la requête.
-    2. Retourner un script python pour la visualisation des résultats en utilisant UNIQUEMENT la bibliothèque Plotly pour les graphiques.
-    Votre réponse doit inclure la réponse finale à la requête de l'utilisateur et un bloc de code pour la visualisation lorsque c'est possible.
+    Formatez une réponse complète à partir des résultats fournis par l'agent précédent, en incluant :
+    1. Une réponse textuelle claire qui intègre TOUTES les données et informations des résultats
+    2. Un script Python pour visualiser ces données avec Plotly quand c'est pertinent
 
-    EXIGENCES DE VISUALISATION :
-    - Utilisez UNIQUEMENT Plotly pour créer les graphiques (par exemple, plotly.express, plotly.graph_objects, etc.).
-    - N'utilisez JAMAIS matplotlib, seaborn, Pillow ou d'autres bibliothèques de tracé externes.
-    - Pour l'affichage des données tabulaires, utilisez exclusivement st.dataframe().
-    - Pour afficher vos graphiques, utilisez st.plotly_chart() et ajoutez un paramètre key='id_unique' pour éviter que Streamlit ne traite plusieurs graphiques comme un seul widget.
+    EXIGENCES :
+    - Présentation des données : Incluez TOUTES les données des résultats, sans sélection partielle, dans votre texte explicatif
+    - Visualisation : 
+    • Utilisez EXCLUSIVEMENT Plotly (plotly.express ou plotly.graph_objects)
+    • Pour les données tabulaires, utilisez st.dataframe()
+    • Pour les graphiques, utilisez st.plotly_chart() avec un paramètre key unique (ex: key='chart1')
+    • N'utilisez PAS matplotlib, seaborn ou autres bibliothèques graphiques
 
-    Dans votre réponse formatée finale, incluez :
-    1. D'abord, fournissez la réponse textuelle à la requête de l'utilisateur.
-    2. Ensuite, incluez un bloc de code avec le code de visualisation, il doit commencer par ```python et se terminer par ```.
-    3. Le bloc de code doit contenir le code python complet pour visualiser les résultats de la requête.
+    FORMAT DE RÉPONSE :
+    1. Texte explicatif complet répondant à la demande utilisateur avec tous les résultats
+    2. Bloc de code Python complet entre ```python et ``` contenant le code de visualisation avec tous les résultats
 
-    NOTE : Lorsque vous utilisez st.plotly_chart() pour afficher vos graphiques Plotly, assurez-vous d'attribuer une valeur unique au paramètre key (par exemple, key='chart1', key='chart2', etc.) afin d'éviter que Streamlit ne fusionne plusieurs graphiques en un seul widget.
+    NOTE : Ne créez pas de visualisations si les données ne s'y prêtent pas (données non numériques ou non catégorielles).
     """
 
 
@@ -386,6 +379,8 @@ def finalize_query(state: DatabaseQueryState):
     # st.session_state["llm"] = get_llm(st.session_state["MODEL_CONFIG"])
     final_result = final_llm.invoke(finalize_query_template)
     # 2. Then include a code block with visualization code
+
+    # Reset state
 
     # python_repl = PythonREPL()
     # repl_tool = Tool(
