@@ -23,7 +23,7 @@ USER_AVATAR_PATH = "images/avataruser.png"
 WELCOME_MESSAGE = "Comment puis-je vous aider ? | How can I help you ?"
 SCHEMA_TEMPLATE_PATH = os.path.join("utils", "schema_template.txt")
 DEBUGGING = st.secrets.get("DEBUGGING", False)
-print(DEBUGGING)
+
 # Load environment variables
 load_dotenv()
 
@@ -66,12 +66,20 @@ def ask_example_question(question: str):
 
 def display_chat_history():
     """Display the chat history."""
+
     for message in st.session_state["messages"]:
         if isinstance(message, AIMessage):
             add_visualization_buttons_to_message(st.empty(), message.content)
-            print(len(message.content.split(" ")))
         elif isinstance(message, HumanMessage):
             st.chat_message("user", avatar=USER_AVATAR_PATH).write(message.content)
+    total_words = sum(
+        len(message.content.split()) for message in st.session_state["messages"]
+    )
+    if total_words > 2000:
+        st.warning(
+            "⚠️ Attention: La conversation devient trop longue. Le contexte des modèles LLM est limité et plus la conversation s'allonge et aborde des sujets divers, plus la qualité des réponses risque de se dégrader. Veuillez envisager de démarrer une nouvelle conversation. Vous pourrez recharger celle-ci à tout moment depuis la barre latérale une fois connecté."
+        )
+    print(total_words)
 
 
 def rerun_last_question():

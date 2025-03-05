@@ -110,6 +110,8 @@ class DatabaseQueryState(TypedDict):
 def analyze_request(state: DatabaseQueryState):
     """Analyze whether the user request can be answered with the database"""
     query_analysis_instructions = """Rôle et Contexte :
+IMPORTANT : Assurez-vous de toujours suivre la structure de sortie demandée et de ne pas utiliser de caractères spéciaux.
+IMPORTANT : Make sure to follow requested structure and NEVER use special charachters
 
 • Vous êtes le premier agent d'une chaîne chargé d'interagir avec l'utilisateur, en vous appuyant sur l'historique et la mémoire des conversations.
 • Votre mission est de déterminer si la requête est liée à la base de données Capital Humain (période 2004–2019) ou relève d'une conversation générale.
@@ -175,10 +177,8 @@ Procédez ainsi :
 • Si la requête est liée à la BD et répondable → is_db_related_and_answerable = True, et response contient la requête originale de l'utilisateur sans modification.
 • Sinon → is_db_related_and_answerable = False, et response doit être une réponse conversationnelle ou une explication.
 
-Assurez-vous de toujours suivre la structure de sortie demandée et de ne pas utiliser de caractères spéciaux.
-make sure to follow requested structure and not use special charachters
-
-
+IMPORTANT : Assurez-vous de toujours suivre la structure de sortie demandée et de ne pas utiliser de caractères spéciaux.
+IMPORTANT : Make sure to follow requested structure and NEVER use special charachters
 """
 
     # Format system message
@@ -234,7 +234,9 @@ def check_schema_formulate_instructions(state: DatabaseQueryState):
 
     system_message = f"""
     Vous êtes un agent dans un flux de travail multi-agents.  Votre rôle est d'analyser une requête utilisateur relative à une base de données et de proposer une solution, qui sera ensuite validée par un expert humain avant d'être exécutée.
-    
+    IMPORTANT : Assurez-vous de toujours suivre la structure de sortie demandée et de ne pas utiliser de caractères spéciaux.
+IMPORTANT : Make sure to follow requested structure and NEVER use special charachters
+
     **OBJECTIF :** Analyser la requête utilisateur, identifier les éléments de base de données pertinents, et préparer une proposition de requête.
 
     **ENTRÉES :**
@@ -267,7 +269,8 @@ def check_schema_formulate_instructions(state: DatabaseQueryState):
         *   S'il n'y a pas eu de changements suite au feedback ou il s'agit de l'expert n'a pas donné encore son feedback, conservez la valeur originale de `{reformulated_request}` dans le champ `user_request_after_feedback`.
         *   **Ne jamais laisser le champ `user_request_after_feedback` vide.**
         
-    Assurez-vous de toujours suivre la structure de sortie demandée et de ne pas utiliser de caractères spéciaux.
+IMPORTANT : Assurez-vous de toujours suivre la structure de sortie demandée et de ne pas utiliser de caractères spéciaux.
+IMPORTANT : Make sure to follow requested structure and NEVER use special charachters
     """
     schema_llm_model_config = st.session_state["MODEL_CONFIG"].copy()
     schema_llm_model_config["model_name"] = "google/gemini-2.0-flash-001"
