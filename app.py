@@ -268,18 +268,20 @@ def main():
                 "message_history": st.session_state["messages"],
             }
 
-            try:
-                for event in graph.stream(
-                    input_data, config=config, stream_mode="updates"
-                ):
-                    process_graph_event(event, response_placeholder)
-            except Exception as e:
-                # st.session_state["selected_model"] = "anthropic/claude-3.7-sonnet" # This return errorss
-                # update_model()
+            # try:
+            #     for event in graph.stream(
+            #         input_data, config=config, stream_mode="updates"
+            #     ):
+            #         process_graph_event(event, response_placeholder)
+            # except Exception as e:
+            #     # st.session_state["selected_model"] = "anthropic/claude-3.7-sonnet" # This return errorss
+            #     # update_model()
 
-                st.error(
-                    "Une erreur temporaire s'est produite. Vous pouvez résoudre ce problème en sélectionnant un autre modèle dans le coin supérieur droit de la page et réessayer."
-                )
+            #     st.error(
+            #         "Une erreur temporaire s'est produite. Vous pouvez résoudre ce problème en sélectionnant un autre modèle dans le coin supérieur droit de la page et réessayer."
+            #     )
+            for event in graph.stream(input_data, config=config, stream_mode="updates"):
+                process_graph_event(event, response_placeholder)
 
         elif user_message:
             # Process human feedback
@@ -288,13 +290,15 @@ def main():
                 {"human_analyst_feedback": user_message},
                 as_node="human_feedback",
             )
-            try:
-                for event in graph.stream(None, config=config, stream_mode="updates"):
-                    process_graph_event(event, response_placeholder)
-            except Exception as e:
-                st.error(
-                    "Une erreur temporaire s'est produite. Vous pouvez résoudre ce problème en sélectionnant un autre modèle dans le coin supérieur droit de la page et réessayer."
-                )
+            # try:
+            #     for event in graph.stream(None, config=config, stream_mode="updates"):
+            #         process_graph_event(event, response_placeholder)
+            # except Exception as e:
+            #     st.error(
+            #         "Une erreur temporaire s'est produite. Vous pouvez résoudre ce problème en sélectionnant un autre modèle dans le coin supérieur droit de la page et réessayer."
+            #     )
+            for event in graph.stream(None, config=config, stream_mode="updates"):
+                process_graph_event(event, response_placeholder)
         if not DEBUGGING and st.experimental_user.get("email"):
             save_chat_logs()
 

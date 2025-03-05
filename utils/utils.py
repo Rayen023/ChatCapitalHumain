@@ -197,6 +197,6 @@ def format_response(query_proposal):
     # Format the final response
     feedback_note = "\n\n 💡 NOTE : Veuillez valider si les étapes suggérées sont correctes en répondant par **OUI** ou **CORRECT**, sinon, veuillez indiquer les **modifications/suggestions** pour les étapes alternatives."
 
-    response = f"{explanation} \n User_request : {user_request_after_feedback} \n\n Questions : \n{questions_str}\n\n {feedback_note}"
+    response = f"{explanation} \n\n User_request : {user_request_after_feedback} \n\n Questions : \n{questions_str}\n\n {feedback_note}"
 
     return response
