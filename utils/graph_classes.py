@@ -161,7 +161,6 @@ Non répondable (False + explication) :
 • Si la requête est liée à la BD et répondable → is_db_related_and_answerable = True, et response contient la requête originale de l'utilisateur sans modification.
 • Sinon → is_db_related_and_answerable = False, et response doit être une réponse conversationnelle ou une explication."""
 
-    
     # Format system message
     user_request = state["user_request"]
     history = state["message_history"]
@@ -202,13 +201,14 @@ def route_after_analysis(state: DatabaseQueryState):
 def check_schema_formulate_instructions(state: DatabaseQueryState):
     """Create final query instructions based on the analysis and human feedback"""
 
-    
     human_analyst_feedback = state.get(
         "human_analyst_feedback", "Not checked by human expert yet"
     )
     previous_query_proposal = state.get("query_proposal", None)
     if previous_query_proposal:
-        reformulated_request = state.get(state["query_proposal"].user_request_after_feedback)
+        reformulated_request = state.get(
+            state["query_proposal"].user_request_after_feedback
+        )
     else:
         reformulated_request = state["analysis_result"].response
 
@@ -230,10 +230,10 @@ def check_schema_formulate_instructions(state: DatabaseQueryState):
     1.  **Analyse de la requête utilisateur :** Comprendre précisément ce que l'utilisateur demande.
 
     2.  **Identification des composants de la requête :**  Déterminer :
-        *   Les *questions_text* spécifiques pertinentes pour répondre à la demande.
-        *   Les champs de base de données *exacts* (nommés tels qu'ils apparaissent dans le schéma) nécessaires pour répondre à la demande.  Soyez exhaustif.
+        *   Les *questions_text* spécifiques pertinentes pour répondre à la demande. Inclut les question_id et type_id.
+        *   Les options de reponses a cette question *exacts* (nommés tels qu'ils apparaissent dans le schéma) nécessaires pour répondre à la demande.
 
-    3.  **Explication de la proposition :** Fournir une explication *claire et concise* de la manière dont les tables et les champs identifiés seront utilisés pour répondre à la demande de l'utilisateur.
+    3.  **Explication de la proposition :** Fournir une explication *claire et concise* de la manière dont les tables et les champs identifiés seront utilisés pour répondre à la demande de l'utilisateur. Incluts les school_id et autre ids quand possible.
 
     4.  **Détermination du statut d'approbation :** Déterminer la valeur du champ `is_accepted_by_human_analyst` :
         *   Si `human_analyst_feedback` est vide (première proposition) : `is_accepted_by_human_analyst = False`.
@@ -338,11 +338,11 @@ def finalize_query(state: DatabaseQueryState):
     #             {"human_analyst_feedback": user_message},
     #             as_node="human_feedback",
     #         )
-    #del st.session_state["in_human_feedback_state"]
+    # del st.session_state["in_human_feedback_state"]
 
-    print('-'*50)
+    print("-" * 50)
     print("Query results: ", query_results)
-    print('-'*50)
+    print("-" * 50)
 
     finalize_query_template = f"""
     Système : Vous êtes un agent de visualisation et de formatage de résultats.
@@ -370,7 +370,6 @@ def finalize_query(state: DatabaseQueryState):
 
     NOTE : Ne créez pas de visualisations si les données ne s'y prêtent pas (données non numériques ou non catégorielles).
     """
-
 
     final_llm_model_config = st.session_state["MODEL_CONFIG"].copy()
     final_llm_model_config["model_name"] = "google/gemini-2.0-flash-001"
