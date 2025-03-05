@@ -22,7 +22,8 @@ APP_ICON_PATH = "images/deer.png"
 USER_AVATAR_PATH = "images/avataruser.png"
 WELCOME_MESSAGE = "Comment puis-je vous aider ? | How can I help you ?"
 SCHEMA_TEMPLATE_PATH = os.path.join("utils", "schema_template.txt")
-
+DEBUGGING = st.secrets.get("DEBUGGING", False)
+print(DEBUGGING)
 # Load environment variables
 load_dotenv()
 
@@ -113,8 +114,9 @@ def setup_sidebar():
         # )
 
         st.markdown("---")
-        # enable_login()
-        st.markdown("---")
+        if not DEBUGGING:
+            enable_login()
+            st.markdown("---")
 
         # Example questions section
         st.write("### Example Questions")
@@ -285,9 +287,8 @@ def main():
                 st.error(
                     "Une erreur temporaire s'est produite. Vous pouvez résoudre ce problème en sélectionnant un autre modèle dans le coin supérieur droit de la page et réessayer."
                 )
-        # Optional: Save chat logs
-        # if st.experimental_user.get("email"):
-        # save_chat_logs()
+        if not DEBUGGING and st.experimental_user.get("email"):
+            save_chat_logs()
 
 
 if __name__ == "__main__":

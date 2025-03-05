@@ -1148,3 +1148,4 @@
 2025-03-05 18:42:14,918 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
 2025-03-05 18:42:18,888 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
 2025-03-05 18:42:39,310 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-05 18:53:45,350 - utils.utils - ERROR - An error occurred retrieving the environment variable MONGO_URI: Only all lowercase booleans allowed (line 1 column 1 char 0)
