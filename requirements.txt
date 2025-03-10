@@ -13,3 +13,5 @@ pymongo
 motor
 matplotlib
 plotly
+langchain-voyageai
+faiss-cpu
