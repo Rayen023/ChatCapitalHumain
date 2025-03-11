@@ -1,7 +1,14 @@
 import os
 from uuid import uuid4
 
+import faiss
 from langchain.docstore.document import Document
+from langchain.retrievers.contextual_compression import ContextualCompressionRetriever
+from langchain_community.docstore.in_memory import InMemoryDocstore
+from langchain_community.vectorstores import FAISS
+from langchain_voyageai import VoyageAIEmbeddings, VoyageAIRerank
+
+embeddings = VoyageAIEmbeddings(model="voyage-3-large")
 
 data = [
     {
@@ -931,16 +938,6 @@ for item in data:
 # print(documents[0].metadata)
 # print(documents)
 
-from langchain_voyageai import VoyageAIEmbeddings, VoyageAIRerank
-
-if not os.environ.get("VOYAGE_API_KEY"):
-    os.environ["VOYAGE_API_KEY"] = "pa-_GyP9a57BCZa2sX0mRJtQRfK49fTEmTRB2vg23Bgygs"
-embeddings = VoyageAIEmbeddings(model="voyage-3-large")
-
-
-import faiss
-from langchain_community.docstore.in_memory import InMemoryDocstore
-from langchain_community.vectorstores import FAISS
 
 index = faiss.IndexFlatL2(len(embeddings.embed_query("hello world")))
 
@@ -960,19 +957,15 @@ new_vector_store = FAISS.load_local(
     "faiss_index_db_questions", embeddings, allow_dangerous_deserialization=True
 )
 
-
-from langchain.retrievers.contextual_compression import ContextualCompressionRetriever
-
 compression_retriever = ContextualCompressionRetriever(
     base_compressor=VoyageAIRerank(model="rerank-2", top_k=2),
     base_retriever=new_vector_store.as_retriever(search_kwargs={"k": 6}),
 )
 # kwargs (Any) – Additional arguments to pass to the retriever. #TODO add two filter boxes aswell
 results = compression_retriever.invoke(
-    "bourses",
-    filter={"type_id": 3},
+    "text_input",
+    filter={"type_id": 3, "question_id": 2},
 )
-print(results)
 for doc in results:
     print(
         f"\n\n [SIM={doc.metadata["relevance_score"]:3f}] {doc.page_content} [{doc.metadata}] "

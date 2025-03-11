@@ -1246,3 +1246,6 @@
 2025-03-06 13:15:37,291 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
 2025-03-06 13:15:44,698 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
 2025-03-06 13:15:53,336 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-11 15:50:34,855 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-03-11 15:50:34,867 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-03-11 15:50:34,870 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes.

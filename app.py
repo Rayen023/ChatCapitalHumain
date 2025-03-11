@@ -79,7 +79,6 @@ def display_chat_history():
         st.warning(
             "⚠️ Attention: La conversation devient trop longue. Le contexte des modèles LLM est limité et plus la conversation s'allonge et aborde des sujets divers, plus la qualité des réponses risque de se dégrader. Veuillez envisager de démarrer une nouvelle conversation. Vous pourrez recharger celle-ci à tout moment depuis la barre latérale une fois connecté."
         )
-    print(total_words)
 
 
 def rerun_last_question():

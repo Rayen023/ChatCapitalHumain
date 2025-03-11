@@ -1,5 +1,7 @@
 import streamlit as st
 
+from utils.sidebar_search import search_documents
+
 
 def show_schema_in_sidebar():
     """
@@ -110,6 +112,11 @@ def show_schema_in_sidebar():
             - **QESN (Secondaire Népisiguit):** (2004 - 2013) | 0
             """
         )
+
+    # separator
+    st.sidebar.markdown("---")
+    search_documents()
+    st.sidebar.markdown("---")
 
     st.sidebar.subheader("All 52 Questions (Exact Match)")
 
