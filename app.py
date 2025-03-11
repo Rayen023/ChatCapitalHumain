@@ -3,6 +3,12 @@ import uuid
 from typing import Any, Dict
 
 import streamlit as st
+
+APP_TITLE = "Capital Humain"
+APP_ICON_PATH = "images/deer.png"
+
+st.set_page_config(page_title=APP_TITLE, page_icon=APP_ICON_PATH)
+
 from dotenv import load_dotenv
 from langchain.callbacks.tracers import LangChainTracer
 from langchain_core.messages import AIMessage, HumanMessage
@@ -17,8 +23,6 @@ from utils.st_callable_util import get_streamlit_cb
 from utils.utils import add_visualization_buttons_to_message, format_response
 
 # Application constants
-APP_TITLE = "Capital Humain"
-APP_ICON_PATH = "images/deer.png"
 USER_AVATAR_PATH = "images/avataruser.png"
 WELCOME_MESSAGE = "Comment puis-je vous aider ? | How can I help you ?"
 SCHEMA_TEMPLATE_PATH = os.path.join("utils", "schema_template.txt")
@@ -28,7 +32,6 @@ DEBUGGING = st.secrets.get("DEBUGGING", False)
 load_dotenv()
 
 # Set up page configuration
-st.set_page_config(page_title=APP_TITLE, page_icon=APP_ICON_PATH)
 
 
 def init_session_state():

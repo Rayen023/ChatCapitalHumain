@@ -110,7 +110,7 @@ class DatabaseQueryState(TypedDict):
 def analyze_request(state: DatabaseQueryState):
     """Analyze whether the user request can be answered with the database"""
     query_analysis_instructions = """Rôle et Contexte :
-IMPORTANT : Your output MUST ALWAYS be in the JSON format {"is_db_related_and_answerable": true/false, "response": "your_response"}. Avoid using SPECIAL CHARACTERS in your response. In order to avoid errors of type "ValueError: control character (\u0000-\u001F) found while parsing a string at line 4 column 0" make sure to follow the requested structure and NEVER use special charachters.
+IMPORTANT : Your output MUST ALWAYS be in the JSON format {"is_db_related_and_answerable": true/false, "response": "your_response"}. Avoid using SPECIAL CHARACTERS in your response. In order to avoid errors of type "ValueError: control character (\u0000-\u001f) found while parsing a string at line 4 column 0" make sure to follow the requested structure and NEVER use special charachters.
 
 • Vous êtes le premier agent d'une chaîne chargé d'interagir avec l'utilisateur, en vous appuyant sur l'historique et la mémoire des conversations.
 • Votre mission est de déterminer si la requête est liée à la base de données Capital Humain (période 2004–2019) ou relève d'une conversation générale.
@@ -228,7 +228,7 @@ def check_schema_formulate_instructions(state: DatabaseQueryState):
     else:
         reformulated_request = state["analysis_result"].response
 
-    disclaimer = 'IMPORTANT : Your output MUST ALWAYS be in the JSON format {"user_request_after_feedback": "str without special chars", "questions_responses": "List of Dicts", "explanation": "str without special chars" , "is_accepted_by_human_analyst": true/false}. Avoid using SPECIAL CHARACTERS in your response. In order to avoid errors of type "ValueError: control character (\u0000-\u001F) found while parsing a string at line 4 column 0" make sure to follow the requested structure and NEVER use special charachters.'
+    disclaimer = 'IMPORTANT : Your output MUST ALWAYS be in the JSON format {"user_request_after_feedback": "str without special chars", "questions_responses": "List of Dicts", "explanation": "str without special chars" , "is_accepted_by_human_analyst": true/false}. Avoid using SPECIAL CHARACTERS in your response. In order to avoid errors of type "ValueError: control character (\u0000-\u001f) found while parsing a string at line 4 column 0" make sure to follow the requested structure and NEVER use special charachters.'
     system_message = f"""
     {disclaimer}
 
@@ -462,6 +462,12 @@ builder.add_edge("human_feedback", "check_schema_formulate_instructions")
 builder.add_edge("run_query", "finalize_query")
 builder.add_edge("finalize_query", END)
 
+
 # Compile the graph
-memory = MemorySaver()
+@st.cache_resource
+def cache_memory():
+    return MemorySaver()
+
+
+memory = cache_memory()
 graph = builder.compile(interrupt_before=["human_feedback"], checkpointer=memory)
