@@ -281,9 +281,7 @@ if st.session_state["messages"] and isinstance(
                     "Une erreur temporaire s'est produite. Vous pouvez résoudre ce problème en sélectionnant un autre modèle dans le coin supérieur droit de la page et réessayer."
                 )
         else:
-            for event in graph.stream(
-                input_data, config=config, stream_mode="updates"
-            ):
+            for event in graph.stream(input_data, config=config, stream_mode="updates"):
                 process_graph_event(event, response_placeholder)
 
     elif user_message:
@@ -295,9 +293,7 @@ if st.session_state["messages"] and isinstance(
         )
         if not DEBUGGING:
             try:
-                for event in graph.stream(
-                    None, config=config, stream_mode="updates"
-                ):
+                for event in graph.stream(None, config=config, stream_mode="updates"):
                     process_graph_event(event, response_placeholder)
             except Exception as e:
                 st.error(
@@ -308,6 +304,3 @@ if st.session_state["messages"] and isinstance(
                 process_graph_event(event, response_placeholder)
     if not DEBUGGING and st.experimental_user.get("email"):
         save_chat_logs()
-
-
-
