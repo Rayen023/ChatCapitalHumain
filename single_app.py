@@ -14,6 +14,10 @@ from langgraph.graph.message import add_messages
 from langgraph.prebuilt import ToolNode, tools_condition
 from sqlalchemy import create_engine
 from typing_extensions import TypedDict
+from langchain_anthropic import ChatAnthropic
+from langgraph.prebuilt import create_react_agent
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+
 
 from utils.st_callable_util import get_streamlit_cb
 
@@ -33,8 +37,8 @@ st.set_page_config(
 load_dotenv()
 
 MODEL_CONFIG = {
-    "model_name": "google/gemini-2.0-flash-001",
-    # "model_name": "anthropic/claude-3.7-sonnet",
+    #"model_name": "google/gemini-2.0-flash-001",
+    "model_name": "anthropic/claude-3.7-sonnet",
     "temperature": 0,
     "max_tokens": 8096,
     "timeout": None,
@@ -44,7 +48,9 @@ MODEL_CONFIG = {
 
 
 class State(MessagesState):
-    messages: Annotated[list, add_messages]
+    """Represents the state of our graph."""
+    # Use the built-in message state handler
+    messages: Annotated[list[BaseMessage], add_messages]
 
 
 if "db" not in st.session_state:
@@ -61,13 +67,11 @@ llm = ChatOpenAI(
     openai_api_base=st.secrets["OPENROUTER_BASE_URL"],
     **MODEL_CONFIG,
 )
+#llm = ChatAnthropic(model="claude-3-7-sonnet-20250219", **MODEL_CONFIG)
 
-toolkit = SQLDatabaseToolkit(db=st.session_state.db, llm=llm)
-tools = toolkit.get_tools()
-llm_with_tools = llm.bind_tools(tools)
-
-
-def chatbot(state: MessagesState):
+def chatbot(state: State) -> dict:
+    """Process user input and generate a response using the SQL toolkit."""
+    
     system_message_content = f"""
     Vous êtes un agent conversationnel expert de la base de données Capital Humain. Votre rôle est de répondre aux questions des utilisateurs en utilisant les données disponibles, en respectant scrupuleusement les contraintes de la base.
 
@@ -101,38 +105,41 @@ def chatbot(state: MessagesState):
 
     "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer combien d'élèves qui utilisent un certain moyen de transport ont de bonnes notes nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible."
     """
+    
+    # Create a chat template with system message, history, and user input
+    prompt = ChatPromptTemplate.from_messages(
+        [
+            ("system", system_message_content),
+            MessagesPlaceholder(variable_name="messages"),  # Use the state messages directly
+        ]
+    )
+    
+    # Setup SQL tools
+    toolkit = SQLDatabaseToolkit(db=st.session_state.db, llm=llm)
+    tools = toolkit.get_tools()
+    
+    # Create the ReAct agent with the tools and prompt
+    agent_executor = create_react_agent(llm,tools=tools, prompt=prompt)
+    
+    # Create a runnable that includes the agent
+    runnable = agent_executor.with_config({"run_name": "agent"})
+    
+    # Get the response
+    response = runnable.invoke({
+        "messages": state["messages"],
+    })
+    
+    # Return the updated state with the agent's response added
+    return {"messages": response['messages']}
 
-    conversation_messages = [
-        message
-        for message in state["messages"]
-        if message.type in ("human", "system", "ai")
-        # or (message.type == "ai" and not message.tool_calls)
-    ]
-    prompt = [SystemMessage(system_message_content)] + conversation_messages
-    print(conversation_messages)
 
-    response = llm_with_tools.invoke(prompt)
-    return {"messages": [response]}
-
-
-graph_builder = StateGraph(MessagesState)
+graph_builder = StateGraph(State)
 graph_builder.add_node("chatbot", chatbot)
-
-tool_node = ToolNode(tools=tools)
-graph_builder.add_node("tools", tool_node)
-
-graph_builder.add_conditional_edges(
-    "chatbot",
-    tools_condition,
-)
-graph_builder.add_edge("tools", "chatbot")
 graph_builder.add_edge(START, "chatbot")
-
 
 @st.cache_resource
 def cache_memory():
     return MemorySaver()
-
 
 memory = cache_memory()
 graph_runnable = graph_builder.compile(checkpointer=memory)
@@ -141,8 +148,12 @@ graph_runnable = graph_builder.compile(checkpointer=memory)
 def invoke_our_graph(user_input, callables, thread_id):
     if not isinstance(callables, list):
         raise TypeError("callables must be a list")
+    
+    # Properly format the input for the graph
+    input_message = HumanMessage(content=user_input)
+    
     return graph_runnable.invoke(
-        {"messages": [{"role": "user", "content": user_input}]},
+        {"messages": [input_message]},
         config={"callbacks": callables, "configurable": {"thread_id": thread_id}},
     )
 
@@ -171,15 +182,24 @@ if user_message:
     st.chat_message("user", avatar=USER_AVATAR_PATH).write(user_message)
     st.session_state["messages"].append(HumanMessage(content=user_message))
 
+if st.session_state["messages"] and isinstance(
+    st.session_state.messages[-1], HumanMessage
+):
+    user_message = st.session_state.messages[-1].content
+
     with st.chat_message("assistant", avatar=APP_ICON_PATH):
+        # Create a container for tool calls that will persist
+        tool_calls_container = st.container(border = True) #st empty overwrites
         response_placeholder = st.empty()
-        streamlit_callback = get_streamlit_cb(st.empty())
+        # Get the callback with the tool calls container
+        streamlit_callback = get_streamlit_cb(tool_calls_container)
         graph_response = invoke_our_graph(
             user_message, [streamlit_callback], st.session_state["thread_id"]
         )
         final_response = graph_response["messages"][-1].content
         st.session_state["messages"].append(AIMessage(content=final_response))
         response_placeholder.write(final_response)
+
 with st.sidebar:
     if "thread_id" in st.session_state:
         st.write(st.session_state["thread_id"])
