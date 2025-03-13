@@ -4,51 +4,123 @@ from langchain_community.vectorstores import FAISS
 from langchain_voyageai import VoyageAIEmbeddings, VoyageAIRerank
 
 
+@st.fragment
+def search_questions_callback():
+    """Callback function for search questions text input."""
+    text_input = st.session_state.search_questions
+    if text_input:
+        embeddings = VoyageAIEmbeddings(model="voyage-3-large")
+        new_vector_store = FAISS.load_local(
+            "faiss_index_answerable_db_questions",
+            embeddings,
+            allow_dangerous_deserialization=True,
+        )
+        compression_retriever = ContextualCompressionRetriever(
+            base_compressor=VoyageAIRerank(model="rerank-2", top_k=5),
+            base_retriever=new_vector_store.as_retriever(search_kwargs={"k": 8}),
+        )
+        results = compression_retriever.invoke(text_input)
+        st.session_state.search_questions_results = results
+
+
+def search_questions():
+    with st.sidebar:
+        st.text_input(
+            "Rechercher des questions répondables",  # "Search answerable questions"
+            key="search_questions",
+            on_change=search_questions_callback,
+        )
+
+        # Display results if they exist in session state
+        if "search_questions_results" in st.session_state:
+            results = st.session_state.search_questions_results
+            if not results:
+                st.info("No results found.")
+            else:
+                for i, doc in enumerate(results):
+                    st.write(doc.page_content)
+                    st.progress(doc.metadata.get("relevance_score", 0))
+
+
+@st.fragment
+def search_documents_callback():
+    """Callback function for document search text inputs."""
+    text_input = st.session_state.search_query
+    type_id = st.session_state.type_id
+    question_id = st.session_state.question_id
+
+    # Only proceed if at least one field has content
+    if text_input or type_id or question_id:
+        # Initialize embeddings
+        embeddings = VoyageAIEmbeddings(model="voyage-3-large")
+
+        # Load the vector store
+        new_vector_store = FAISS.load_local(
+            "faiss_index_db_questions",
+            embeddings,
+            allow_dangerous_deserialization=True,
+        )
+
+        # Set up the retriever with compression
+        compression_retriever = ContextualCompressionRetriever(
+            base_compressor=VoyageAIRerank(model="rerank-2", top_k=6),
+            base_retriever=new_vector_store.as_retriever(search_kwargs={"k": 8}),
+        )
+
+        # Build filter dictionary based on provided inputs
+        filter_dict = {}
+        if type_id:
+            try:
+                filter_dict["type_id"] = int(type_id)
+            except ValueError:
+                st.warning("Type ID must be a number")
+                return
+
+        if question_id:
+            try:
+                filter_dict["question_id"] = int(question_id)
+            except ValueError:
+                st.warning("Question ID must be a number")
+                return
+
+        # Always use a non-empty string for the query to avoid errors
+        # Use " " (space) instead of empty string to ensure it works properly
+        query = text_input if text_input else " "
+
+        # Perform search with filters if they exist
+        if filter_dict:
+            results = compression_retriever.invoke(query, filter=filter_dict)
+        else:
+            results = compression_retriever.invoke(query)
+
+        # Store results in session state
+        st.session_state.search_documents_results = results
+
+
 def search_documents():
     with st.sidebar:
-        st.header("Search Questions")
-        text_input = st.text_input("Search Query", key="search_query")
-        type_id = st.text_input("Type ID (optional)", key="type_id")
-        question_id = st.text_input("Question ID (optional)", key="question_id")
-        search_button = st.button("Search")
+        st.header("Search DB Questions")
 
-        # Only perform search when button is clicked and query is provided
-        if search_button and text_input:
-            # Initialize embeddings - adjust this based on your actual embeddings
-            embeddings = VoyageAIEmbeddings(model="voyage-3-large")
+        # Add on_change parameter to each input field
+        st.text_input(
+            "Search Query (optional)",
+            key="search_query",
+            on_change=search_documents_callback,
+        )
 
-            # Load the vector store
-            new_vector_store = FAISS.load_local(
-                "faiss_index_db_questions",
-                embeddings,
-                allow_dangerous_deserialization=True,
-            )
+        st.text_input(
+            "Type ID (optional)", key="type_id", on_change=search_documents_callback
+        )
 
-            # Set up the retriever with compression
-            compression_retriever = ContextualCompressionRetriever(
-                base_compressor=VoyageAIRerank(model="rerank-2", top_k=6),
-                base_retriever=new_vector_store.as_retriever(search_kwargs={"k": 8}),
-            )
+        st.text_input(
+            "Question ID (optional)",
+            key="question_id",
+            on_change=search_documents_callback,
+        )
 
-            # Build filter dictionary based on provided inputs
-            filter_dict = {}
-            if type_id:
-                try:
-                    filter_dict["type_id"] = int(type_id)
-                except ValueError:
-                    st.warning("Type ID must be a number")
-
-            if question_id:
-                try:
-                    filter_dict["question_id"] = int(question_id)
-                except ValueError:
-                    st.warning("Question ID must be a number")
-
-            # Perform search with filters if they exist
-            if filter_dict:
-                results = compression_retriever.invoke(text_input, filter=filter_dict)
-            else:
-                results = compression_retriever.invoke(text_input)
+        # Display results if they exist in session state
+        if "search_documents_results" in st.session_state:
+            results = st.session_state.search_documents_results
 
             # Display results summary in sidebar
             if not results:

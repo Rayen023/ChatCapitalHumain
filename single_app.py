@@ -17,6 +17,7 @@ from langgraph.prebuilt import ToolNode, create_react_agent, tools_condition
 from sqlalchemy import create_engine
 from typing_extensions import TypedDict
 
+from utils.sidebar_search import search_questions
 from utils.st_callable_util import get_streamlit_cb
 
 APP_TITLE = "Capital Humain"
@@ -56,7 +57,7 @@ if "db" not in st.session_state:
     engine = create_engine(st.secrets["db_url"])
     st.session_state.db = SQLDatabase(engine)
 
-if "messages" not in st.session_state:
+if "single_messages" not in st.session_state:
     st.session_state["single_messages"] = [AIMessage(content=WELCOME_MESSAGE)]
 if "thread_id" not in st.session_state:
     st.session_state["thread_id"] = str(uuid.uuid4())
@@ -176,6 +177,10 @@ with st.sidebar:
         icon=":material/edit_square:",
         use_container_width=True,
     )
+    st.sidebar.markdown("---")
+    search_questions()
+    st.sidebar.markdown("---")
+
 
 for message in st.session_state["single_messages"]:
     if isinstance(message, AIMessage):

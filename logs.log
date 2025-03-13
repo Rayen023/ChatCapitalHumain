@@ -1454,3 +1454,8 @@
 2025-03-13 04:37:48,925 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
 2025-03-13 13:03:55,020 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
 2025-03-13 13:04:29,793 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-13 13:27:02,507 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-13 13:54:42,810 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-03-13 13:54:42,820 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-03-13 13:54:42,821 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes.
+2025-03-13 14:17:20,229 - voyage - INFO - error_message="The request body is not valid JSON, or some arguments were not specified properly. In particular, Error for argument 'input': Value error, Input cannot be an empty string, empty list, or list that contains an empty string" message='Voyage API error received'
