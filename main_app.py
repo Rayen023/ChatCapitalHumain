@@ -19,6 +19,7 @@ from utils.database import save_chat_logs
 from utils.graph_classes import display_model_selector, graph
 from utils.schema import show_schema_in_sidebar
 from utils.sidebar import enable_login
+from utils.sidebar_search import search_questions
 from utils.st_callable_util import get_streamlit_cb
 from utils.utils import add_visualization_buttons_to_message, format_response
 
@@ -127,6 +128,9 @@ def setup_sidebar():
         if not DEBUGGING:
             enable_login()
             st.markdown("---")
+
+        search_questions()
+        st.sidebar.markdown("---")
 
         # Example questions section
         st.write("### Example Questions")

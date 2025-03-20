@@ -1,0 +1,199 @@
+Quel est le nombre total de diplômés par école entre 2004 et 2019 ? 
+
+Quelle est l'évolution du taux de participation (percent_answered) aux questionnaires par année, toutes écoles confondues ? 
+
+Quelle école a eu le plus grand nombre de questionnaires complétés sur l'ensemble de la période 2004-2019 ? 
+
+Comment a évolué le ratio hommes/femmes parmi les diplômés entre 2004 et 2019, toutes écoles confondues ? 
+
+Pour l'année 2018, quel est le nombre de réponses à la question "Que prévoyez-vous faire en septembre prochain ?" pour chaque option de réponse ? 
+
+Quelle est la répartition des réponses à la question "Est-ce que le fait de terminer votre 12e année est important pour vous ?" par genre ? 
+
+Quelles sont les trois sources de financement les plus populaires pour les études postsecondaires selon les réponses à la question "Durant vos études quelles étaient vos sources de financement ?" ? 
+
+Pour l'école "Marie-Esther", quelle est l'évolution du nombre de diplômés entre 2004 et 2019 ? 
+
+Quel est le pourcentage d'étudiants qui ont répondu "Oui" à la question "Seriez-vous intéressé/e à faire un retour aux études ?" par année ? 
+
+Quelle est la répartition des réponses à la question "En général, quels sont vos résultats scolaires en 10e 11e et 12e année ?" pour l'année 2015 ? 
+
+Pour chaque école, quelle est la répartition des réponses à la question "Sur le plan de vos relations avec les autres élèves, êtes-vous satisfait/e de votre séjour au secondaire ?" par genre ? 
+
+Comment a évolué le nombre d'étudiants prévoyant poursuivre des "Études universitaires" (réponse à la question "Que prévoyez-vous faire en septembre prochain ?") par école entre 2010 et 2019 ? 
+
+Pour l'année 2018, quelle est la répartition des réponses à la question "En général, quels sont vos résultats scolaires en 10e 11e et 12e année ?" par école ? 
+
+Quelle est l'évolution des réponses "Très satisfait/e" à la question "En général, êtes-vous satisfait/e de vos résultats scolaires ?" par genre entre 2004 et 2019 ? 
+
+Pour chaque école, quel est le pourcentage d'étudiants qui ont répondu "Oui" à la question "À la fin de vos études postsecondaires, si vous aviez une offre d'emploi dans la Péninsule acadienne, est-ce que vous l'accepteriez ?" ? 
+
+Comment a évolué la proportion d'étudiants qui prévoient travailler "Dans la Péninsule acadienne" (réponse à la question "Lorsque vous aurez terminé vos études postsecondaires, indiquez où vous prévoyez travailler ?") par année ? 
+
+Pour chaque école, quelle est la répartition des réponses à la question "Quel moyen de transport local pensez-vous utiliser le plus régulièrement pendant votre première année d'études ?" pour l'année 2017 ? 
+
+Quelle est la différence entre les genres concernant les réponses à la question "Depuis septembre dernier, avez-vous occupé un emploi rénuméré ?" par école ? 
+
+Pour les années 2015 à 2019, quelle est l'évolution des réponses "Marché du travail" à la question "Que prévoyez-vous faire en septembre prochain ?" par école ? 
+
+Quelle est la répartition des réponses à la question "Dans quel domaine vous avez l'intention de poursuivre vos études postsecondaires ?" par genre pour l'année 2018 ? 
+
+Quelles écoles montrent la plus forte tendance à avoir des étudiants qui prévoient poursuivre des "Études universitaires" (réponse à la question "Que prévoyez-vous faire en septembre prochain ?") sur la période 2015-2019 ? 
+
+Y a-t-il une corrélation entre le taux de participation aux questionnaires (percent_answered) et le nombre total de diplômés par école ? 
+
+Pour la question "Est-ce que les services d'orientation que vous avez utilisés ont répondu à vos besoins ?", quelles écoles ont le plus haut pourcentage de réponses "Très bien" et "Bien" combinées ? 
+
+Comment a évolué la proportion d'étudiants qui ont répondu "de 95 % à 100 %" à la question "En général, quels sont vos résultats scolaires en 10e 11e et 12e année ?" par école entre 2010 et 2019 ? 
+
+Pour chaque année, quelle est la différence entre les genres concernant les réponses "Très satisfait/e" et "Satisfait/e" combinées à la question "Sur le plan de vos relations avec le personnel de l'école, êtes-vous satisfait/e de votre séjour au secondaire ?" ? 
+
+Quelles sont les écoles où les étudiants sont les plus susceptibles de répondre "Prêt étudiant" comme source de financement (réponse à la question "Durant vos études postsecondaires, quelles seront vos sources de financement ?") ? 
+
+Pour l'année 2018, quelle est la répartition des réponses à la question "Indiquez les deux cours que vous avez les plus appréciés durant votre secondaire" par genre, en se concentrant sur les 5 cours les plus populaires ? 
+
+Comment a évolué la proportion d'étudiants qui ont répondu "Oui" à la question "Seriez-vous intéressé/e à faire un retour aux études ?" par école entre 2010 et 2019 ? 
+
+Pour chaque école, quel est le pourcentage d'étudiants qui ont répondu "Mathématiques, informatique et sciences physiques" ou "Génie et sciences appliquées" à la question "Indiquez dans quel domaine vous avez l'intention de poursuivre vos études postsecondaires ?" ? 
+
+Y a-t-il une tendance à la hausse ou à la baisse dans les réponses "Très important" à la question "Est-ce que le fait de terminer votre 12e année est important pour vous ?" par année entre 2004 et 2019 ? 
+
+Pour l'école "W.-A.-Losier" en 2018, quelle est la répartition des réponses à la question "Que prévoyez-vous faire en septembre prochain ?" par genre ? 
+
+Quelle est l'évolution des réponses "Prêt étudiant" et "Bourses étudiantes" à la question "Durant vos études postsecondaires, quelles seront vos sources de financement ?" pour l'école "Secondaire Népisiguit" entre 2015 et 2019 ? 
+
+Pour l'année 2017, quelle est la différence entre les genres concernant les réponses "Mathématiques" et "Français" à la question "Indiquez les deux cours que vous avez les plus appréciés durant votre secondaire" ? 
+
+Quelle est la proportion d'étudiants qui ont répondu "Université de Moncton - campus Moncton" à la question "Indiquez le nom de l'institution que vous pensez fréquenter l'an prochain ?" par école pour l'année 2018 ? 
+
+Pour l'école "Marie-Esther" entre 2015 et 2019, quelle est l'évolution des réponses "Oui" à la question "À la fin de vos études postsecondaires, si vous aviez une offre d'emploi dans la Péninsule acadienne, est-ce que vous l'accepteriez ?" ? 
+
+Quelle est la répartition des réponses "Ma propre voiture/motocyclette" et "Voiture de mes parents" à la question "Quel moyen de transport local pensez-vous utiliser le plus régulièrement pendant votre première année d'études ?" par école pour l'année 2018 ? 
+
+Pour l'école "Louis-Mailloux" en 2016, quelle est la répartition des réponses à la question "En général, quels sont vos résultats scolaires en 10e 11e et 12e année ?" par genre ? 
+
+Quelle est l'évolution des réponses "Commerce, gestion et administration des affaires" à la question "Indiquez dans quel domaine vous avez l'intention de poursuivre vos études postsecondaires ?" par année entre 2010 et 2019 ? 
+
+Pour l'année 2018, quel est le pourcentage d'étudiants qui ont répondu "Temps partiel fin de semaine" ou "Temps partiel à la semaine" à la question "Depuis septembre dernier, avez-vous occupé un emploi rénuméré ?" par école ? 
+
+Quelle est la répartition des réponses "Très satisfait/e", "Satisfait/e", "Insatisfait/e" et "Très insatisfait/e" à la question "Sur le plan de vos relations avec les autres élèves, êtes-vous satisfait/e de votre séjour au secondaire ?" pour l'école "Roland-Pépin" entre 2015 et 2019 ? 
+
+Quelle école a le plus haut pourcentage d'étudiants qui prévoient poursuivre des "Études universitaires" (réponse à la question "Que prévoyez-vous faire en septembre prochain ?") pour l'année 2018 ? 
+
+Pour la période 2015-2019, quelle école a connu la plus forte augmentation du pourcentage d'étudiants qui ont répondu "Oui" à la question "À la fin de vos études postsecondaires, si vous aviez une offre d'emploi dans la Péninsule acadienne, est-ce que vous l'accepteriez ?" ? 
+
+Quelle est l'école avec le plus haut pourcentage d'étudiants ayant des résultats scolaires "de 95 % à 100 %" (réponse à la question "En général, quels sont vos résultats scolaires en 10e 11e et 12e année ?") pour l'année 2018 ? 
+
+Pour l'année 2017, quelle école a le plus grand écart entre les genres concernant les réponses "Très satisfait/e" à la question "En général, êtes-vous satisfait/e de vos résultats scolaires ?" ? 
+
+Quelle est l'évolution du pourcentage d'étudiants qui ont répondu "Prêt étudiant" comme source de financement (réponse à la question "Durant vos études postsecondaires, quelles seront vos sources de financement ?") par école entre 2010 et 2019 ? 
+
+Pour la période 2015-2019, quelle école a le plus haut pourcentage d'étudiants qui ont répondu "Très bien" à la question "Est-ce que les services d'orientation que vous avez utilisés ont répondu à vos besoins ?" ? 
+
+Quelle est l'école avec le plus haut pourcentage d'étudiants qui prévoient travailler "Dans la Péninsule acadienne" (réponse à la question "Lorsque vous aurez terminé vos études postsecondaires, indiquez où vous prévoyez travailler ?") pour l'année 2018 ? 
+
+Pour l'année 2016, quelle école a le plus grand écart entre les genres concernant les réponses "Ma propre voiture/motocyclette" à la question "Quel moyen de transport local pensez-vous utiliser le plus régulièrement pendant votre première année d'études ?" ? 
+
+Quelle est l'évolution du pourcentage d'étudiants qui ont répondu "Mathématiques, informatique et sciences physiques" à la question "Indiquez dans quel domaine vous avez l'intention de poursuivre vos études postsecondaires ?" par école entre 2010 et 2019 ? 
+
+Pour la période 2015-2019, quelle école a le plus haut pourcentage d'étudiants qui ont répondu "Temps partiel fin de semaine" ou "Temps partiel à la semaine" à la question "Depuis septembre dernier, avez-vous occupé un emploi rénuméré ?" ? 
+
+Quelle est la répartition par genre des diplômés pour chaque école entre 2010 et 2015 ?
+
+Comment a évolué le taux de complétion des questionnaires (questionnaire_completed/total_graduates) par école entre 2004 et 2019 ?
+
+Quelle école présente la plus forte proportion de réponses "Très important" à la question "Est-ce que le fait de terminer votre 12e année est important pour vous ?" ?
+
+Pour l'année 2019, quelle est la répartition des réponses à la question "Indiquez dans quel domaine vous avez l'intention de poursuivre vos études postsecondaires ?" par école ?
+
+Comment a évolué le nombre d'étudiants qui ont répondu "Professions de la santé et technologies connexes" à la question sur le domaine d'études entre 2004 et 2019 ?
+
+Quelle est la proportion d'étudiants qui ont répondu "À pied" à la question sur le moyen de transport par école en 2018 ?
+
+Pour l'école "Aux quatre vents", quelle est l'évolution des réponses "Très satisfait/e" à la question sur les relations avec le personnel entre 2015 et 2019 ?
+
+Quelle est la répartition des réponses à la question "Quel est votre état civil présentement ?" par genre pour l'année 2017 ?
+
+Pour chaque école, quel est le pourcentage d'étudiants qui ont répondu "Biologie" comme cours le plus apprécié en 2018 ?
+
+Comment a évolué la proportion d'étudiants qui ont répondu "Je ne sais pas" à la question sur l'acceptation d'une offre d'emploi dans la Péninsule acadienne entre 2004 et 2019 ?
+
+Quelle école présente le plus haut taux de réponses "Nouveau-Brunswick" à la question "Dans quelle province canadienne ou autre pays aimeriez-vous travailler ?" en 2019 ?
+
+Pour l'année 2016, quelle est la répartition des réponses à la question "Que consirérez-vous comme étant votre principale occupation en ce moment ?" par école ?
+
+Comment a évolué le nombre d'étudiants qui ont répondu "Économie personnelle" comme source de financement entre 2010 et 2019 par école ?
+
+Quelle est la proportion d'étudiants qui ont répondu "Régulier" à la question "En général, vos cours sont de quel niveau scolaire ?" par année entre 2015 et 2019 ?
+
+Pour l'école "Roland-Pépin", quelle est l'évolution des réponses "Mathématiques" comme cours le plus apprécié entre 2004 et 2019 par genre ?
+
+Quelle est la répartition des réponses à la question "Avez-vous complété vos études ?" par école pour l'année 2018 ?
+
+Pour chaque année entre 2015 et 2019, quel est le pourcentage d'étudiants qui ont répondu "Oui" à la question "Êtes-vous disponible pour travailler maintenant ?" ?
+
+Comment a évolué la proportion d'étudiants qui ont répondu "Universitaire" à la question "Dans quel type d'institution avez-vous étudié ?" par école ?
+
+Quelle école présente le plus haut taux de réponses "Célibataire" à la question sur l'état civil en 2017 ?
+
+Pour l'année 2018, quelle est la répartition des réponses à la question "Dans quelle catégorie de profession ou métier travaillez-vous ?" par genre ?
+
+Comment a évolué le nombre d'étudiants qui ont répondu "Soins de santé et assistance sociale" comme domaine de travail souhaité entre 2010 et 2019 ?
+
+Quelle est la proportion d'étudiants qui ont répondu "Moins de 6 mois" à la question "Depuis combien de temps êtes-vous sans emploi ?" par école en 2016 ?
+
+Pour l'école "W.-A.-Losier", quelle est l'évolution des réponses "Temps plein" à la question "Quel était votre régime d'études ?" entre 2015 et 2019 ?
+
+Quelle est la répartition des réponses à la question "Avez-vous l'intention de vous établir dans la Péninsule acadienne au cours des cinq prochaines années ?" par école pour l'année 2019 ?
+
+Pour chaque école, quel est le pourcentage d'étudiants qui ont répondu "Français" comme cours le plus apprécié en 2017 par genre ?
+
+Comment a évolué la proportion d'étudiants qui ont répondu "Collégial" à la question "Quel est votre niveau d'éducation le plus élevé ?" entre 2004 et 2019 ?
+
+Quelle école présente le plus haut taux de réponses "Travail à temps partiel" comme source de financement en 2018 ?
+
+Pour l'année 2015, quelle est la répartition des réponses à la question "Quelle est la principale raison pour laquelle vous n'avez pas travaillé durant cette période ?" par école ?
+
+Comment a évolué le nombre d'étudiants qui ont répondu "Péninsule acadienne" à la question "Où demeurez-vous présentement ?" entre 2010 et 2019 ?
+
+Quelle est la proportion d'étudiants qui ont répondu "Deux" à la question "Au cours des 2 dernières années, combien d'employeurs avez-vous eus ?" par école en 2017 ?
+
+Pour l'école "Secondaire Népisiguit", quelle est l'évolution des réponses "Oui" à la question "Seriez-vous intéressé/e par une expérience de travail dans votre communauté ?" entre 2015 et 2019 ?
+
+Quelle est la répartition des réponses à la question "Dans quelle région de la province travaillez-vous ?" par genre pour l'année 2018 ?
+
+Pour chaque école, quel est le pourcentage d'étudiants qui ont répondu "Retour aux études" comme raison de ne pas avoir travaillé en 2016 ?
+
+Comment a évolué la proportion d'étudiants qui ont répondu "Deuxième cycle ( maîtrise )" à la question sur le niveau d'études entre 2010 et 2019 ?
+
+Quelle école présente le plus haut taux de réponses "Lettres, sciences humaines et disciplines connexes" comme domaine d'études en 2019 ?
+
+Pour l'année 2017, quelle est la répartition des réponses à la question "Envisagez-vous de changer d'emploi dans la prochaine année ?" par école ?
+
+Comment a évolué le nombre d'étudiants qui ont répondu "Nord-Est" comme région de travail souhaitée entre 2015 et 2019 ?
+
+Quelle est la proportion d'étudiants qui ont répondu "Attente d'emploi" à la question "Présentement êtes-vous en attente ou à la recherche d'emploi ?" par école en 2018 ?
+
+Pour l'école "Marie-Esther", quelle est l'évolution des réponses "Enseignement, loisirs et orientation" comme domaine d'études entre 2004 et 2019 par genre ?
+
+Quelle est la répartition des réponses à la question "Pour quelle raison avez-vous quitté la Péninsule acadienne ?" par école pour l'année 2016 ?
+
+Pour chaque année entre 2015 et 2019, quel est le pourcentage d'étudiants qui ont répondu "Québec" comme province de travail souhaitée ?
+
+Comment a évolué la proportion d'étudiants qui ont répondu "Adaptation scolaire" à la question sur le niveau scolaire entre 2004 et 2019 ?
+
+Quelle école présente le plus haut taux de réponses "Covoiturage" comme moyen de transport en 2018 ?
+
+Pour l'année 2019, quelle est la répartition des réponses à la question "Existe-t-il des obstacles qui vous empêchent de poursuivre des études ?" par école ?
+
+Comment a évolué le nombre d'étudiants qui ont répondu "Accès au marché du travail" comme raison de ne pas poursuivre des études postsecondaires entre 2010 et 2019 ?
+
+Quelle est la proportion d'étudiants qui ont répondu "18 à 24 mois" à la question sur l'expérience de travail accumulée par école en 2017 ?
+
+Pour l'école "Louis-Mailloux", quelle est l'évolution des réponses "Beaux-arts et arts appliqués" comme domaine d'études entre 2015 et 2019 ?
+
+Quelle est la répartition des réponses à la question "Seriez-vous intéressé/e à recevoir de l'information pour vous aider dans la poursuite de vos études ?" par école pour l'année 2018 ?
+
+Pour chaque école, quel est le pourcentage d'étudiants qui ont répondu "Problèmes monétaires" comme raison de ne pas poursuivre des études postsecondaires en 2019 ?
+
+Comment a évolué la proportion d'étudiants qui ont répondu "Certificat" à la question sur le niveau du programme d'études entre 2004 et 2019 par école ?

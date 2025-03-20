@@ -17,6 +17,7 @@ from langgraph.prebuilt import ToolNode, create_react_agent, tools_condition
 from sqlalchemy import create_engine
 from typing_extensions import TypedDict
 
+from utils.sidebar_search import search_questions
 from utils.st_callable_util import get_streamlit_cb
 
 APP_TITLE = "Capital Humain"
@@ -56,8 +57,8 @@ if "db" not in st.session_state:
     engine = create_engine(st.secrets["db_url"])
     st.session_state.db = SQLDatabase(engine)
 
-if "messages" not in st.session_state:
-    st.session_state["messages"] = [AIMessage(content=WELCOME_MESSAGE)]
+if "single_messages" not in st.session_state:
+    st.session_state["single_messages"] = [AIMessage(content=WELCOME_MESSAGE)]
 if "thread_id" not in st.session_state:
     st.session_state["thread_id"] = str(uuid.uuid4())
 
@@ -165,7 +166,7 @@ def invoke_our_graph(user_input, callables, thread_id):
 
 
 def reset_chat_history():
-    st.session_state["messages"] = [AIMessage(content=WELCOME_MESSAGE)]
+    st.session_state["single_messages"] = [AIMessage(content=WELCOME_MESSAGE)]
     st.session_state["thread_id"] = str(uuid.uuid4())
 
 
@@ -176,8 +177,12 @@ with st.sidebar:
         icon=":material/edit_square:",
         use_container_width=True,
     )
+    st.sidebar.markdown("---")
+    search_questions()
+    st.sidebar.markdown("---")
 
-for message in st.session_state["messages"]:
+
+for message in st.session_state["single_messages"]:
     if isinstance(message, AIMessage):
         st.chat_message("assistant", avatar=APP_ICON_PATH).write(message.content)
     elif isinstance(message, HumanMessage):
@@ -186,12 +191,12 @@ for message in st.session_state["messages"]:
 user_message = st.chat_input("Message ChatCapitalHumain...")
 if user_message:
     st.chat_message("user", avatar=USER_AVATAR_PATH).write(user_message)
-    st.session_state["messages"].append(HumanMessage(content=user_message))
+    st.session_state["single_messages"].append(HumanMessage(content=user_message))
 
-if st.session_state["messages"] and isinstance(
-    st.session_state.messages[-1], HumanMessage
+if st.session_state["single_messages"] and isinstance(
+    st.session_state["single_messages"][-1], HumanMessage
 ):
-    user_message = st.session_state.messages[-1].content
+    user_message = st.session_state["single_messages"][-1].content
 
     with st.chat_message("assistant", avatar=APP_ICON_PATH):
         # Create a container for tool calls that will persist
@@ -203,7 +208,7 @@ if st.session_state["messages"] and isinstance(
             user_message, [streamlit_callback], st.session_state["thread_id"]
         )
         final_response = graph_response["messages"][-1].content
-        st.session_state["messages"].append(AIMessage(content=final_response))
+        st.session_state["single_messages"].append(AIMessage(content=final_response))
         response_placeholder.write(final_response)
 
 with st.sidebar:

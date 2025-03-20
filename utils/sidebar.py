@@ -8,8 +8,7 @@ from utils.connection import (  # Ensure _background_loop is exported
     _background_loop,
     collection,
 )
-from utils.schema import show_schema_in_sidebar
-from utils.utils import get_env_variable, logger
+from utils.utils import logger
 
 WELCOME_MESSAGE = "Comment puis-je vous aider ? | How can I help you ?"
 
