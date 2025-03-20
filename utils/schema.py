@@ -2,6 +2,8 @@ import streamlit as st
 
 from utils.sidebar_search import search_documents
 
+DEBUGGING = st.secrets.get("DEBUGGING", False)
+
 
 def show_schema_in_sidebar():
     """
@@ -11,114 +13,113 @@ def show_schema_in_sidebar():
     plus additional info on Répartition des écoles and question distribution.
     """
 
-    st.sidebar.title("Database Schema and Values")
+    if DEBUGGING:
 
-    # --- TABLES ---
-    with st.sidebar.expander("Table: schools"):
-        st.write("**Columns**:")
-        st.write("- school_id | Type: INTEGER")
-        st.write("- school_name | Type: VARCHAR(100)")
+        st.sidebar.title("Database Schema and Values")  # --- TABLES ---
+        with st.sidebar.expander("Table: schools"):
+            st.write("**Columns**:")
+            st.write("- school_id | Type: INTEGER")
+            st.write("- school_name | Type: VARCHAR(100)")
 
-    with st.sidebar.expander("Table: questionnaires"):
-        st.write("**Columns**:")
-        st.write("- questionnaire_id              | Type: VARCHAR(100)")
-        st.write("- school_id                     | Type: INTEGER")
-        st.write("- type_id                       | Type: INTEGER")
-        st.write("- year                          | Type: INTEGER")
-        st.write("- total_graduates               | Type: INTEGER")
-        st.write("- questionnaire_completed       | Type: INTEGER")
-        st.write("- percent_answered              | Type: DOUBLE PRECISION")
-        st.write("- female_count                  | Type: INTEGER")
-        st.write("- male_count                    | Type: INTEGER")
-        st.write("**Foreign Keys**:")
-        st.write("- questionnaires.type_id -> types.type_id")
-        st.write("- questionnaires.school_id -> schools.school_id")
+        with st.sidebar.expander("Table: questionnaires"):
+            st.write("**Columns**:")
+            st.write("- questionnaire_id              | Type: VARCHAR(100)")
+            st.write("- school_id                     | Type: INTEGER")
+            st.write("- type_id                       | Type: INTEGER")
+            st.write("- year                          | Type: INTEGER")
+            st.write("- total_graduates               | Type: INTEGER")
+            st.write("- questionnaire_completed       | Type: INTEGER")
+            st.write("- percent_answered              | Type: DOUBLE PRECISION")
+            st.write("- female_count                  | Type: INTEGER")
+            st.write("- male_count                    | Type: INTEGER")
+            st.write("**Foreign Keys**:")
+            st.write("- questionnaires.type_id -> types.type_id")
+            st.write("- questionnaires.school_id -> schools.school_id")
 
-    with st.sidebar.expander("Table: types"):
-        st.write("**Columns**:")
-        st.write("- type_id | Type: INTEGER")
-        st.write("- type    | Type: VARCHAR(100)")
+        with st.sidebar.expander("Table: types"):
+            st.write("**Columns**:")
+            st.write("- type_id | Type: INTEGER")
+            st.write("- type    | Type: VARCHAR(100)")
 
-    with st.sidebar.expander("Table: questions"):
-        st.write("**Columns**:")
-        st.write("- question_id   | Type: INTEGER")
-        st.write("- question_text | Type: TEXT")
-        st.write("- type_id       | Type: INTEGER")
-        st.write("**Foreign Key**:")
-        st.write("- questions.type_id -> types.type_id")
+        with st.sidebar.expander("Table: questions"):
+            st.write("**Columns**:")
+            st.write("- question_id   | Type: INTEGER")
+            st.write("- question_text | Type: TEXT")
+            st.write("- type_id       | Type: INTEGER")
+            st.write("**Foreign Key**:")
+            st.write("- questions.type_id -> types.type_id")
 
-    with st.sidebar.expander("Table: responses"):
-        st.write("**Columns**:")
-        st.write("- response_id                  | Type: INTEGER")
-        st.write("- questionnaire_id            | Type: VARCHAR(50)")
-        st.write("- question_id                 | Type: INTEGER")
-        st.write("- gender                      | Type: VARCHAR(1)")
-        st.write("- response_option             | Type: VARCHAR(100)")
-        st.write("- summed_students_responses | Type: INTEGER")
-        st.write("**Foreign Keys**:")
-        st.write("- responses.question_id -> questions.question_id")
-        st.write("- responses.questionnaire_id -> questionnaires.questionnaire_id")
+        with st.sidebar.expander("Table: responses"):
+            st.write("**Columns**:")
+            st.write("- response_id                  | Type: INTEGER")
+            st.write("- questionnaire_id            | Type: VARCHAR(50)")
+            st.write("- question_id                 | Type: INTEGER")
+            st.write("- gender                      | Type: VARCHAR(1)")
+            st.write("- response_option             | Type: VARCHAR(100)")
+            st.write("- summed_students_responses | Type: INTEGER")
+            st.write("**Foreign Keys**:")
+            st.write("- responses.question_id -> questions.question_id")
+            st.write("- responses.questionnaire_id -> questionnaires.questionnaire_id")
 
-    # --- VALUES EXACT MATCH FORMAT ---
-    st.sidebar.header("Values Exact Match Format")
+        # --- VALUES EXACT MATCH FORMAT ---
+        st.sidebar.header("Values Exact Match Format")
 
-    with st.sidebar.expander("Years"):
-        st.write("From 2004 to 2019")
+        with st.sidebar.expander("Years"):
+            st.write("From 2004 to 2019")
 
-    with st.sidebar.expander("school_id : School Names"):
-        st.write(
-            """
-1: Aux quatre vents  
-2: Centre La Fontaine  
-3: Secondaire Népisiguit  
-4: Louis-Mailloux  
-5: Marie-Esther  
-6: Roland-Pépin  
-7: W.-A.-Losier
-        """
-        )
-
-    with st.sidebar.expander("type_id : type"):
-        st.write(
-            """
-1: Questions Générales  
-2: SD-Renseignements Socio-Démographiques  
-3: ED- Éducation PostSecondaire  
-4: MT- Marché du travail  
-5: RE-Attente d'emploi / Recherche d'emploi / Sans emploi
-        """
-        )
-    with st.sidebar.expander("Questions (Total: 52)"):
-        st.write(
-            """
-                - **QG:** 17 | 16-> 32  
-                - **SD:** 8 | 45->52
-                - **ED:** 10 | 1->10
-                - **MT:** 5 | 11->15
-                - **RE:** 12 | 33->44
+        with st.sidebar.expander("school_id : School Names"):
+            st.write(
                 """
-        )
-    with st.sidebar.expander(
-        "Écoles (2004-2019) : Années non-participation | Années participation au questionnaire type 2 "
-    ):
-        st.write(
+    1: Aux quatre vents  
+    2: Centre La Fontaine  
+    3: Secondaire Népisiguit  
+    4: Louis-Mailloux  
+    5: Marie-Esther  
+    6: Roland-Pépin  
+    7: W.-A.-Losier
             """
-            - **QPME (Marie-Esther):** 0 | 8 (2004–2008, 2010–2012)
-            - **QCSCLF (Centre Lafontaine):** 1 (2013) | 8 (2004–2008, 2010–2012)
-            - **QWAL (W. A.-Losier):** 0 | 8 (2004–2008, 2010–2012)
-            - **QPRP (Roland-Pépin):** (2004 - 2013) | 0
-            - **QAQV (Aux quatre vents):** (2004 - 2013) | 0
-            - **QPLM (Louis-Mailloux):** 0 | 8 (2004–2008, 2010–2012)
-            - **QESN (Secondaire Népisiguit):** (2004 - 2013) | 0
-            """
-        )
+            )
 
-    # separator
-    st.sidebar.markdown("---")
+        with st.sidebar.expander("type_id : type"):
+            st.write(
+                """
+    1: Questions Générales  
+    2: SD-Renseignements Socio-Démographiques  
+    3: ED- Éducation PostSecondaire  
+    4: MT- Marché du travail  
+    5: RE-Attente d'emploi / Recherche d'emploi / Sans emploi
+            """
+            )
+        with st.sidebar.expander("Questions (Total: 52)"):
+            st.write(
+                """
+                    - **QG:** 17 | 16-> 32  
+                    - **SD:** 8 | 45->52
+                    - **ED:** 10 | 1->10
+                    - **MT:** 5 | 11->15
+                    - **RE:** 12 | 33->44
+                    """
+            )
+        with st.sidebar.expander(
+            "Écoles (2004-2019) : Années non-participation | Années participation au questionnaire type 2 "
+        ):
+            st.write(
+                """
+                - **QPME (Marie-Esther):** 0 | 8 (2004–2008, 2010–2012)
+                - **QCSCLF (Centre Lafontaine):** 1 (2013) | 8 (2004–2008, 2010–2012)
+                - **QWAL (W. A.-Losier):** 0 | 8 (2004–2008, 2010–2012)
+                - **QPRP (Roland-Pépin):** (2004 - 2013) | 0
+                - **QAQV (Aux quatre vents):** (2004 - 2013) | 0
+                - **QPLM (Louis-Mailloux):** 0 | 8 (2004–2008, 2010–2012)
+                - **QESN (Secondaire Népisiguit):** (2004 - 2013) | 0
+                """
+            )
+        st.sidebar.markdown("---")
+
     search_documents()
     st.sidebar.markdown("---")
 
-    st.sidebar.subheader("All 52 Questions (Exact Match)")
+    st.sidebar.subheader("Questions aux étudiants")
 
     # Q1
     with st.sidebar.expander(

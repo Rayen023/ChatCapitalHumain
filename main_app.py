@@ -133,39 +133,40 @@ def setup_sidebar():
         st.sidebar.markdown("---")
 
         # Example questions section
-        st.write("### Example Questions")
+        # st.write("### Example Questions")
 
-        example_questions = [
-            "Comment les sources de financement des élèves se distribuent selon l’école en 2018 ?",
-            "Quels étaient les différents moyens de transport utilisés par les élèves pour aller à l'école en 2018, ventilés par genre ?",
-            "Quelle est la corrélation entre les résultats scolaires en 10e, 11e et 12e année et les projets des élèves pour septembre, selon leur genre ?",
-            "Comment les résultats scolaires en 10e, 11e et 12e année sont-ils liés aux raisons de ne pas poursuivre des études postsecondaires ?",
-            "Comment l’intention de s’établir dans la Péninsule acadienne varie-t-elle selon le niveau d’éducation et l’occupation actuelle ?",
-        ]
+        # example_questions = [
+        #     "Comment les sources de financement des élèves se distribuent selon l’école en 2018 ?",
+        #     "Quels étaient les différents moyens de transport utilisés par les élèves pour aller à l'école en 2018, ventilés par genre ?",
+        #     "Quelle est la corrélation entre les résultats scolaires en 10e, 11e et 12e année et les projets des élèves pour septembre, selon leur genre ?",
+        #     "Comment les résultats scolaires en 10e, 11e et 12e année sont-ils liés aux raisons de ne pas poursuivre des études postsecondaires ?",
+        #     "Comment l’intention de s’établir dans la Péninsule acadienne varie-t-elle selon le niveau d’éducation et l’occupation actuelle ?",
+        # ]
 
-        for question in example_questions:
+        # for question in example_questions:
+        #     st.button(
+        #         question,
+        #         on_click=ask_example_question,
+        #         args=(question,),
+        #         use_container_width=True,
+        #     )
+        # st.markdown("---")
+
+        if DEBUGGING:
             st.button(
-                question,
-                on_click=ask_example_question,
-                args=(question,),
+                "Show Session State",
+                on_click=toggle_debug_panel,
+                key="debug_button",
                 use_container_width=True,
             )
-        st.markdown("---")
+            st.markdown("---")
 
-        st.button(
-            "Show Session State",
-            on_click=toggle_debug_panel,
-            key="debug_button",
-            use_container_width=True,
-        )
-        st.markdown("---")
-
-        # Debug panel
-        if st.session_state.get("show_debug_panel", False):
-            st.write("### Session State Contents")
-            for key in sorted(st.session_state.keys()):
-                with st.expander(f"Key: {key}"):
-                    st.write(st.session_state[key])
+            # Debug panel
+            if st.session_state.get("show_debug_panel", False):
+                st.write("### Session State Contents")
+                for key in sorted(st.session_state.keys()):
+                    with st.expander(f"Key: {key}"):
+                        st.write(st.session_state[key])
 
         show_schema_in_sidebar()
 
@@ -184,9 +185,30 @@ def process_graph_event(event, response_placeholder):
         if not query_proposal.is_accepted_by_human_analyst:
 
             response = format_response(query_proposal)
-
             st.session_state["messages"].append(AIMessage(content=response))
             add_visualization_buttons_to_message(response_placeholder, response)
+
+            # Display feedback buttons
+            col1, col2 = st.columns(2)
+            with col1:
+                st.button(
+                    "Oui/Correct",
+                    on_click=add_button_response,
+                    args=("Oui, c'est correct.",),
+                    key="yes_button",
+                    use_container_width=True,
+                )
+            with col2:
+                st.button(
+                    "Rechercher des questions similaires",
+                    on_click=add_button_response,
+                    args=(
+                        "Rechercher des questions similaires qui pourraient également répondre à ma demande.",
+                    ),
+                    key="search_similar",
+                    use_container_width=True,
+                )
+
             st.session_state["in_human_feedback_state"] = True
         else:
             st.session_state["in_human_feedback_state"] = False
@@ -212,6 +234,13 @@ def process_graph_event(event, response_placeholder):
                 "message_history": None,
             },
         )
+
+
+def add_button_response(button_str):
+    """Add the button response as a user message"""
+    st.session_state["messages"].append(HumanMessage(content=button_str))
+    st.chat_message("user", avatar=USER_AVATAR_PATH).write(button_str)
+    # st.rerun()  # Rerun to process the new message
 
 
 # Initialize app
@@ -273,14 +302,16 @@ if st.session_state["messages"] and isinstance(
         }
         if not DEBUGGING:
             try:
-                for event in graph.stream(
-                    input_data, config=config, stream_mode="updates"
-                ):
-                    process_graph_event(event, response_placeholder)
+                with st.spinner("Réflexion en cours...", show_time=True):
+                    for event in graph.stream(
+                        input_data,
+                        config=config.pop("configurable"),
+                        stream_mode="updates",
+                    ):
+                        process_graph_event(event, response_placeholder)
             except Exception as e:
                 # st.session_state["selected_model"] = "anthropic/claude-3.7-sonnet" # This return errorss
                 # update_model()
-
                 st.error(
                     "Une erreur temporaire s'est produite. Vous pouvez résoudre ce problème en sélectionnant un autre modèle dans le coin supérieur droit de la page et réessayer."
                 )
@@ -297,8 +328,11 @@ if st.session_state["messages"] and isinstance(
         )
         if not DEBUGGING:
             try:
-                for event in graph.stream(None, config=config, stream_mode="updates"):
-                    process_graph_event(event, response_placeholder)
+                with st.spinner("Traitement en cours...", show_time=True):
+                    for event in graph.stream(
+                        None, config=config.pop("configurable"), stream_mode="updates"
+                    ):
+                        process_graph_event(event, response_placeholder)
             except Exception as e:
                 st.error(
                     "Une erreur temporaire s'est produite. Vous pouvez résoudre ce problème en sélectionnant un autre modèle dans le coin supérieur droit de la page et réessayer."

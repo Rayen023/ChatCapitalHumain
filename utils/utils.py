@@ -162,41 +162,165 @@ def add_visualization_buttons_to_message(chat_message_container, message_content
             )
 
 
+import json
+import re
+from typing import Any, Dict, List, Optional, Union
+
+
 def format_response(query_proposal):
+    """
+    Format response from query_proposal object with improved JSON parsing.
+
+    Args:
+        query_proposal: Object containing questions_responses, user_request_after_feedback, and explanation
+
+    Returns:
+        str: Formatted response
+    """
     questions_responses = query_proposal.questions_responses
     user_request_after_feedback = query_proposal.user_request_after_feedback
     explanation = query_proposal.explanation
 
+    # Parse the questions_responses into a list of dictionaries
+    parsed_questions = parse_questions(questions_responses)
+
+    # Format the questions for display
+    if parsed_questions:
+        formatted_questions = format_questions_list(parsed_questions)
+        questions_str = "\n".join(formatted_questions)
+    else:
+        questions_str = (
+            questions_responses  # Fallback to original string if parsing fails
+        )
+
+    # Check if any question has empty response_options
+    include_explanation = not parsed_questions or any(
+        not item.get("response_options", []) for item in parsed_questions
+    )
+
+    # Build the response with conditional parts
+    response_parts = []
+    if include_explanation:
+        response_parts.append(explanation)
+
+    response_parts.append(f"User_request : {user_request_after_feedback}")
+    response_parts.append(f"Questions : \n{questions_str}")
+    response_parts.append(
+        "\n\n 💡 NOTE : Veuillez valider si les étapes suggérées sont correctes en répondant par **OUI** ou **CORRECT**, sinon, veuillez indiquer les **modifications/suggestions** pour les étapes alternatives."
+    )
+
+    return "\n\n".join(response_parts)
+
+
+def parse_questions(questions_str: str) -> Optional[List[Dict[str, Any]]]:
+    """
+    Parse questions string into a list of dictionaries with robust handling of apostrophes.
+
+    Args:
+        questions_str: String representation of questions list
+
+    Returns:
+        List of question dictionaries or None if parsing fails
+    """
+    # Try to determine if the input is already a list (string representation of an existing object)
+    if not isinstance(questions_str, str):
+        return None
+
+    # Method 1: Try ast.literal_eval which is safer than eval
     try:
-        # Try to evaluate the string as a Python expression (list of dicts)
-        parsed_questions = eval(questions_responses)
+        import ast
 
-        # Verify it's actually a list of dictionaries
-        if isinstance(parsed_questions, list) and all(
-            isinstance(item, dict) for item in parsed_questions
-        ):
+        parsed = ast.literal_eval(questions_str)
+        if isinstance(parsed, list) and all(isinstance(item, dict) for item in parsed):
+            return parsed
+    except (SyntaxError, ValueError):
+        pass
 
-            # Format the list of dictionaries nicely with each question in a readable format
-            formatted_questions = []
-            for i, question in enumerate(parsed_questions, 1):
-                q_str = f"Question {i}:\n"
-                for key, value in question.items():
-                    q_str += f"  - {key}: {value}\n"
-                formatted_questions.append(q_str)
+    # Method 2: Try JSON parsing after replacing problematic characters
+    try:
+        # Create a temporary string for JSON processing
+        json_str = questions_str
 
-            # Join all formatted questions
-            questions_str = "\n".join(formatted_questions)
-        else:
-            # If it's not a list of dictionaries, use the original string
-            questions_str = questions_responses
+        # Handle special case of French apostrophes (l'intention)
+        # First, temporarily replace valid apostrophes with a marker
+        json_str = re.sub(r"([a-zA-Z])'([a-zA-Z])", r"\1§\2", json_str)
 
+        # Now replace all remaining single quotes with double quotes
+        json_str = json_str.replace("'", '"')
+
+        # Restore the apostrophes we marked
+        json_str = json_str.replace("§", "'")
+
+        parsed = json.loads(json_str)
+        if isinstance(parsed, list) and all(isinstance(item, dict) for item in parsed):
+            return parsed
+    except json.JSONDecodeError:
+        pass
+
+    # Method 3: Regular expressions as a last resort
+    try:
+        questions_list = []
+        # Extract each dictionary pattern
+        for match in re.finditer(r"\{([^{}]*(?:\{[^{}]*\}[^{}]*)*)\}", questions_str):
+            dict_str = match.group(0)
+            # More robust key-value extraction
+            item = {}
+            for key_match in re.finditer(
+                r"'([^']+)'\s*:\s*((?:\[[^\]]*\])|(?:'[^']*')|(?:\d+))", dict_str
+            ):
+                key = key_match.group(1)
+                value_str = key_match.group(2)
+
+                # Process the value based on its type
+                if value_str.startswith("[") and value_str.endswith("]"):
+                    # List value
+                    try:
+                        value = json.loads(value_str.replace("'", '"'))
+                    except json.JSONDecodeError:
+                        value = []
+                elif value_str.startswith("'") and value_str.endswith("'"):
+                    # String value
+                    value = value_str[1:-1]
+                else:
+                    # Number value
+                    try:
+                        value = int(value_str)
+                    except ValueError:
+                        try:
+                            value = float(value_str)
+                        except ValueError:
+                            value = value_str
+
+                item[key] = value
+
+            if item:
+                questions_list.append(item)
+
+        if questions_list:
+            return questions_list
     except Exception:
-        # If parsing fails, use the original string without modification
-        questions_str = questions_responses
+        pass
 
-    # Format the final response
-    feedback_note = "\n\n 💡 NOTE : Veuillez valider si les étapes suggérées sont correctes en répondant par **OUI** ou **CORRECT**, sinon, veuillez indiquer les **modifications/suggestions** pour les étapes alternatives."
+    # If all parsing methods fail
+    return None
 
-    response = f"{explanation} \n\n User_request : {user_request_after_feedback} \n\n Questions : \n{questions_str}\n\n {feedback_note}"
 
-    return response
+def format_questions_list(questions_list: List[Dict[str, Any]]) -> List[str]:
+    """
+    Format a list of question dictionaries for display.
+
+    Args:
+        questions_list: List of dictionaries containing question data
+
+    Returns:
+        List of formatted question strings
+    """
+    formatted_questions = []
+    for i, question in enumerate(questions_list, 1):
+        lines = [f"Question {i}:"]
+        for key, value in question.items():
+            # Skip any field containing "id" if needed
+            if "id" not in key.lower():
+                lines.append(f"  - {key}: {value}")
+        formatted_questions.append("\n".join(lines))
+    return formatted_questions

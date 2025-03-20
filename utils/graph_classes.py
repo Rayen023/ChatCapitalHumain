@@ -78,7 +78,7 @@ class QueryProposal(BaseModel):
         description="Liste de dictionnaires où chaque dictionnaire contient les informations d'une question pertinente et ses réponses possibles. Chaque dictionnaire doit inclure: 'question_id' (identifiant de la question), 'type_id' (identifiant du type de question), 'question_text' (texte exact de la question), et 'response_options' (options de réponses associées à cette question qui répondent à la requête de l'utilisateur)",
     )
     explanation: str = Field(
-        description="Courte description sur quelles fonctions SQL peuvent être utilisées",
+        description="Courte description en une phrase en français sur quelles fonctions SQL peuvent être utilisées.",
     )
     is_accepted_by_human_analyst: bool = Field(
         description="Indique si la proposition a été acceptée par l'analyste humain. Doit être défini à False par défaut",
@@ -254,7 +254,8 @@ IMPORTANT : Make sure to follow requested structure and NEVER use special charac
         *   Les options de reponses a cette question *exacts* (nommés tels qu'ils apparaissent dans le schéma) nécessaires pour répondre à la demande.
         Note : S'il s'agit de questions dans le type, liste tout les questions, ou liste les ecoles, questionnaire etc, donc une user_request qui n'a pas besoin d'une question et reponses specifiques, laisse vide.
 
-    3.  **Explication de la proposition :** Fournir une explication *courte et concise* des fonctions SQL à utiliser. Note :     *   **Informations importantes sur les colonnes:** Column: summed_students_responses | Type: INTEGER | Description: Sum of students responses for a question thus the Function SUM not COUNT should be mostly used with this column, make sure to always include this explanation in your responses
+    3.  **Explication de la proposition :** Fournir une definition *courte et concise* en une seule phrase des fonctions SQL à utiliser sur quelle colonne de quelle table seulement. 
+    Note :     *   **Informations importantes sur les colonnes:** Column: summed_students_responses | Type: INTEGER | Description: Sum of students responses for a question thus the Function SUM not COUNT should be mostly used with this column, make sure to always include this explanation in your responses
 
     4.  **Détermination du statut d'approbation :** Déterminer la valeur du champ `is_accepted_by_human_analyst` :
         *   Si `human_analyst_feedback` est vide (première proposition) : `is_accepted_by_human_analyst = False`.
@@ -299,8 +300,8 @@ def human_feedback(state: DatabaseQueryState):
 
 def run_query(state: DatabaseQueryState):
     """Run the query"""
-    query_proposal = state["query_proposal"]
-    reformulated_request = state["query_proposal"].user_request_after_feedback
+    query_proposal = state["query_proposal"].model_copy()
+    reformulated_request = query_proposal.user_request_after_feedback
     questions_responses = query_proposal.questions_responses
     explanation = query_proposal.explanation
 

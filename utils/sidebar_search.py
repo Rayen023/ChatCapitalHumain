@@ -23,10 +23,46 @@ def search_questions_callback():
         st.session_state.search_questions_results = results
 
 
+def ask_example_question(question: str):
+    """Set an example question to be processed."""
+    st.session_state["_example_question"] = question
+
+
 def search_questions():
     with st.sidebar:
+        # Add example questions the user can select from
+        example_questions = [
+            "Démographie diplômés par école",
+            "Participation, satisfaction étudiante globale",
+            "Orientation, choix d'études futures",
+            "Financement des études",
+            "Mobilité, perspectives d'emploi",
+            "Expérience, situation d'emploi",
+            "Évaluation cours et programmes",
+            "Retour aux études, formation",
+            "Moyens de transport étudiants",
+            "Importance éducation, niveau études",
+            "Statut, conditions de vie",
+            "Marché, professions et intérêt",
+            "Niveau, choix d'études",
+            "Obstacles études rencontrés",
+            "Programmes, qualifications obtenues",
+        ]
+
+        selected_question = st.selectbox(
+            "Choose an example question or type your own below:",
+            example_questions,
+            key="question_selector",
+        )
+
+        # If user selected a preset question (not empty), update session state
+        if selected_question and "search_questions" in st.session_state:
+            st.session_state.search_questions = selected_question
+            search_questions_callback()
+
+        # Regular text input that can be typed into directly
         st.text_input(
-            "Rechercher des questions répondables",  # "Search answerable questions"
+            "Rechercher des questions répondables",
             key="search_questions",
             on_change=search_questions_callback,
         )
@@ -38,8 +74,13 @@ def search_questions():
                 st.info("No results found.")
             else:
                 for i, doc in enumerate(results):
-                    st.write(doc.page_content)
                     st.progress(doc.metadata.get("relevance_score", 0))
+                    st.button(
+                        doc.page_content,
+                        on_click=ask_example_question,
+                        args=(doc.page_content,),
+                        use_container_width=True,
+                    )
 
 
 @st.fragment
