@@ -49,13 +49,13 @@ async def save_chat_logs_async(email, messages, thread_id):
     print("Save result:", result.raw_result)
 
 
-def save_chat_logs():
+def save_chat_logs(messages_key="messages"):
     # Capture the required state in the main thread
     email = st.experimental_user.get("email")
     if not email:
         return  # Ensure user is logged in
 
-    messages = st.session_state.get("messages", [])
+    messages = st.session_state.get(messages_key, [])
     thread_id = st.session_state.get("thread_id")
 
     # Schedule the coroutine on the background event loop

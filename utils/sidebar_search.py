@@ -16,8 +16,8 @@ def search_questions_callback():
             allow_dangerous_deserialization=True,
         )
         compression_retriever = ContextualCompressionRetriever(
-            base_compressor=VoyageAIRerank(model="rerank-2", top_k=5),
-            base_retriever=new_vector_store.as_retriever(search_kwargs={"k": 8}),
+            base_compressor=VoyageAIRerank(model="rerank-2", top_k=10),
+            base_retriever=new_vector_store.as_retriever(search_kwargs={"k": 20}),
         )
         results = compression_retriever.invoke(text_input)
         st.session_state.search_questions_results = results
@@ -32,6 +32,7 @@ def search_questions():
     with st.sidebar:
         # Add example questions the user can select from
         example_questions = [
+            "",
             "Démographie diplômés par école",
             "Participation, satisfaction étudiante globale",
             "Orientation, choix d'études futures",
@@ -50,7 +51,7 @@ def search_questions():
         ]
 
         selected_question = st.selectbox(
-            "Choose an example question or type your own below:",
+            "Choisir sujet:",
             example_questions,
             key="question_selector",
         )

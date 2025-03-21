@@ -17,21 +17,17 @@ from langgraph.prebuilt import ToolNode, create_react_agent, tools_condition
 from sqlalchemy import create_engine
 from typing_extensions import TypedDict
 
-from utils.sidebar_search import search_questions
+from utils.database import save_chat_logs
 from utils.st_callable_util import get_streamlit_cb
 
-APP_TITLE = "Capital Humain"
 APP_ICON_PATH = "images/deer.png"
 USER_AVATAR_PATH = "images/avataruser.png"
-SCHEMA_TEMPLATE_PATH = os.path.join("utils", "schema_template.txt")
 WELCOME_MESSAGE = "Comment puis-je vous aider ? | How can I help you ?"
+SCHEMA_TEMPLATE_PATH = os.path.join("utils", "schema_template.txt")
 with open(SCHEMA_TEMPLATE_PATH, "r", encoding="utf-8") as file:
     schema_template = file.read()
+DEBUGGING = st.secrets.get("DEBUGGING", False)
 
-st.set_page_config(
-    page_title=APP_TITLE,
-    page_icon=APP_ICON_PATH,
-)
 
 load_dotenv()
 
@@ -62,12 +58,13 @@ if "single_messages" not in st.session_state:
 if "thread_id" not in st.session_state:
     st.session_state["thread_id"] = str(uuid.uuid4())
 
-llm = ChatOpenAI(
-    openai_api_key=st.secrets["OPENROUTER_API_KEY"],
-    openai_api_base=st.secrets["OPENROUTER_BASE_URL"],
-    **MODEL_CONFIG,
-)
+# llm = ChatOpenAI(
+#     openai_api_key=st.secrets["OPENROUTER_API_KEY"],
+#     openai_api_base=st.secrets["OPENROUTER_BASE_URL"],
+#     **MODEL_CONFIG,
+# )
 # llm = ChatAnthropic(model="claude-3-7-sonnet-20250219", **MODEL_CONFIG)
+llm = st.session_state.llm
 
 
 def chatbot(state: State) -> dict:
@@ -79,6 +76,7 @@ def chatbot(state: State) -> dict:
     **Contexte et Limitations:**
 
     *   **Données Agrégées:** La base de données contient des données *agrégées* par école, année, questionnaire et sexe.  Vous n'avez *PAS* accès aux réponses individuelles des élèves.
+    - summed_students_responses represente le nombre d'etudiants ayant choisi cette option.
     *   **Schéma de la Base de Données:** {schema_template}
 
     **Instructions et Comportement Attendu :**
@@ -165,23 +163,6 @@ def invoke_our_graph(user_input, callables, thread_id):
     )
 
 
-def reset_chat_history():
-    st.session_state["single_messages"] = [AIMessage(content=WELCOME_MESSAGE)]
-    st.session_state["thread_id"] = str(uuid.uuid4())
-
-
-with st.sidebar:
-    st.button(
-        "Nouveau chat",
-        on_click=reset_chat_history,
-        icon=":material/edit_square:",
-        use_container_width=True,
-    )
-    st.sidebar.markdown("---")
-    search_questions()
-    st.sidebar.markdown("---")
-
-
 for message in st.session_state["single_messages"]:
     if isinstance(message, AIMessage):
         st.chat_message("assistant", avatar=APP_ICON_PATH).write(message.content)
@@ -200,17 +181,17 @@ if st.session_state["single_messages"] and isinstance(
 
     with st.chat_message("assistant", avatar=APP_ICON_PATH):
         # Create a container for tool calls that will persist
-        tool_calls_container = st.container(border=True)  # st empty overwrites
-        response_placeholder = st.empty()
-        # Get the callback with the tool calls container
-        streamlit_callback = get_streamlit_cb(tool_calls_container)
-        graph_response = invoke_our_graph(
-            user_message, [streamlit_callback], st.session_state["thread_id"]
-        )
-        final_response = graph_response["messages"][-1].content
-        st.session_state["single_messages"].append(AIMessage(content=final_response))
-        response_placeholder.write(final_response)
-
-with st.sidebar:
-    if "thread_id" in st.session_state:
-        st.write(st.session_state["thread_id"])
+        with st.spinner("Thinking...", show_time=True):
+            response_placeholder = st.empty()
+            # Get the callback with the tool calls container
+            streamlit_callback = get_streamlit_cb(response_placeholder)
+            graph_response = invoke_our_graph(
+                user_message, [], st.session_state["thread_id"]
+            )
+            final_response = graph_response["messages"][-1].content
+            st.session_state["single_messages"].append(
+                AIMessage(content=final_response)
+            )
+            response_placeholder.write(final_response)
+    if not DEBUGGING and st.experimental_user.get("email"):
+        save_chat_logs("single_messages")

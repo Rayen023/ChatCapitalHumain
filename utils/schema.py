@@ -1,7 +1,5 @@
 import streamlit as st
 
-from utils.sidebar_search import search_documents
-
 DEBUGGING = st.secrets.get("DEBUGGING", False)
 
 
@@ -114,10 +112,9 @@ def show_schema_in_sidebar():
                 - **QESN (Secondaire Népisiguit):** (2004 - 2013) | 0
                 """
             )
-        st.sidebar.markdown("---")
 
-    search_documents()
-    st.sidebar.markdown("---")
+
+def show_questions_in_sidebar():
 
     st.sidebar.subheader("Questions aux étudiants")
 

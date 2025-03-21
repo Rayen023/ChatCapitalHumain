@@ -7,7 +7,6 @@ import streamlit as st
 APP_TITLE = "Capital Humain"
 APP_ICON_PATH = "images/deer.png"
 
-st.set_page_config(page_title=APP_TITLE, page_icon=APP_ICON_PATH)
 
 from dotenv import load_dotenv
 from langchain.callbacks.tracers import LangChainTracer
@@ -17,9 +16,6 @@ from langsmith import Client
 # Import utilities
 from utils.database import save_chat_logs
 from utils.graph_classes import display_model_selector, graph
-from utils.schema import show_schema_in_sidebar
-from utils.sidebar import enable_login
-from utils.sidebar_search import search_questions
 from utils.st_callable_util import get_streamlit_cb
 from utils.utils import add_visualization_buttons_to_message, format_response
 
@@ -46,28 +42,6 @@ def init_session_state():
             st.session_state.schema_template = file.read()
 
 
-def reset_chat_history():
-    """Reset chat history to initial state and create a new thread_id."""
-    st.session_state["messages"] = [AIMessage(content=WELCOME_MESSAGE)]
-    st.session_state["thread_id"] = str(uuid.uuid4())
-    if "in_human_feedback_state" in st.session_state:
-        del st.session_state["in_human_feedback_state"]
-    if "schema_template" in st.session_state:
-        del st.session_state["schema_template"]
-
-
-def toggle_debug_panel():
-    """Toggle the visibility of the debug panel."""
-    st.session_state["show_debug_panel"] = not st.session_state.get(
-        "show_debug_panel", False
-    )
-
-
-def ask_example_question(question: str):
-    """Set an example question to be processed."""
-    st.session_state["_example_question"] = question
-
-
 def display_chat_history():
     """Display the chat history."""
 
@@ -83,92 +57,6 @@ def display_chat_history():
         st.warning(
             "⚠️ Attention: La conversation devient trop longue. Le contexte des modèles LLM est limité et plus la conversation s'allonge et aborde des sujets divers, plus la qualité des réponses risque de se dégrader. Veuillez envisager de démarrer une nouvelle conversation. Vous pourrez recharger celle-ci à tout moment depuis la barre latérale une fois connecté."
         )
-
-
-def rerun_last_question():
-    st.rerun()
-
-    # config = {
-    #     "configurable": {"thread_id": st.session_state["thread_id"]},
-    # }
-    # st.warning(f" state : {graph.get_state(config)}")
-    # print(graph.get_state(config).tasks)
-    # print(graph.get_state(config).values)
-    # if "final_answer" in graph.get_state(config).values:
-    #     graph.update_state(
-    #         config,
-    #         {
-    #             "query_results": None,
-    #             "final_answer": None,
-    #         },
-    #         as_node="run_query",
-    #     )
-    # st.session_state["messages"].pop(-1)
-
-
-def setup_sidebar():
-    """Configure and display the sidebar."""
-    with st.sidebar:
-        st.markdown("---")
-
-        st.button(
-            "Nouveau chat",
-            on_click=reset_chat_history,
-            icon=":material/edit_square:",
-            use_container_width=True,
-        )
-
-        # st.button(
-        #     ":material/autorenew:",
-        #     on_click=rerun_last_question,
-        #     key="rerun_last_question",
-        # )
-
-        st.markdown("---")
-        if not DEBUGGING:
-            enable_login()
-            st.markdown("---")
-
-        search_questions()
-        st.sidebar.markdown("---")
-
-        # Example questions section
-        # st.write("### Example Questions")
-
-        # example_questions = [
-        #     "Comment les sources de financement des élèves se distribuent selon l’école en 2018 ?",
-        #     "Quels étaient les différents moyens de transport utilisés par les élèves pour aller à l'école en 2018, ventilés par genre ?",
-        #     "Quelle est la corrélation entre les résultats scolaires en 10e, 11e et 12e année et les projets des élèves pour septembre, selon leur genre ?",
-        #     "Comment les résultats scolaires en 10e, 11e et 12e année sont-ils liés aux raisons de ne pas poursuivre des études postsecondaires ?",
-        #     "Comment l’intention de s’établir dans la Péninsule acadienne varie-t-elle selon le niveau d’éducation et l’occupation actuelle ?",
-        # ]
-
-        # for question in example_questions:
-        #     st.button(
-        #         question,
-        #         on_click=ask_example_question,
-        #         args=(question,),
-        #         use_container_width=True,
-        #     )
-        # st.markdown("---")
-
-        if DEBUGGING:
-            st.button(
-                "Show Session State",
-                on_click=toggle_debug_panel,
-                key="debug_button",
-                use_container_width=True,
-            )
-            st.markdown("---")
-
-            # Debug panel
-            if st.session_state.get("show_debug_panel", False):
-                st.write("### Session State Contents")
-                for key in sorted(st.session_state.keys()):
-                    with st.expander(f"Key: {key}"):
-                        st.write(st.session_state[key])
-
-        show_schema_in_sidebar()
 
 
 def process_graph_event(event, response_placeholder):
@@ -239,7 +127,7 @@ def process_graph_event(event, response_placeholder):
 def add_button_response(button_str):
     """Add the button response as a user message"""
     st.session_state["messages"].append(HumanMessage(content=button_str))
-    st.chat_message("user", avatar=USER_AVATAR_PATH).write(button_str)
+    # st.chat_message("user", avatar=USER_AVATAR_PATH).write(button_str)
     # st.rerun()  # Rerun to process the new message
 
 
@@ -253,17 +141,12 @@ st.logo(
     size="large",
 )
 
-# Initialize model selection and LangSmith
-display_model_selector()
-
 langsmith_client = Client(
     api_key=os.getenv("LANGSMITH_API_KEY"),
     api_url=os.getenv("LANGSMITH_ENDPOINT"),
 )
 langchain_tracer = LangChainTracer(client=langsmith_client)
 
-# Display UI components
-setup_sidebar()
 display_chat_history()
 
 # Handle chat input
@@ -271,13 +154,6 @@ prompt = st.chat_input("Message ChatCapitalHumain...")
 if prompt:
     st.session_state["messages"].append(HumanMessage(content=prompt))
     st.chat_message("user", avatar=USER_AVATAR_PATH).write(prompt)
-
-# Handle example questions
-if "_example_question" in st.session_state:
-    example_q = st.session_state["_example_question"]
-    st.session_state["messages"].append(HumanMessage(content=example_q))
-    st.chat_message("user", avatar=USER_AVATAR_PATH).write(example_q)
-    del st.session_state["_example_question"]
 
 # Process latest message if it's from the user
 if st.session_state["messages"] and isinstance(
@@ -341,4 +217,4 @@ if st.session_state["messages"] and isinstance(
             for event in graph.stream(None, config=config, stream_mode="updates"):
                 process_graph_event(event, response_placeholder)
     if not DEBUGGING and st.experimental_user.get("email"):
-        save_chat_logs()
+        save_chat_logs("messages")

@@ -24,25 +24,27 @@ questions_file_path = os.path.join(
     os.path.dirname(__file__), "answerable_questions.txt"
 )
 
-data = []
-with open(questions_file_path, "r", encoding="utf-8") as file:
-    current_question = ""
-    for line in file:
-        line = line.strip()
-        if line:  # Non-empty line
-            if not current_question:
-                current_question = line
-            else:
-                # If we're still processing the same question (for multi-line questions)
-                current_question += " " + line
-        else:  # Empty line indicates end of a question
-            if current_question:
-                data.append(current_question)
-                current_question = ""
+# data = []
+# with open(questions_file_path, "r", encoding="utf-8") as file:
+#     current_question = ""
+#     for line in file:
+#         line = line.strip()
+#         if line:  # Non-empty line
+#             if not current_question:
+#                 current_question = line
+#             else:
+#                 # If we're still processing the same question (for multi-line questions)
+#                 current_question += " " + line
+#         else:  # Empty line indicates end of a question
+#             if current_question:
+#                 data.append(current_question)
+#                 current_question = ""
 
-    # Don't forget the last question if file doesn't end with an empty line
-    if current_question:
-        data.append(current_question)
+#     # Don't forget the last question if file doesn't end with an empty line
+#     if current_question:
+#         data.append(current_question)
+
+from answerable_questions import questions as data
 
 documents = []
 for question in data:

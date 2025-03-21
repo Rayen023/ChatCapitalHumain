@@ -86,7 +86,7 @@ def load_conversation(thread_id):
         return None
 
 
-def enable_login():
+def enable_login(messages_key="messages"):
     """Configure sidebar elements including new chat and conversation loading."""
     with st.sidebar:
         if st.experimental_user.get("is_logged_in", True):
@@ -115,7 +115,7 @@ def enable_login():
                     selected_thread_id = conv_options[selected_conv_display]
                     conv_data = load_conversation(selected_thread_id)
                     if conv_data and "messages" in conv_data:
-                        st.session_state["messages"] = [
+                        st.session_state[messages_key] = [
                             dict_to_message(m) for m in conv_data["messages"]
                         ]
                         st.session_state["thread_id"] = selected_thread_id
