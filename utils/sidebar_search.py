@@ -3,40 +3,38 @@ from langchain.retrievers.contextual_compression import ContextualCompressionRet
 from langchain_community.vectorstores import FAISS
 from langchain_voyageai import VoyageAIEmbeddings, VoyageAIRerank
 
+@st.fragment
+@st.cache_data(show_spinner = False)
+def query_vector_store(text_input):
+    """Load the vector store for question answering."""
+    embeddings = VoyageAIEmbeddings(model="voyage-3-large")
+    vector_store = FAISS.load_local(
+        "answerable-questions-index",
+        embeddings,
+        allow_dangerous_deserialization=True,
+    )
+    compression_retriever = ContextualCompressionRetriever(
+        base_compressor=VoyageAIRerank(model="rerank-2", top_k=10),
+        base_retriever=vector_store.as_retriever(search_kwargs={"k": 20}),
+    )
+    results = compression_retriever.invoke(text_input)
 
+    return results
+
+@st.fragment
 def search_questions_callback():
     """Callback function for search questions text input."""
     text_input = st.session_state.search_questions
     if text_input:
-        embeddings = VoyageAIEmbeddings(model="voyage-3-large")
-        new_vector_store = FAISS.load_local(
-            "answerable-questions-index",
-            embeddings,
-            allow_dangerous_deserialization=True,
-        )
-        compression_retriever = ContextualCompressionRetriever(
-            base_compressor=VoyageAIRerank(model="rerank-2", top_k=10),
-            base_retriever=new_vector_store.as_retriever(search_kwargs={"k": 20}),
-        )
-        results = compression_retriever.invoke(text_input)
+        results = query_vector_store(text_input)
         st.session_state.search_questions_results = results
 
-
+@st.fragment
 def select_subject_callback():
     """Callback function for subject dropdown selection."""
     selected_subject = st.session_state.question_selector
     if selected_subject:
-        embeddings = VoyageAIEmbeddings(model="voyage-3-large")
-        new_vector_store = FAISS.load_local(
-            "answerable-questions-index",
-            embeddings,
-            allow_dangerous_deserialization=True,
-        )
-        compression_retriever = ContextualCompressionRetriever(
-            base_compressor=VoyageAIRerank(model="rerank-2", top_k=10),
-            base_retriever=new_vector_store.as_retriever(search_kwargs={"k": 20}),
-        )
-        results = compression_retriever.invoke(selected_subject)
+        results = query_vector_store(selected_subject)
         st.session_state.subject_selection_results = results
 
 
@@ -44,7 +42,7 @@ def ask_example_question(question: str):
     """Set an example question to be processed."""
     st.session_state["_example_question"] = question
 
-
+#@st.fragment
 def search_questions():
     with st.sidebar:
         # Add example questions the user can select from
@@ -115,7 +113,7 @@ def search_questions():
                     )
 
 
-@st.fragment
+#@st.fragment
 def search_documents_callback():
     """Callback function for document search text inputs."""
     text_input = st.session_state.search_query
@@ -169,7 +167,7 @@ def search_documents_callback():
         # Store results in session state
         st.session_state.search_documents_results = results
 
-
+#@st.fragment
 def search_documents():
     with st.sidebar:
         st.header("Search DB Questions")
