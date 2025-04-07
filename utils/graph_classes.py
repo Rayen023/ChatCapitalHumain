@@ -13,63 +13,51 @@ from pydantic import BaseModel, Field
 from sqlalchemy import create_engine
 from typing_extensions import TypedDict
 
-from utils.utils import get_llm
+from langchain_anthropic import ChatAnthropic
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_openai import ChatOpenAI
 
+# Predefined LLM instances for different nodes
+# Default LLM (o3-mini)
+default_llm = ChatOpenAI(
+    model_name="openai/o3-mini",
+    openai_api_key=st.secrets["OPENROUTER_API_KEY"],
+    openai_api_base=st.secrets["OPENROUTER_BASE_URL"],
+    temperature=0,
+    max_tokens=4096,
+    streaming=True
+)
 
-def update_model():
-    # Update the model config with the selected model
-    st.session_state["MODEL_CONFIG"]["model_name"] = st.session_state["selected_model"]
-    # Reinitialize the LLM with the new configuration
-    st.session_state["llm"] = get_llm(st.session_state["MODEL_CONFIG"])
+# Flash LLM for specific nodes
+flash_llm = ChatGoogleGenerativeAI(
+    model="gemini-2.0-flash-001",
+    temperature=0,
+    max_tokens=8096,
+    streaming=True
+)
+# anthropic_llm = ChatAnthropic(
+#     model="claude-3-7-sonnet-latest",
+#     temperature=0,
+#     max_tokens=8096,
+#     timeout=None,
+#     max_retries=2,
+#     streaming=True
+#     # other params...
+# )
 
+# LLM for analyzing requests
+analysis_llm = default_llm
 
-def display_model_selector():
-    with st.sidebar:
-        # Model selection dropdown
-        DEFAULT_MODEL_CONFIG = {
-            "model_name": "anthropic/claude-3.7-sonnet",
-            "temperature": 0,
-            "max_tokens": 8096,
-            "timeout": None,
-            "max_retries": 2,
-            "streaming": True,
-        }
-        if "MODEL_CONFIG" not in st.session_state:
-            st.session_state["MODEL_CONFIG"] = DEFAULT_MODEL_CONFIG.copy()
-        if "llm" not in st.session_state:
-            st.session_state["llm"] = get_llm(st.session_state["MODEL_CONFIG"])
+# LLM for schema checking and query formulation
+schema_llm = flash_llm
 
-        model_options = [
-            "google/gemini-2.0-flash-001",
-            "anthropic/claude-3.5-sonnet",
-            "anthropic/claude-3.7-sonnet",
-            # "openai/o3-mini",
-            # "openai/o3-mini-high",
-            "anthropic/claude-3.7-sonnet-20250219",
-        ]
+# LLM for running queries
+query_llm = default_llm
 
-        # Get the index of the currently selected model
-        current_model = st.session_state["MODEL_CONFIG"]["model_name"]
-        try:
-            default_index = model_options.index(current_model)
-        except ValueError:
-            default_index = (
-                2  # Default to claude-3.7-sonnet if current model not in list
-            )
-
-        # Create the selectbox without using key="selected_model"
-        selected_model = st.selectbox(
-            "Select Model",
-            options=model_options,
-            index=default_index,
-            key="selected_model",
-            on_change=update_model,
-        )
-
+# LLM for finalizing results
+final_llm = flash_llm
 
 # Define our structured data models
-
-
 class QueryProposal(BaseModel):
     user_request_after_feedback: str = Field(
         description="La requête de l'utilisateur après feedback du analyste humain",
@@ -189,7 +177,7 @@ Procédez ainsi :
     ]
 
     # Create structured LLM call
-    structured_llm = st.session_state["llm"].with_structured_output(AnalysisResult)
+    structured_llm = analysis_llm.with_structured_output(AnalysisResult)
     messages = [
         ("system", query_analysis_instructions + "Messages History: "),
         *messages_history,  # Unpacking the list of tuples
@@ -270,12 +258,7 @@ IMPORTANT : Make sure to follow requested structure and NEVER use special charac
         *   **Ne jamais laisser le champ `user_request_after_feedback` vide.**
         
     """
-    schema_llm_model_config = st.session_state["MODEL_CONFIG"].copy()
-    schema_llm_model_config["model_name"] = "google/gemini-2.0-flash-001"
-    schema_llm = get_llm(schema_llm_model_config)
     structured_llm = schema_llm.with_structured_output(QueryProposal)
-
-    # structured_llm = st.session_state["llm"].with_structured_output(QueryProposal)
     query_proposal = structured_llm.invoke(system_message)
 
     return {"query_proposal": query_proposal}
@@ -330,15 +313,13 @@ def run_query(state: DatabaseQueryState):
     - Format de sortie : {{"query_results": "votre_résultat"}} # liste des valeurs de résultats bruts
         """
 
-    # llm = get_llm(st.session_state["MODEL_CONFIG"])
-
     engine = create_engine(st.secrets["db_url"])
     db = SQLDatabase(engine)
 
-    toolkit = SQLDatabaseToolkit(db=db, llm=st.session_state["llm"])
+    toolkit = SQLDatabaseToolkit(db=db, llm=query_llm)
     tools = toolkit.get_tools()
 
-    llm_with_tools = st.session_state["llm"].bind_tools(tools)
+    llm_with_tools = query_llm.bind_tools(tools)
 
     agent_executor = create_react_agent(llm_with_tools, tools)
     for step in agent_executor.stream(
@@ -354,13 +335,6 @@ def finalize_query(state: DatabaseQueryState):
 
     reformulated_request = state["query_proposal"].user_request_after_feedback
     query_results = state["query_results"]
-    # reset state
-    # graph.update_state(
-    #             config,
-    #             {"human_analyst_feedback": user_message},
-    #             as_node="human_feedback",
-    #         )
-    # del st.session_state["in_human_feedback_state"]
 
     print("-" * 50)
     print("Query results: ", query_results)
@@ -403,34 +377,7 @@ def finalize_query(state: DatabaseQueryState):
     2. Bloc de code Python complet entre ```python et ``` contenant le code de visualisation UNIQUEMENT si pertinent
     """
 
-    final_llm_model_config = st.session_state["MODEL_CONFIG"].copy()
-    final_llm_model_config["model_name"] = "google/gemini-2.0-flash-001"
-    final_llm = get_llm(final_llm_model_config)
-    # st.session_state["MODEL_CONFIG"]["model_name"] = st.session_state["selected_model"]
-    # st.session_state["llm"] = get_llm(st.session_state["MODEL_CONFIG"])
     final_result = final_llm.invoke(finalize_query_template)
-    # 2. Then include a code block with visualization code
-
-    # Reset state
-
-    # python_repl = PythonREPL()
-    # repl_tool = Tool(
-    #     name="python_repl",
-    #     description="A Python shell for executing code. Use this to create exactly ONE Streamlit visualization. NEVER use matplotlib or other external plotting libraries. For data display, use ONLY st.dataframe().",
-    #     func=python_repl.run,
-    # )
-
-    # # llm = get_llm(st.session_state["MODEL_CONFIG"])
-    # tools = [repl_tool]
-
-    # llm_with_tools = st.session_state["llm"].bind_tools(tools)
-
-    # agent_executor = create_react_agent(llm_with_tools, tools)
-    # for step in agent_executor.stream(
-    #     {"messages": [{"role": "user", "content": finalize_query_template}]},
-    #     stream_mode="values",
-    # ):
-    #     step["messages"][-1].pretty_print()
 
     return {"final_answer": final_result.content}
 

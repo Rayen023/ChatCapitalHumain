@@ -4,14 +4,13 @@ from langchain_community.vectorstores import FAISS
 from langchain_voyageai import VoyageAIEmbeddings, VoyageAIRerank
 
 
-@st.fragment
 def search_questions_callback():
     """Callback function for search questions text input."""
     text_input = st.session_state.search_questions
     if text_input:
         embeddings = VoyageAIEmbeddings(model="voyage-3-large")
         new_vector_store = FAISS.load_local(
-            "faiss_index_answerable_db_questions",
+            "answerable-questions-index",
             embeddings,
             allow_dangerous_deserialization=True,
         )
@@ -23,6 +22,24 @@ def search_questions_callback():
         st.session_state.search_questions_results = results
 
 
+def select_subject_callback():
+    """Callback function for subject dropdown selection."""
+    selected_subject = st.session_state.question_selector
+    if selected_subject:
+        embeddings = VoyageAIEmbeddings(model="voyage-3-large")
+        new_vector_store = FAISS.load_local(
+            "answerable-questions-index",
+            embeddings,
+            allow_dangerous_deserialization=True,
+        )
+        compression_retriever = ContextualCompressionRetriever(
+            base_compressor=VoyageAIRerank(model="rerank-2", top_k=10),
+            base_retriever=new_vector_store.as_retriever(search_kwargs={"k": 20}),
+        )
+        results = compression_retriever.invoke(selected_subject)
+        st.session_state.subject_selection_results = results
+
+
 def ask_example_question(question: str):
     """Set an example question to be processed."""
     st.session_state["_example_question"] = question
@@ -31,48 +48,38 @@ def ask_example_question(question: str):
 def search_questions():
     with st.sidebar:
         # Add example questions the user can select from
-        example_questions = [
-            "",
-            "Démographie diplômés par école",
-            "Participation, satisfaction étudiante globale",
-            "Orientation, choix d'études futures",
-            "Financement des études",
-            "Mobilité, perspectives d'emploi",
-            "Expérience, situation d'emploi",
-            "Évaluation cours et programmes",
-            "Retour aux études, formation",
-            "Moyens de transport étudiants",
-            "Importance éducation, niveau études",
-            "Statut, conditions de vie",
-            "Marché, professions et intérêt",
-            "Niveau, choix d'études",
-            "Obstacles études rencontrés",
-            "Programmes, qualifications obtenues",
+        example_questions = [ 
+        "",
+        "Relations sociales à l'école",
+        "Projets post-secondaires",
+        "Choix études postsecondaires",
+        "Financement études",
+        "Services orientation scolaire",
+        "Importance cours secondaires",
+        "Rendement académique",
+        "Emploi pendant études",
+        "Profil post-secondaire",
+        "Parcours après secondaire",
+        "Situation professionnelle",
+        "Raisons changements d'emploi",
+        "Mobilité géographique",
+        "Retour aux études",
+        "Emploi Péninsule acadienne"
         ]
 
+        st.subheader("Recherche par sujet")
         selected_question = st.selectbox(
             "Choisir sujet:",
             example_questions,
             key="question_selector",
+            on_change=select_subject_callback,
         )
 
-        # If user selected a preset question (not empty), update session state
-        if selected_question and "search_questions" in st.session_state:
-            st.session_state.search_questions = selected_question
-            search_questions_callback()
-
-        # Regular text input that can be typed into directly
-        st.text_input(
-            "Rechercher des questions répondables",
-            key="search_questions",
-            on_change=search_questions_callback,
-        )
-
-        # Display results if they exist in session state
-        if "search_questions_results" in st.session_state:
-            results = st.session_state.search_questions_results
+        # Display results from subject selection if they exist
+        if "subject_selection_results" in st.session_state and selected_question:
+            results = st.session_state.subject_selection_results
             if not results:
-                st.info("No results found.")
+                st.info("Aucun résultat trouvé pour ce sujet.")
             else:
                 for i, doc in enumerate(results):
                     st.progress(doc.metadata.get("relevance_score", 0))
@@ -81,6 +88,30 @@ def search_questions():
                         on_click=ask_example_question,
                         args=(doc.page_content,),
                         use_container_width=True,
+                        key=f"subject_result_{i}"
+                    )
+
+        st.text_input(
+            "Rechercher des questions répondables",
+            key="search_questions",
+            on_change=search_questions_callback,
+        )
+
+        # Display results from text search if they exist
+        if "search_questions_results" in st.session_state:
+            st.subheader("Résultats de recherche")
+            results = st.session_state.search_questions_results
+            if not results:
+                st.info("Aucun résultat trouvé.")
+            else:
+                for i, doc in enumerate(results):
+                    st.progress(doc.metadata.get("relevance_score", 0))
+                    st.button(
+                        doc.page_content,
+                        on_click=ask_example_question,
+                        args=(doc.page_content,),
+                        use_container_width=True,
+                        key=f"search_result_{i}"
                     )
 
 

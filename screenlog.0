@@ -1,0 +1,171 @@
+Starting model comparison with 4 models and 18 questions.
+Processing question 1/18: En 2017, pour l'école Roland-Pépin, quelle était l...
+  Testing model: google/gemini-2.0-flash-001
+  Completed in 3.36 seconds
+  Testing model: openai/o3-mini
+  Completed in 20.27 seconds
+  Testing model: google/gemini-2.5-pro-preview-03-25
+  Completed in 21.19 seconds
+  Testing model: anthropic/claude-3.7-sonnet
+  Completed in 49.52 seconds
+Processing question 2/18: Comparer la proportion d'élèves prévoyant des 'Étu...
+  Testing model: google/gemini-2.0-flash-001
+  Completed in 1.53 seconds
+  Testing model: openai/o3-mini
+  Completed in 24.38 seconds
+  Testing model: google/gemini-2.5-pro-preview-03-25
+2025-04-07 01:17:25.825 Thread 'ThreadPoolExecutor-1_2': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2025-04-07 01:17:25.869 
+  [33m[1mWarning:[0m to view this Streamlit app on a browser, run it with the following
+  command:
+
+    streamlit run model_comparison.py [ARGUMENTS]
+2025-04-07 01:17:25.869 Thread 'ThreadPoolExecutor-1_2': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+  Completed in 47.04 seconds
+  Testing model: anthropic/claude-3.7-sonnet
+  Completed in 78.22 seconds
+Processing question 3/18: Pour l'école W.-A.-Losier en 2014, quel était le d...
+  Testing model: google/gemini-2.0-flash-001
+  Completed in 2.63 seconds
+  Testing model: openai/o3-mini
+  Completed in 17.56 seconds
+  Testing model: google/gemini-2.5-pro-preview-03-25
+  Completed in 25.51 seconds
+  Testing model: anthropic/claude-3.7-sonnet
+  Completed in 43.17 seconds
+Processing question 4/18: Quelle est l'évolution du pourcentage d'élèves rép...
+  Testing model: google/gemini-2.0-flash-001
+  Completed in 2.92 seconds
+  Testing model: openai/o3-mini
+  Completed in 26.27 seconds
+  Testing model: google/gemini-2.5-pro-preview-03-25
+  Completed in 29.41 seconds
+  Testing model: anthropic/claude-3.7-sonnet
+  Completed in 35.30 seconds
+Processing question 5/18: En 2015, pour l'école Marie-Esther, quelle proport...
+  Testing model: google/gemini-2.0-flash-001
+  Completed in 2.67 seconds
+  Testing model: openai/o3-mini
+  Completed in 16.92 seconds
+  Testing model: google/gemini-2.5-pro-preview-03-25
+  Completed in 26.08 seconds
+  Testing model: anthropic/claude-3.7-sonnet
+  Completed in 68.84 seconds
+Processing question 6/18: Pour l'année 2008, quelle proportion des répondant...
+  Testing model: google/gemini-2.0-flash-001
+  Completed in 2.63 seconds
+  Testing model: openai/o3-mini
+  Completed in 23.56 seconds
+  Testing model: google/gemini-2.5-pro-preview-03-25
+  Completed in 28.13 seconds
+  Testing model: anthropic/claude-3.7-sonnet
+  Completed in 52.32 seconds
+Processing question 7/18: En 2010, pour l'école Louis-Mailloux, quel pourcen...
+  Testing model: google/gemini-2.0-flash-001
+  Completed in 2.85 seconds
+  Testing model: openai/o3-mini
+  Completed in 31.93 seconds
+  Testing model: google/gemini-2.5-pro-preview-03-25
+  Completed in 17.56 seconds
+  Testing model: anthropic/claude-3.7-sonnet
+  Completed in 41.09 seconds
+Processing question 8/18: Comment la source de financement 'Contribution des...
+  Testing model: google/gemini-2.0-flash-001
+  Completed in 5.72 seconds
+  Testing model: openai/o3-mini
+  Completed in 20.70 seconds
+  Testing model: google/gemini-2.5-pro-preview-03-25
+  Completed in 24.27 seconds
+  Testing model: anthropic/claude-3.7-sonnet
+  Completed in 33.55 seconds
+Processing question 9/18: Pour l'école Marie-Esther en 2016, quel était le m...
+  Testing model: google/gemini-2.0-flash-001
+  Completed in 2.55 seconds
+  Testing model: openai/o3-mini
+  Completed in 19.15 seconds
+  Testing model: google/gemini-2.5-pro-preview-03-25
+  Completed in 20.79 seconds
+  Testing model: anthropic/claude-3.7-sonnet
+  Completed in 28.15 seconds
+Processing question 10/18: En 2018, pour l'école Secondaire Népisiguit, la ra...
+  Testing model: google/gemini-2.0-flash-001
+  Completed in 2.45 seconds
+  Testing model: openai/o3-mini
+  Completed in 21.16 seconds
+  Testing model: google/gemini-2.5-pro-preview-03-25
+  Completed in 23.32 seconds
+  Testing model: anthropic/claude-3.7-sonnet
+  Completed in 36.21 seconds
+Processing question 11/18: Quelle est l'évolution de l'emploi rémunéré 'Temps...
+  Testing model: google/gemini-2.0-flash-001
+  Completed in 2.98 seconds
+  Testing model: openai/o3-mini
+  Completed in 17.21 seconds
+  Testing model: google/gemini-2.5-pro-preview-03-25
+  Completed in 87.14 seconds
+  Testing model: anthropic/claude-3.7-sonnet
+  Completed in 48.11 seconds
+Processing question 12/18: Comparer le pourcentage d'élèves jugeant l'obtenti...
+  Testing model: google/gemini-2.0-flash-001
+  Completed in 2.93 seconds
+  Testing model: openai/o3-mini
+  Completed in 16.05 seconds
+  Testing model: google/gemini-2.5-pro-preview-03-25
+  Completed in 26.05 seconds
+  Testing model: anthropic/claude-3.7-sonnet
+  Completed in 30.34 seconds
+Processing question 13/18: En 2014, pour l'école Secondaire Népisiguit, quell...
+  Testing model: google/gemini-2.0-flash-001
+  Completed in 1.03 seconds
+  Testing model: openai/o3-mini
+  Completed in 21.86 seconds
+  Testing model: google/gemini-2.5-pro-preview-03-25
+  Completed in 25.03 seconds
+  Testing model: anthropic/claude-3.7-sonnet
+  Completed in 46.11 seconds
+Processing question 14/18: Comment la proportion d'élèves suivant des cours d...
+  Testing model: google/gemini-2.0-flash-001
+  Completed in 1.38 seconds
+  Testing model: openai/o3-mini
+  Completed in 18.17 seconds
+  Testing model: google/gemini-2.5-pro-preview-03-25
+  Completed in 30.50 seconds
+  Testing model: anthropic/claude-3.7-sonnet
+  Completed in 39.08 seconds
+Processing question 15/18: Pour l'école W.-A.-Losier en 2015, quel pourcentag...
+  Testing model: google/gemini-2.0-flash-001
+  Completed in 3.07 seconds
+  Testing model: openai/o3-mini
+  Completed in 14.83 seconds
+  Testing model: google/gemini-2.5-pro-preview-03-25
+  Completed in 28.48 seconds
+  Testing model: anthropic/claude-3.7-sonnet
+  Completed in 31.04 seconds
+Processing question 16/18: En 2004, pour les répondants de l'école Louis-Mail...
+  Testing model: google/gemini-2.0-flash-001
+  Completed in 2.72 seconds
+  Testing model: openai/o3-mini
+  Completed in 34.66 seconds
+  Testing model: google/gemini-2.5-pro-preview-03-25
+  Completed in 23.61 seconds
+  Testing model: anthropic/claude-3.7-sonnet
+  Completed in 46.02 seconds
+Processing question 17/18: Quelle était la raison principale ('Travail', 'Étu...
+  Testing model: google/gemini-2.0-flash-001
+  Completed in 2.82 seconds
+  Testing model: openai/o3-mini
+  Completed in 15.70 seconds
+  Testing model: google/gemini-2.5-pro-preview-03-25
+  Completed in 20.17 seconds
+  Testing model: anthropic/claude-3.7-sonnet
+  Completed in 26.27 seconds
+Processing question 18/18: Comment l'intention de s'établir dans la Péninsule...
+  Testing model: google/gemini-2.0-flash-001
+  Completed in 0.96 seconds
+  Testing model: openai/o3-mini
+  Completed in 20.99 seconds
+  Testing model: google/gemini-2.5-pro-preview-03-25
+  Completed in 22.32 seconds
+  Testing model: anthropic/claude-3.7-sonnet
+  Completed in 86.99 seconds
+Results saved to model_comparison_results_1744001074.json

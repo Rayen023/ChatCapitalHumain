@@ -7,41 +7,8 @@ import uuid
 from contextlib import redirect_stderr, redirect_stdout
 
 import streamlit as st
-from langchain_anthropic import ChatAnthropic
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_openai import ChatOpenAI
 
 APP_ICON_PATH = "images/deer.png"
-
-
-def get_llm(MODEL_CONFIG):
-    model = MODEL_CONFIG.get("model_name")
-    if model is None:
-        raise ValueError("No model specified in MODEL_CONFIG")
-
-    config = MODEL_CONFIG.copy()
-    config.pop("model_name", None)
-
-    if model.startswith("google/"):
-        model = model[len("google/") :]
-        return ChatGoogleGenerativeAI(model=model, **config)
-    elif model.startswith("anthropic/"):
-        return ChatOpenAI(
-            model_name=model,
-            openai_api_key=st.secrets["OPENROUTER_API_KEY"],
-            openai_api_base=st.secrets["OPENROUTER_BASE_URL"],
-            **config,
-        )
-    else:
-        model = model[len("anthropic/") :]
-        return ChatAnthropic(model="claude-3-7-sonnet-20250219", **config)
-        # return ChatOpenAI(
-        #     model_name="anthropic/claude-3.7-sonnet:beta",
-        #     openai_api_key=st.secrets["OPENROUTER_API_KEY"],
-        #     openai_api_base=st.secrets["OPENROUTER_BASE_URL"],
-        #     **config,
-        # )
-
 
 logging.basicConfig(
     filename="logs.log",

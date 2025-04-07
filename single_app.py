@@ -28,18 +28,47 @@ with open(SCHEMA_TEMPLATE_PATH, "r", encoding="utf-8") as file:
     schema_template = file.read()
 DEBUGGING = st.secrets.get("DEBUGGING", False)
 
-
 load_dotenv()
 
+# Define available models
+available_models = [
+    "google/gemini-2.5-pro-preview-03-25",
+    "google/gemini-2.0-flash-001",
+    "openai/o3-mini",
+    "anthropic/claude-3.7-sonnet"
+]
+
+# Initialize the selected model in session state if it doesn't exist
+if "sa_selected_model" not in st.session_state:
+    st.session_state.sa_selected_model = "openai/o3-mini"  # Default model
+
+# Define callback for model selection changes
+def on_model_change():
+    st.session_state.sa_selected_model = st.session_state.model_selector
+
+# Add a selectbox to the sidebar for model selection
+st.sidebar.selectbox(
+    "Select Model",
+    options=available_models,
+    index=available_models.index(st.session_state.sa_selected_model),
+    key="model_selector",
+    on_change=on_model_change
+)
+
 MODEL_CONFIG = {
-    # "model_name": "google/gemini-2.0-flash-001",
-    "model_name": "anthropic/claude-3.7-sonnet",
+    "model_name": st.session_state.sa_selected_model,
     "temperature": 0,
     "max_tokens": 8096,
     "timeout": None,
     "max_retries": 2,
     "streaming": True,
 }
+
+llm = ChatOpenAI(
+    openai_api_key=st.secrets["OPENROUTER_API_KEY"],
+    openai_api_base=st.secrets["OPENROUTER_BASE_URL"],
+    **MODEL_CONFIG,
+)
 
 
 class State(MessagesState):
@@ -58,13 +87,7 @@ if "single_messages" not in st.session_state:
 if "thread_id" not in st.session_state:
     st.session_state["thread_id"] = str(uuid.uuid4())
 
-# llm = ChatOpenAI(
-#     openai_api_key=st.secrets["OPENROUTER_API_KEY"],
-#     openai_api_base=st.secrets["OPENROUTER_BASE_URL"],
-#     **MODEL_CONFIG,
-# )
-# llm = ChatAnthropic(model="claude-3-7-sonnet-20250219", **MODEL_CONFIG)
-llm = st.session_state.llm
+#llm = st.session_state.llm
 
 
 def chatbot(state: State) -> dict:
@@ -103,6 +126,8 @@ def chatbot(state: State) -> dict:
     **Exemple d'Explication d'une Requête Refusée :**
 
     "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer combien d'élèves qui utilisent un certain moyen de transport ont de bonnes notes nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible."
+    
+    Si la reponse la plus frequente pour une question est "Non répondu", continuer la recherche à l'option suivante et informer l'utilisateur.
     """
 
     # Create a chat template with system message, history, and user input

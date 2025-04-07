@@ -3,10 +3,18 @@ import uuid
 from functools import wraps
 
 import streamlit as st
+APP_TITLE = "Capital Humain"
+APP_ICON_PATH = "images/deer.png"
+
+st.set_page_config(
+    page_title=APP_TITLE,
+    page_icon=APP_ICON_PATH,
+)
+
+
 from langchain_core.messages import AIMessage, HumanMessage
 from streamlit.runtime.scriptrunner import get_script_run_ctx
 
-from utils.graph_classes import display_model_selector
 from utils.schema import show_questions_in_sidebar, show_schema_in_sidebar
 from utils.sidebar import enable_login
 from utils.sidebar_search import search_documents, search_questions
@@ -38,19 +46,9 @@ def get_context_data():
 
 
 # Constants (kept outside of functions for cleaner code)
-APP_TITLE = "Capital Humain"
-APP_ICON_PATH = "images/deer.png"
 WELCOME_MESSAGE = "Comment puis-je vous aider ? | How can I help you ?"
 USER_AVATAR_PATH = "images/avataruser.png"
 DEBUGGING = st.secrets.get("DEBUGGING", False)
-
-
-# Setup page config once
-def setup_page():
-    st.set_page_config(
-        page_title=APP_TITLE,
-        page_icon=APP_ICON_PATH,
-    )
 
 
 # Initialize session state variables
@@ -130,9 +128,6 @@ def get_sidebar_info(page_hash, single_app_hash, current_page):
 
 # Main function to run the app
 def main():
-    # Setup page
-    setup_page()
-
     # Initialize session state
     initialize_session_state()
 
@@ -169,7 +164,6 @@ def main():
             icon=":material/edit_square:",
             use_container_width=True,
         )
-        display_model_selector()
         # Debug panel toggle
         if DEBUGGING:
             st.button(
@@ -199,8 +193,8 @@ def main():
     # Page navigation
     pages = {
         "CapitalHumain Agents": [
-            st.Page("main_app.py", title="Langgraph : Multi Agents"),
             st.Page("single_app.py", title="Single Agent"),
+            st.Page("main_app.py", title="Langgraph : Multi Agents"),
         ],
     }
 

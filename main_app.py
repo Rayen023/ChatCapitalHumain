@@ -15,7 +15,7 @@ from langsmith import Client
 
 # Import utilities
 from utils.database import save_chat_logs
-from utils.graph_classes import display_model_selector, graph
+from utils.graph_classes import graph
 from utils.st_callable_util import get_streamlit_cb
 from utils.utils import add_visualization_buttons_to_message, format_response
 
@@ -189,7 +189,7 @@ if st.session_state["messages"] and isinstance(
                 # st.session_state["selected_model"] = "anthropic/claude-3.7-sonnet" # This return errorss
                 # update_model()
                 st.error(
-                    "Une erreur temporaire s'est produite. Vous pouvez résoudre ce problème en sélectionnant un autre modèle dans le coin supérieur droit de la page et réessayer."
+                    "Une erreur temporaire s'est produite. Veuillez rafraîchir la page ou commencer un nouveau chat. Si l'erreur persiste, n'hésitez pas à nous contacter."
                 )
         else:
             for event in graph.stream(input_data, config=config, stream_mode="updates"):
@@ -211,7 +211,7 @@ if st.session_state["messages"] and isinstance(
                         process_graph_event(event, response_placeholder)
             except Exception as e:
                 st.error(
-                    "Une erreur temporaire s'est produite. Vous pouvez résoudre ce problème en sélectionnant un autre modèle dans le coin supérieur droit de la page et réessayer."
+                    "Une erreur temporaire s'est produite. Veuillez rafraîchir la page ou commencer un nouveau chat. Si l'erreur persiste, n'hésitez pas à nous contacter."
                 )
         else:
             for event in graph.stream(None, config=config, stream_mode="updates"):

@@ -1,0 +1,44 @@
+[
+  {
+    "question": "Pour l'école Aux quatre vents en 2016, quel pourcentage d'élèves a choisi 'Français' comme l'un des deux cours les plus appréciés (question 16) ?",
+    "models": {
+      "google/gemini-2.0-flash-001": {
+        "answer": "Je n'ai pas pu trouver le questionnaire ID pour l'école Aux quatre vents en 2016. Pourriez-vous me fournir le questionnaire ID exact afin que je puisse répondre à votre question ?",
+        "time_seconds": 2.794264316558838
+      },
+      "openai/o3-mini": {
+        "answer": "Le résultat indique qu'environ 24,62 % des élèves de l'école Aux quatre vents en 2016 ont choisi « Français » comme l'un de leurs deux cours les plus appréciés.",
+        "time_seconds": 28.63034725189209
+      },
+      "google/gemini-2.5-pro-preview-03-25": {
+        "answer": "En 2016, à l'école Aux quatre vents, 8 élèves ont indiqué que le 'Français' était l'un de leurs deux cours préférés. Le nombre total d'élèves ayant répondu au questionnaire cette année-là pour cette école était de 64.\n\nLe pourcentage est donc de (8 / 64) * 100 = 12.5%.\n\nDonc, 12.5% des élèves de l'école Aux quatre vents en 2016 ont choisi 'Français' comme l'un de leurs deux cours les plus appréciés.",
+        "time_seconds": 22.802658796310425
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les résultats obtenus, pour l'école Aux quatre vents en 2016 :\n\n- 8 élèves ont choisi 'Français' comme l'un des deux cours les plus appréciés durant leur secondaire\n- Sur un total de 64 élèves ayant complété le questionnaire\n- Ce qui représente 12,50% des élèves\n\nDonc, 12,50% des élèves de l'école Aux quatre vents en 2016 ont choisi le français comme l'un de leurs deux cours les plus appréciés.",
+        "time_seconds": 26.481332063674927
+      }
+    }
+  },
+  {
+    "question": "Comment la proportion d'élèves 'Très insatisfait/e' de leurs relations avec les autres élèves (question 17) a-t-elle évolué pour Secondaire Népisiguit entre 2014 et 2019 ?",
+    "models": {
+      "google/gemini-2.0-flash-001": {
+        "answer": "Entre 2014 et 2019, le nombre d'élèves très insatisfaits de leurs relations avec les autres élèves à Secondaire Népisiguit a évolué comme suit :\n\n*   **2014:** 1\n*   **2015:** 2\n*   **2016:** 3\n*   **2017:** 2\n*   **2018:** 8\n*   **2019:** 0",
+        "time_seconds": 3.0746572017669678
+      },
+      "openai/o3-mini": {
+        "answer": "La proportion d'élèves \"Très insatisfait/e\" quant à leurs relations avec les autres élèves à Secondaire Népisiguit est restée très faible de 2014 à 2017 (allant de 0.48 % à 1.35 %). Cependant, en 2018, on constate une augmentation marquée avec une proportion de 4.08 %, avant de redescendre à 0.00 % en 2019. \n\nEn résumé, la tendance évolue ainsi :\n• 2014 : 0.48 %\n• 2015 : 0.93 %\n• 2016 : 1.35 %\n• 2017 : 0.97 %\n• 2018 : 4.08 % (pic)\n• 2019 : 0.00 %\n\nCela suggère qu’en 2018, une augmentation notable du nombre d'élèves très insatisfaits a été observée, avant de revenir à une absence de réponses \"Très insatisfait/e\" en 2019.",
+        "time_seconds": 22.312983512878418
+      },
+      "google/gemini-2.5-pro-preview-03-25": {
+        "answer": "Voici l'évolution de la proportion d'élèves se déclarant 'Très insatisfait/e' de leurs relations avec les autres élèves à l'école Secondaire Népisiguit entre 2014 et 2019 :\n\n*   **2014 :** 1 élève sur 208 répondants (0.48%)\n*   **2015 :** 2 élèves sur 215 répondants (0.93%)\n*   **2016 :** 3 élèves sur 223 répondants (1.35%)\n*   **2017 :** 2 élèves sur 206 répondants (0.97%)\n*   **2018 :** 8 élèves sur 196 répondants (4.08%)\n\n*Note : Les données pour l'année 2019 ne sont pas disponibles dans le résultat retourné.*",
+        "time_seconds": 25.432218551635742
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "## Évolution de la proportion d'élèves 'Très insatisfait/e' de leurs relations avec les autres élèves à Secondaire Népisiguit (2014-2019)\n\nVoici l'évolution de la proportion d'élèves qui se sont déclarés 'Très insatisfait/e' de leurs relations avec les autres élèves (question 17) à l'école Secondaire Népisiguit entre 2014 et 2019 :\n\n| Année | Nombre d'élèves très insatisfaits | Nombre total d'élèves | Pourcentage (%) |\n|-------|-----------------------------------|------------------------|-----------------|\n| 2014  | 1                                 | 208                    | 0,48%           |\n| 2015  | 2                                 | 215                    | 0,93%           |\n| 2016  | 3                                 | 223                    | 1,35%           |\n| 2017  | 2                                 | 206                    | 0,97%           |\n| 2018  | 8                                 | 196                    | 4,08%           |\n| 2019  | 0                                 | 201                    | 0,00%           |\n\n### Analyse de l'évolution :\n\n- On observe une légère augmentation du taux d'insatisfaction entre 2014 et 2016, passant de 0,48% à 1,35%.\n- En 2018, il y a eu un pic significatif avec 4,08% des élèves se déclarant très insatisfaits de leurs relations avec les autres élèves.\n- En 2019, aucun élève n'a déclaré être très insatisfait, ce qui représente une amélioration notable par rapport à l'année précédente.\n\nCette évolution montre que, bien que le pourcentage d'élèves très insatisfaits soit généralement resté faible (moins de 5% sur toute la période), il y a eu des variations notables, particulièrement en 2018 où le taux a atteint son maximum avant de redescendre à 0% l'année suivante.",
+        "time_seconds": 52.375468015670776
+      }
+    }
+  }
+]
