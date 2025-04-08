@@ -3,8 +3,6 @@ from langchain.retrievers.contextual_compression import ContextualCompressionRet
 from langchain_community.vectorstores import FAISS
 from langchain_voyageai import VoyageAIEmbeddings, VoyageAIRerank
 from langchain_cohere import CohereEmbeddings
-from pinecone import Pinecone, ServerlessSpec
-from langchain_pinecone import PineconeVectorStore
 import argparse
 
 
