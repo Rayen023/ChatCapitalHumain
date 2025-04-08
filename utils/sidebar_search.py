@@ -19,7 +19,7 @@ def query_vector_store(text_input):
         allow_dangerous_deserialization=True,
     )
     compression_retriever = ContextualCompressionRetriever(
-        #base_compressor=VoyageAIRerank(model="rerank-2", top_k=10),
+        base_compressor=VoyageAIRerank(model="rerank-2", top_k=10),
         base_retriever=vector_store.as_retriever(search_kwargs={"k": 20}),
     )
     results = compression_retriever.invoke(text_input)
