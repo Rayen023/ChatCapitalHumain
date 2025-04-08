@@ -2,19 +2,26 @@ import streamlit as st
 from langchain.retrievers.contextual_compression import ContextualCompressionRetriever
 from langchain_community.vectorstores import FAISS
 from langchain_voyageai import VoyageAIEmbeddings, VoyageAIRerank
+from langchain_cohere import CohereEmbeddings
+from pinecone import Pinecone, ServerlessSpec
+from langchain_pinecone import PineconeVectorStore
+import argparse
+
 
 @st.fragment
 @st.cache_data(show_spinner = False)
 def query_vector_store(text_input):
     """Load the vector store for question answering."""
-    embeddings = VoyageAIEmbeddings(model="voyage-3-large")
+    #embeddings = VoyageAIEmbeddings(model="voyage-3-large")
+    embeddings = CohereEmbeddings(model="embed-multilingual-v3.0")
+
     vector_store = FAISS.load_local(
-        "answerable-questions-index",
+        "answerable-questions-index-cohere",
         embeddings,
         allow_dangerous_deserialization=True,
     )
     compression_retriever = ContextualCompressionRetriever(
-        base_compressor=VoyageAIRerank(model="rerank-2", top_k=10),
+        #base_compressor=VoyageAIRerank(model="rerank-2", top_k=10),
         base_retriever=vector_store.as_retriever(search_kwargs={"k": 20}),
     )
     results = compression_retriever.invoke(text_input)

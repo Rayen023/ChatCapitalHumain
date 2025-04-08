@@ -7,15 +7,18 @@ from langchain.retrievers.contextual_compression import ContextualCompressionRet
 from langchain_community.docstore.in_memory import InMemoryDocstore
 from langchain_community.vectorstores import FAISS
 from langchain_voyageai import VoyageAIEmbeddings, VoyageAIRerank
+from langchain_cohere import CohereEmbeddings
+embeddings = CohereEmbeddings(model="embed-multilingual-v3.0", cohere_api_key="Xp55pkbJzO4zX7BlJ6Tp0bSbq5Z1mFNMCOcWnEdU")
 
 VOYAGE_API_KEY = "pa-_GyP9a57BCZa2sX0mRJtQRfK49fTEmTRB2vg23Bgygs"
 os.environ["VOYAGE_API_KEY"] = VOYAGE_API_KEY
+
 
 from dotenv import load_dotenv
 
 load_dotenv()
 
-embeddings = VoyageAIEmbeddings(model="voyage-3-large")
+#embeddings = VoyageAIEmbeddings(model="voyage-3-large")
 
 from answerable_questions import questions as data
 
@@ -39,10 +42,10 @@ uuids = [str(uuid4()) for _ in range(len(documents))]
 
 vector_store.add_documents(documents=documents, ids=uuids)
 
-vector_store.save_local("answerable-questions-index")
+vector_store.save_local("answerable-questions-index-cohere")
 
 new_vector_store = FAISS.load_local(
-    "answerable-questions-index",
+    "answerable-questions-index-cohere",
     embeddings,
     allow_dangerous_deserialization=True,
 )
