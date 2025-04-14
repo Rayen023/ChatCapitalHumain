@@ -20,8 +20,9 @@ import streamlit as st
 # Import the questions from answerable_questions.py
 from search_bars.answerable_questions import questions as data
 
-data = data[2:20]
+#data = data[2:20]
 
+data = ["Pour l'école W.-A.-Losier en 2014, quel était les 4 domaines d'études postsecondaires (question 20) le plus fréquemment choisi ? ",]
 # Load schema template
 SCHEMA_TEMPLATE_PATH = os.path.join("utils", "schema_template.txt")
 with open(SCHEMA_TEMPLATE_PATH, "r", encoding="utf-8") as file:
@@ -31,10 +32,10 @@ load_dotenv()
 
 # Define the models to test
 MODELS = [
-    "google/gemini-2.0-flash-001",
     "openai/o3-mini",
     "google/gemini-2.5-pro-preview-03-25",
-    "anthropic/claude-3.7-sonnet"
+    "anthropic/claude-3.7-sonnet",
+    "openai/gpt-4.1",
 ]
 
 # Base model configuration
