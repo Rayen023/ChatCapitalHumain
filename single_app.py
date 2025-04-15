@@ -19,7 +19,7 @@ from typing_extensions import TypedDict
 
 from utils.database import save_chat_logs
 from utils.st_callable_util import get_streamlit_cb
-
+from langchain_core.messages import ToolMessage
 APP_ICON_PATH = "images/deer.png"
 USER_AVATAR_PATH = "images/avataruser.png"
 WELCOME_MESSAGE = "Comment puis-je vous aider ? | How can I help you ?"
@@ -142,6 +142,10 @@ def chatbot(state: State) -> dict:
     )
 
     # Setup SQL tools
+    if "db" not in st.session_state:
+        engine = create_engine(st.secrets["db_url"])
+        st.session_state.db = SQLDatabase(engine)
+
     toolkit = SQLDatabaseToolkit(db=st.session_state.db, llm=llm)
     tools = toolkit.get_tools()
 
@@ -182,11 +186,39 @@ def invoke_our_graph(user_input, callables, thread_id):
 
     # Properly format the input for the graph
     input_message = HumanMessage(content=user_input)
-
-    return graph_runnable.invoke(
+    
+    # Create a single placeholder OUTSIDE the streaming loop
+    message_placeholder = st.empty()
+    accumulated_content = ""
+    
+    for event in graph_runnable.stream(
         {"messages": [input_message]},
-        config={"callbacks": callables, "configurable": {"thread_id": thread_id}},
-    )
+        config={
+            "callbacks": callables,
+            "configurable": {"thread_id": thread_id},
+        },
+        stream_mode="messages"
+    ):
+        
+        
+        if not isinstance(event[0], ToolMessage) and event[0].content and event[1]["langgraph_node"] == "agent":
+            print(event)
+            content = event[0].content
+            # Accumulate the content (append to the existing text)
+            accumulated_content += content
+            # Update the placeholder with the accumulated content
+            message_placeholder.write(accumulated_content)
+        
+        if event[1]["langgraph_node"] != "agent" : 
+            accumulated_content = ""
+            message_placeholder.empty()
+    
+    # After streaming completes, add the final message to session state
+    if accumulated_content:
+        ai_message = AIMessage(content=accumulated_content)
+        st.session_state["single_messages"].append(ai_message)
+    
+    return {"messages": st.session_state["single_messages"]}
 
 
 for message in st.session_state["single_messages"]:
@@ -208,16 +240,8 @@ if st.session_state["single_messages"] and isinstance(
     with st.chat_message("assistant", avatar=APP_ICON_PATH):
         # Create a container for tool calls that will persist
         with st.spinner("Thinking...", show_time=True):
-            response_placeholder = st.empty()
-            # Get the callback with the tool calls container
-            streamlit_callback = get_streamlit_cb(response_placeholder)
-            graph_response = invoke_our_graph(
+            invoke_our_graph(
                 user_message, [], st.session_state["thread_id"]
             )
-            final_response = graph_response["messages"][-1].content
-            st.session_state["single_messages"].append(
-                AIMessage(content=final_response)
-            )
-            response_placeholder.write(final_response)
     if not DEBUGGING and st.experimental_user.get("email"):
         save_chat_logs("single_messages")
