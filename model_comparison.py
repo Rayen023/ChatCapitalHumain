@@ -1,9 +1,10 @@
+import json
 import os
 import time
-import json
 import uuid
-from typing import Annotated, Dict, List, Any
+from typing import Annotated, Any, Dict, List
 
+import streamlit as st
 from dotenv import load_dotenv
 from langchain_community.agent_toolkits.sql.toolkit import SQLDatabaseToolkit
 from langchain_community.utilities.sql_database import SQLDatabase
@@ -15,14 +16,15 @@ from langgraph.graph import START, MessagesState, StateGraph
 from langgraph.graph.message import add_messages
 from langgraph.prebuilt import create_react_agent
 from sqlalchemy import create_engine
-import streamlit as st
 
 # Import the questions from answerable_questions.py
 from search_bars.answerable_questions import questions as data
 
-#data = data[2:20]
+# data = data[2:20]
 
-data = ["Pour l'école W.-A.-Losier en 2014, quel était les 4 domaines d'études postsecondaires (question 20) le plus fréquemment choisi ? ",]
+data = [
+    "Pour l'école W.-A.-Losier en 2014, quel était les 4 domaines d'études postsecondaires (question 20) le plus fréquemment choisi ? ",
+]
 # Load schema template
 SCHEMA_TEMPLATE_PATH = os.path.join("utils", "schema_template.txt")
 with open(SCHEMA_TEMPLATE_PATH, "r", encoding="utf-8") as file:
@@ -47,9 +49,12 @@ BASE_MODEL_CONFIG = {
     "streaming": False,  # Set to False for testing
 }
 
+
 class State(MessagesState):
     """Represents the state of our graph."""
+
     messages: Annotated[list[BaseMessage], add_messages]
+
 
 def setup_database():
     """Set up the database connection."""
@@ -57,12 +62,13 @@ def setup_database():
     db = SQLDatabase(engine)
     return db
 
+
 def create_agent(model_name, db):
     """Create an agent with the specified model."""
     # Configure the model
     model_config = BASE_MODEL_CONFIG.copy()
     model_config["model_name"] = model_name
-    
+
     # Initialize the LLM
     llm = ChatOpenAI(
         openai_api_key=st.secrets["OPENROUTER_API_KEY"],
@@ -120,93 +126,89 @@ def create_agent(model_name, db):
 
     # Create the ReAct agent
     agent_executor = create_react_agent(llm, tools=tools, prompt=prompt)
-    
+
     # Create a runnable
     runnable = agent_executor.with_config({"run_name": "agent"})
-    
+
     # Create and compile the graph
     graph_builder = StateGraph(State)
-    
+
     def chatbot(state: State) -> dict:
         response = runnable.invoke({"messages": state["messages"]})
         return {"messages": response["messages"]}
-    
+
     graph_builder.add_node("chatbot", chatbot)
     graph_builder.add_edge(START, "chatbot")
-    
+
     memory = MemorySaver()
     graph_runnable = graph_builder.compile(checkpointer=memory)
-    
+
     return graph_runnable
+
 
 def process_question(question, model_name, db):
     """Process a question with the specified model and measure time."""
     start_time = time.time()
-    
+
     try:
         # Create an agent with the model
         graph_runnable = create_agent(model_name, db)
-        
+
         # Format the input for the graph
         input_message = HumanMessage(content=question)
-        
+
         # Invoke the graph runnable
         thread_id = str(uuid.uuid4())
         response = graph_runnable.invoke(
             {"messages": [input_message]},
             config={"configurable": {"thread_id": thread_id}},
         )
-        
+
         # Get the response content
         answer = response["messages"][-1].content
-        
+
         # Calculate elapsed time
         elapsed_time = time.time() - start_time
-        
-        return {
-            "answer": answer,
-            "time_seconds": elapsed_time
-        }
+
+        return {"answer": answer, "time_seconds": elapsed_time}
     except Exception as e:
         # Handle errors
         elapsed_time = time.time() - start_time
-        return {
-            "answer": f"Error: {str(e)}",
-            "time_seconds": elapsed_time
-        }
+        return {"answer": f"Error: {str(e)}", "time_seconds": elapsed_time}
+
 
 def main():
     """Main function to run the comparison."""
-    print(f"Starting model comparison with {len(MODELS)} models and {len(data)} questions.")
-    
+    print(
+        f"Starting model comparison with {len(MODELS)} models and {len(data)} questions."
+    )
+
     # Set up database connection
     db = setup_database()
-    
+
     results = []
-    
+
     # Process each question with each model
     for i, question in enumerate(data):
-        question_result = {
-            "question": question,
-            "models": {}
-        }
-        
+        question_result = {"question": question, "models": {}}
+
         print(f"Processing question {i+1}/{len(data)}: {question[:50]}...")
-        
+
         for model_name in MODELS:
             print(f"  Testing model: {model_name}")
             result = process_question(question, model_name, db)
             question_result["models"][model_name] = result
             print(f"  Completed in {result['time_seconds']:.2f} seconds")
-        
+
         results.append(question_result)
-    
+
     # Save results to JSON file
     output_filename = f"model_comparison_results_{int(time.time())}.json"
     with open(output_filename, "w", encoding="utf-8") as f:
         json.dump(results, f, ensure_ascii=False, indent=2)
-    
+
     print(f"Results saved to {output_filename}")
+
 
 if __name__ == "__main__":
     main()

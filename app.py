@@ -3,6 +3,7 @@ import uuid
 from functools import wraps
 
 import streamlit as st
+
 APP_TITLE = "Capital Humain"
 APP_ICON_PATH = "images/deer.png"
 
@@ -119,8 +120,14 @@ def process_example_question():
 
 # Cached sidebar info based on current page
 def get_sidebar_info(page_hash, single_app_hash, current_page):
-    print(f"Page Hash: {page_hash}, Single App Hash: {single_app_hash}, Current Page: {current_page}")
-    if page_hash == single_app_hash or single_app_hash == None or current_page == "single_app":
+    print(
+        f"Page Hash: {page_hash}, Single App Hash: {single_app_hash}, Current Page: {current_page}"
+    )
+    if (
+        page_hash == single_app_hash
+        or single_app_hash == None
+        or current_page == "single_app"
+    ):
         return "Chatbot utilisant un single agent pour l'interrogation du dataset 'Capital Humain' et la réponse aux questions posées."
     else:
         return "Chatbot utilisant une architecture multi-agent LangGraph avec human-in-the-loop pour l'interrogation du dataset 'Capital Humain' et la visualisation des workflows sous forme de graphs."

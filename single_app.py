@@ -1,26 +1,22 @@
+import asyncio
 import os
 import uuid
-import asyncio
 from typing import Annotated
 
 import streamlit as st
 from dotenv import load_dotenv
-from langchain_anthropic import ChatAnthropic
 from langchain_community.agent_toolkits.sql.toolkit import SQLDatabaseToolkit
 from langchain_community.utilities.sql_database import SQLDatabase
-from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, SystemMessage
+from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, ToolMessage
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_openai import ChatOpenAI
 from langgraph.checkpoint.memory import MemorySaver
-from langgraph.graph import END, START, MessagesState, StateGraph
+from langgraph.graph import START, MessagesState, StateGraph
 from langgraph.graph.message import add_messages
-from langgraph.prebuilt import ToolNode, create_react_agent, tools_condition
+from langgraph.prebuilt import create_react_agent
 from sqlalchemy import create_engine
-from typing_extensions import TypedDict
 
 from utils.database import save_chat_logs
-from utils.st_callable_util import get_streamlit_cb
-from langchain_core.messages import ToolMessage
 
 APP_ICON_PATH = "images/deer.png"
 USER_AVATAR_PATH = "images/avataruser.png"
@@ -45,9 +41,11 @@ available_models = [
 if "sa_selected_model" not in st.session_state:
     st.session_state.sa_selected_model = "anthropic/claude-3.7-sonnet"  # Default model
 
+
 # Define callback for model selection changes
 def on_model_change():
     st.session_state.sa_selected_model = st.session_state.model_selector
+
 
 # Restore the sidebar elements to ensure they display properly
 st.sidebar.title("ChatCapitalHumain")
@@ -58,7 +56,7 @@ st.sidebar.selectbox(
     options=available_models,
     index=available_models.index(st.session_state.sa_selected_model),
     key="model_selector",
-    on_change=on_model_change
+    on_change=on_model_change,
 )
 
 # Add any other sidebar elements that were previously there
@@ -199,6 +197,7 @@ def display_message_history():
         elif isinstance(message, HumanMessage):
             st.chat_message("user", avatar=USER_AVATAR_PATH).write(message.content)
 
+
 # Display current messages
 display_message_history()
 
@@ -209,37 +208,42 @@ async def invoke_our_graph(user_input, callables, thread_id):
 
     # Properly format the input for the graph
     input_message = HumanMessage(content=user_input)
-    
+
     # Create a message container for streaming that will be cleaned up after
     with st.chat_message("assistant", avatar=APP_ICON_PATH):
         message_placeholder = st.empty()
         accumulated_content = ""
-        
+
         async for event in graph_runnable.astream(
             {"messages": [input_message]},
             config={
                 "callbacks": callables,
                 "configurable": {"thread_id": thread_id},
             },
-            stream_mode="messages"
+            stream_mode="messages",
         ):
-            if not isinstance(event[0], ToolMessage) and event[0].content and event[1]["langgraph_node"] == "agent":
+            if (
+                not isinstance(event[0], ToolMessage)
+                and event[0].content
+                and event[1]["langgraph_node"] == "agent"
+            ):
                 content = event[0].content
                 accumulated_content += content
                 message_placeholder.write(accumulated_content)
-            
+
             if event[1]["langgraph_node"] != "agent":
                 accumulated_content = ""
-    
+
     # After streaming completes, add the final message to session state if it has content
     if accumulated_content:
         ai_message = AIMessage(content=accumulated_content)
         st.session_state["single_messages"].append(ai_message)
-        
+
         # Force display of messages to update with the new message
         st.rerun()
-    
+
     return {"messages": st.session_state["single_messages"]}
+
 
 # User input handling
 user_message = st.chat_input("Message ChatCapitalHumain...")
@@ -248,7 +252,7 @@ if user_message:
     st.chat_message("user", avatar=USER_AVATAR_PATH).write(user_message)
     # Add to session state
     st.session_state["single_messages"].append(HumanMessage(content=user_message))
-    
+
     # Process the message and display response
 if st.session_state["single_messages"] and isinstance(
     st.session_state["single_messages"][-1], HumanMessage
@@ -256,9 +260,7 @@ if st.session_state["single_messages"] and isinstance(
     user_message = st.session_state["single_messages"][-1].content
     with st.spinner("Thinking...", show_time=True):
         # Run the async function using asyncio
-        asyncio.run(
-            invoke_our_graph(user_message, [], st.session_state["thread_id"])
-        )
-    
+        asyncio.run(invoke_our_graph(user_message, [], st.session_state["thread_id"]))
+
     if not DEBUGGING and st.experimental_user.get("email"):
         save_chat_logs("single_messages")
