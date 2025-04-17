@@ -1,5 +1,6 @@
 import os
 import uuid
+import asyncio
 from typing import Annotated
 
 import streamlit as st
@@ -20,6 +21,7 @@ from typing_extensions import TypedDict
 from utils.database import save_chat_logs
 from utils.st_callable_util import get_streamlit_cb
 from langchain_core.messages import ToolMessage
+
 APP_ICON_PATH = "images/deer.png"
 USER_AVATAR_PATH = "images/avataruser.png"
 WELCOME_MESSAGE = "Comment puis-je vous aider ? | How can I help you ?"
@@ -41,11 +43,14 @@ available_models = [
 
 # Initialize the selected model in session state if it doesn't exist
 if "sa_selected_model" not in st.session_state:
-    st.session_state.sa_selected_model = "openai/gpt-4.1"  # Default model
+    st.session_state.sa_selected_model = "anthropic/claude-3.7-sonnet"  # Default model
 
 # Define callback for model selection changes
 def on_model_change():
     st.session_state.sa_selected_model = st.session_state.model_selector
+
+# Restore the sidebar elements to ensure they display properly
+st.sidebar.title("ChatCapitalHumain")
 
 # Add a selectbox to the sidebar for model selection
 st.sidebar.selectbox(
@@ -55,6 +60,8 @@ st.sidebar.selectbox(
     key="model_selector",
     on_change=on_model_change
 )
+
+# Add any other sidebar elements that were previously there
 
 MODEL_CONFIG = {
     "model_name": st.session_state.sa_selected_model,
@@ -87,8 +94,6 @@ if "single_messages" not in st.session_state:
     st.session_state["single_messages"] = [AIMessage(content=WELCOME_MESSAGE)]
 if "thread_id" not in st.session_state:
     st.session_state["thread_id"] = str(uuid.uuid4())
-
-#llm = st.session_state.llm
 
 
 def chatbot(state: State) -> dict:
@@ -148,6 +153,12 @@ def chatbot(state: State) -> dict:
 
     toolkit = SQLDatabaseToolkit(db=st.session_state.db, llm=llm)
     tools = toolkit.get_tools()
+    print(f"Tools: {tools}")
+    print(f"type: {type(tools)}")
+    for index, tool in enumerate(tools):
+        print(f"Tool {index}: {tool.name}")
+    # remove index 1 2 and 3
+    tools = tools[:1]
 
     # Create the ReAct agent with the tools and prompt
     agent_executor = create_react_agent(llm, tools=tools, prompt=prompt)
@@ -180,68 +191,74 @@ memory = cache_memory()
 graph_runnable = graph_builder.compile(checkpointer=memory)
 
 
-def invoke_our_graph(user_input, callables, thread_id):
+@st.fragment
+def display_message_history():
+    for message in st.session_state["single_messages"]:
+        if isinstance(message, AIMessage):
+            st.chat_message("assistant", avatar=APP_ICON_PATH).write(message.content)
+        elif isinstance(message, HumanMessage):
+            st.chat_message("user", avatar=USER_AVATAR_PATH).write(message.content)
+
+# Display current messages
+display_message_history()
+
+
+async def invoke_our_graph(user_input, callables, thread_id):
     if not isinstance(callables, list):
         raise TypeError("callables must be a list")
 
     # Properly format the input for the graph
     input_message = HumanMessage(content=user_input)
     
-    # Create a single placeholder OUTSIDE the streaming loop
-    message_placeholder = st.empty()
-    accumulated_content = ""
+    # Create a message container for streaming that will be cleaned up after
+    with st.chat_message("assistant", avatar=APP_ICON_PATH):
+        message_placeholder = st.empty()
+        accumulated_content = ""
+        
+        async for event in graph_runnable.astream(
+            {"messages": [input_message]},
+            config={
+                "callbacks": callables,
+                "configurable": {"thread_id": thread_id},
+            },
+            stream_mode="messages"
+        ):
+            if not isinstance(event[0], ToolMessage) and event[0].content and event[1]["langgraph_node"] == "agent":
+                content = event[0].content
+                accumulated_content += content
+                message_placeholder.write(accumulated_content)
+            
+            if event[1]["langgraph_node"] != "agent":
+                accumulated_content = ""
     
-    for event in graph_runnable.stream(
-        {"messages": [input_message]},
-        config={
-            "callbacks": callables,
-            "configurable": {"thread_id": thread_id},
-        },
-        stream_mode="messages"
-    ):
-        
-        
-        if not isinstance(event[0], ToolMessage) and event[0].content and event[1]["langgraph_node"] == "agent":
-            print(event)
-            content = event[0].content
-            # Accumulate the content (append to the existing text)
-            accumulated_content += content
-            # Update the placeholder with the accumulated content
-            message_placeholder.write(accumulated_content)
-        
-        if event[1]["langgraph_node"] != "agent" : 
-            accumulated_content = ""
-            message_placeholder.empty()
-    
-    # After streaming completes, add the final message to session state
+    # After streaming completes, add the final message to session state if it has content
     if accumulated_content:
         ai_message = AIMessage(content=accumulated_content)
         st.session_state["single_messages"].append(ai_message)
+        
+        # Force display of messages to update with the new message
+        st.rerun()
     
     return {"messages": st.session_state["single_messages"]}
 
-
-for message in st.session_state["single_messages"]:
-    if isinstance(message, AIMessage):
-        st.chat_message("assistant", avatar=APP_ICON_PATH).write(message.content)
-    elif isinstance(message, HumanMessage):
-        st.chat_message("user", avatar=USER_AVATAR_PATH).write(message.content)
-
+# User input handling
 user_message = st.chat_input("Message ChatCapitalHumain...")
 if user_message:
+    # Display user message
     st.chat_message("user", avatar=USER_AVATAR_PATH).write(user_message)
+    # Add to session state
     st.session_state["single_messages"].append(HumanMessage(content=user_message))
-
+    
+    # Process the message and display response
 if st.session_state["single_messages"] and isinstance(
     st.session_state["single_messages"][-1], HumanMessage
 ):
     user_message = st.session_state["single_messages"][-1].content
-
-    with st.chat_message("assistant", avatar=APP_ICON_PATH):
-        # Create a container for tool calls that will persist
-        with st.spinner("Thinking...", show_time=True):
-            invoke_our_graph(
-                user_message, [], st.session_state["thread_id"]
-            )
+    with st.spinner("Thinking...", show_time=True):
+        # Run the async function using asyncio
+        asyncio.run(
+            invoke_our_graph(user_message, [], st.session_state["thread_id"])
+        )
+    
     if not DEBUGGING and st.experimental_user.get("email"):
         save_chat_logs("single_messages")

@@ -118,9 +118,9 @@ def process_example_question():
 
 
 # Cached sidebar info based on current page
-@st.cache_data
 def get_sidebar_info(page_hash, single_app_hash, current_page):
-    if page_hash == single_app_hash or current_page == "single_app":
+    print(f"Page Hash: {page_hash}, Single App Hash: {single_app_hash}, Current Page: {current_page}")
+    if page_hash == single_app_hash or single_app_hash == None or current_page == "single_app":
         return "Chatbot utilisant un single agent pour l'interrogation du dataset 'Capital Humain' et la réponse aux questions posées."
     else:
         return "Chatbot utilisant une architecture multi-agent LangGraph avec human-in-the-loop pour l'interrogation du dataset 'Capital Humain' et la visualisation des workflows sous forme de graphs."
