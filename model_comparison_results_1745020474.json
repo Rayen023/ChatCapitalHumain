@@ -1,0 +1,1302 @@
+[
+  {
+    "question": "Pour l'école Aux quatre vents en 2016, quel pourcentage d'élèves a choisi 'Français' comme l'un des deux cours les plus appréciés (question 16) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Pour l'école Aux quatre vents en 2016, 0% des élèves a choisi 'Français' comme l'un des deux cours les plus appréciés.",
+        "time_seconds": 2.7718393802642822
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données, pour l'école Aux quatre vents en 2016 :\n\n- 8 élèves ont choisi 'Français' comme l'un des deux cours les plus appréciés durant leur secondaire\n- Le nombre total d'élèves ayant répondu au questionnaire était de 64\n- Le pourcentage d'élèves ayant choisi 'Français' comme l'un de leurs cours préférés est donc de 12,50%\n\nAinsi, 12,50% des élèves de l'école Aux quatre vents en 2016 ont sélectionné le français parmi leurs deux cours les plus appréciés durant leur secondaire.",
+        "time_seconds": 10.682925462722778
+      }
+    }
+  },
+  {
+    "question": "Comment la proportion d'élèves 'Très insatisfait/e' de leurs relations avec les autres élèves (question 17) a-t-elle évolué pour Secondaire Népisiguit entre 2014 et 2019 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Voici l'évolution du nombre d'élèves 'Très insatisfait/e' de leurs relations avec les autres élèves pour l'école Secondaire Népisiguit entre 2014 et 2019 :\n\n*   **2014:** 1 fille\n*   **2015:** 2 garçons\n*   **2016:** 2 filles et 1 garçon\n*   **2017:** 2 garçons\n*   **2018:** 3 filles et 5 garçons\n\nIl n'y a pas de données pour l'année 2019 pour cette réponse spécifique.",
+        "time_seconds": 2.989572525024414
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "## Évolution de la proportion d'élèves \"Très insatisfait/e\" de leurs relations avec les autres élèves à Secondaire Népisiguit (2014-2019)\n\nVoici l'évolution de la proportion d'élèves qui se sont déclarés \"Très insatisfait/e\" de leurs relations avec les autres élèves à l'école Secondaire Népisiguit entre 2014 et 2019 :\n\n| Année | Nombre d'élèves \"Très insatisfait/e\" | Total de répondants | Pourcentage |\n|-------|--------------------------------------|---------------------|-------------|\n| 2014  | 1                                    | 208                 | 0,48 %      |\n| 2015  | 2                                    | 215                 | 0,93 %      |\n| 2016  | 3                                    | 223                 | 1,35 %      |\n| 2017  | 2                                    | 206                 | 0,97 %      |\n| 2018  | 8                                    | 196                 | 4,08 %      |\n| 2019  | 0                                    | 201                 | 0,00 %      |\n\n**Analyse de l'évolution :**\n\n1. De 2014 à 2016, on observe une légère augmentation progressive du pourcentage d'élèves très insatisfaits (de 0,48% à 1,35%).\n2. En 2017, ce pourcentage diminue légèrement à 0,97%.\n3. En 2018, on constate une augmentation significative, avec 4,08% des élèves se déclarant très insatisfaits.\n4. En 2019, aucun élève n'a choisi l'option \"Très insatisfait/e\" parmi les 201 répondants.\n\nCette évolution montre une amélioration notable en 2019, où le niveau d'insatisfaction sévère semble avoir disparu, après avoir atteint son pic en 2018. Il serait intéressant d'explorer si des initiatives particulières ont été mises en place à l'école Secondaire Népisiguit entre 2018 et 2019 pour améliorer les relations entre élèves.",
+        "time_seconds": 40.59156942367554
+      }
+    }
+  },
+  {
+    "question": "En 2017, pour l'école Roland-Pépin, quelle était la part des élèves se déclarant 'Satisfait/e' de leurs relations avec le personnel de l'école (question 18) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2017, pour l'école Roland-Pépin, 59.09% des élèves se déclaraient 'Satisfait/e' de leurs relations avec le personnel de l'école.",
+        "time_seconds": 2.6250624656677246
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données, en 2017 à l'école Roland-Pépin :\n\n- 39 élèves sur 66 ont répondu être \"Satisfait/e\" de leurs relations avec le personnel de l'école (question 18)\n- Cela représente 59,09% des élèves ayant complété le questionnaire\n\nDonc, en 2017, environ 59% des élèves de l'école Roland-Pépin se déclaraient \"Satisfait/e\" de leurs relations avec le personnel de l'école.",
+        "time_seconds": 9.639522790908813
+      }
+    }
+  },
+  {
+    "question": "Comparer la proportion d'élèves prévoyant des 'Études collégiales' (question 19) en 2019 entre l'école Aux quatre vents et l'école Secondaire Népisiguit.",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer combien d'élèves qui utilisent un certain moyen de transport ont de bonnes notes nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.",
+        "time_seconds": 3.3622026443481445
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Je remarque que l'option exacte est \"Études collégiales \" (avec un espace à la fin) et non \"Études collégiales\" (sans espace). Voici donc la comparaison des proportions d'élèves prévoyant des études collégiales en 2019 entre les deux écoles :\n\n## Résultats de la comparaison\n\nPour l'année 2019, voici la proportion d'élèves prévoyant des études collégiales dans chaque école :\n\n- **Aux quatre vents** : 42.55% des élèves prévoient faire des études collégiales\n- **Secondaire Népisiguit** : 33.33% des élèves prévoient faire des études collégiales\n\n### Analyse comparative\n\nLa proportion d'élèves prévoyant des études collégiales est plus élevée à l'école Aux quatre vents (42.55%) qu'à l'école Secondaire Népisiguit (33.33%), avec une différence de 9.22 points de pourcentage.\n\nÀ noter que dans les deux écoles, les études universitaires représentent le premier choix des élèves (46.81% pour Aux quatre vents et 47.26% pour Secondaire Népisiguit), suivi par les études collégiales.",
+        "time_seconds": 29.851969718933105
+      }
+    }
+  },
+  {
+    "question": "Pour l'école W.-A.-Losier en 2014, quel était le domaine d'études postsecondaires (question 20) le plus fréquemment choisi ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "L'option la plus fréquemment choisie pour le domaine d'études postsecondaires (question 20) à l'école W.-A.-Losier en 2014 était \"Non répondu\" avec 59 réponses.",
+        "time_seconds": 2.8655049800872803
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Je constate que l'option la plus fréquente est \"Non répondu\" avec 59 réponses. Cependant, comme il s'agit d'une non-réponse, je vais considérer les options suivantes.\n\nPour l'école W.-A.-Losier en 2014, les domaines d'études postsecondaires les plus fréquemment choisis (à égalité) sont :\n\n1. \"Techniques et métiers des sciences appliquées\" avec 34 réponses\n2. \"Professions de la santé et technologies connexes\" également avec 34 réponses\n\nCes deux domaines arrivent en tête des choix exprimés par les élèves, suivis de loin par \"Lettres, sciences humaines et disciplines connexes\" (8 réponses) et \"Commerce, gestion et administration des affaires\" (6 réponses).",
+        "time_seconds": 13.738349437713623
+      }
+    }
+  },
+  {
+    "question": "Quelle est l'évolution du pourcentage d'élèves répondant 'Pas utilisés' aux services d'orientation (question 21) pour l'école Louis-Mailloux entre 2014 et 2019 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Voici l'évolution du pourcentage d'élèves répondant 'Pas utilisés' aux services d'orientation (question 21) pour l'école Louis-Mailloux entre 2014 et 2019 :\n\n*   **2014:** 2.36% et 8.66%\n*   **2015:** 2.38% et 11.90%\n*   **2016:** 1.71% et 11.97%\n*   **2017:** 0.83% et 4.13%\n*   **2018:** 1.98% et 5.94%\n*   **2019:** 4.95% et 3.96%\n\nIl semble y avoir deux entrées par année, ce qui pourrait indiquer une distinction entre les sexes (homme/femme) ou une autre catégorisation non spécifiée dans la requête.",
+        "time_seconds": 5.565120220184326
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Voici l'évolution du pourcentage d'élèves ayant répondu \"Pas utilisés\" à la question 21 (concernant les services d'orientation) pour l'école Louis-Mailloux entre 2014 et 2019 :\n\n| Année | Pourcentage d'élèves répondant \"Pas utilisés\" |\n|-------|----------------------------------------------|\n| 2014  | 11,02 %                                      |\n| 2015  | 14,29 %                                      |\n| 2016  | 13,68 %                                      |\n| 2017  | 4,96 %                                       |\n| 2018  | 7,92 %                                       |\n| 2019  | 8,91 %                                       |\n\nOn observe une tendance intéressante dans ces données :\n- Le pourcentage d'élèves n'utilisant pas les services d'orientation a augmenté entre 2014 et 2015, atteignant un pic de 14,29%.\n- Une baisse significative est survenue en 2017, où le pourcentage a chuté à seulement 4,96%.\n- Depuis 2017, on constate une légère remontée progressive, mais les valeurs restent inférieures à celles observées entre 2014 et 2016.\n\nCette évolution pourrait suggérer une amélioration de l'utilisation des services d'orientation à partir de 2017, possiblement due à des changements dans la promotion de ces services ou dans leur accessibilité pour les élèves.",
+        "time_seconds": 12.72623085975647
+      }
+    }
+  },
+  {
+    "question": "En 2015, pour l'école Marie-Esther, quelle proportion d'élèves a répondu 'Je ne sais pas' concernant l'acceptation d'une offre d'emploi dans la Péninsule (question 22) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2015, pour l'école Marie-Esther, 30.34% des élèves ont répondu 'Je ne sais pas' concernant l'acceptation d'une offre d'emploi dans la Péninsule (question 22).",
+        "time_seconds": 2.8277602195739746
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2015 pour l'école Marie-Esther, 30,34% des élèves ont répondu \"Je ne sais pas\" à la question 22 concernant l'acceptation d'une offre d'emploi dans la Péninsule acadienne après leurs études postsecondaires.\n\nPour être plus précis :\n- 27 élèves sur 89 ont choisi cette réponse\n- Le pourcentage correspondant est de 30,34%\n- La question exacte était : \"À la fin de vos études postsecondaires, si vous aviez une offre d'emploi dans la Péninsule acadienne, est-ce que vous l'accepteriez ?\"\n\nCela indique qu'environ un tiers des élèves de Marie-Esther en 2015 étaient indécis quant à leur retour dans la Péninsule acadienne pour y travailler après leurs études postsecondaires.",
+        "time_seconds": 11.75654149055481
+      }
+    }
+  },
+  {
+    "question": "Pour l'année 2008, quelle proportion des répondants du Centre La Fontaine prévoyait travailler 'Dans la Péninsule acadienne' après leurs études postsecondaires (question 23) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Pour l'année 2008, 15.625% des répondants du Centre La Fontaine prévoyaient travailler 'Dans la Péninsule acadienne' après leurs études postsecondaires.",
+        "time_seconds": 2.892038345336914
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Pour l'année 2008 au Centre La Fontaine, voici les résultats concernant la question 23 \"Lorsque vous aurez terminé vos études postsecondaires, indiquez où vous prévoyez travailler ?\" :\n\n- 5 étudiants ont répondu qu'ils prévoyaient travailler \"Dans la Péninsule acadienne\"\n- Sur un total de 32 réponses valides (excluant les \"Non répondu\")\n- Cela représente 15,63% des répondants\n\nDonc, en 2008, environ 15,63% des répondants du Centre La Fontaine prévoyaient travailler dans la Péninsule acadienne après leurs études postsecondaires.",
+        "time_seconds": 15.316365480422974
+      }
+    }
+  },
+  {
+    "question": "En 2010, pour l'école Louis-Mailloux, quel pourcentage d'élèves pensait fréquenter l''Université de Moncton - campus Shippagan' (question 24) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2010, pour l'école Louis-Mailloux, 17.61% des élèves pensaient fréquenter l'Université de Moncton - campus Shippagan.",
+        "time_seconds": 2.8641698360443115
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données, en 2010 à l'école Louis-Mailloux :\n\n- 25 élèves sur 142 ayant complété le questionnaire ont indiqué qu'ils pensaient fréquenter l'Université de Moncton - campus Shippagan.\n- Cela représente 17,61% des élèves.\n\nDonc, en 2010, 17,61% des élèves de l'école Louis-Mailloux prévoyaient fréquenter l'Université de Moncton - campus Shippagan l'année suivante.",
+        "time_seconds": 10.325214147567749
+      }
+    }
+  },
+  {
+    "question": "Comment la source de financement 'Contribution des parents' (question 25) a-t-elle varié pour les élèves de W.-A.-Losier entre 2014 et 2017 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Voici comment la source de financement 'Contribution des parents' (question 25) a varié pour les élèves de W.-A.-Losier entre 2014 et 2017 :\n\n*   **2014:** 53 élèves\n*   **2015:** 95 élèves\n*   **2016:** 71 élèves\n*   **2017:** 60 élèves",
+        "time_seconds": 3.447511672973633
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Voici l'évolution de la source de financement \"Contribution des parents\" pour les élèves de l'école W.-A.-Losier entre 2014 et 2017 :\n\n| Année | Nombre d'élèves comptant sur la contribution des parents | Total de répondants | Pourcentage |\n|-------|----------------------------------------------------------|---------------------|-------------|\n| 2014  | 53                                                       | 163                 | 32,5%       |\n| 2015  | 95                                                       | 226                 | 42,0%       |\n| 2016  | 71                                                       | 203                 | 35,0%       |\n| 2017  | 60                                                       | 176                 | 34,1%       |\n\nOn observe les tendances suivantes :\n- Une augmentation significative entre 2014 et 2015, passant de 53 à 95 élèves (ou de 32,5% à 42,0%)\n- Une baisse en 2016 à 71 élèves (35,0%)\n- Une légère diminution en 2017 à 60 élèves (34,1%)\n\nLa contribution des parents comme source de financement pour les études postsecondaires a donc connu un pic en 2015, puis est revenue à un niveau plus proche de celui de 2014 dans les années suivantes, tout en restant légèrement supérieure en pourcentage.",
+        "time_seconds": 15.43460988998413
+      }
+    }
+  },
+  {
+    "question": "Pour l'école Marie-Esther en 2016, quel était le moyen de transport local le plus envisagé parmi 'Voiture de mes parents' et 'À pied' (question 26) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je n'ai pas trouvé de données pour l'école Marie-Esther en 2016 concernant les moyens de transport 'Voiture de mes parents' et 'À pied'.",
+        "time_seconds": 2.6795973777770996
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données analysées pour l'école Marie-Esther en 2016, concernant la question 26 sur le moyen de transport local envisagé pendant la première année d'études, voici les résultats :\n\n- \"À pied\" : 7 réponses\n- \"Voiture de mes parents\" : 3 réponses\n\nLe moyen de transport le plus envisagé entre ces deux options était donc \"À pied\", avec plus du double de réponses par rapport à l'utilisation de la voiture des parents.",
+        "time_seconds": 12.913757801055908
+      }
+    }
+  },
+  {
+    "question": "En 2018, pour l'école Secondaire Népisiguit, la raison 'Manque d’intérêt pour les études/formation' (question 27) était-elle plus fréquente que 'Problèmes monétaires' pour ne pas poursuivre les études ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2018, pour l'école Secondaire Népisiguit, les raisons 'Manque d’intérêt pour les études/formation' et 'Problèmes monétaires' ont été choisies par le même nombre d'élèves (3 élèves pour chaque raison) pour ne pas poursuivre les études.",
+        "time_seconds": 2.981560468673706
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Maintenant, je peux répondre à votre question.\n\nEn 2018, à l'école Secondaire Népisiguit, pour la question 27 \"Quelle est la raison pour laquelle vous ne prévoyez pas poursuivre des études postsecondaire ?\", les résultats montrent que :\n\n- \"Problèmes monétaires\" a été choisi par 6 étudiants\n- \"Manque d'intérêt pour les études/formation\" a été choisi par 3 étudiants\n\nPar conséquent, la raison \"Problèmes monétaires\" était plus fréquente que \"Manque d'intérêt pour les études/formation\" comme motif pour ne pas poursuivre des études postsecondaires.\n\nÀ noter que la réponse la plus fréquente était \"Non répondu\" (141 étudiants), suivie de \"Aucune idée du domaine à choisir\" (22 étudiants) et \"Je travaille ou prévois travailler\" (17 étudiants).",
+        "time_seconds": 20.430533170700073
+      }
+    }
+  },
+  {
+    "question": "Quelle est l'évolution de l'emploi rémunéré 'Temps partiel à la semaine' (question 28) pour les élèves de l'école Roland-Pépin de 2014 à 2018 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Voici l'évolution de l'emploi rémunéré 'Temps partiel à la semaine' pour les élèves de l'école Roland-Pépin de 2014 à 2018 :\n\n*   2014 : 24 élèves\n*   2015 : 5 élèves\n*   2016 : 37 élèves\n*   2017 : 33 élèves\n*   2018 : 19 élèves",
+        "time_seconds": 3.1910459995269775
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Voici l'évolution du nombre d'élèves de l'école Roland-Pépin ayant occupé un emploi rémunéré à \"Temps partiel à la semaine\" de 2014 à 2018 :\n\n| Année | Nombre d'élèves |\n|-------|-----------------|\n| 2014  | 24              |\n| 2015  | 5               |\n| 2016  | 37              |\n| 2017  | 33              |\n| 2018  | 19              |\n\nOn observe une forte variation au cours de cette période :\n- Une baisse significative en 2015 (seulement 5 élèves)\n- Un pic important en 2016 (37 élèves)\n- Une légère diminution en 2017 (33 élèves)\n- Une nouvelle baisse en 2018 (19 élèves)\n\nCette évolution montre des fluctuations importantes d'une année à l'autre, avec notamment une chute très marquée en 2015 suivie d'une forte remontée en 2016.",
+        "time_seconds": 11.575546979904175
+      }
+    }
+  },
+  {
+    "question": "Comparer le pourcentage d'élèves jugeant l'obtention de la 12e année 'Important' (question 29) en 2019 entre Aux quatre vents et Roland-Pépin.",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2019, le pourcentage d'élèves jugeant l'obtention de la 12e année 'Important' était de 9.57% à l'école Aux quatre vents et de 19.83% à l'école Roland-Pépin.",
+        "time_seconds": 3.0459492206573486
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Pour une analyse plus complète, voici la répartition de toutes les réponses à la question 29 (\"Est-ce que le fait de terminer votre 12e année est important pour vous ?\") en 2019 pour les deux écoles :\n\n### École Aux quatre vents :\n- Très important : 78,72%\n- Important : 19,15%\n- Peu important : 2,13%\n\n### École Roland-Pépin :\n- Très important : 56,90%\n- Important : 39,66%\n- Non répondu : 3,45%\n\nCes résultats montrent que si l'on considère ensemble les réponses \"Important\" et \"Très important\", les élèves des deux écoles accordent une grande importance à l'obtention de la 12e année :\n- Aux quatre vents : 97,87% (19,15% + 78,72%)\n- Roland-Pépin : 96,56% (39,66% + 56,90%)\n\nLa principale différence réside dans la distribution entre \"Important\" et \"Très important\". À Aux quatre vents, une plus grande proportion d'élèves considère l'obtention de la 12e année comme \"Très important\" plutôt que simplement \"Important\", comparativement à Roland-Pépin.",
+        "time_seconds": 28.563979625701904
+      }
+    }
+  },
+  {
+    "question": "En 2014, pour l'école Secondaire Népisiguit, quelle proportion d'élèves avait des résultats scolaires 'de 95 % à 100 %' (question 30) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2014, pour l'école Secondaire Népisiguit, 7.21% des élèves avaient des résultats scolaires de 95% à 100%.",
+        "time_seconds": 2.861258029937744
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2014 pour l'école Secondaire Népisiguit, voici les résultats concernant la question 30 sur les résultats scolaires :\n\n- 7,21% des élèves ont déclaré avoir des résultats scolaires 'de 95 % à 100 %'\n- Ce pourcentage représente 15 élèves sur un total de 208 qui ont complété le questionnaire\n\nCette proportion indique qu'environ 1 élève sur 14 à Secondaire Népisiguit en 2014 obtenait des résultats scolaires excellents (dans la tranche la plus élevée de 95% à 100%).",
+        "time_seconds": 10.312279462814331
+      }
+    }
+  },
+  {
+    "question": "Comment la proportion d'élèves suivant des cours de niveau 'Régulier' (question 31) a-t-elle changé pour l'école Marie-Esther entre 2014 et 2019 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer comment la proportion d'élèves suivant des cours de niveau 'Régulier' a changé pour l'école Marie-Esther entre 2014 et 2019 nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.",
+        "time_seconds": 1.5382118225097656
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "## Évolution de la proportion d'élèves suivant des cours de niveau 'Régulier' à l'école Marie-Esther (2014-2019)\n\nVoici l'analyse de l'évolution de la proportion d'élèves suivant des cours de niveau 'Régulier' à l'école Marie-Esther entre 2014 et 2019 :\n\n| Année | Élèves en niveau Régulier | Total des réponses | Pourcentage (%) |\n|-------|---------------------------|-------------------|-----------------|\n| 2014  | 75                        | 87                | 86.21           |\n| 2015  | 67                        | 89                | 75.28           |\n| 2016  | 81                        | 101               | 80.20           |\n| 2017  | 71                        | 95                | 74.74           |\n| 2018  | 74                        | 99                | 74.75           |\n| 2019  | 74                        | 99                | 74.75           |\n\n### Observations clés :\n- En 2014, la proportion d'élèves suivant des cours de niveau 'Régulier' était à son plus haut avec 86.21%.\n- Une baisse significative a été observée en 2015, où le pourcentage est tombé à 75.28%.\n- En 2016, on note une légère remontée à 80.20%.\n- De 2017 à 2019, la proportion s'est stabilisée autour de 74.75%.\n\n### Tendance générale :\nOn observe une tendance à la baisse entre 2014 et 2019, avec une diminution globale d'environ 11.46 points de pourcentage (de 86.21% à 74.75%). Cette baisse suggère qu'une proportion croissante d'élèves à Marie-Esther suit des cours d'autres niveaux (comme PCE, Adaptation scolaire, Modifié, etc.) sur cette période.",
+        "time_seconds": 15.598592519760132
+      }
+    }
+  },
+  {
+    "question": "Pour l'école W.-A.-Losier en 2015, quel pourcentage d'élèves était 'Très satisfait/e' de ses résultats scolaires (question 32) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Pour l'école W.-A.-Losier en 2015, 12.83% des élèves étaient 'Très satisfait/e' de leurs résultats scolaires.",
+        "time_seconds": 3.0233726501464844
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données, pour l'école W.-A.-Losier en 2015 :\n\n- 29 élèves sur 226 ont répondu qu'ils étaient \"Très satisfait/e\" de leurs résultats scolaires\n- Cela représente 12.83% des élèves ayant complété le questionnaire\n\nDonc, 12.83% des élèves de l'école W.-A.-Losier en 2015 étaient très satisfaits de leurs résultats scolaires.",
+        "time_seconds": 9.583599090576172
+      }
+    }
+  },
+  {
+    "question": "En 2004, pour les répondants de l'école Louis-Mailloux, quelle proportion demeurait hors Péninsule depuis 'moins d'un an' (question 45) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2004, pour les répondants de l'école Louis-Mailloux, 0% demeurait hors Péninsule depuis 'moins d'un an'.",
+        "time_seconds": 4.39720344543457
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les résultats obtenus, je peux vous fournir l'information suivante concernant les répondants de l'école Louis-Mailloux en 2004 pour la question 45 (depuis combien d'années demeurez-vous à l'extérieur de la Péninsule acadienne) :\n\nJe constate que l'option \"moins d'un an\" n'apparaît pas dans les réponses des élèves de Louis-Mailloux en 2004. Aucun élève n'a choisi cette option.\n\nLa répartition des réponses est la suivante :\n- \"Non répondu\" : 80 élèves (55,17%)\n- \"Plus de quatre\" : 52 élèves (35,86%)\n- \"Quatre ans\" : 4 élèves (2,76%)\n- \"Trois ans\" : 4 élèves (2,76%)\n- \"Deux ans\" : 2 élèves (1,38%)\n- \"Un an\" : 3 élèves (2,07%)\n- \"Moins d'un an\" : 0 élève (0%)\n\nSur un total de 145 répondants, la proportion d'élèves ayant répondu \"moins d'un an\" est donc de 0%.\n\nJe note que la majorité des élèves (55,17%) n'ont pas répondu à cette question, ce qui pourrait indiquer que la plupart des élèves habitaient dans la Péninsule acadienne et n'ont donc pas jugé pertinent de répondre à cette question qui s'adressait aux personnes vivant à l'extérieur de la région.",
+        "time_seconds": 28.5062198638916
+      }
+    }
+  },
+  {
+    "question": "Quelle était la raison principale ('Travail', 'Étude', 'Autre' - question 46) pour avoir quitté la Péninsule pour les répondants de Marie-Esther en 2010 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2010, pour les répondants de l'école Marie-Esther, la raison principale pour avoir quitté la Péninsule était les 'Études', avec 23 répondants.",
+        "time_seconds": 2.777146577835083
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données, pour les répondants de l'école Marie-Esther en 2010, les raisons pour avoir quitté la Péninsule acadienne se répartissent comme suit :\n\n1. \"Non répondu\" : 93 répondants\n2. \"Étude\" : 23 répondants\n3. \"Travail\" : 8 répondants\n4. \"Autre\" : 5 répondants\n\nComme la réponse la plus fréquente est \"Non répondu\", je vais considérer la deuxième option la plus choisie. La raison principale pour avoir quitté la Péninsule acadienne parmi les répondants de Marie-Esther en 2010 qui ont fourni une réponse était les \"Études\" avec 23 répondants, suivie du \"Travail\" (8 répondants) et d'\"Autre\" (5 répondants).",
+        "time_seconds": 9.88283395767212
+      }
+    }
+  },
+  {
+    "question": "Comment l'intention de s'établir dans la Péninsule ('Oui' vs 'Non' - question 47) a-t-elle évolué pour les répondants de W.-A.-Losier entre 2004 et 2012 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer comment l'intention de s'établir dans la Péninsule a évolué pour les répondants de W.-A.-Losier entre 2004 et 2012 nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.",
+        "time_seconds": 1.4754655361175537
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Voici l'analyse de l'évolution de l'intention des répondants de l'école W.-A.-Losier de s'établir dans la Péninsule acadienne entre 2004 et 2012 :\n\n### Évolution de l'intention de s'établir dans la Péninsule acadienne (2004-2012)\n\n**Observations principales :**\n\n1. **Tendance générale** : Sur toute la période, la majorité des répondants (entre 63,6% et 81,0%) n'avaient pas l'intention de s'établir dans la Péninsule acadienne.\n\n2. **Évolution du \"Oui\" :**\n   - 2004 : 19,0% des répondants avaient l'intention de s'établir dans la région\n   - 2005-2006 : Augmentation significative à environ 34%\n   - 2008 : Pic à 36,4% (la valeur la plus élevée de la période)\n   - 2009-2010 : Chute importante à environ 20%\n   - 2011 : Remontée à 33,3%\n   - 2012 : Nouvelle baisse à 20,5%\n\n3. **Fluctuations notables :**\n   - La période montre des fluctuations importantes plutôt qu'une tendance linéaire\n   - Les années 2005, 2006, 2008 et 2011 ont montré un intérêt plus marqué pour s'établir dans la région\n   - Les années 2004, 2009, 2010 et 2012 ont montré un intérêt plus faible\n\n4. **Remarque importante :** Un grand nombre de répondants (entre 89 et 135 selon les années) n'ont pas répondu à cette question, ce qui représente une proportion significative de l'échantillon total. Cette analyse se concentre uniquement sur ceux qui ont exprimé une opinion claire.\n\nEn résumé, l'intention de s'établir dans la Péninsule acadienne parmi les répondants de W.-A.-Losier a connu des fluctuations importantes entre 2004 et 2012, avec une tendance générale où la majorité des répondants n'envisageaient pas de s'y établir. Les périodes 2005-2006, 2008 et 2011 ont montré un intérêt relativement plus élevé pour rester dans la région.",
+        "time_seconds": 34.7006254196167
+      }
+    }
+  },
+  {
+    "question": "En 2011, pour le Centre La Fontaine, quel pourcentage de répondants avait un niveau d'éducation 'Collégial' (question 48) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2011, pour le Centre La Fontaine, 45.71% des répondants à la question 48 avaient un niveau d'éducation 'Collégial'.",
+        "time_seconds": 2.808871030807495
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données, pour le Centre La Fontaine en 2011 :\n\n- 16 répondants sur un total de 35 ont indiqué avoir un niveau d'éducation 'Collégial'\n- Cela représente 45.71% des répondants\n\nDonc, en 2011, 45.71% des répondants du Centre La Fontaine avaient un niveau d'éducation 'Collégial' selon la question 48 sur le niveau d'éducation le plus élevé.",
+        "time_seconds": 9.845915794372559
+      }
+    }
+  },
+  {
+    "question": "Pour l'école Louis-Mailloux en 2005, quelle était la proportion de répondants dont l'occupation principale était 'Recherche d'emploi / Sans emploi' (question 49) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Pour l'école Louis-Mailloux en 2005, la proportion de répondants dont l'occupation principale était 'Recherche d'emploi / Sans emploi' (question 49) était de 8.87%.",
+        "time_seconds": 2.91394305229187
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Pour l'école Louis-Mailloux en 2005, la proportion de répondants dont l'occupation principale était 'Recherche d'emploi / Sans emploi' (question 49) était de 8.87%.\n\nPlus précisément :\n- Sur un total de 124 questionnaires complétés\n- 11 répondants ont indiqué que leur occupation principale était 'Recherche d'emploi / Sans emploi'\n- Ce qui représente 8.87% des répondants de cette école pour cette année\n\nCette information provient des réponses à la question 49 \"Que consirérez-vous comme étant votre principale occupation en ce moment ?\" dans le questionnaire de type \"Renseignements Socio-Démographiques\".",
+        "time_seconds": 14.66849398612976
+      }
+    }
+  },
+  {
+    "question": "Quelle est l'évolution de l'état civil 'Marié/e' ou 'Conjoint/e de fait' (question 50) parmi les répondants de Marie-Esther entre 2004 et 2012 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer l'évolution de l'état civil 'Marié/e' ou 'Conjoint/e de fait' parmi les répondants de Marie-Esther entre 2004 et 2012 nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.\n\nCependant, je peux vous donner le nombre total de répondants ayant déclaré être 'Marié/e' ou 'Conjoint/e de fait' pour chaque année entre 2004 et 2012 à l'école Marie-Esther, sans pouvoir faire de lien avec d'autres informations individuelles.",
+        "time_seconds": 1.9360136985778809
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "## Évolution de l'état civil 'Marié/e' ou 'Conjoint/e de fait' à Marie-Esther (2004-2012)\n\nVoici l'évolution du nombre et du pourcentage de répondants qui se sont déclarés 'Marié/e' ou 'Conjoint/e de fait' à l'école Marie-Esther entre 2004 et 2012 :\n\n| Année | Nombre de mariés/conjoints de fait | Total de répondants | Pourcentage (%) |\n|-------|-----------------------------------|-------------------|----------------|\n| 2004  | 50                                | 512               | 9,77           |\n| 2005  | 27                                | 432               | 6,25           |\n| 2006  | 29                                | 486               | 5,97           |\n| 2007  | 38                                | 420               | 9,05           |\n| 2008  | 43                                | 463               | 9,29           |\n| 2009  | 63                                | 360               | 17,50          |\n| 2010  | 43                                | 480               | 8,96           |\n| 2011  | 49                                | 455               | 10,77          |\n| 2012  | 41                                | 436               | 9,40           |\n\n### Analyse de l'évolution :\n\n- On observe une **baisse significative** du pourcentage entre 2004 (9,77%) et 2006 (5,97%).\n- Puis une **augmentation progressive** jusqu'en 2008.\n- L'année 2009 présente un **pic remarquable** avec 17,50% des répondants déclarant être mariés ou en union de fait, soit presque le double des autres années.\n- Après 2009, on constate un **retour à des valeurs plus proches** de la moyenne historique (autour de 9-10%).\n\nCette évolution pourrait être influencée par divers facteurs sociodémographiques ou même par des variations dans l'échantillon de répondants selon les années.",
+        "time_seconds": 25.234151124954224
+      }
+    }
+  },
+  {
+    "question": "En 2007, pour les répondants de W.-A.-Losier, quelle proportion était originaire de la localité 'Tracadie' (question 51) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2007, pour les répondants de W.-A.-Losier, 0% des répondants étaient originaires de la localité 'Tracadie'.",
+        "time_seconds": 2.8933420181274414
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données, en 2007, parmi les répondants de l'école W.-A.-Losier (school_id = 7) :\n\n- 46 élèves ont indiqué être originaires de 'TRACADIE-SHEILA'\n- Le nombre total de répondants à cette question était de 170 élèves\n- La proportion d'élèves originaires de Tracadie-Sheila représente donc 27,06% des répondants\n\nIl est important de noter que la localité est enregistrée sous le nom 'TRACADIE-SHEILA' dans la base de données, et non simplement 'TRACADIE' comme mentionné dans votre question.",
+        "time_seconds": 26.423011779785156
+      }
+    }
+  },
+  {
+    "question": "Comparer le lieu de résidence actuel ('Péninsule acadienne' vs 'Ailleurs au N.-B.' - question 52) des répondants du Centre La Fontaine et de Louis-Mailloux en 2008.",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de comparer le lieu de résidence actuel des répondants entre différentes écoles nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.\n\nCependant, je peux vous donner le nombre total de répondants pour chaque option de réponse à la question 52 ('Où demeurez-vous présentement ?') pour chaque école et chaque année séparément.",
+        "time_seconds": 1.7019922733306885
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Voici la comparaison du lieu de résidence actuel des répondants du Centre La Fontaine et de Louis-Mailloux en 2008 :\n\n### Centre La Fontaine :\n- **Péninsule acadienne** : 29 répondants (72,5% des réponses)\n- **Ailleurs au N.-B.** : 11 répondants (27,5% des réponses)\n- **Total** : 40 répondants\n\n### Louis-Mailloux :\n- **Péninsule acadienne** : 78 répondants (66,1% des réponses)\n- **Ailleurs au N.-B.** : 40 répondants (33,9% des réponses)\n- **Total** : 118 répondants\n\n### Analyse comparative :\n- Les deux écoles montrent une tendance similaire avec une majorité de répondants résidant dans la Péninsule acadienne.\n- Le Centre La Fontaine a un pourcentage légèrement plus élevé de répondants restant dans la Péninsule acadienne (72,5% contre 66,1% pour Louis-Mailloux).\n- Louis-Mailloux a un nombre total de répondants presque trois fois plus élevé que le Centre La Fontaine.\n- Proportionnellement, Louis-Mailloux a un peu plus de répondants qui ont quitté la Péninsule pour s'établir ailleurs au Nouveau-Brunswick.\n\nCette analyse se concentre uniquement sur les deux options demandées ('Péninsule acadienne' et 'Ailleurs au N.-B.') et ne tient pas compte des autres options de réponse possibles comme 'Ailleurs au Canada', 'Dans un autre pays' ou 'Non répondu'.",
+        "time_seconds": 14.249708890914917
+      }
+    }
+  },
+  {
+    "question": "Pour l'école Marie-Esther en 2012, quelle province ('Québec', 'Nouveau-Brunswick' - question 1) était la plus citée comme lieu d'études ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je n'ai pas trouvé de données pour la question 1 pour l'école Marie-Esther en 2012.",
+        "time_seconds": 2.930015802383423
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les résultats obtenus, pour l'école Marie-Esther en 2012, concernant la question \"Dans quelle province canadienne ou ailleurs avez-vous étudié ?\", la province la plus citée comme lieu d'études était le **Nouveau-Brunswick** avec 78 réponses, suivi par l'Ontario et le Québec avec 4 réponses chacun.\n\nLe Nouveau-Brunswick est donc très largement en tête comme province d'études pour les élèves de Marie-Esther en 2012.",
+        "time_seconds": 22.5555419921875
+      }
+    }
+  },
+  {
+    "question": "En 2006, pour les répondants de W.-A.-Losier, la source de financement 'Économie personnelle' était-elle plus fréquente que 'Travail à temps partiel' (question 2) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer combien d'élèves qui utilisent un certain moyen de transport ont de bonnes notes nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.",
+        "time_seconds": 2.8626837730407715
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les résultats obtenus, pour les répondants de l'école W.-A.-Losier en 2006 concernant la question sur les sources de financement durant les études (question 2) :\n\n- \"Économie personnelle\" a été choisie par 1 étudiant\n- \"Travail à temps partiel\" n'apparaît pas dans les résultats, ce qui signifie qu'aucun étudiant n'a sélectionné cette option\n\nPar conséquent, oui, la source de financement \"Économie personnelle\" était plus fréquente que \"Travail à temps partiel\" pour les répondants de W.-A.-Losier en 2006.\n\nIl est important de noter que le nombre total de réponses est assez faible (seulement 1), ce qui suggère soit un petit échantillon de répondants, soit que la plupart des étudiants ont choisi d'autres options de financement que celles que vous avez mentionnées.",
+        "time_seconds": 15.765207529067993
+      }
+    }
+  },
+  {
+    "question": "Quelle proportion des répondants du Centre La Fontaine en 2004 était 'Présentement aux études' quand on leur demandait s'ils étaient intéressés par un retour aux études (question 3) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2004, au Centre La Fontaine, 0% des répondants à la question \"Seriez-vous intéressé/e à faire un retour aux études ?\" ont répondu \"Présentement aux études\".",
+        "time_seconds": 2.9517340660095215
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Il semble qu'aucun répondant du Centre La Fontaine en 2004 n'ait choisi l'option \"Présentement aux études\" pour la question 3 concernant l'intérêt à faire un retour aux études.\n\nPour répondre à votre question : \n\n**La proportion des répondants du Centre La Fontaine en 2004 qui étaient \"Présentement aux études\" quand on leur demandait s'ils étaient intéressés par un retour aux études est de 0%.**\n\nLes réponses données par les répondants de cette école en 2004 à cette question se répartissent comme suit :\n- Oui : 35,48%\n- Non : 32,26%\n- Non répondu : 22,58%\n- Ne sais pas : 9,68%\n\nAucun répondant n'a choisi l'option \"Présentement aux études\" cette année-là dans cette école.",
+        "time_seconds": 29.42034888267517
+      }
+    }
+  },
+  {
+    "question": "Pour l'école Louis-Mailloux en 2007, quelle proportion de répondants a indiqué 'Oui' à l'existence d'obstacles empêchant la poursuite des études (question 4) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Pour l'école Louis-Mailloux en 2007, 23.47% des répondants ont indiqué 'Oui' à l'existence d'obstacles empêchant la poursuite des études.",
+        "time_seconds": 2.7458529472351074
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2007 pour l'école Louis-Mailloux concernant la question 4 \"Existe-t-il des obstacles qui vous empêchent de poursuivre des études?\", voici les résultats :\n\n- 23,47% des répondants ont indiqué \"Oui\" (23 étudiants)\n- 75,51% des répondants ont indiqué \"Non\" (74 étudiants)\n- 1,02% n'ont pas répondu à cette question (1 étudiant)\n\nDonc, pour répondre précisément à votre question, la proportion de répondants de l'école Louis-Mailloux en 2007 qui a indiqué \"Oui\" à l'existence d'obstacles empêchant la poursuite des études est de 23,47%.",
+        "time_seconds": 10.20024824142456
+      }
+    }
+  },
+  {
+    "question": "Comment l'intérêt ('Oui') pour recevoir de l'information sur la poursuite des études (question 5) a-t-il varié pour les répondants de Marie-Esther entre 2004 et 2010 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer comment l'intérêt pour recevoir de l'information sur la poursuite des études a varié pour les répondants de Marie-Esther entre 2004 et 2010 nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.",
+        "time_seconds": 1.5530579090118408
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "## Évolution de l'intérêt pour recevoir de l'information sur la poursuite des études à Marie-Esther (2004-2010)\n\nVoici comment l'intérêt pour recevoir de l'information sur la poursuite des études (réponse \"Oui\" à la question 5) a évolué pour les répondants de l'école Marie-Esther entre 2004 et 2010 :\n\n| Année | Nombre de \"Oui\" | Total des réponses | Pourcentage |\n|-------|----------------|-------------------|-------------|\n| 2004  | 27             | 97                | 27,84%      |\n| 2005  | 7              | 65                | 10,77%      |\n| 2006  | 13             | 67                | 19,40%      |\n| 2007  | 7              | 83                | 8,43%       |\n| 2008  | 5              | 91                | 5,49%       |\n| 2009  | 15             | 106               | 14,15%      |\n| 2010  | 0              | 107               | 0,00%       |\n\n### Analyse de la tendance :\n\n1. On observe une forte baisse de l'intérêt entre 2004 (27,84%) et 2008 (5,49%), avec une diminution particulièrement marquée entre 2004 et 2005.\n\n2. Une légère remontée est visible en 2009 (14,15%), mais l'intérêt disparaît complètement en 2010 où aucun répondant n'a choisi l'option \"Oui\".\n\n3. Pour 2010, les réponses se répartissent uniquement entre \"Non\" (92 répondants) et \"Non répondu\" (15 répondants).\n\nCette évolution montre une tendance générale à la baisse de l'intérêt pour recevoir de l'information sur la poursuite des études chez les répondants de l'école Marie-Esther sur cette période de 7 ans.",
+        "time_seconds": 31.226158142089844
+      }
+    }
+  },
+  {
+    "question": "En 2011, pour l'école W.-A.-Losier, la majorité des répondants étudiait-elle dans une institution 'Universitaire' (question 6) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2011, pour l'école W.-A.-Losier, la majorité des répondants étudiait dans une institution de type 'Collégial'.",
+        "time_seconds": 4.326345443725586
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2011 pour l'école W.-A.-Losier concernant la question \"Dans quel type d'institution avez-vous étudié?\" (question 6), voici la répartition des réponses :\n\n- Collégial : 71 répondants\n- Universitaire : 42 répondants\n- École privée : 2 répondants\n- Non répondu : 2 répondants\n\nLa majorité des répondants (71 sur un total de 117, soit environ 60,7%) a indiqué étudier dans une institution collégiale, et non universitaire. Les répondants étudiant dans une institution universitaire représentent environ 35,9% du total.\n\nDonc, non, la majorité des répondants de l'école W.-A.-Losier en 2011 n'étudiait pas dans une institution universitaire, mais plutôt dans une institution collégiale.",
+        "time_seconds": 10.209951162338257
+      }
+    }
+  },
+  {
+    "question": "Quelle proportion des répondants du Centre La Fontaine en 2005 suivait un régime d'études 'Temps partiel' (question 7) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2005, au Centre La Fontaine, 0% des répondants à la question 7 (régime d'études) suivaient un régime d'études à 'Temps partiel'.",
+        "time_seconds": 2.9648685455322266
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les résultats obtenus, pour le Centre La Fontaine en 2005, concernant la question 7 \"Quel était votre régime d'études ?\", voici ce que je constate :\n\n- 100% des répondants ont indiqué suivre un régime d'études à \"Temps plein\"\n- Aucun répondant n'a indiqué suivre un régime d'études à \"Temps partiel\"\n\nPar conséquent, la proportion des répondants du Centre La Fontaine en 2005 qui suivaient un régime d'études \"Temps partiel\" est de 0%.",
+        "time_seconds": 9.418978452682495
+      }
+    }
+  },
+  {
+    "question": "En 2012, pour l'école Louis-Mailloux, quel était le niveau d'études le plus fréquent ('Premier cycle universitaire', 'Diplôme', etc. - question 8) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2012, pour l'école Louis-Mailloux, le niveau d'études le plus fréquent (question 8) était 'Certificat' avec 39 réponses.",
+        "time_seconds": 3.1117844581604004
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2012 pour l'école Louis-Mailloux, le niveau d'études le plus fréquent était le **Certificat** avec 39 réponses, suivi du **Premier cycle universitaire (bacc., certificat)** avec 31 réponses, puis du **Diplôme** avec 28 réponses.\n\nLes autres niveaux d'études mentionnés étaient beaucoup moins fréquents :\n- Sciences de la santé : 3 réponses\n- Deuxième cycle (maîtrise) : 1 réponse\n- Non répondu : 1 réponse\n\nCes données représentent les réponses agrégées des étudiants de Louis-Mailloux à la question 8 concernant le niveau de leur programme d'études.",
+        "time_seconds": 13.200855016708374
+      }
+    }
+  },
+  {
+    "question": "Pour les répondants de Marie-Esther en 2007, quel était le domaine d'études le plus cité entre 'Lettres, sciences humaines' et 'Enseignement, loisirs et orientation' (question 9) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Pour les répondants de Marie-Esther en 2007, le domaine d'études le plus cité entre 'Lettres, sciences humaines' et 'Enseignement, loisirs et orientation' pour la question 9 était 'Enseignement, loisirs et orientation' avec 6 réponses.",
+        "time_seconds": 3.2854511737823486
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données obtenues, pour les répondants de l'école Marie-Esther en 2007, le domaine d'études le plus cité entre les deux options demandées est :\n\n**\"Enseignement, loisirs et orientation\"** avec 6 réponses\n\nSuivi de \"Lettres, sciences humaines et disciplines connexes\" avec 4 réponses.\n\nCes résultats montrent que parmi les étudiants de Marie-Esther en 2007 qui ont répondu à la question sur leur domaine d'études (question 9), l'enseignement et les domaines liés aux loisirs et à l'orientation étaient plus populaires que les lettres et sciences humaines.",
+        "time_seconds": 10.146286725997925
+      }
+    }
+  },
+  {
+    "question": "Quelle est l'évolution du pourcentage de répondants n'ayant 'Non' complété leurs études (question 10) pour W.-A.-Losier entre 2004 et 2012 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer l'évolution du pourcentage de répondants n'ayant 'Non' complété leurs études nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.",
+        "time_seconds": 1.4362258911132812
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Voici l'évolution du pourcentage de répondants ayant répondu \"Non\" à la question \"Avez-vous complété vos études ?\" pour l'école W.-A.-Losier entre 2004 et 2012 :\n\n| Année | Pourcentage de \"Non\" (%) |\n|-------|--------------------------|\n| 2004  | 0.00                     |\n| 2005  | 0.00                     |\n| 2006  | 0.00                     |\n| 2007  | 5.74                     |\n| 2008  | 2.52                     |\n| 2009  | 0.68                     |\n| 2010  | 0.00                     |\n| 2011  | 0.00                     |\n| 2012  | 0.00                     |\n\nOn observe que le pourcentage de répondants n'ayant pas complété leurs études à W.-A.-Losier est généralement très faible sur cette période. Il n'y a que trois années où des répondants ont indiqué ne pas avoir complété leurs études :\n- 2007 : 5.74% (le taux le plus élevé)\n- 2008 : 2.52%\n- 2009 : 0.68%\n\nPour toutes les autres années (2004-2006 et 2010-2012), aucun répondant n'a indiqué ne pas avoir complété ses études.\n\nCette tendance montre une période de trois années consécutives (2007-2009) avec quelques étudiants n'ayant pas complété leurs études, suivie d'un retour à un taux de 0% à partir de 2010.",
+        "time_seconds": 13.239613056182861
+      }
+    }
+  },
+  {
+    "question": "En 2008, pour les répondants du Centre La Fontaine, quelle proportion travaillait en 'Alberta' (question 11) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer combien d'élèves travaillaient en Alberta nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.",
+        "time_seconds": 1.509584903717041
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les résultats obtenus, en 2008, parmi les répondants du Centre La Fontaine (école_id = 2) à la question 11 (\"Dans quelle province canadienne ou autre pays travaillez-vous ?\") :\n\n- Aucun répondant n'a indiqué travailler en Alberta\n- Il y avait un total de 36 réponses à cette question\n- La proportion de répondants travaillant en Alberta était donc de 0%\n\nCela signifie qu'en 2008, aucun des diplômés du Centre La Fontaine ayant répondu au questionnaire n'a déclaré travailler en Alberta.",
+        "time_seconds": 16.36928629875183
+      }
+    }
+  },
+  {
+    "question": "Comment la proportion de répondants envisageant ('Oui') de changer d'emploi (question 12) a-t-elle évolué pour Louis-Mailloux entre 2004 et 2012 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer combien d'élèves qui utilisent un certain moyen de transport ont de bonnes notes nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.",
+        "time_seconds": 1.2034885883331299
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Voici l'évolution de la proportion de répondants de l'école Louis-Mailloux qui envisagent de changer d'emploi (réponse \"Oui\" à la question 12) entre 2004 et 2012 :\n\n| Année | Nombre de \"Oui\" | Total des réponses | Pourcentage (%) |\n|-------|-----------------|-------------------|-----------------|\n| 2004  | 27              | 85                | 31.76           |\n| 2005  | 24              | 75                | 32.00           |\n| 2006  | 14              | 62                | 22.58           |\n| 2007  | 20              | 92                | 21.74           |\n| 2008  | 21              | 98                | 21.43           |\n| 2009  | 16              | 93                | 17.20           |\n| 2010  | 19              | 107               | 17.76           |\n| 2011  | 16              | 80                | 20.00           |\n| 2012  | 23              | 102               | 22.55           |\n\n**Analyse de l'évolution :**\n\nOn observe une tendance générale à la baisse de la proportion de répondants envisageant de changer d'emploi entre 2004 et 2012 :\n- La proportion était la plus élevée en 2004-2005 (environ 32%)\n- Une première baisse significative est observée en 2006 (22.58%)\n- La proportion a continué à diminuer jusqu'à atteindre son niveau le plus bas en 2009 (17.20%)\n- Une légère remontée est observée à partir de 2011, atteignant 22.55% en 2012\n\nCette évolution pourrait refléter des changements dans le marché du travail local, la satisfaction professionnelle des diplômés de Louis-Mailloux, ou d'autres facteurs économiques et sociaux durant cette période.",
+        "time_seconds": 16.899558782577515
+      }
+    }
+  },
+  {
+    "question": "En 2005, pour Marie-Esther, la raison 'Je recherche la sécurité d'emploi' (question 13) était-elle souvent citée pour vouloir changer d'emploi ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer combien d'élèves qui utilisent un certain moyen de transport ont de bonnes notes nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.",
+        "time_seconds": 3.275197744369507
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2005 pour l'école Marie-Esther concernant la question 13 (\"Quelle est la principale raison pour laquelle vous envisagez de changer d'emploi ?\"), voici les résultats par ordre de fréquence :\n\n1. \"Mon travail actuel ne correspond pas à mon expérience et à ma formation\" : 8 réponses\n2. \"J'ai besoin d'un changement\" : 5 réponses\n3. \"Je désire retourner aux études\" : 3 réponses\n4. \"Je recherche la sécurité d'emploi\" : 2 réponses\n5. \"Je travaille à temps plein et je préférerais travailler à temps partiel\" : 1 réponse\n6. \"Je veux travailler plus près de chez moi\" : 1 réponse\n\nLa raison \"Je recherche la sécurité d'emploi\" n'était pas la plus fréquemment citée par les diplômés de Marie-Esther en 2005. Elle arrive en 4ème position avec seulement 2 réponses, loin derrière la raison principale qui était \"Mon travail actuel ne correspond pas à mon expérience et à ma formation\" (8 réponses).",
+        "time_seconds": 10.578362703323364
+      }
+    }
+  },
+  {
+    "question": "Pour les répondants de W.-A.-Losier en 2011, quelle proportion travaillait dans la région 'Sud-Est' du Nouveau-Brunswick (question 14) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer combien d'élèves qui travaillent dans une certaine région ont répondu à une autre question nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.",
+        "time_seconds": 1.3255364894866943
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Je vois que l'option 'Sud-Est' existe bien dans la base de données. Cependant, d'après les résultats précédents, aucun répondant de l'école W.-A.-Losier en 2011 n'a indiqué travailler dans la région 'Sud-Est' du Nouveau-Brunswick.\n\nPour répondre à votre question : La proportion des répondants de W.-A.-Losier en 2011 qui travaillaient dans la région 'Sud-Est' du Nouveau-Brunswick est de 0%.\n\nLes régions où travaillaient principalement les répondants de cette école en 2011 étaient :\n- Nord-Est : 66 répondants (58,9%)\n- Sud : 20 répondants (17,9%)\n- Non répondu : 19 répondants (17,0%)\n- Nord : 3 répondants (2,7%)\n- Les autres régions (Sud-Ouest, Est, Ouest, Centre) comptaient chacune 1 répondant (0,9%)",
+        "time_seconds": 25.643971920013428
+      }
+    }
+  },
+  {
+    "question": "Quelle était la catégorie de profession la plus fréquente ('Commerce de détail', 'Services publics', etc. - question 15) pour les répondants du Centre La Fontaine en 2006 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2006, la catégorie de profession la plus fréquente pour les répondants du Centre La Fontaine était la \"Construction\".",
+        "time_seconds": 2.8264570236206055
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données, pour les répondants du Centre La Fontaine en 2006, les catégories de profession les plus fréquentes sont à égalité :\n\n1. **Construction** (5 répondants)\n2. **Soins de santé et assistance sociale** (5 répondants)\n\nCes deux secteurs arrivent en tête, suivis de près par :\n- Services publiques (4 répondants)\n- Non répondu (3 répondants)\n- Plusieurs autres secteurs avec 1 ou 2 répondants chacun\n\nIl est intéressant de noter cette égalité entre le secteur de la construction et celui des soins de santé et assistance sociale, qui représentaient les choix professionnels les plus populaires parmi les diplômés du Centre La Fontaine en 2006.",
+        "time_seconds": 8.876262903213501
+      }
+    }
+  },
+  {
+    "question": "En 2010, pour l'école Louis-Mailloux, quel pourcentage de répondants était en 'Attente d'emploi' (question 33) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2010, pour l'école Louis-Mailloux, 36.84% des répondants à la question 33 étaient en 'Attente d'emploi'.",
+        "time_seconds": 2.8442018032073975
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les résultats obtenus, en 2010 à l'école Louis-Mailloux :\n\n- 7 répondants sur un total de 19 ont indiqué être en \"Attente d'emploi\" à la question 33 (\"Présentement êtes-vous en attente ou à la recherche d'emploi ?\")\n- Cela représente 36.84% des répondants de cette école pour cette année.\n\nDonc, en 2010, pour l'école Louis-Mailloux, 36.84% des répondants étaient en attente d'emploi selon la question 33.",
+        "time_seconds": 16.152868270874023
+      }
+    }
+  },
+  {
+    "question": "Comparer le nombre d'employeurs ('Un' vs 'Deux') au cours des 2 dernières années (question 34) pour les répondants de Marie-Esther et W.-A.-Losier en 2007.",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de comparer le nombre d'employeurs pour différents groupes de répondants nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.\n\nCependant, je peux vous donner le nombre total de répondants de chaque école en 2007 qui ont répondu \"Un\" ou \"Deux\" employeurs à la question 34, mais je ne peux pas les comparer directement entre les écoles.",
+        "time_seconds": 1.5741534233093262
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Voici la comparaison du nombre d'employeurs (réponses 'Un' vs 'Deux') à la question 34 \"Au cours des 2 dernières années, combien d'employeurs avez-vous eus ?\" pour les écoles Marie-Esther et W.-A.-Losier en 2007 :\n\n### École Marie-Esther (2007) :\n- **Un employeur** : 19 répondants\n- **Deux employeurs** : 9 répondants\n\n### École W.-A.-Losier (2007) :\n- **Un employeur** : 9 répondants\n- **Deux employeurs** : 5 répondants\n\n### Analyse :\n- Dans les deux écoles, la majorité des répondants ont eu un seul employeur au cours des 2 dernières années.\n- À Marie-Esther, 67,9% des répondants (parmi ceux qui ont répondu 'Un' ou 'Deux') ont eu un seul employeur.\n- À W.-A.-Losier, 64,3% des répondants (parmi ceux qui ont répondu 'Un' ou 'Deux') ont eu un seul employeur.\n- La proportion de répondants ayant eu un seul employeur est légèrement plus élevée à Marie-Esther qu'à W.-A.-Losier.\n\nCes données reflètent uniquement les réponses 'Un' et 'Deux' et n'incluent pas les autres options comme 'Aucun', 'Plus de deux' ou 'Non répondu'.",
+        "time_seconds": 13.315774202346802
+      }
+    }
+  },
+  {
+    "question": "Pour les répondants du Centre La Fontaine en 2012, quelle était la durée d'expérience de travail la plus fréquente ('6 à 12 mois' vs '18 à 24 mois' - question 35) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Pour les répondants du Centre La Fontaine en 2012, la durée d'expérience de travail la plus fréquente entre '6 à 12 mois' et '18 à 24 mois' était de '18 à 24 mois'.",
+        "time_seconds": 2.9401354789733887
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données recueillies pour le Centre La Fontaine en 2012 concernant la question 35 \"Au cours des deux dernières années, combien de mois d'expérience de travail avez-vous accumulés ?\", voici les résultats :\n\n- \"18 à 24 mois\" : 2 répondants\n- \"12 à 18 mois\" : 1 répondant\n- \"6 à 12 mois\" : 1 répondant\n- \"Non répondu\" : 1 répondant\n\nLa durée d'expérience de travail la plus fréquente parmi les répondants du Centre La Fontaine en 2012 était donc \"18 à 24 mois\" avec 2 répondants, ce qui représente la réponse la plus choisie entre les options demandées (\"6 à 12 mois\" vs \"18 à 24 mois\").",
+        "time_seconds": 9.648686647415161
+      }
+    }
+  },
+  {
+    "question": "Quelle est l'évolution de la proportion de répondants sans emploi depuis 'Moins de 6 mois' (question 36) pour Louis-Mailloux entre 2004 et 2012 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer l'évolution de la proportion de répondants sans emploi depuis 'Moins de 6 mois' nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.",
+        "time_seconds": 1.41135573387146
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Maintenant, je peux vous présenter l'évolution de la proportion de répondants sans emploi depuis \"Moins de 6 mois\" pour l'école Louis-Mailloux entre 2004 et 2012 :\n\n### Évolution de la proportion de répondants sans emploi depuis \"Moins de 6 mois\" à Louis-Mailloux (2004-2012)\n\n| Année | Proportion (%) |\n|-------|----------------|\n| 2004  | 86.67%         |\n| 2005  | 45.45%         |\n| 2006  | 76.92%         |\n| 2007  | 70.00%         |\n| 2008  | 53.85%         |\n| 2009  | 48.15%         |\n| 2010  | 73.68%         |\n| 2011  | 30.77%         |\n| 2012  | 33.33%         |\n\nOn observe une tendance générale à la baisse de la proportion de répondants sans emploi depuis \"Moins de 6 mois\" à l'école Louis-Mailloux entre 2004 et 2012, avec quelques fluctuations :\n\n- En 2004, cette proportion était très élevée (86.67%)\n- Une forte baisse en 2005 (45.45%)\n- Une remontée en 2006 (76.92%) et maintien à un niveau relativement élevé en 2007 (70%)\n- Nouvelle baisse en 2008 (53.85%) et 2009 (48.15%)\n- Remontée en 2010 (73.68%)\n- Chute importante en 2011 (30.77%) avec une légère remontée en 2012 (33.33%)\n\nCette évolution pourrait refléter des changements dans le marché du travail local ou dans les caractéristiques des diplômés de cette école sur cette période.",
+        "time_seconds": 26.37667989730835
+      }
+    }
+  },
+  {
+    "question": "En 2005, pour Marie-Esther, la raison 'Attente d'un rappel au travail' (question 37) était-elle une cause fréquente de non-travail ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je ne trouve pas de données pour l'option de réponse \"Attente d'un rappel au travail après mise à pied\" pour l'année 2005 à l'école Marie-Esther. Il est possible que cette option n'ait pas été sélectionnée par les élèves cette année-là, ou qu'elle ait été formulée différemment dans le questionnaire.",
+        "time_seconds": 3.330453395843506
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2005 pour l'école Marie-Esther concernant la question 37 (\"Quelle est la principale raison pour laquelle vous n'avez pas travaillé durant cette période ?\"), je constate que :\n\n- L'\"Attente d'un rappel au travail après mise à pied\" n'apparaît pas dans les réponses données par les diplômés.\n- La raison la plus fréquente était \"Incapacité de trouver un emploi lié à ma formation\" avec 2 réponses.\n- Les autres raisons mentionnées (avec 1 réponse chacune) étaient :\n  - Conflit de travail\n  - Déménagement\n  - Rémunération insuffisante pour quitter l'A-S ou A-E\n  - Responsabilités personnelles ou familiales\n  - Retour aux études\n\nEn conclusion, l'\"Attente d'un rappel au travail après mise à pied\" n'était pas une cause de non-travail mentionnée par les diplômés de Marie-Esther en 2005.",
+        "time_seconds": 10.335875034332275
+      }
+    }
+  },
+  {
+    "question": "Comparer l'intérêt ('Oui') pour une expérience de travail communautaire (question 38) entre les répondants de W.-A.-Losier et du Centre La Fontaine en 2008.",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de comparer l'intérêt pour une expérience de travail communautaire entre les répondants de différentes écoles nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.",
+        "time_seconds": 1.3869290351867676
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "## Comparaison de l'intérêt pour une expérience de travail communautaire (2008)\n\nVoici les résultats de la comparaison entre les écoles W.-A.-Losier et Centre La Fontaine concernant l'intérêt pour une expérience de travail communautaire (question 38 : \"Seriez-vous intéressé/e par une expérience de travail dans votre communauté ?\") en 2008 :\n\n### École W.-A.-Losier :\n- **Réponses \"Oui\"** : 7 étudiants (77,78%)\n- **Réponses \"Non répondu\"** : 2 étudiants (22,22%)\n- **Total des répondants** : 9 étudiants\n\n### Centre La Fontaine :\n- **Réponses \"Oui\"** : 3 étudiants (60%)\n- **Réponses \"Non\"** : 2 étudiants (40%)\n- **Total des répondants** : 5 étudiants\n\n### Analyse comparative :\n- L'école W.-A.-Losier présente un taux d'intérêt plus élevé (77,78%) pour une expérience de travail communautaire comparativement au Centre La Fontaine (60%).\n- Il est intéressant de noter que les répondants du Centre La Fontaine ont tous donné une réponse claire (soit \"Oui\" soit \"Non\"), tandis qu'à W.-A.-Losier, 22,22% des répondants n'ont pas fourni de réponse.\n- Malgré cette différence dans les taux de réponse, les deux écoles montrent une majorité d'étudiants intéressés par une expérience de travail dans leur communauté.\n\nCes résultats suggèrent un intérêt généralement positif pour les expériences de travail communautaire dans les deux établissements, avec un enthousiasme légèrement plus marqué à W.-A.-Losier.",
+        "time_seconds": 33.12363028526306
+      }
+    }
+  },
+  {
+    "question": "En 2011, quelle proportion des répondants de Louis-Mailloux était intéressée ('Oui') à recevoir de l'information sur une expérience de travail communautaire (question 39) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2011, 22.22% des répondants de Louis-Mailloux étaient intéressés à recevoir de l'information sur une expérience de travail communautaire.",
+        "time_seconds": 3.057101249694824
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2011 pour l'école Louis-Mailloux concernant la question 39 (\"Seriez-vous intéressé à recevoir des l'information concernant une expérience de travail dans votre communauté ?\"), voici les résultats :\n\n- 22.22% des répondants ont répondu \"Oui\", indiquant qu'ils étaient intéressés à recevoir de l'information concernant une expérience de travail dans leur communauté.\n- 77.78% des répondants n'ont pas répondu à cette question.\n\nIl est à noter que la majorité des répondants n'ont pas fourni de réponse à cette question, ce qui pourrait affecter l'interprétation des résultats. Sur le total des réponses, 2 personnes ont répondu \"Oui\" et 7 personnes n'ont pas répondu.",
+        "time_seconds": 12.219456434249878
+      }
+    }
+  },
+  {
+    "question": "Comment la disponibilité immédiate pour travailler ('Oui' - question 40) a-t-elle évolué pour les répondants de Marie-Esther entre 2004 et 2012 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer combien d'élèves qui utilisent un certain moyen de transport ont de bonnes notes nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.",
+        "time_seconds": 1.2748615741729736
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Voici l'évolution de la disponibilité immédiate pour travailler (réponse \"Oui\" à la question 40) pour les répondants de l'école Marie-Esther entre 2004 et 2012 :\n\n| Année | Nombre de \"Oui\" | Total des réponses | Pourcentage de \"Oui\" |\n|-------|-----------------|-------------------|----------------------|\n| 2004  | 16              | 21                | 76.19%               |\n| 2005  | 7               | 7                 | 100.00%              |\n| 2006  | 10              | 15                | 66.67%               |\n| 2007  | 22              | 32                | 68.75%               |\n| 2008  | 21              | 29                | 72.41%               |\n| 2009  | 10              | 14                | 71.43%               |\n| 2010  | 9               | 9                 | 100.00%              |\n| 2011  | 19              | 20                | 95.00%               |\n| 2012  | 16              | 18                | 88.89%               |\n\n**Analyse de l'évolution :**\n\nOn observe une fluctuation de la disponibilité immédiate pour travailler parmi les répondants de Marie-Esther entre 2004 et 2012 :\n\n1. En 2005 et 2010, tous les répondants (100%) ont indiqué être disponibles pour travailler immédiatement.\n2. Le taux le plus bas a été observé en 2006 (66.67%).\n3. On note une tendance à la hausse entre 2006 (66.67%) et 2012 (88.89%), avec quelques fluctuations.\n4. Entre 2010 et 2012, le pourcentage est resté relativement élevé (entre 88.89% et 100%).\n\nCette évolution pourrait refléter des changements dans le marché du travail local, les aspirations des étudiants ou d'autres facteurs socio-économiques durant cette période.",
+        "time_seconds": 17.17638325691223
+      }
+    }
+  },
+  {
+    "question": "Pour les répondants de W.-A.-Losier en 2006, quel était le type d'emploi le plus recherché entre 'Hébergement et services de restauration' et 'Administration publiques' (question 41) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Pour les répondants de W.-A.-Losier en 2006, le type d'emploi le plus recherché entre 'Hébergement et services de restauration' et 'Administration publiques' était 'Administration publiques' avec 1 réponse.",
+        "time_seconds": 3.2504851818084717
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2006 pour l'école W.-A.-Losier, concernant la question 41 \"Quel type d'emploi recherchez-vous?\", voici les résultats de la comparaison entre les deux options demandées:\n\n- \"Administration publiques\": 1 répondant\n- \"Hébergement et services de restauration\": 0 répondant\n\nLe type d'emploi le plus recherché entre ces deux options était donc \"Administration publiques\". Cependant, il est important de noter que le nombre de répondants est très faible (seulement 1 personne), ce qui limite la portée de cette information.",
+        "time_seconds": 8.94381856918335
+      }
+    }
+  },
+  {
+    "question": "En 2010, quelle proportion des répondants du Centre La Fontaine souhaitait travailler au 'Québec' (question 42) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer combien d'élèves qui souhaitaient travailler au 'Québec' (question 42) nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.",
+        "time_seconds": 1.372816562652588
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les résultats obtenus, en 2010 au Centre La Fontaine, pour la question 42 (\"Dans quelle province canadienne ou autre pays aimeriez-vous travailler ?\") :\n\n- Aucun répondant n'a choisi \"Québec\" comme réponse\n- Le seul répondant a choisi \"Nouveau-Brunswick\"\n\nLa proportion des répondants du Centre La Fontaine qui souhaitaient travailler au Québec en 2010 est donc de 0% (0 sur 1 répondant).\n\nPour être plus précis, 100% des répondants (1 sur 1) ont indiqué vouloir travailler au Nouveau-Brunswick.",
+        "time_seconds": 22.32874822616577
+      }
+    }
+  },
+  {
+    "question": "Pour l'école Louis-Mailloux en 2005, quel pourcentage d'élèves a indiqué 'Très satisfait/e' concernant leurs relations avec les autres élèves (question 17)?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Pour l'école Louis-Mailloux en 2005, 50.71% des élèves ont indiqué être 'Très satisfait/e' concernant leurs relations avec les autres élèves.",
+        "time_seconds": 2.8715498447418213
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données, pour l'école Louis-Mailloux en 2005 :\n\n- 71 élèves sur 140 ont indiqué être \"Très satisfait/e\" concernant leurs relations avec les autres élèves (question 17)\n- Cela représente 50.71% des élèves ayant répondu au questionnaire\n\nDonc, à l'école Louis-Mailloux en 2005, environ la moitié des élèves (50.71%) étaient très satisfaits de leurs relations avec les autres élèves.",
+        "time_seconds": 10.227362632751465
+      }
+    }
+  },
+  {
+    "question": "Comment la proportion d'élèves prévoyant d'aller sur le 'Marché du travail' (question 19) a-t-elle évolué pour l'école Marie-Esther entre 2004 et 2008 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Voici l'évolution de la proportion d'élèves prévoyant d'aller sur le 'Marché du travail' pour l'école Marie-Esther entre 2004 et 2008 :\n\n*   2004 : 13.64%\n*   2005 : 9.67%\n*   2006 : 7.60%\n*   2007 : 6.30%\n*   2008 : 10.00%",
+        "time_seconds": 3.016056537628174
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Voici l'évolution de la proportion d'élèves de l'école Marie-Esther qui prévoyaient aller sur le \"Marché du travail\" après leurs études secondaires entre 2004 et 2008 :\n\n| Année | Nombre d'élèves | Total de répondants | Pourcentage (%) |\n|-------|-----------------|---------------------|-----------------|\n| 2004  | 42              | 154                 | 27,27           |\n| 2005  | 29              | 150                 | 19,33           |\n| 2006  | 26              | 171                 | 15,20           |\n| 2007  | 16              | 127                 | 12,60           |\n| 2008  | 27              | 135                 | 20,00           |\n\n**Analyse de l'évolution :**\n\n- On observe une tendance à la baisse entre 2004 et 2007, avec une diminution progressive de la proportion d'élèves prévoyant d'aller directement sur le marché du travail (de 27,27% à 12,60%).\n- En 2008, on constate un rebond significatif, avec une remontée à 20% des élèves choisissant cette option.\n- Sur l'ensemble de la période, la proportion a globalement diminué, passant de 27,27% en 2004 à 20% en 2008, soit une baisse de 7,27 points de pourcentage.\n\nCette évolution pourrait refléter des changements dans les aspirations des élèves, dans les opportunités d'études postsecondaires, ou dans le contexte économique local durant cette période.",
+        "time_seconds": 19.120702981948853
+      }
+    }
+  },
+  {
+    "question": "En 2011, pour le Centre La Fontaine, quelle était la répartition des réponses à la question sur la satisfaction des services d'orientation (question 21) parmi 'Très bien', 'Bien' et 'Pas utilisés'?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2011, pour le Centre La Fontaine, la répartition des réponses à la question sur la satisfaction des services d'orientation (question 21) parmi 'Très bien', 'Bien' et 'Pas utilisés' était la suivante : 6 élèves ont répondu 'Bien', 3 ont répondu 'Pas utilisés' et 4 ont répondu 'Très bien'.",
+        "time_seconds": 2.815938711166382
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Voici la répartition des réponses à la question 21 concernant la satisfaction des services d'orientation pour le Centre La Fontaine en 2011 :\n\n1. **Bien** : 6 étudiants\n2. **Très bien** : 4 étudiants\n3. **Pas utilisés** : 3 étudiants\n\nPour rappel, la question 21 était : \"Est-ce que les services d'orientation que vous avez utilisés ont répondu à vos besoins ?\"\n\nCes résultats montrent que la majorité des étudiants ayant répondu à cette question ont évalué positivement les services d'orientation, avec 10 étudiants sur 13 (soit environ 77%) qui les ont jugés \"Bien\" ou \"Très bien\".",
+        "time_seconds": 9.313180923461914
+      }
+    }
+  },
+  {
+    "question": "Pour l'année 2015, quelle proportion d'élèves de l'école W.-A.-Losier a répondu 'Oui' à la question sur l'acceptation d'une offre d'emploi dans la Péninsule acadienne (question 22) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Pour l'année 2015, 40.27% des élèves de l'école W.-A.-Losier ont répondu 'Oui' à la question sur l'acceptation d'une offre d'emploi dans la Péninsule acadienne.",
+        "time_seconds": 2.948960065841675
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2015 pour l'école W.-A.-Losier, voici les résultats concernant la question 22 \"À la fin de vos études postsecondaires, si vous aviez une offre d'emploi dans la Péninsule acadienne, est-ce que vous l'accepteriez ?\" :\n\n- **40,27%** des élèves ont répondu **'Oui'**\n- 26,11% des élèves ont répondu **'Je ne sais pas'**\n- 26,11% des élèves ont répondu **'Non répondu'**\n- 7,52% des élèves ont répondu **'Non'**\n\nDonc, en 2015, environ 40% des élèves de l'école W.-A.-Losier étaient prêts à accepter une offre d'emploi dans la Péninsule acadienne après leurs études postsecondaires, tandis qu'un peu plus d'un quart étaient indécis et un autre quart n'ont pas répondu à cette question.",
+        "time_seconds": 12.210398435592651
+      }
+    }
+  },
+  {
+    "question": "Quelles étaient les trois principales institutions postsecondaires (question 24) mentionnées par les élèves de l'école Louis-Mailloux en 2012 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2012, pour les élèves de l'école Louis-Mailloux, les trois institutions postsecondaires les plus fréquemment mentionnées en réponse à la question 24 étaient :\n\n1.  Université de Moncton - campus Moncton (25 réponses)\n2.  Université de Moncton - campus Shippagan (21 réponses)\n3.  \"Non répondu\" (38 réponses)\n\nIl est important de noter que \"Non répondu\" est l'option la plus fréquente, ce qui indique qu'une part importante des élèves n'a pas spécifié d'institution.",
+        "time_seconds": 3.338209390640259
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Je remarque que la réponse la plus fréquente est \"Non répondu\", mais comme il s'agit d'une non-réponse, je vais l'ignorer et me concentrer sur les institutions réellement choisies par les élèves.\n\nVoici les trois principales institutions postsecondaires mentionnées par les élèves de l'école Louis-Mailloux en 2012 :\n\n1. **Université de Moncton - campus Moncton** : 25 élèves\n2. **Université de Moncton - campus Shippagan** : 21 élèves\n3. **CCNB (Bathurst)** : 15 élèves\n\nCes résultats montrent une préférence pour les institutions francophones locales ou régionales, avec une forte représentation de l'Université de Moncton (à travers ses différents campus) et du Collège communautaire du Nouveau-Brunswick à Bathurst.",
+        "time_seconds": 9.482619285583496
+      }
+    }
+  },
+  {
+    "question": "En 2018, pour l'école Aux quatre vents, quel pourcentage d'élèves a indiqué 'Prêt étudiant' comme source de financement (question 25) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2018, pour l'école Aux quatre vents, 29.07% des élèves ont indiqué 'Prêt étudiant' comme source de financement pour la question 25.",
+        "time_seconds": 2.8042712211608887
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données, en 2018, à l'école Aux quatre vents :\n\n- 25 élèves sur 56 ont indiqué '1. Prêt étudiant' comme source de financement pour leurs études postsecondaires\n- Cela représente 44.64% des élèves ayant répondu au questionnaire\n\nDonc, en 2018, 44.64% des élèves de l'école Aux quatre vents prévoyaient utiliser un prêt étudiant comme source de financement pour leurs études postsecondaires.",
+        "time_seconds": 14.145389795303345
+      }
+    }
+  },
+  {
+    "question": "Comment le choix du moyen de transport 'Ma propre voiture/motocyclette' (question 26) a-t-il évolué pour les élèves de l'école Marie-Esther entre 2014 et 2019 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Voici l'évolution du nombre d'élèves de l'école Marie-Esther ayant choisi 'Ma propre voiture/motocyclette' comme moyen de transport entre 2014 et 2019 :\n\n*   2014 : 55\n*   2015 : 52\n*   2016 : 61\n*   2017 : 47\n*   2018 : 55\n*   2019 : 67",
+        "time_seconds": 3.20776629447937
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "## Évolution du choix \"Ma propre voiture/motocyclette\" à l'école Marie-Esther (2014-2019)\n\nVoici l'évolution du nombre d'élèves de l'école Marie-Esther qui ont choisi \"Ma propre voiture/motocyclette\" comme moyen de transport principal pendant leur première année d'études postsecondaires:\n\n| Année | Nombre d'élèves | Total des répondants | Pourcentage |\n|-------|-----------------|----------------------|-------------|\n| 2014  | 55              | 82                   | 67,07%      |\n| 2015  | 52              | 78                   | 66,67%      |\n| 2016  | 61              | 75                   | 81,33%      |\n| 2017  | 47              | 68                   | 69,12%      |\n| 2018  | 55              | 74                   | 74,32%      |\n| 2019  | 67              | 86                   | 77,91%      |\n\n### Analyse de l'évolution:\n\n1. **Tendance générale**: On observe une tendance à la hausse entre 2014 et 2019, avec une augmentation de 55 à 67 élèves choisissant leur propre véhicule.\n\n2. **Variations**: \n   - Une baisse notable en 2017 (47 élèves)\n   - Un pic en 2016 (81,33% des répondants) et en 2019 (67 élèves, soit 77,91%)\n\n3. **Popularité**: Ce moyen de transport est très populaire parmi les élèves de Marie-Esther, représentant systématiquement plus des deux tiers des réponses sur toute la période.\n\n4. **Dernière année**: En 2019, ce choix a atteint son maximum en nombre absolu avec 67 élèves, confirmant la tendance à la hausse.\n\nCette évolution pourrait refléter des changements dans l'accessibilité aux véhicules personnels, les préférences des élèves, ou potentiellement des facteurs socio-économiques dans la région.",
+        "time_seconds": 40.06665849685669
+      }
+    }
+  },
+  {
+    "question": "Pour l'école W.-A.-Losier en 2009, quelle était la raison principale ('Accès au marché du travail', 'Manque d’intérêt', etc. - question 27) pour ne pas poursuivre d'études postsecondaires ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je n'ai pas pu trouver de données pour l'école W.-A.-Losier en 2009 concernant la raison principale pour ne pas poursuivre d'études postsecondaires. Il est possible que les données pour cette combinaison spécifique d'école et d'année ne soient pas disponibles dans la base de données.",
+        "time_seconds": 3.122793197631836
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Je dois vous informer que pour l'école W.-A.-Losier, il n'y a pas de données disponibles pour la question 27 spécifiquement pour l'année 2009, car le questionnaire de type \"Questions Générales\" n'a pas été administré cette année-là.\n\nCependant, je peux vous fournir les résultats des années les plus proches (2008 et 2010) :\n\nPour 2008 :\n- La majorité des réponses est \"Non répondu\" (161 réponses)\n- Parmi les réponses significatives, les principales raisons sont :\n  1. \"Aucune idée du domaine à choisir\" (10 réponses)\n  2. \"Accès au marché du travail\" (8 réponses)\n  3. \"Autre\" et \"Problèmes monétaires\" (2 réponses chacun)\n\nPour 2010 :\n- La majorité des réponses est également \"Non répondu\" (151 réponses)\n- Parmi les réponses significatives, les principales raisons sont :\n  1. \"Accès au marché du travail\" (9 réponses)\n  2. \"Aucune idée du domaine à choisir\" (7 réponses)\n  3. \"Problèmes monétaires\" (6 réponses)\n\nSi on exclut les \"Non répondu\", la raison principale pour ne pas poursuivre des études postsecondaires était \"Aucune idée du domaine à choisir\" en 2008 et \"Accès au marché du travail\" en 2010.",
+        "time_seconds": 44.579325437545776
+      }
+    }
+  },
+  {
+    "question": "En 2016, pour l'école Secondaire Népisiguit, quel pourcentage d'élèves a déclaré occuper un emploi rémunéré 'Temps partiel fin de semaine' (question 28) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2016, pour l'école Secondaire Népisiguit, 0% des élèves a déclaré occuper un emploi rémunéré 'Temps partiel fin de semaine' (question 28).",
+        "time_seconds": 2.791092872619629
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données, en 2016 à l'école Secondaire Népisiguit :\n\n- 69 élèves sur 223 ont déclaré occuper un emploi rémunéré \"Temps partiel fin de semaine\"\n- Cela représente 30.94% des élèves ayant complété le questionnaire\n\nDonc, en 2016, 30.94% des élèves de l'école Secondaire Népisiguit ont déclaré occuper un emploi rémunéré à temps partiel pendant les fins de semaine.",
+        "time_seconds": 9.977340936660767
+      }
+    }
+  },
+  {
+    "question": "Quelle est l'évolution de la proportion d'élèves jugeant 'Très important' de terminer leur 12e année (question 29) à l'école Roland-Pépin entre 2014 et 2019 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Voici l'évolution de la proportion d'élèves jugeant 'Très important' de terminer leur 12e année à l'école Roland-Pépin entre 2014 et 2019 :\n\n*   2014 : 85.71%\n*   2015 : 86.25%\n*   2016 : 86.30%\n*   2017 : 92.42%\n*   2018 : 78.18%\n*   2019 : 56.90%",
+        "time_seconds": 3.2957136631011963
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Voici l'évolution de la proportion d'élèves jugeant \"Très important\" de terminer leur 12e année à l'école Roland-Pépin entre 2014 et 2019 :\n\n| Année | Nombre d'élèves \"Très important\" | Total des réponses | Pourcentage \"Très important\" |\n|-------|----------------------------------|-------------------|------------------------------|\n| 2014  | 48                               | 56                | 85.71%                       |\n| 2015  | 69                               | 80                | 86.25%                       |\n| 2016  | 63                               | 73                | 86.30%                       |\n| 2017  | 61                               | 66                | 92.42%                       |\n| 2018  | 43                               | 55                | 78.18%                       |\n| 2019  | 33                               | 58                | 56.90%                       |\n\n**Analyse de l'évolution :**\n\nOn observe une tendance intéressante dans ces données :\n- De 2014 à 2017, la proportion d'élèves considérant \"Très important\" de terminer leur 12e année est restée élevée et a même augmenté progressivement, atteignant un pic de 92.42% en 2017.\n- Cependant, à partir de 2018, on constate une baisse significative de cette proportion, passant à 78.18% en 2018.\n- En 2019, la baisse s'accentue fortement avec seulement 56.90% des élèves jugeant \"Très important\" de terminer leur 12e année.\n\nCette diminution importante entre 2017 et 2019 (une baisse de plus de 35 points de pourcentage) pourrait mériter une analyse plus approfondie pour en comprendre les causes.",
+        "time_seconds": 15.256969928741455
+      }
+    }
+  },
+  {
+    "question": "Pour l'école Aux quatre vents en 2017, quelle était la répartition des résultats scolaires (question 30) entre 'de 81 % à 94 %' et 'de 66 % à 80 %'?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Pour l'école Aux quatre vents en 2017, 17 étudiantes et 22 étudiants ont déclaré avoir des résultats scolaires entre 'de 81 % à 94 %' et 'de 66 % à 80 %'.",
+        "time_seconds": 2.7101211547851562
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Voici la répartition des résultats scolaires pour l'école Aux quatre vents en 2017 concernant la question 30 \"En général, quels sont vos résultats scolaires en 10e 11e et 12e année ?\" :\n\n- **de 66 % à 80 %** : 24 élèves\n- **de 81 % à 94 %** : 15 élèves\n\nOn constate que la majorité des élèves (24 sur 39 parmi ces deux catégories) ont déclaré avoir des résultats scolaires se situant entre 66% et 80%, tandis que 15 élèves ont déclaré avoir des résultats entre 81% et 94%.",
+        "time_seconds": 13.662386655807495
+      }
+    }
+  },
+  {
+    "question": "Comment la satisfaction générale des résultats scolaires ('Satisfait/e' ou 'Très satisfait/e' - question 32) a-t-elle changé pour les élèves du Centre La Fontaine entre 2014 et 2019 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer combien d'élèves qui utilisent un certain moyen de transport ont de bonnes notes nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.\n\nCependant, je peux vous donner le nombre d'élèves qui sont 'Satisfait/e' ou 'Très satisfait/e' de leurs résultats scolaires pour le Centre La Fontaine entre 2014 et 2019.",
+        "time_seconds": 1.820810317993164
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "## Évolution de la satisfaction des résultats scolaires au Centre La Fontaine (2014-2019)\n\nVoici l'analyse de la satisfaction des élèves du Centre La Fontaine concernant leurs résultats scolaires entre 2014 et 2019 :\n\n### Nombre d'élèves satisfaits par année :\n\n| Année | Satisfait/e | Très satisfait/e | Total satisfaits | Total répondants | % de satisfaction |\n|-------|-------------|------------------|------------------|------------------|-------------------|\n| 2014  | 20          | 3                | 23               | 34               | 67.6%             |\n| 2015  | 28          | 4                | 32               | 37               | 86.5%             |\n| 2016  | 32          | 6                | 38               | 42               | 90.5%             |\n| 2017  | 52          | 5                | 57               | 65               | 87.7%             |\n| 2018  | 29          | 7                | 36               | 37               | 97.3%             |\n| 2019  | 26          | 4                | 30               | 37               | 81.1%             |\n\n### Observations principales :\n\n1. **Tendance générale** : La satisfaction globale (combinant \"Satisfait/e\" et \"Très satisfait/e\") a connu une augmentation entre 2014 et 2018, passant de 67.6% à 97.3%, avant de diminuer en 2019 à 81.1%.\n\n2. **Pic de satisfaction** : L'année 2018 représente le pic de satisfaction avec 97.3% des élèves se déclarant satisfaits ou très satisfaits de leurs résultats scolaires.\n\n3. **Variation du nombre d'élèves** : Le nombre total de répondants a varié au cours de cette période, avec un pic notable en 2017 (65 répondants).\n\n4. **Proportion \"Très satisfait/e\"** : La proportion d'élèves \"très satisfaits\" est restée relativement stable, oscillant entre 8.8% (2014) et 18.9% (2018) du total des répondants.\n\n5. **Baisse en 2019** : Après avoir atteint un sommet en 2018, la satisfaction a connu une baisse significative en 2019, revenant à un niveau comparable à celui de 2015.\n\nCette analyse montre que, malgré quelques fluctuations, la satisfaction des élèves du Centre La Fontaine concernant leurs résultats scolaires est restée généralement élevée sur la période 2014-2019, avec une tendance positive jusqu'en 2018 suivie d'une baisse en 2019.",
+        "time_seconds": 20.723386764526367
+      }
+    }
+  },
+  {
+    "question": "Pour les répondants de l'école Marie-Esther en 2006, quel pourcentage demeurait à l'extérieur de la Péninsule acadienne depuis 'Plus de quatre' ans (question 45) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2006, pour les répondants de l'école Marie-Esther, 0.66% demeuraient à l'extérieur de la Péninsule acadienne depuis 'Plus de quatre' ans (question 45).",
+        "time_seconds": 2.901561975479126
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données, pour les répondants de l'école Marie-Esther en 2006 :\n\n- Sur un total de 152 questionnaires complétés, 1 seul répondant a indiqué demeurer à l'extérieur de la Péninsule acadienne depuis \"Plus de quatre\" ans.\n- Cela représente 0,66% des répondants.\n\nCe pourcentage est très faible, ce qui suggère que la grande majorité des répondants de Marie-Esther en 2006 soit demeuraient dans la Péninsule acadienne, soit avaient quitté la région depuis moins de quatre ans.",
+        "time_seconds": 14.38435411453247
+      }
+    }
+  },
+  {
+    "question": "En 2008, pour les répondants de l'école W.-A.-Losier ayant quitté la Péninsule, quelle proportion a indiqué 'Travail' comme raison (question 46) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer la proportion de répondants ayant quitté la Péninsule pour le travail nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.",
+        "time_seconds": 1.3958766460418701
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Voici les résultats pour les répondants de l'école W.-A.-Losier en 2008 concernant la question 46 \"Pour quelle raison avez-vous quitté la Péninsule acadienne?\" :\n\n**Résultats complets :**\n- Non répondu : 63,95% (110 réponses)\n- Étude : 25,58% (44 réponses)\n- Travail : 9,30% (16 réponses)\n- Autre : 1,16% (2 réponses)\n\n**Résultats en excluant les \"Non répondu\" :**\n- Étude : 70,97% (44 réponses)\n- Travail : 25,81% (16 réponses)\n- Autre : 3,23% (2 réponses)\n\nDonc, parmi les répondants de l'école W.-A.-Losier en 2008 qui ont quitté la Péninsule acadienne et qui ont effectivement répondu à la question (en excluant les \"Non répondu\"), **25,81%** ont indiqué \"Travail\" comme raison de leur départ.\n\nSi l'on considère l'ensemble des réponses (y compris \"Non répondu\"), la proportion est de **9,30%**.",
+        "time_seconds": 19.95410704612732
+      }
+    }
+  },
+  {
+    "question": "Quelle est la tendance de l'intention de s'établir dans la Péninsule acadienne ('Oui' - question 47) pour les répondants du Centre La Fontaine entre 2004 et 2012 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Voici la tendance de l'intention de s'établir dans la Péninsule acadienne ('Oui' - question 47) pour les répondants du Centre La Fontaine entre 2004 et 2012 :\n\n* 2004 : 4 répondants\n* 2005 : 2 répondants\n* 2006 : 5 répondants\n* 2009 : 3 répondants\n* 2010 : 2 répondants\n\nIl n'y a pas de données disponibles pour les années 2007, 2008, 2011 et 2012 pour cette question et cette école.",
+        "time_seconds": 3.411003351211548
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Voici l'analyse de la tendance de l'intention de s'établir dans la Péninsule acadienne (réponses \"Oui\" à la question 47) pour les répondants du Centre La Fontaine entre 2004 et 2012 :\n\n### Évolution de l'intention de s'établir dans la Péninsule acadienne (Centre La Fontaine, 2004-2012)\n\n| Année | Nombre de \"Oui\" | Total de réponses | Pourcentage (%) |\n|-------|----------------|-------------------|-----------------|\n| 2004  | 4              | 61                | 6,56            |\n| 2005  | 2              | 48                | 4,17            |\n| 2006  | 5              | 46                | 10,87           |\n| 2007  | 0              | 53                | 0,00            |\n| 2008  | 0              | 46                | 0,00            |\n| 2009  | 3              | 47                | 6,38            |\n| 2010  | 2              | 39                | 5,13            |\n| 2011  | 0              | 35                | 0,00            |\n| 2012  | 0              | 26                | 0,00            |\n\n### Analyse de la tendance :\n\n1. **Tendance générale** : On observe une tendance à la baisse de l'intention de s'établir dans la Péninsule acadienne sur cette période.\n\n2. **Points notables** :\n   - Le pic d'intention se situe en 2006 avec 10,87% des répondants exprimant leur intention de s'établir dans la région.\n   - À partir de 2007, on observe une diminution marquée, avec trois années (2007, 2008, 2011 et 2012) où aucun répondant n'a exprimé l'intention de s'établir dans la Péninsule acadienne.\n   - Une légère remontée est observée en 2009 (6,38%) et 2010 (5,13%), mais sans atteindre les niveaux de 2006.\n\n3. **Conclusion** : La période 2004-2012 montre une diminution progressive de l'intention des répondants du Centre La Fontaine de s'établir dans la Péninsule acadienne, avec une disparition complète de cette intention dans les dernières années de la période étudiée.",
+        "time_seconds": 16.95728898048401
+      }
+    }
+  },
+  {
+    "question": "Pour l'école Louis-Mailloux en 2007, quelle proportion des répondants a indiqué 'Universitaire (baccalauréat)' comme plus haut niveau d'éducation (question 48) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Pour l'école Louis-Mailloux en 2007, 0% des répondants a indiqué 'Universitaire (baccalauréat)' comme plus haut niveau d'éducation.",
+        "time_seconds": 2.858069658279419
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Maintenant j'ai les résultats complets. Je remarque qu'il y a une différence d'orthographe dans la réponse : 'Universitaire (Baccalauréat)' au lieu de 'Universitaire (baccalauréat)'.\n\nVoici la réponse à votre question :\n\nPour l'école Louis-Mailloux en 2007, la proportion des répondants ayant indiqué 'Universitaire (Baccalauréat)' comme plus haut niveau d'éducation (question 48) est de 23.94%.\n\nPlus précisément :\n- 34 répondants sur un total de 142 ont choisi cette option\n- Cela représente 23.94% des réponses à cette question\n\nLes autres réponses les plus fréquentes étaient :\n- Collégial : 37.32%\n- Secondaire (12ième complété) : 29.58%\n- Formation personnelle : 5.63%\n- Universitaire (Maîtrise) : 2.11%\n- Non répondu : 1.41%",
+        "time_seconds": 35.15260195732117
+      }
+    }
+  },
+  {
+    "question": "En 2010, pour les répondants de l'école Marie-Esther, quelle était la principale occupation ('Marché du travail', 'Études universitaires', etc. - question 49) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2010, pour les répondants de l'école Marie-Esther, la principale occupation était 'Marché du travail' avec 100 répondants.",
+        "time_seconds": 2.584826707839966
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2010 pour les répondants de l'école Marie-Esther, voici la répartition des principales occupations (question 49) :\n\n1. **Marché du travail** : 100 répondants (la grande majorité)\n2. **Termine mes études postsecondaires** : 12 répondants\n3. **Recherche d'emploi / Sans emploi** : 9 répondants\n4. **Autre** : 8 répondants\n\nLa principale occupation des répondants de l'école Marie-Esther en 2010 était donc clairement le \"Marché du travail\", représentant une proportion significative des réponses.",
+        "time_seconds": 9.771406173706055
+      }
+    }
+  },
+  {
+    "question": "Comment la proportion de répondants se déclarant 'Célibataire' (question 50) a-t-elle évolué pour l'école W.-A.-Losier entre 2004 et 2012 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer comment la proportion de répondants se déclarant 'Célibataire' a évolué nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.",
+        "time_seconds": 1.2865104675292969
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "## Évolution de la proportion de répondants \"Célibataires\" à l'école W.-A.-Losier (2004-2012)\n\nVoici l'évolution de la proportion d'élèves se déclarant \"Célibataire\" à la question 50 (état civil) pour l'école W.-A.-Losier entre 2004 et 2012 :\n\n| Année | Total répondants | Célibataires | Pourcentage (%) |\n|-------|------------------|--------------|-----------------|\n| 2004  | 182              | 120          | 65,93           |\n| 2005  | 199              | 140          | 70,35           |\n| 2006  | 179              | 136          | 75,98           |\n| 2007  | 170              | 104          | 61,18           |\n| 2008  | 172              | 110          | 63,95           |\n| 2009  | 224              | 145          | 64,73           |\n| 2010  | 175              | 117          | 66,86           |\n| 2011  | 181              | 124          | 68,51           |\n| 2012  | 162              | 121          | 74,69           |\n\n### Analyse de l'évolution :\n\n- La proportion de répondants célibataires a fluctué entre 61,18% et 75,98% sur cette période.\n- On observe une augmentation significative entre 2004 (65,93%) et 2006 (75,98%).\n- Une baisse importante est survenue en 2007, où le pourcentage est tombé à 61,18%.\n- À partir de 2007, on constate une tendance générale à la hausse, avec une remontée progressive jusqu'à 74,69% en 2012.\n- Les années 2006 et 2012 présentent les pourcentages les plus élevés de répondants célibataires.\n\nCette analyse montre que, malgré quelques fluctuations, la proportion d'élèves se déclarant célibataires à l'école W.-A.-Losier a globalement augmenté entre 2004 et 2012.",
+        "time_seconds": 15.588643550872803
+      }
+    }
+  },
+  {
+    "question": "Pour l'année 2005, quelle proportion des répondants du Centre La Fontaine demeurait 'Ailleurs au N.-B.' (question 52) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Pour l'année 2005, 20.83% des répondants du Centre La Fontaine demeuraient 'Ailleurs au N.-B.'.",
+        "time_seconds": 2.80324125289917
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2005 pour le Centre La Fontaine, 20.83% des répondants ont indiqué qu'ils demeuraient \"Ailleurs au N.-B.\" en réponse à la question 52 \"Où demeurez-vous présentement ?\".\n\nPour être plus précis :\n- 10 répondants du Centre La Fontaine ont choisi cette option\n- Cela représente 20.83% du total des répondants de cette école pour cette année\n\nCette information provient des données agrégées disponibles dans la base de données Capital Humain pour l'année 2005.",
+        "time_seconds": 15.03515100479126
+      }
+    }
+  },
+  {
+    "question": "En 2011, pour l'école Louis-Mailloux, quelle province canadienne ('Québec', 'Ontario', 'Nouveau-Brunswick' - question 1) était la plus mentionnée comme lieu d'études ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je n'ai pas trouvé de données pour l'année 2011 pour l'école Louis-Mailloux concernant la question sur la province canadienne la plus mentionnée comme lieu d'études.",
+        "time_seconds": 3.0260283946990967
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les résultats obtenus, pour l'école Louis-Mailloux en 2011, la province canadienne la plus mentionnée comme lieu d'études était le **Nouveau-Brunswick** avec 71 réponses.\n\nVoici le classement complet des provinces mentionnées comme lieu d'études :\n1. Nouveau-Brunswick : 71 réponses\n2. Québec : 7 réponses\n3. Ontario : 3 réponses\n4. Île-du-Prince-Édouard : 2 réponses\n\nLe Nouveau-Brunswick était donc très largement la province la plus choisie par les étudiants de l'école Louis-Mailloux en 2011 comme lieu d'études.",
+        "time_seconds": 13.841945886611938
+      }
+    }
+  },
+  {
+    "question": "Pour les répondants de l'école Marie-Esther en 2006, quelles étaient les deux sources de financement ('Prêts étudiant', 'Contribution des parents', etc. - question 2) les plus fréquentes ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je n'ai pas pu récupérer les informations demandées. Il semble y avoir un problème avec la base de données ou la requête SQL.",
+        "time_seconds": 3.072502613067627
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2006 pour l'école Marie-Esther, les deux sources de financement les plus fréquentes pour les études postsecondaires étaient :\n\n1. **Prêts étudiant** - choisi par 29 répondants\n2. **Programme d'aide fédéral** - choisi par 13 répondants\n\nCes résultats montrent que les prêts étudiants constituaient la source de financement principale pour les étudiants de Marie-Esther en 2006, suivis par les programmes d'aide fédérale. Cette information pourrait être utile pour comprendre comment les étudiants de cette école finançaient leurs études postsecondaires à cette période.",
+        "time_seconds": 13.612661123275757
+      }
+    }
+  },
+  {
+    "question": "En 2008, quelle proportion des répondants de l'école W.-A.-Losier a répondu 'Oui' à l'intérêt pour un retour aux études (question 3) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2008, 21.85% des répondants de l'école W.-A.-Losier ont répondu 'Oui' à l'intérêt pour un retour aux études (question 3).",
+        "time_seconds": 2.6351053714752197
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2008 pour l'école W.-A.-Losier concernant la question 3 \"Seriez-vous intéressé/e à faire un retour aux études?\", voici les résultats:\n\n- 21,85% des répondants ont répondu 'Oui', indiquant un intérêt pour un retour aux études\n- 49,58% ont répondu 'Non'\n- 18,49% étaient 'Présentement aux études'\n- 8,40% ont répondu 'Ne sais pas'\n- 1,68% n'ont pas répondu à cette question\n\nDonc, en 2008, environ un cinquième (21,85%) des répondants de l'école W.-A.-Losier ont exprimé un intérêt pour un retour aux études en répondant 'Oui' à cette question.",
+        "time_seconds": 11.183335065841675
+      }
+    }
+  },
+  {
+    "question": "Pour le Centre La Fontaine en 2012, y avait-il plus de répondants 'Oui' ou 'Non' concernant les obstacles empêchant la poursuite des études (question 4) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Pour le Centre La Fontaine en 2012, il y avait plus de répondants 'Non' (14) que de répondants 'Oui' concernant les obstacles empêchant la poursuite des études.",
+        "time_seconds": 2.7639026641845703
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Pour le Centre La Fontaine en 2012, concernant la question \"Existe-t-il des obstacles qui vous empêchent de poursuivre des études ?\", les résultats montrent que :\n\n- 14 répondants ont choisi \"Non\"\n- 3 répondants ont choisi \"Oui\"\n- 1 répondant n'a pas répondu à cette question\n\nIl y avait donc significativement plus de répondants qui ont choisi \"Non\" (14 personnes) que \"Oui\" (3 personnes), indiquant que la majorité des étudiants du Centre La Fontaine en 2012 ne percevaient pas d'obstacles à la poursuite de leurs études.",
+        "time_seconds": 8.518709182739258
+      }
+    }
+  },
+  {
+    "question": "Comment l'intérêt à recevoir de l'information pour la poursuite des études ('Oui' - question 5) a-t-il évolué pour les répondants de Louis-Mailloux entre 2004 et 2012 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer combien d'élèves qui utilisent un certain moyen de transport ont de bonnes notes nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.",
+        "time_seconds": 1.3203363418579102
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Voici l'évolution de l'intérêt à recevoir de l'information pour la poursuite des études (réponse \"Oui\" à la question 5) chez les répondants de l'école Louis-Mailloux entre 2004 et 2012 :\n\n### Évolution de l'intérêt à recevoir de l'information pour la poursuite des études (2004-2012)\n\n| Année | Nombre de \"Oui\" | Total de répondants | Pourcentage d'intérêt |\n|-------|----------------|---------------------|------------------------|\n| 2004  | 11             | 88                  | 12,5%                  |\n| 2005  | 8              | 71                  | 11,3%                  |\n| 2006  | 4              | 66                  | 6,1%                   |\n| 2007  | 17             | 98                  | 17,3%                  |\n| 2008  | 5              | 94                  | 5,3%                   |\n| 2009  | 1              | 89                  | 1,1%                   |\n| 2010  | 0              | 105                 | 0%                     |\n| 2011  | 0              | 83                  | 0%                     |\n| 2012  | 2              | 103                 | 1,9%                   |\n\n**Analyse de l'évolution :**\n\n1. On observe une tendance générale à la baisse de l'intérêt à recevoir de l'information pour la poursuite des études entre 2004 et 2012.\n\n2. Le pic d'intérêt se situe en 2007 avec 17,3% des répondants intéressés.\n\n3. À partir de 2009, l'intérêt chute considérablement, atteignant 0% en 2010 et 2011, avant une légère remontée à 1,9% en 2012.\n\n4. La répartition par genre montre que généralement plus de filles que de garçons étaient intéressées à recevoir de l'information, sauf en 2006 et 2012.\n\nCette évolution pourrait s'expliquer par divers facteurs comme des changements dans les services d'orientation disponibles à l'école, l'accès à d'autres sources d'information, ou des modifications dans les aspirations des étudiants concernant la poursuite d'études.",
+        "time_seconds": 26.610431909561157
+      }
+    }
+  },
+  {
+    "question": "En 2007, pour l'école Marie-Esther, la majorité des répondants étudiait-elle dans une institution 'Universitaire' ou 'Collégial' (question 6) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2007, pour l'école Marie-Esther, la majorité des répondants étudiait dans une institution 'Collégial'.",
+        "time_seconds": 2.8739187717437744
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2007 pour l'école Marie-Esther concernant la question 6 \"Dans quel type d'institution avez-vous étudié?\", la majorité des répondants a étudié dans une institution collégiale.\n\nVoici la répartition précise:\n- Institution collégiale: 43 répondants\n- Institution universitaire: 33 répondants\n\nLa majorité des étudiants de Marie-Esther en 2007 a donc choisi des études collégiales plutôt qu'universitaires.",
+        "time_seconds": 8.231057167053223
+      }
+    }
+  },
+  {
+    "question": "Quelle était la proportion d'étudiants à 'Temps plein' versus 'Temps partiel' (question 7) pour l'école W.-A.-Losier en 2010 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2010, pour l'école W.-A.-Losier, 115 étudiants étaient à 'Temps plein' et 1 étudiant était à 'Temps partiel' selon la question \"Quel était votre régime d'études ?\".",
+        "time_seconds": 3.1695687770843506
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2010 pour l'école W.-A.-Losier concernant le régime d'études (question 7), voici la répartition des étudiants :\n\n- Temps plein : 115 étudiants\n- Temps partiel : 1 étudiant\n\nEn termes de proportion :\n- Temps plein : 99,1% des répondants\n- Temps partiel : 0,9% des répondants\n\nLa grande majorité des étudiants de W.-A.-Losier en 2010 suivaient donc leurs études à temps plein, avec seulement un étudiant inscrit à temps partiel.",
+        "time_seconds": 8.706029176712036
+      }
+    }
+  },
+  {
+    "question": "Pour les répondants du Centre La Fontaine en 2005, quel niveau d'études ('Premier cycle universitaire', 'Deuxième cycle', etc. - question 8) était le plus commun ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Pour les répondants du Centre La Fontaine en 2005, le niveau d'études le plus commun était \"Diplôme\".",
+        "time_seconds": 4.458625793457031
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données recueillies pour le Centre La Fontaine en 2005, le niveau d'études le plus commun parmi les répondants était le \"Diplôme\" avec 15 réponses.\n\nVoici la répartition complète des niveaux d'études pour ces répondants :\n1. Diplôme : 15 répondants\n2. Premier cycle universitaire (bacc., certificat) : 7 répondants\n3. Certificat : 1 répondant\n4. Deuxième cycle (maîtrise) : 1 répondant\n\nOn constate donc que la majorité des répondants du Centre La Fontaine en 2005 avaient un niveau d'études correspondant à un diplôme, suivi par ceux ayant un niveau de premier cycle universitaire.",
+        "time_seconds": 9.224333047866821
+      }
+    }
+  },
+  {
+    "question": "En 2011, pour l'école Louis-Mailloux, quel était le domaine d'études le plus fréquent parmi 'Commerce, gestion et administration des affaires' et 'Professions de la santé' (question 9) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2011, pour l'école Louis-Mailloux, le domaine d'études le plus fréquent parmi 'Commerce, gestion et administration des affaires' et 'Professions de la santé' (question 9) était 'Professions de la santé et technologies connexes' avec 25 réponses.",
+        "time_seconds": 3.179145097732544
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2011 pour l'école Louis-Mailloux concernant la question 9 (Dans quel domaine d'études étiez-vous inscrit/e?), le domaine d'études le plus fréquent entre les deux options demandées était :\n\n**\"Professions de la santé et technologies connexes\"** avec 25 réponses.\n\nEn comparaison, \"Commerce, gestion et administration des affaires\" a reçu 10 réponses.\n\nCes résultats montrent que les professions de la santé étaient plus de deux fois plus populaires que le commerce et l'administration parmi les étudiants de Louis-Mailloux en 2011.",
+        "time_seconds": 9.274688482284546
+      }
+    }
+  },
+  {
+    "question": "Quelle est l'évolution du taux de complétion des études ('Oui' - question 10) pour les répondants de l'école Marie-Esther entre 2004 et 2008 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer l'évolution du taux de complétion des études pour les répondants de l'école Marie-Esther entre 2004 et 2008 nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.",
+        "time_seconds": 1.4425277709960938
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "### Évolution du taux de complétion des études à l'école Marie-Esther (2004-2008)\n\nVoici l'évolution du taux de complétion des études (réponse \"Oui\" à la question \"Avez-vous complété vos études ?\") pour les répondants de l'école Marie-Esther entre 2004 et 2008 :\n\n| Année | Nombre d'étudiants ayant complété | Total de répondants | Taux de complétion (%) |\n|-------|-----------------------------------|---------------------|------------------------|\n| 2004  | 89                                | 97                  | 91,75%                 |\n| 2005  | 64                                | 65                  | 98,46%                 |\n| 2006  | 62                                | 67                  | 92,54%                 |\n| 2007  | 73                                | 83                  | 87,95%                 |\n| 2008  | 87                                | 91                  | 95,60%                 |\n\nOn observe que le taux de complétion des études a fluctué au cours de cette période :\n- Il a atteint son niveau le plus élevé en 2005 avec 98,46%\n- Il a connu une baisse en 2007, atteignant son niveau le plus bas à 87,95%\n- Il est remonté en 2008 à 95,60%\n\nEn général, le taux de complétion est resté relativement élevé (supérieur à 87%) tout au long de cette période, ce qui indique qu'une grande majorité des étudiants de Marie-Esther ayant répondu au questionnaire ont complété leurs études.",
+        "time_seconds": 14.245476245880127
+      }
+    }
+  },
+  {
+    "question": "Pour l'école W.-A.-Losier en 2012, dans quelle province ('Nouveau-Brunswick', 'Québec', 'Alberta' - question 11) les répondants travaillaient-ils le plus souvent ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je n'ai pas trouvé de données pour l'école W.-A.-Losier en 2012 concernant la question 11.",
+        "time_seconds": 2.860250949859619
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les résultats obtenus, pour l'école W.-A.-Losier en 2012, les répondants travaillaient le plus souvent dans les provinces suivantes (par ordre décroissant) :\n\n1. Nouveau-Brunswick : 109 répondants\n2. Québec : 6 répondants\n3. Ontario : 4 répondants\n4. Alberta : 1 répondant\n5. Nouvelle-Écosse : 1 répondant\n\nLa province où les répondants de l'école W.-A.-Losier travaillaient le plus souvent en 2012 était donc clairement le Nouveau-Brunswick, avec une large majorité (109 répondants).",
+        "time_seconds": 22.351940155029297
+      }
+    }
+  },
+  {
+    "question": "En 2006, pour les répondants du Centre La Fontaine, quel pourcentage envisageait de changer d'emploi ('Oui' - question 12) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer combien d'élèves qui utilisent un certain moyen de transport ont de bonnes notes nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.",
+        "time_seconds": 1.325343132019043
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2006 pour les répondants du Centre La Fontaine (école_id = 2), voici les résultats concernant la question 12 \"Envisagez-vous de changer d'emploi dans la prochaine année?\" :\n\n- 43,33% des répondants ont répondu \"Oui\" (13 personnes)\n- 53,33% des répondants ont répondu \"Non\" (16 personnes)\n- 3,33% n'ont pas répondu à cette question (1 personne)\n\nDonc, en 2006, 43,33% des répondants du Centre La Fontaine envisageaient de changer d'emploi dans l'année suivante.",
+        "time_seconds": 10.017860412597656
+      }
+    }
+  },
+  {
+    "question": "Pour l'école Louis-Mailloux en 2010, quelle était la principale raison ('Je veux travailler plus près de chez moi', 'Mon travail actuel ne correspond pas...' - question 13) pour envisager un changement d'emploi ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Pour l'école Louis-Mailloux en 2010, la principale raison pour envisager un changement d'emploi parmi les options que vous avez spécifiées était 'Je veux travailler plus près de chez moi', bien qu'aucun étudiant n'ait choisi cette option.",
+        "time_seconds": 3.187370777130127
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2010 pour l'école Louis-Mailloux, il y a deux raisons principales qui arrivent à égalité pour envisager un changement d'emploi :\n\n1. \"J'ai besoin d'un changement\" (3 réponses)\n2. \"Je désire retourner aux études\" (3 réponses)\n\nCes deux raisons sont les plus fréquemment citées par les diplômés de cette école en 2010. Les autres options (\"Je recherche la sécurité d'emploi\", \"Je travaille à temps plein et je préférerais travailler à temps partiel\", \"Je veux travailler plus près de chez moi\", et \"Mon travail actuel ne correspond pas à mon expérience et à ma formation\") n'ont reçu aucune réponse.",
+        "time_seconds": 8.89037275314331
+      }
+    }
+  },
+  {
+    "question": "En 2004, pour les répondants de l'école Marie-Esther, la majorité travaillait-elle dans la région 'Nord-Est' du Nouveau-Brunswick (question 14) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer combien d'élèves qui travaillent dans une certaine région ont répondu à une autre question nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.",
+        "time_seconds": 1.3980660438537598
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2004 pour l'école Marie-Esther concernant la question 14 \"Dans quelle région de la province travaillez-vous?\", je peux confirmer que :\n\n**Oui, la majorité des répondants travaillait dans la région 'Nord-Est' du Nouveau-Brunswick.**\n\nVoici la répartition des réponses :\n- Nord-Est : 54 répondants (56,3%)\n- Non répondu : 22 répondants (22,9%)\n- Sud-Est : 11 répondants (11,5%)\n- Autre : 8 répondants (8,3%)\n- Nord : 1 répondant (1%)\n\nAvec 54 répondants sur un total de 96, la région Nord-Est représente clairement la majorité des réponses (plus de 50% des répondants).",
+        "time_seconds": 9.90735650062561
+      }
+    }
+  },
+  {
+    "question": "Comment la proportion de répondants travaillant dans le secteur 'Soins de santé et assistance sociale' (question 15) a-t-elle évolué pour l'école W.-A.-Losier entre 2004 et 2012 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer comment la proportion de répondants travaillant dans un secteur spécifique a évolué nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.",
+        "time_seconds": 1.3459570407867432
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Voici l'évolution de la proportion de répondants travaillant dans le secteur \"Soins de santé et assistance sociale\" pour l'école W.-A.-Losier entre 2004 et 2012 :\n\n| Année | Nombre dans le secteur santé | Total des répondants | Pourcentage (%) |\n|-------|------------------------------|----------------------|-----------------|\n| 2004  | 20                           | 124                  | 16,13           |\n| 2005  | 17                           | 111                  | 15,32           |\n| 2006  | 14                           | 92                   | 15,22           |\n| 2007  | 31                           | 112                  | 27,68           |\n| 2008  | 18                           | 115                  | 15,65           |\n| 2009  | 20                           | 155                  | 12,90           |\n| 2010  | 25                           | 126                  | 19,84           |\n| 2011  | 16                           | 109                  | 14,68           |\n| 2012  | 20                           | 130                  | 15,38           |\n\n**Analyse de l'évolution :**\n\n- La proportion de diplômés de W.-A.-Losier travaillant dans le secteur \"Soins de santé et assistance sociale\" a fluctué entre 12,90% et 27,68% sur cette période.\n- On observe un pic notable en 2007, où la proportion a atteint 27,68%, soit presque le double de la moyenne des autres années.\n- Après ce pic, la proportion est redescendue à 15,65% en 2008, puis a atteint son niveau le plus bas en 2009 (12,90%).\n- Une remontée significative a eu lieu en 2010 (19,84%), suivie d'une nouvelle baisse en 2011 (14,68%).\n- En 2012, la proportion s'est stabilisée autour de 15,38%, un niveau comparable à celui observé en 2004-2006.\n\nEn résumé, bien que la proportion ait connu des fluctuations importantes, notamment en 2007 et 2010, elle est revenue en 2012 à un niveau similaire à celui du début de la période étudiée, suggérant une certaine stabilité à long terme malgré les variations annuelles.",
+        "time_seconds": 22.614779472351074
+      }
+    }
+  },
+  {
+    "question": "Pour les répondants du Centre La Fontaine en 2008, quelle proportion était en 'Recherche d'emploi' (question 33) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Pour les répondants du Centre La Fontaine en 2008, 20% étaient en 'Recherche d'emploi'.",
+        "time_seconds": 2.5422956943511963
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2008 pour le Centre La Fontaine (école ID 2), concernant la question 33 \"Présentement êtes-vous en attente ou à la recherche d'emploi?\":\n\n- 20% des répondants étaient en \"Recherche d'emploi\"\n- 80% ont répondu \"Non\" (n'étaient pas en recherche d'emploi)\n\nSur un total de 5 réponses, 1 personne était en recherche d'emploi et 4 personnes ne l'étaient pas.",
+        "time_seconds": 11.317591428756714
+      }
+    }
+  },
+  {
+    "question": "En 2011, pour l'école Louis-Mailloux, quel était le nombre d'employeurs ('Un', 'Deux', 'Plus de deux' - question 34) le plus fréquent au cours des 2 dernières années ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2011, pour l'école Louis-Mailloux, l'option de réponse la plus fréquente pour la question \"Au cours des 2 dernières années, combien d'employeurs avez-vous eus ?\" parmi les options 'Un', 'Deux' et 'Plus de deux' était 'Deux', avec un total de 5 réponses.",
+        "time_seconds": 2.8951358795166016
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2011 pour l'école Louis-Mailloux concernant la question 34 \"Au cours des 2 dernières années, combien d'employeurs avez-vous eus ?\", voici les résultats :\n\n1. \"Deux\" employeurs : 5 réponses\n2. \"Non répondu\" : 4 réponses\n3. \"Un\" employeur : 3 réponses\n4. \"Plus de deux\" employeurs : 1 réponse\n\nLe nombre d'employeurs le plus fréquemment rapporté par les étudiants de l'école Louis-Mailloux en 2011 était donc \"Deux\" employeurs, avec 5 réponses.",
+        "time_seconds": 8.800544023513794
+      }
+    }
+  },
+  {
+    "question": "Quelle était la durée d'expérience de travail la plus fréquente ('Moins de 6 mois', '12 à 18 mois', etc. - question 35) pour les répondants de Marie-Esther en 2005 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2005, la durée d'expérience de travail la plus fréquente pour les répondants de Marie-Esther était de \"6 à 12 mois\".",
+        "time_seconds": 2.4148499965667725
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données, la durée d'expérience de travail la plus fréquente pour les répondants de l'école Marie-Esther en 2005 était \"6 à 12 mois\" avec 3 répondants.\n\nVoici la répartition complète des réponses :\n- \"6 à 12 mois\" : 3 répondants\n- \"Moins de 6 mois\" : 2 répondants\n- \"12 à 18 mois\" : 1 répondant\n- \"18 à 24 mois\" : 1 répondant\n\nCette information provient des réponses à la question 35 (\"Au cours des deux dernières années, combien de mois d'expérience de travail avez-vous accumulés ?\") pour les élèves de l'école Marie-Esther en 2005.",
+        "time_seconds": 13.947033405303955
+      }
+    }
+  },
+  {
+    "question": "Pour l'école W.-A.-Losier en 2007, quelle proportion des répondants sans emploi l'était depuis 'Plus de 2 ans' (question 36) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer la proportion des répondants sans emploi qui l'étaient depuis 'Plus de 2 ans' nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.",
+        "time_seconds": 1.468090295791626
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de l'école W.-A.-Losier en 2007, parmi les répondants sans emploi (question 36 \"Depuis combien de temps êtes-vous sans emploi ?\") :\n\n- 5% des répondants étaient sans emploi depuis \"Plus de 2 ans\"\n- 60% étaient sans emploi depuis \"Moins de 6 mois\"\n- 20% étaient sans emploi depuis \"6 à 12 mois\"\n- 5% étaient sans emploi depuis \"1 à 2 ans\"\n- 10% n'ont pas répondu à cette question\n\nDonc, la proportion des répondants sans emploi qui l'étaient depuis \"Plus de 2 ans\" à l'école W.-A.-Losier en 2007 était de 5%.",
+        "time_seconds": 10.803006649017334
+      }
+    }
+  },
+  {
+    "question": "En 2010, pour les répondants sans emploi du Centre La Fontaine, quelle était la raison principale ('Chômage / travail saisonnier', 'Retour aux études', etc. - question 37) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je n'ai pas trouvé de données pour cette requête.",
+        "time_seconds": 2.924003839492798
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2010 pour les répondants sans emploi du Centre La Fontaine, la raison principale pour laquelle ils n'ont pas travaillé durant cette période (question 37) était :\n\n**\"Chômage / travail saisonnier\"**\n\nCette réponse a été donnée par 1 répondant. C'était la seule raison mentionnée dans les données pour cette école et cette année spécifique.",
+        "time_seconds": 8.55301833152771
+      }
+    }
+  },
+  {
+    "question": "Quelle proportion des répondants de l'école Louis-Mailloux en 2012 était intéressée ('Oui') par une expérience de travail dans leur communauté (question 38) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2012, 33.33% des répondants de l'école Louis-Mailloux étaient intéressés par une expérience de travail dans leur communauté (question 38).",
+        "time_seconds": 2.7627980709075928
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2012 pour l'école Louis-Mailloux concernant la question 38 (\"Seriez-vous intéressé/e par une expérience de travail dans votre communauté ?\"), voici les résultats :\n\n- 33.33% des répondants ont répondu \"Oui\", indiquant leur intérêt pour une expérience de travail dans leur communauté\n- 25.00% ont répondu \"Non\"\n- 41.67% n'ont pas répondu à cette question\n\nJe note que l'option \"Non répondu\" est la plus fréquente. Donc, parmi les répondants qui ont effectivement donné une réponse (en excluant les \"Non répondu\"), la proportion de \"Oui\" serait plus élevée, soit environ 57% des réponses exprimées (4 sur 7 réponses exprimées).\n\nEn conclusion, un tiers (33.33%) de tous les répondants de l'école Louis-Mailloux en 2012 ont explicitement exprimé leur intérêt pour une expérience de travail dans leur communauté.",
+        "time_seconds": 16.402705430984497
+      }
+    }
+  },
+  {
+    "question": "Comment l'intérêt à recevoir de l'information sur une expérience de travail ('Oui' - question 39) a-t-il changé pour les répondants de Marie-Esther entre 2004 et 2012 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer comment l'intérêt à recevoir de l'information sur une expérience de travail a changé pour les répondants de Marie-Esther entre 2004 et 2012 nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible.",
+        "time_seconds": 1.5027365684509277
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Voici l'évolution de l'intérêt à recevoir de l'information concernant une expérience de travail dans la communauté (réponse \"Oui\" à la question 39) pour les répondants de l'école Marie-Esther entre 2004 et 2012 :\n\n### Évolution de l'intérêt (2004-2012) :\n\n| Année | Nombre de \"Oui\" | Total des réponses | Pourcentage de \"Oui\" |\n|-------|-----------------|-------------------|----------------------|\n| 2004  | 12              | 21                | 57,14%               |\n| 2005  | 7               | 7                 | 100,00%              |\n| 2006  | 12              | 15                | 80,00%               |\n| 2007  | 17              | 32                | 53,13%               |\n| 2008  | 4               | 29                | 13,79%               |\n| 2009  | 3               | 14                | 21,43%               |\n| 2010  | 6               | 9                 | 66,67%               |\n| 2011  | 4               | 20                | 20,00%               |\n| 2012  | 6               | 18                | 33,33%               |\n\n### Analyse des tendances :\n\n1. **Forte variation** : L'intérêt a considérablement fluctué au cours de cette période, avec un pic de 100% en 2005 (tous les répondants intéressés) et un creux de 13,79% en 2008.\n\n2. **Tendance générale à la baisse** : Malgré quelques remontées ponctuelles (notamment en 2010 avec 66,67%), on observe une tendance générale à la diminution de l'intérêt entre 2004 et 2012.\n\n3. **Période 2004-2007** : Intérêt relativement élevé (entre 53% et 100%)\n\n4. **Période 2008-2012** : Intérêt généralement plus faible, avec une légère remontée en 2010 puis une stabilisation autour de 20-33% en 2011-2012.\n\nCette évolution pourrait refléter des changements dans le marché du travail local, dans les perspectives d'emploi des étudiants, ou dans la perception de l'utilité de recevoir des informations sur les expériences de travail dans la communauté.",
+        "time_seconds": 19.11138343811035
+      }
+    }
+  },
+  {
+    "question": "En 2004, pour l'école W.-A.-Losier, quel pourcentage de répondants était disponible pour travailler maintenant ('Oui' - question 40) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2004, pour l'école W.-A.-Losier, 88.46% des répondants étaient disponibles pour travailler maintenant.",
+        "time_seconds": 2.9342284202575684
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les résultats obtenus, pour l'école W.-A.-Losier en 2004 :\n\n- Sur les 26 questionnaires complétés, 23 personnes ont répondu \"Oui\" à la question \"Êtes-vous disponible pour travailler maintenant ?\"\n- 3 personnes ont choisi \"Non répondu\"\n- Aucune personne n'a répondu \"Non\"\n\nLe pourcentage de répondants qui étaient disponibles pour travailler maintenant (ayant répondu \"Oui\" à la question 40) est de 88,46%.",
+        "time_seconds": 30.73245596885681
+      }
+    }
+  },
+  {
+    "question": "Pour les répondants du Centre La Fontaine en 2011, quel type d'emploi ('Commerce de détail', 'Construction', etc. - question 41) était le plus recherché ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Pour les répondants du Centre La Fontaine en 2011, le type d'emploi le plus recherché était 'Finance et assurances'.",
+        "time_seconds": 2.594663381576538
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données disponibles, pour les répondants du Centre La Fontaine en 2011, le type d'emploi le plus recherché était \"Finance et assurances\" avec 1 répondant.\n\nIl est important de noter que le nombre de réponses est assez limité pour cette école et cette année spécifique, ce qui suggère soit un faible taux de participation au questionnaire, soit que peu d'étudiants étaient en recherche d'emploi à ce moment-là.\n\nCette information provient des réponses à la question 41 \"Quel type d'emploi recherchez-vous?\" du questionnaire de type 5 (RE-Attente d'emploi / Recherche d'emploi / Sans emploi).",
+        "time_seconds": 13.224202394485474
+      }
+    }
+  },
+  {
+    "question": "En 2008, pour l'école Louis-Mailloux, quelle province ('Nouveau-Brunswick', 'Alberta', 'Québec' - question 42) était la plus citée comme lieu de travail souhaité ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2008, pour l'école Louis-Mailloux, la province la plus citée comme lieu de travail souhaité parmi les options 'Nouveau-Brunswick', 'Alberta' et 'Québec' était le Nouveau-Brunswick, avec 7 réponses.",
+        "time_seconds": 2.7402141094207764
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2008 pour l'école Louis-Mailloux concernant la question 42 (\"Dans quelle province canadienne ou autre pays aimeriez-vous travailler ?\"), voici les résultats :\n\n1. Nouveau-Brunswick : 7 réponses\n2. Alberta : 1 réponse\n3. Québec : 0 réponse\n\nLa province la plus citée comme lieu de travail souhaité par les élèves de l'école Louis-Mailloux en 2008 était donc le Nouveau-Brunswick, avec 7 réponses.",
+        "time_seconds": 13.22555422782898
+      }
+    }
+  },
+  {
+    "question": "Quelle région de la province ('Nord-Est', 'Sud-Est', etc. - question 43) était la plus souhaitée pour travailler par les répondants de Marie-Esther en 2006 ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "La région la plus souhaitée pour travailler par les répondants de Marie-Esther en 2006 était \"Non répondu\".",
+        "time_seconds": 3.058344602584839
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Je constate que l'option la plus fréquente est \"Non répondu\" avec 10 réponses. Cependant, comme il s'agit d'une non-réponse, je vais considérer la région qui a effectivement été choisie par les répondants.\n\nD'après les résultats, la région la plus souhaitée pour travailler par les répondants de l'école Marie-Esther en 2006 était le **Nord-Est** avec 5 réponses.\n\nCette information provient des réponses à la question 43 : \"Dans quelle région de la province aimeriez-vous travailler ?\" pour les élèves de l'école Marie-Esther en 2006.",
+        "time_seconds": 9.005918979644775
+      }
+    }
+  },
+  {
+    "question": "Pour les répondants de l'école W.-A.-Losier en 2005, quelle proportion a déclaré avoir eu un emploi au cours des 2 dernières années ('Oui' - question 44) ?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Pour les répondants de l'école W.-A.-Losier en 2005, 81.82% ont déclaré avoir eu un emploi au cours des 2 dernières années.",
+        "time_seconds": 2.877262830734253
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les données de 2005 pour l'école W.-A.-Losier (school_id = 7), voici les résultats concernant la question 44 \"Avez-vous eu un emploi au cours des 2 dernières années ?\" :\n\n- **81,82%** des répondants ont déclaré \"Oui\", ils ont eu un emploi au cours des 2 dernières années\n- 13,64% n'ont pas répondu à cette question\n- 4,55% ont répondu \"Non\"\n\nLa grande majorité des répondants de cette école en 2005 (plus de 8 sur 10) avaient donc eu une expérience professionnelle au cours des deux années précédentes.",
+        "time_seconds": 10.72955584526062
+      }
+    }
+  },
+  {
+    "question": "Comparer la proportion d'élèves choisissant 'Études universitaires' comme projet postsecondaire (question 19) entre l'école Louis-Mailloux et l'école Marie-Esther en 2008.",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2008, la proportion d'élèves choisissant 'Études universitaires' comme projet postsecondaire à l'école Louis-Mailloux était d'environ 27.03% et 7.43%, tandis qu'à l'école Marie-Esther, elle était d'environ 29.63% et 5.93%.",
+        "time_seconds": 3.3804049491882324
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Voici la comparaison de la proportion d'élèves ayant choisi \"Études universitaires\" comme projet postsecondaire (question 19) entre les écoles Louis-Mailloux et Marie-Esther en 2008 :\n\n| École | Nombre de questionnaires complétés | Élèves choisissant \"Études universitaires\" | Pourcentage (%) |\n|-------|-----------------------------------|------------------------------------------|----------------|\n| Louis-Mailloux | 148 | 51 | 34,46% |\n| Marie-Esther | 135 | 48 | 35,56% |\n\nEn 2008, la proportion d'élèves qui prévoyaient poursuivre des études universitaires était légèrement plus élevée à l'école Marie-Esther (35,56%) qu'à l'école Louis-Mailloux (34,46%). La différence entre les deux écoles est relativement faible, soit environ 1,1 point de pourcentage.\n\nCes résultats montrent que dans les deux écoles, un peu plus d'un tiers des élèves ayant répondu au questionnaire envisageaient de poursuivre des études universitaires après leur secondaire en 2008.",
+        "time_seconds": 11.931182622909546
+      }
+    }
+  },
+  {
+    "question": "Pour l'année 2019, quelle école parmi Aux quatre vents, Secondaire Népisiguit et Roland-Pépin avait le plus haut pourcentage d'élèves satisfaits ('Satisfait/e' ou 'Très satisfait/e') de leurs résultats scolaires (question 32)?",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Pour l'année 2019, l'école Secondaire Népisiguit avait le plus haut pourcentage d'élèves satisfaits ou très satisfaits de leurs résultats scolaires (86.57%).",
+        "time_seconds": 3.442326545715332
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "D'après les résultats obtenus, voici le classement des écoles selon le pourcentage d'élèves satisfaits de leurs résultats scolaires en 2019 :\n\n1. **Secondaire Népisiguit** : 86,57% des élèves sont satisfaits (174 élèves satisfaits sur 201 répondants)\n2. **Roland-Pépin** : 86,21% des élèves sont satisfaits (50 élèves satisfaits sur 58 répondants)\n3. **Aux quatre vents** : 80,85% des élèves sont satisfaits (38 élèves satisfaits sur 47 répondants)\n\nL'école **Secondaire Népisiguit** présente donc le plus haut pourcentage d'élèves satisfaits de leurs résultats scolaires en 2019 parmi les trois écoles mentionnées, avec un taux de satisfaction de 86,57%.\n\nÀ noter que les différences entre Secondaire Népisiguit et Roland-Pépin sont très faibles (seulement 0,36 points de pourcentage), ce qui indique un niveau de satisfaction très similaire dans ces deux établissements.",
+        "time_seconds": 13.235455751419067
+      }
+    }
+  },
+  {
+    "question": "Analyser l'évolution de la réponse 'Je ne sais pas' à la question sur l'acceptation d'un emploi dans la Péninsule (question 22) pour l'école W.-A.-Losier entre 2014 et 2019.",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "Voici l'évolution du nombre d'élèves ayant répondu 'Je ne sais pas' à la question 22 (acceptation d'un emploi dans la Péninsule) pour l'école W.-A.-Losier entre 2014 et 2019 :\n\n*   2014 : 37\n*   2015 : 59\n*   2016 : 48\n*   2017 : 34\n*   2018 : 53\n*   2019 : 56",
+        "time_seconds": 3.1623125076293945
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "## Analyse de l'évolution de la réponse \"Je ne sais pas\" à la question 22 pour l'école W.-A.-Losier (2014-2019)\n\n### Contexte\nLa question 22 demande : \"À la fin de vos études postsecondaires, si vous aviez une offre d'emploi dans la Péninsule acadienne, est-ce que vous l'accepteriez ?\"\n\n### Évolution globale\nVoici l'évolution du pourcentage d'élèves ayant répondu \"Je ne sais pas\" à cette question entre 2014 et 2019 :\n\n- 2014 : 22,70% (37 élèves sur 163)\n- 2015 : 26,11% (59 élèves sur 226)\n- 2016 : 23,65% (48 élèves sur 203)\n- 2017 : 19,43% (34 élèves sur 175)\n- 2018 : 27,89% (53 élèves sur 190)\n- 2019 : 35,90% (56 élèves sur 156)\n\nOn observe une tendance générale à la hausse, avec une augmentation particulièrement marquée entre 2017 et 2019. Le pourcentage d'indécision a presque doublé entre 2017 (19,43%) et 2019 (35,90%).\n\n### Analyse par genre\n\n#### Filles (F)\n- 2014 : 22,73% (15 sur 66)\n- 2015 : 29,82% (34 sur 114)\n- 2016 : 26,19% (22 sur 84)\n- 2017 : 17,20% (16 sur 93)\n- 2018 : 30,77% (28 sur 91)\n- 2019 : 45,95% (34 sur 74)\n\n#### Garçons (M)\n- 2014 : 22,68% (22 sur 97)\n- 2015 : 22,32% (25 sur 112)\n- 2016 : 21,85% (26 sur 119)\n- 2017 : 21,95% (18 sur 82)\n- 2018 : 25,25% (25 sur 99)\n- 2019 : 26,83% (22 sur 82)\n\n### Observations clés\n\n1. **Augmentation globale de l'indécision** : Le pourcentage d'élèves indécis quant à l'acceptation d'un emploi dans la Péninsule acadienne a augmenté de façon significative, passant de 22,70% en 2014 à 35,90% en 2019.\n\n2. **Différence marquée entre les genres** : \n   - Chez les filles, l'indécision a connu une hausse spectaculaire, passant de 22,73% en 2014 à 45,95% en 2019 (soit plus du double).\n   - Chez les garçons, l'augmentation est plus modérée, passant de 22,68% en 2014 à 26,83% en 2019.\n\n3. **Point d'inflexion en 2017** : Pour les deux genres, 2017 marque le taux d'indécision le plus bas de la période étudiée, suivi d'une forte remontée en 2018 et 2019.\n\n4. **Écart croissant entre les genres** : En 2014, les taux d'indécision étaient presque identiques entre filles et garçons. En 2019, l'écart est considérable avec près de 20 points de pourcentage de différence (45,95% pour les filles contre 26,83% pour les garçons).\n\nCette évolution pourrait refléter une incertitude croissante chez les élèves, particulièrement chez les filles, quant à leur avenir professionnel dans la Péninsule acadienne après leurs études postsecondaires.",
+        "time_seconds": 42.398462772369385
+      }
+    }
+  },
+  {
+    "question": "En 2010, pour les répondants du Centre La Fontaine, comparer la proportion de ceux dont la principale occupation était 'Études universitaires' versus 'Marché du travail' (question 49).",
+    "models": {
+      "google/gemini-2.5-flash-preview": {
+        "answer": "En 2010, pour les répondants du Centre La Fontaine, la proportion de ceux dont la principale occupation était 'Marché du travail' était de 37.21% et 39.53%.",
+        "time_seconds": 2.876997470855713
+      },
+      "anthropic/claude-3.7-sonnet": {
+        "answer": "Pour une vision plus complète, voici la répartition de toutes les réponses à la question 49 pour le Centre La Fontaine en 2010 :\n\n- \"Marché du travail\" : 33 répondants (84.62%)\n- \"Autre\" : 2 répondants (5.13%)\n- \"Non répondu\" : 2 répondants (5.13%)\n- \"Recherche d'emploi / Sans emploi\" : 1 répondant (2.56%)\n- \"Termine mes études postsecondaires\" : 1 répondant (2.56%)\n\nEn conclusion, la grande majorité des répondants du Centre La Fontaine en 2010 (84.62%) ont indiqué que leur principale occupation était le \"Marché du travail\", tandis qu'aucun n'a indiqué \"Études universitaires\". Les autres réponses représentent une proportion beaucoup plus faible.",
+        "time_seconds": 19.52105951309204
+      }
+    }
+  }
+]

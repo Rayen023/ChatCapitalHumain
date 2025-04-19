@@ -53,7 +53,6 @@ DEBUGGING = st.secrets.get("DEBUGGING", False)
 
 
 # Initialize session state variables
-@st.cache_resource
 def initialize_session_state():
     if "initialized" not in st.session_state:
         # Initialize message arrays if they don't exist

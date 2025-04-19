@@ -20,11 +20,11 @@ from sqlalchemy import create_engine
 # Import the questions from answerable_questions.py
 from search_bars.answerable_questions import questions as data
 
-# data = data[2:20]
-
-data = [
-    "Pour l'école W.-A.-Losier en 2014, quel était les 4 domaines d'études postsecondaires (question 20) le plus fréquemment choisi ? ",
-]
+#data = data[2:20]
+data = data.copy()
+# data = [
+#     "Pour l'école W.-A.-Losier en 2014, quel était les 4 domaines d'études postsecondaires (question 20) le plus fréquemment choisi ? ",
+# ]
 # Load schema template
 SCHEMA_TEMPLATE_PATH = os.path.join("utils", "schema_template.txt")
 with open(SCHEMA_TEMPLATE_PATH, "r", encoding="utf-8") as file:
@@ -34,10 +34,11 @@ load_dotenv()
 
 # Define the models to test
 MODELS = [
-    "openai/o3-mini",
-    "google/gemini-2.5-pro-preview-03-25",
+    #"openai/o3-mini",
+    #"google/gemini-2.5-pro-preview-03-25",
+    "google/gemini-2.5-flash-preview",
     "anthropic/claude-3.7-sonnet",
-    "openai/gpt-4.1",
+    #"openai/gpt-4.1",
 ]
 
 # Base model configuration
@@ -110,6 +111,8 @@ def create_agent(model_name, db):
     **Exemple d'Explication d'une Requête Refusée :**
 
     "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer combien d'élèves qui utilisent un certain moyen de transport ont de bonnes notes nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible."
+    
+    Si la reponse la plus frequente pour une question est "Non répondu", continuer la recherche à l'option suivante et informer l'utilisateur.
     """
 
     # Create the prompt template
@@ -123,6 +126,8 @@ def create_agent(model_name, db):
     # Setup SQL tools
     toolkit = SQLDatabaseToolkit(db=db, llm=llm)
     tools = toolkit.get_tools()
+    tools = tools[:1]
+
 
     # Create the ReAct agent
     agent_executor = create_react_agent(llm, tools=tools, prompt=prompt)

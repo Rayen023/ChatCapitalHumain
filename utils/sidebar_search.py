@@ -7,7 +7,7 @@ import argparse
 
 
 @st.fragment
-@st.cache_data(show_spinner = False)
+#@st.cache_data(show_spinner = False)
 def query_vector_store(text_input):
     """Load the vector store for question answering."""
     #embeddings = VoyageAIEmbeddings(model="voyage-3-large")

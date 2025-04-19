@@ -56,7 +56,6 @@ questions = [
     "Quelles étaient les trois principales institutions postsecondaires (question 24) mentionnées par les élèves de l'école Louis-Mailloux en 2012 ?",
     "En 2018, pour l'école Aux quatre vents, quel pourcentage d'élèves a indiqué 'Prêt étudiant' comme source de financement (question 25) ?",
     "Comment le choix du moyen de transport 'Ma propre voiture/motocyclette' (question 26) a-t-il évolué pour les élèves de l'école Marie-Esther entre 2014 et 2019 ?",
-    "Pour l'école W.-A.-Losier en 2009, quelle était la raison principale ('Accès au marché du travail', 'Manque d’intérêt', etc. - question 27) pour ne pas poursuivre d'études postsecondaires ?",
     "En 2016, pour l'école Secondaire Népisiguit, quel pourcentage d'élèves a déclaré occuper un emploi rémunéré 'Temps partiel fin de semaine' (question 28) ?",
     "Quelle est l'évolution de la proportion d'élèves jugeant 'Très important' de terminer leur 12e année (question 29) à l'école Roland-Pépin entre 2014 et 2019 ?",
     "Pour l'école Aux quatre vents en 2017, quelle était la répartition des résultats scolaires (question 30) entre 'de 81 % à 94 %' et 'de 66 % à 80 %'?",
