@@ -30,18 +30,18 @@ def get_context_data():
 
     # Find page hashes
     main_app_hash = None
-    single_app_hash = None
+    single_agent_chat_hash = None
     for key, value in pages_dict.items():
         if value["page_name"] == "Langgraph : Multi Agents":
             main_app_hash = value["page_script_hash"]
         elif value["page_name"] == "Single Agent":
-            single_app_hash = value["page_script_hash"]
+            single_agent_chat_hash = value["page_script_hash"]
 
     return {
         "ctx": ctx,
         "current_page": current_page,
         "main_app_hash": main_app_hash,
-        "single_app_hash": single_app_hash,
+        "single_agent_chat_hash": single_agent_chat_hash,
         "current_hash": ctx.page_script_hash,
     }
 
@@ -107,8 +107,8 @@ def process_example_question():
         example_q = st.session_state["_example_question"]
 
         if (
-            ctx_data["ctx"].page_script_hash == ctx_data["single_app_hash"]
-            or ctx_data["current_page"] == "single_app"
+            ctx_data["ctx"].page_script_hash == ctx_data["single_agent_chat_hash"]
+            or ctx_data["current_page"] == "single_agent_chat"
         ):
             st.session_state["single_messages"].append(HumanMessage(content=example_q))
         else:
@@ -118,14 +118,14 @@ def process_example_question():
 
 
 # Cached sidebar info based on current page
-def get_sidebar_info(page_hash, single_app_hash, current_page):
+def get_sidebar_info(page_hash, single_agent_chat_hash, current_page):
     print(
-        f"Page Hash: {page_hash}, Single App Hash: {single_app_hash}, Current Page: {current_page}"
+        f"Page Hash: {page_hash}, Single App Hash: {single_agent_chat_hash}, Current Page: {current_page}"
     )
     if (
-        page_hash == single_app_hash
-        or single_app_hash == None
-        or current_page == "single_app"
+        page_hash == single_agent_chat_hash
+        or single_agent_chat_hash == None
+        or current_page == "single_agent_chat"
     ):
         return "Chatbot utilisant un single agent pour l'interrogation du dataset 'Capital Humain' et la réponse aux questions posées."
     else:
@@ -149,8 +149,8 @@ def main():
     with st.sidebar:
         if not DEBUGGING:
             if (
-                ctx_data["ctx"].page_script_hash == ctx_data["single_app_hash"]
-                or ctx_data["current_page"] == "single_app"
+                ctx_data["ctx"].page_script_hash == ctx_data["single_agent_chat_hash"]
+                or ctx_data["current_page"] == "single_agent_chat"
             ):
                 enable_login("single_messages")
             else:
@@ -159,7 +159,7 @@ def main():
         # Get and display the appropriate sidebar info
         sidebar_info = get_sidebar_info(
             ctx_data["current_hash"],
-            ctx_data["single_app_hash"],
+            ctx_data["single_agent_chat_hash"],
             ctx_data["current_page"],
         )
         st.info(sidebar_info)
@@ -199,8 +199,8 @@ def main():
     # Page navigation
     pages = {
         "CapitalHumain Agents": [
-            st.Page("single_app.py", title="Single Agent"),
-            st.Page("main_app.py", title="Langgraph : Multi Agents"),
+            st.Page("single_agent_chat.py", title="Single Agent"),
+            st.Page("multi_agent_chat.py", title="Langgraph : Multi Agents"),
         ],
     }
 
