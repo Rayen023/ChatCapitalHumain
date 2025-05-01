@@ -216,5 +216,5 @@ if st.session_state["messages"] and isinstance(
         else:
             for event in graph.stream(None, config=config, stream_mode="updates"):
                 process_graph_event(event, response_placeholder)
-    if not DEBUGGING and st.experimental_user.get("email"):
+    if not DEBUGGING and st.user.get("email"):
         save_chat_logs("messages")

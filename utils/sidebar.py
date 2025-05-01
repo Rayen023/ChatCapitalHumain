@@ -89,10 +89,10 @@ def load_conversation(thread_id):
 def enable_login(messages_key="messages"):
     """Configure sidebar elements including new chat and conversation loading."""
     with st.sidebar:
-        if st.experimental_user.get("is_logged_in", True):
+        if st.user.get("is_logged_in", True):
             if st.button("Log out", use_container_width=True):
                 st.logout()
-            user_email = st.experimental_user.get("email")
+            user_email = st.user.get("email")
         else:
             if st.button("Log in with Google", use_container_width=True):
                 st.login()

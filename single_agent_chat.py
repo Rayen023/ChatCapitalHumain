@@ -262,5 +262,5 @@ if st.session_state["single_messages"] and isinstance(
         # Run the async function using asyncio
         asyncio.run(invoke_our_graph(user_message, [], st.session_state["thread_id"]))
 
-    if not DEBUGGING and st.experimental_user.get("email"):
+    if not DEBUGGING and st.user.get("email"):
         save_chat_logs("single_messages")

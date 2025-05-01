@@ -51,7 +51,7 @@ async def save_chat_logs_async(email, messages, thread_id):
 
 def save_chat_logs(messages_key="messages"):
     # Capture the required state in the main thread
-    email = st.experimental_user.get("email")
+    email = st.user.get("email")
     if not email:
         return  # Ensure user is logged in
 
