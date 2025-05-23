@@ -1,0 +1,164 @@
+[
+  {
+    "question": "En 2017, pour l'école Roland-Pépin, quelle était la part des élèves se déclarant 'Satisfait/e' de leurs relations avec le personnel de l'école (question 18) ?",
+    "models": {
+      "openai/gpt-4.1": {
+        "answer": "En 2017, à l'école Roland-Pépin, 39 élèves ont déclaré être \"Satisfait/e\" de leurs relations avec le personnel de l'école (question 18), sur un total de 66 réponses à cette question. Cela représente environ 59,1 % des répondants.",
+        "time_seconds": 7.826426029205322
+      }
+    }
+  },
+  {
+    "question": "Comparer la proportion d'élèves prévoyant des 'Études collégiales' (question 19) en 2019 entre l'école Aux quatre vents et l'école Secondaire Népisiguit.",
+    "models": {
+      "openai/gpt-4.1": {
+        "answer": "Je suis désolé, je ne parviens pas à obtenir les données nécessaires pour répondre à votre question en ce moment. Il semble y avoir un problème technique lors de l'accès aux résultats pour la proportion d'élèves prévoyant des \"Études collégiales\" en 2019 pour les écoles Aux quatre vents et Secondaire Népisiguit.\n\nSi vous souhaitez, je peux réessayer ou vous fournir des informations sur d'autres questions ou années. N'hésitez pas à préciser votre demande !",
+        "time_seconds": 15.101256608963013
+      }
+    }
+  },
+  {
+    "question": "Pour l'école W.-A.-Losier en 2014, quel était le domaine d'études postsecondaires (question 20) le plus fréquemment choisi ?",
+    "models": {
+      "openai/gpt-4.1": {
+        "answer": "Pour l'école W.-A.-Losier en 2014, la réponse la plus fréquente à la question sur le domaine d'études postsecondaires (question 20) était \"Non répondu\". Je poursuis donc avec l'option suivante la plus choisie.\n\nLes deux domaines d'études postsecondaires les plus fréquemment choisis (excluant \"Non répondu\") étaient :\n- \"Techniques et métiers des sciences appliquées\" (34 réponses)\n- \"Professions de la santé et technologies connexes\" (34 réponses)\n\nCes deux domaines ont été choisis à égalité par le plus grand nombre d'élèves ayant répondu à cette question.",
+        "time_seconds": 6.653062582015991
+      }
+    }
+  },
+  {
+    "question": "Quelle est l'évolution du pourcentage d'élèves répondant 'Pas utilisés' aux services d'orientation (question 21) pour l'école Louis-Mailloux entre 2014 et 2019 ?",
+    "models": {
+      "openai/gpt-4.1": {
+        "answer": "Voici l'évolution du pourcentage d'élèves ayant répondu \"Pas utilisés\" à la question sur les services d'orientation (question 21) à l'école Louis-Mailloux entre 2014 et 2019 :\n\n- 2014 : 5,51 %\n- 2015 : 7,14 %\n- 2016 : 6,84 %\n- 2017 : 2,48 %\n- 2018 : 3,96 %\n- 2019 : 4,46 %\n\nOn observe une légère baisse après 2016, suivie d'une stabilisation autour de 4 % à partir de 2017.",
+        "time_seconds": 15.11411166191101
+      }
+    }
+  },
+  {
+    "question": "En 2015, pour l'école Marie-Esther, quelle proportion d'élèves a répondu 'Je ne sais pas' concernant l'acceptation d'une offre d'emploi dans la Péninsule (question 22) ?",
+    "models": {
+      "openai/gpt-4.1": {
+        "answer": "En 2015, à l'école Marie-Esther, 27 élèves ont répondu \"Je ne sais pas\" à la question concernant l'acceptation d'une offre d'emploi dans la Péninsule acadienne (question 22), sur un total de 89 répondants au questionnaire cette année-là. Cela représente environ 30,3 % des élèves ayant répondu à cette question.",
+        "time_seconds": 10.438878774642944
+      }
+    }
+  },
+  {
+    "question": "Pour l'année 2008, quelle proportion des répondants du Centre La Fontaine prévoyait travailler 'Dans la Péninsule acadienne' après leurs études postsecondaires (question 23) ?",
+    "models": {
+      "openai/gpt-4.1": {
+        "answer": "En 2008, au Centre La Fontaine, 5 répondants sur 46 (soit environ 10,9 %) prévoyaient travailler « Dans la Péninsule acadienne » après leurs études postsecondaires.",
+        "time_seconds": 6.669359445571899
+      }
+    }
+  },
+  {
+    "question": "En 2010, pour l'école Louis-Mailloux, quel pourcentage d'élèves pensait fréquenter l''Université de Moncton - campus Shippagan' (question 24) ?",
+    "models": {
+      "openai/gpt-4.1": {
+        "answer": "En 2010, pour l'école Louis-Mailloux, 25 élèves (19 filles et 6 garçons) ont indiqué qu'ils pensaient fréquenter l'Université de Moncton - campus Shippagan (question 24).\n\nLe nombre total de questionnaires complétés était de 142. Le pourcentage d'élèves ayant choisi cette option est donc :\n\n(25 / 142) × 100 ≈ 17,6 %\n\nEn résumé : environ 17,6 % des élèves de Louis-Mailloux en 2010 pensaient fréquenter l'Université de Moncton - campus Shippagan.",
+        "time_seconds": 9.690479755401611
+      }
+    }
+  },
+  {
+    "question": "Comment la source de financement 'Contribution des parents' (question 25) a-t-elle varié pour les élèves de W.-A.-Losier entre 2014 et 2017 ?",
+    "models": {
+      "openai/gpt-4.1": {
+        "answer": "Voici l'évolution du nombre d'élèves de l'école W.-A.-Losier ayant indiqué \"Contribution des parents\" comme source de financement (question 25) entre 2014 et 2017 :\n\n- 2014 : 53 élèves\n- 2015 : 95 élèves\n- 2016 : 71 élèves\n- 2017 : 60 élèves\n\nOn observe une augmentation marquée en 2015, suivie d'une diminution progressive en 2016 et 2017.",
+        "time_seconds": 11.475923538208008
+      }
+    }
+  },
+  {
+    "question": "Pour l'école Marie-Esther en 2016, quel était le moyen de transport local le plus envisagé parmi 'Voiture de mes parents' et 'À pied' (question 26) ?",
+    "models": {
+      "openai/gpt-4.1": {
+        "answer": "Pour l'école Marie-Esther en 2016, parmi les options 'Voiture de mes parents' et 'À pied' à la question 26 (moyen de transport local envisagé), l'option la plus fréquemment choisie était :\n\n- 'À pied' avec 7 réponses,\n- contre 'Voiture de mes parents' avec 3 réponses.\n\nDonc, le moyen de transport local le plus envisagé parmi ces deux était 'À pied'.",
+        "time_seconds": 11.579303503036499
+      }
+    }
+  },
+  {
+    "question": "En 2018, pour l'école Secondaire Népisiguit, la raison 'Manque d’intérêt pour les études/formation' (question 27) était-elle plus fréquente que 'Problèmes monétaires' pour ne pas poursuivre les études ?",
+    "models": {
+      "openai/gpt-4.1": {
+        "answer": "En 2018, pour l'école Secondaire Népisiguit, la raison \"Problèmes monétaires\" (6 élèves) était plus fréquente que \"Manque d’intérêt pour les études/formation\" (3 élèves) comme raison de ne pas poursuivre les études postsecondaires.",
+        "time_seconds": 11.240703344345093
+      }
+    }
+  },
+  {
+    "question": "Quelle est l'évolution de l'emploi rémunéré 'Temps partiel à la semaine' (question 28) pour les élèves de l'école Roland-Pépin de 2014 à 2018 ?",
+    "models": {
+      "openai/gpt-4.1": {
+        "answer": "Voici l'évolution du nombre d'élèves ayant déclaré avoir occupé un emploi rémunéré \"Temps partiel à la semaine\" (question 28) à l'école Roland-Pépin entre 2014 et 2018 :\n\n- 2014 : 24 élèves\n- 2015 : 5 élèves\n- 2016 : 37 élèves\n- 2017 : 33 élèves\n- 2018 : 19 élèves\n\nOn observe donc des variations importantes d'une année à l'autre, avec un pic en 2016.",
+        "time_seconds": 6.302328824996948
+      }
+    }
+  },
+  {
+    "question": "Comparer le pourcentage d'élèves jugeant l'obtention de la 12e année 'Important' (question 29) en 2019 entre Aux quatre vents et Roland-Pépin.",
+    "models": {
+      "openai/gpt-4.1": {
+        "answer": "Voici la comparaison du pourcentage d'élèves jugeant l'obtention de la 12e année \"Important\" (question 29) en 2019 :\n\n- Aux quatre vents : 9 élèves sur 47 ont répondu \"Important\", soit environ 19,1%.\n- Roland-Pépin : 23 élèves sur 58 ont répondu \"Important\", soit environ 39,7%.\n\nAinsi, en 2019, le pourcentage d'élèves considérant l'obtention de la 12e année comme \"Important\" était plus élevé à Roland-Pépin qu'à Aux quatre vents.",
+        "time_seconds": 7.2588067054748535
+      }
+    }
+  },
+  {
+    "question": "En 2014, pour l'école Secondaire Népisiguit, quelle proportion d'élèves avait des résultats scolaires 'de 95 % à 100 %' (question 30) ?",
+    "models": {
+      "openai/gpt-4.1": {
+        "answer": "En 2014, à l'école Secondaire Népisiguit, 15 élèves ont déclaré avoir des résultats scolaires \"de 95 % à 100 %\" (question 30). Le nombre total de questionnaires complétés cette année-là était de 208.\n\nLa proportion d'élèves ayant des résultats \"de 95 % à 100 %\" est donc d'environ 7,2 % (15 sur 208).",
+        "time_seconds": 13.235338926315308
+      }
+    }
+  },
+  {
+    "question": "Comment la proportion d'élèves suivant des cours de niveau 'Régulier' (question 31) a-t-elle changé pour l'école Marie-Esther entre 2014 et 2019 ?",
+    "models": {
+      "openai/gpt-4.1": {
+        "answer": "Voici l'évolution de la proportion d'élèves ayant déclaré suivre des cours de niveau \"Régulier\" (question 31) à l'école Marie-Esther entre 2014 et 2019 :\n\n- 2014 : 75 sur 87 élèves ayant complété le questionnaire (≈ 86,2%)\n- 2015 : 67 sur 89 (≈ 75,3%)\n- 2016 : 81 sur 101 (≈ 80,2%)\n- 2017 : 71 sur 95 (≈ 74,7%)\n- 2018 : 74 sur 99 (≈ 74,7%)\n- 2019 : 74 sur 99 (≈ 74,7%)\n\nOn observe une proportion élevée en 2014, suivie d'une baisse en 2015, puis une stabilisation autour de 75-80% les années suivantes. Si vous souhaitez une visualisation graphique ou une analyse plus détaillée, n'hésitez pas à le demander !",
+        "time_seconds": 7.8851706981658936
+      }
+    }
+  },
+  {
+    "question": "Pour l'école W.-A.-Losier en 2015, quel pourcentage d'élèves était 'Très satisfait/e' de ses résultats scolaires (question 32) ?",
+    "models": {
+      "openai/gpt-4.1": {
+        "answer": "Pour l'école W.-A.-Losier en 2015, 15 filles et 14 garçons ont répondu \"Très satisfait/e\" à la question sur la satisfaction de leurs résultats scolaires (question 32). Le nombre total de questionnaires complétés était de 226.\n\nLe pourcentage d'élèves \"Très satisfait/e\" est donc :\n(15 + 14) / 226 × 100 ≈ 12,8 %\n\nEnviron 12,8 % des élèves étaient \"Très satisfait/e\" de leurs résultats scolaires en 2015 à l'école W.-A.-Losier.",
+        "time_seconds": 7.590482950210571
+      }
+    }
+  },
+  {
+    "question": "En 2004, pour les répondants de l'école Louis-Mailloux, quelle proportion demeurait hors Péninsule depuis 'moins d'un an' (question 45) ?",
+    "models": {
+      "openai/gpt-4.1": {
+        "answer": "En 2004, pour les répondants de l'école Louis-Mailloux à la question \"Depuis combien d'années demeurez-vous à l'extérieur de la Péninsule acadienne ?\" (question 45), aucun répondant n'a sélectionné l'option \"moins d'un an\". \n\nLe nombre total de réponses à cette question était de 145. La proportion de répondants ayant choisi \"moins d'un an\" est donc de 0%.",
+        "time_seconds": 9.725183010101318
+      }
+    }
+  },
+  {
+    "question": "Quelle était la raison principale ('Travail', 'Étude', 'Autre' - question 46) pour avoir quitté la Péninsule pour les répondants de Marie-Esther en 2010 ?",
+    "models": {
+      "openai/gpt-4.1": {
+        "answer": "Pour les répondants de l'école Marie-Esther en 2010, la raison principale pour avoir quitté la Péninsule acadienne (question 46) était \"Étude\", suivie de \"Travail\" puis \"Autre\".",
+        "time_seconds": 4.534821510314941
+      }
+    }
+  },
+  {
+    "question": "Comment l'intention de s'établir dans la Péninsule ('Oui' vs 'Non' - question 47) a-t-elle évolué pour les répondants de W.-A.-Losier entre 2004 et 2012 ?",
+    "models": {
+      "openai/gpt-4.1": {
+        "answer": "Voici l'évolution de l'intention de s'établir dans la Péninsule acadienne (\"Oui\" vs \"Non\") pour les répondants de l'école W.-A.-Losier entre 2004 et 2012 (question 47) :\n\nAnnée | Oui | Non\n------|-----|-----\n2004  | 11  | 47\n2005  | 24  | 46\n2006  | 20  | 38\n2007  | 17  | 48\n2008  | 20  | 35\n2009  | 14  | 57\n2010  | 9   | 36\n2011  | 12  | 24\n2012  | 8   | 31\n\nOn observe que, sur cette période, le nombre de répondants ayant l'intention de s'établir dans la Péninsule (\"Oui\") reste systématiquement inférieur à ceux qui ne le souhaitent pas (\"Non\"). La tendance générale montre une diminution du nombre de \"Oui\" et une fluctuation du nombre de \"Non\", avec un pic de \"Non\" en 2009. \n\nSi vous souhaitez une visualisation graphique ou une analyse plus détaillée, n'hésitez pas à le demander !",
+        "time_seconds": 8.144878387451172
+      }
+    }
+  }
+]
