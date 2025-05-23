@@ -5,6 +5,9 @@ import uuid
 from typing import Annotated, Any, Dict, List
 
 import streamlit as st
+
+# Import the questions from answerable_questions.py
+from answerable_questions import questions as data
 from dotenv import load_dotenv
 from langchain_community.agent_toolkits.sql.toolkit import SQLDatabaseToolkit
 from langchain_community.utilities.sql_database import SQLDatabase
@@ -17,11 +20,8 @@ from langgraph.graph.message import add_messages
 from langgraph.prebuilt import create_react_agent
 from sqlalchemy import create_engine
 
-# Import the questions from answerable_questions.py
-from search_bars.answerable_questions import questions as data
-
-#data = data[2:20]
-data = data.copy()
+data = data[2:20].copy()
+# data = data.copy()
 # data = [
 #     "Pour l'école W.-A.-Losier en 2014, quel était les 4 domaines d'études postsecondaires (question 20) le plus fréquemment choisi ? ",
 # ]
@@ -34,11 +34,11 @@ load_dotenv()
 
 # Define the models to test
 MODELS = [
-    #"openai/o3-mini",
-    #"google/gemini-2.5-pro-preview-03-25",
-    "google/gemini-2.5-flash-preview",
-    "anthropic/claude-3.7-sonnet",
-    #"openai/gpt-4.1",
+    # "google/gemini-2.5-pro-preview",
+    # "google/gemini-2.5-flash-preview-05-20",
+    "google/gemini-2.5-flash-preview-05-20:thinking",
+    "anthropic/claude-sonnet-4",
+    # "openai/gpt-4.1",
 ]
 
 # Base model configuration
@@ -127,7 +127,6 @@ def create_agent(model_name, db):
     toolkit = SQLDatabaseToolkit(db=db, llm=llm)
     tools = toolkit.get_tools()
     tools = tools[:1]
-
 
     # Create the ReAct agent
     agent_executor = create_react_agent(llm, tools=tools, prompt=prompt)
