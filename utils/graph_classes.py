@@ -17,9 +17,9 @@ from sqlalchemy import create_engine
 from typing_extensions import TypedDict
 
 # Predefined LLM instances for different nodes
-# Default LLM (o3-mini)
+# Default LLM (anthropic/claude-sonnet-4)
 default_llm = ChatOpenAI(
-    model_name="openai/o3-mini",
+    model_name="anthropic/claude-sonnet-4",
     openai_api_key=st.secrets["OPENROUTER_API_KEY"],
     openai_api_base=st.secrets["OPENROUTER_BASE_URL"],
     temperature=0,
