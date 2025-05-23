@@ -1,11 +1,14 @@
 from typing import Dict, List, Optional
 
 import streamlit as st
+from langchain_anthropic import ChatAnthropic
 from langchain_community.agent_toolkits.sql.toolkit import SQLDatabaseToolkit
 from langchain_community.utilities.sql_database import SQLDatabase
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langchain_core.tools import Tool
 from langchain_experimental.utilities import PythonREPL
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_openai import ChatOpenAI
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, START, StateGraph
 from langgraph.prebuilt import create_react_agent
@@ -13,27 +16,23 @@ from pydantic import BaseModel, Field
 from sqlalchemy import create_engine
 from typing_extensions import TypedDict
 
-from langchain_anthropic import ChatAnthropic
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_openai import ChatOpenAI
-
 # Predefined LLM instances for different nodes
 # Default LLM (o3-mini)
 default_llm = ChatOpenAI(
-    model_name="openai/o3-mini",
+    model_name="google/gemini-2.5-flash-preview-05-20",
     openai_api_key=st.secrets["OPENROUTER_API_KEY"],
     openai_api_base=st.secrets["OPENROUTER_BASE_URL"],
     temperature=0,
     max_tokens=4096,
-    streaming=True
+    streaming=True,
 )
 
 # Flash LLM for specific nodes
 flash_llm = ChatGoogleGenerativeAI(
-    model="gemini-2.0-flash-001",
+    model="gemini-2.5-flash-preview-05-20",
     temperature=0,
     max_tokens=8096,
-    streaming=True
+    streaming=True,
 )
 # anthropic_llm = ChatAnthropic(
 #     model="claude-3-7-sonnet-latest",
@@ -56,6 +55,7 @@ query_llm = default_llm
 
 # LLM for finalizing results
 final_llm = flash_llm
+
 
 # Define our structured data models
 class QueryProposal(BaseModel):

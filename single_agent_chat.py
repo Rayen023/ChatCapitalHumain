@@ -31,15 +31,15 @@ load_dotenv()
 # Define available models
 available_models = [
     "google/gemini-2.5-pro-preview-03-25",
-    "google/gemini-2.0-flash-001",
+    "google/gemini-2.5-flash-preview-05-20",
     "openai/o3-mini",
-    "anthropic/claude-3.7-sonnet",
+    "anthropic/claude-sonnet-4",
     "openai/gpt-4.1",
 ]
 
 # Initialize the selected model in session state if it doesn't exist
 if "sa_selected_model" not in st.session_state:
-    st.session_state.sa_selected_model = "anthropic/claude-3.7-sonnet"  # Default model
+    st.session_state.sa_selected_model = "anthropic/claude-sonnet-4"  # Default model
 
 
 # Define callback for model selection changes
