@@ -23,13 +23,15 @@ default_llm = ChatOpenAI(
     openai_api_key=st.secrets["OPENROUTER_API_KEY"],
     openai_api_base=st.secrets["OPENROUTER_BASE_URL"],
     temperature=0,
-    max_tokens=4096,
+    max_tokens=8096,
     streaming=True,
 )
 
 # Flash LLM for specific nodes
-flash_llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash-preview-05-20",
+flash_llm = ChatOpenAI(
+    model_name="google/gemini-2.5-flash-preview-05-20",
+    openai_api_key=st.secrets["OPENROUTER_API_KEY"],
+    openai_api_base=st.secrets["OPENROUTER_BASE_URL"],
     temperature=0,
     max_tokens=8096,
     streaming=True,
