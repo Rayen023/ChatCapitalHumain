@@ -10,7 +10,7 @@
         "answer": "Le résultat indique qu'environ 24,62 % des élèves de l'école Aux quatre vents en 2016 ont choisi « Français » comme l'un de leurs deux cours les plus appréciés.",
         "time_seconds": 28.63034725189209
       },
-      "google/gemini-2.5-pro-preview-03-25": {
+      "google/gemini-2.5-pro": {
         "answer": "En 2016, à l'école Aux quatre vents, 8 élèves ont indiqué que le 'Français' était l'un de leurs deux cours préférés. Le nombre total d'élèves ayant répondu au questionnaire cette année-là pour cette école était de 64.\n\nLe pourcentage est donc de (8 / 64) * 100 = 12.5%.\n\nDonc, 12.5% des élèves de l'école Aux quatre vents en 2016 ont choisi 'Français' comme l'un de leurs deux cours les plus appréciés.",
         "time_seconds": 22.802658796310425
       },
@@ -31,7 +31,7 @@
         "answer": "La proportion d'élèves \"Très insatisfait/e\" quant à leurs relations avec les autres élèves à Secondaire Népisiguit est restée très faible de 2014 à 2017 (allant de 0.48 % à 1.35 %). Cependant, en 2018, on constate une augmentation marquée avec une proportion de 4.08 %, avant de redescendre à 0.00 % en 2019. \n\nEn résumé, la tendance évolue ainsi :\n• 2014 : 0.48 %\n• 2015 : 0.93 %\n• 2016 : 1.35 %\n• 2017 : 0.97 %\n• 2018 : 4.08 % (pic)\n• 2019 : 0.00 %\n\nCela suggère qu’en 2018, une augmentation notable du nombre d'élèves très insatisfaits a été observée, avant de revenir à une absence de réponses \"Très insatisfait/e\" en 2019.",
         "time_seconds": 22.312983512878418
       },
-      "google/gemini-2.5-pro-preview-03-25": {
+      "google/gemini-2.5-pro": {
         "answer": "Voici l'évolution de la proportion d'élèves se déclarant 'Très insatisfait/e' de leurs relations avec les autres élèves à l'école Secondaire Népisiguit entre 2014 et 2019 :\n\n*   **2014 :** 1 élève sur 208 répondants (0.48%)\n*   **2015 :** 2 élèves sur 215 répondants (0.93%)\n*   **2016 :** 3 élèves sur 223 répondants (1.35%)\n*   **2017 :** 2 élèves sur 206 répondants (0.97%)\n*   **2018 :** 8 élèves sur 196 répondants (4.08%)\n\n*Note : Les données pour l'année 2019 ne sont pas disponibles dans le résultat retourné.*",
         "time_seconds": 25.432218551635742
       },

@@ -6,7 +6,7 @@
         "answer": "Les résultats indiquent que pour l'école W.-A.-Losier en 2014, les 4 options les plus fréquemment choisies pour la question 20, \"Indiquez dans quel domaine vous avez l'intention de poursuivre vos études postsecondaires\", sont les suivantes :\n\n1. Non répondu : 59 réponses\n2. Techniques et métiers des sciences appliquées : 34 réponses\n3. Professions de la santé et technologies connexes : 34 réponses\n4. Lettres, sciences humaines et disciplines connexes : 8 réponses",
         "time_seconds": 11.08277177810669
       },
-      "google/gemini-2.5-pro-preview-03-25": {
+      "google/gemini-2.5-pro": {
         "answer": "Pour l'école W.-A.-Losier en 2014, les 4 domaines d'études postsecondaires (question 20) les plus fréquemment choisis étaient :\n\n1.  **Non répondu** (59 élèves)\n2.  **Techniques et métiers des sciences appliquées** (34 élèves)\n3.  **Professions de la santé et technologies connexes** (34 élèves)\n4.  **Lettres, sciences humaines et disciplines connexes** (8 élèves)",
         "time_seconds": 17.72220802307129
       },

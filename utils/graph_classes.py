@@ -29,7 +29,7 @@ default_llm = ChatOpenAI(
 
 # Flash LLM for specific nodes
 flash_llm = ChatOpenAI(
-    model_name="google/gemini-2.5-flash-preview-05-20",
+    model_name="google/gemini-2.5-flash",
     openai_api_key=st.secrets["OPENROUTER_API_KEY"],
     openai_api_base=st.secrets["OPENROUTER_BASE_URL"],
     temperature=0,

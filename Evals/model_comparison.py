@@ -35,8 +35,8 @@ load_dotenv()
 # Define the models to test
 MODELS = [
     # "google/gemini-2.5-pro-preview",
-    # "google/gemini-2.5-flash-preview-05-20",
-    # "google/gemini-2.5-flash-preview-05-20:thinking",
+    # "google/gemini-2.5-flash",
+    # "google/gemini-2.5-flash:thinking",
     # "anthropic/claude-sonnet-4",
     "openai/gpt-4.1",
 ]
