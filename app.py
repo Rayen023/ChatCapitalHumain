@@ -19,7 +19,35 @@ from streamlit.runtime.scriptrunner import get_script_run_ctx
 from utils.schema import show_questions_in_sidebar, show_schema_in_sidebar
 from utils.sidebar import enable_login
 from utils.sidebar_search import search_documents, search_questions
+import streamlit as st
+import os
 
+st.secrets = {
+    # Authentication secrets
+    'auth': {
+        'redirect_uri': os.environ['redirect_uri'],
+        'cookie_secret': os.environ['cookie_secret'],
+        'client_id': os.environ['client_id'],
+        'client_secret': os.environ['client_secret'],
+        'server_metadata_url': os.environ['server_metadata_url']
+    },
+    # API Keys
+    'LANGSMITH_API_KEY': os.environ.get('LANGSMITH_API_KEY'),
+    'LANGSMITH_ENDPOINT': os.environ.get('LANGSMITH_ENDPOINT'),
+    'LANGSMITH_PROJECT': os.environ.get('LANGSMITH_PROJECT'),
+    'LANGSMITH_TRACING': os.environ.get('LANGSMITH_TRACING'),
+    'COHERE_API_KEY': os.environ.get('COHERE_API_KEY'),
+    'OPENROUTER_API_KEY': os.environ.get('OPENROUTER_API_KEY'),
+    'OPENROUTER_BASE_URL': os.environ.get('OPENROUTER_BASE_URL'),
+    'GOOGLE_API_KEY': os.environ.get('GOOGLE_API_KEY'),
+    'ANTHROPIC_API_KEY': os.environ.get('ANTHROPIC_API_KEY'),
+    'VOYAGE_API_KEY': os.environ.get('VOYAGE_API_KEY'),
+    # Database connections
+    'db_url': os.environ.get('db_url'),
+    'MONGO_URI': os.environ.get('MONGO_URI'),
+    # Debug flag
+    'DEBUGGING': os.environ.get('DEBUGGING', False)
+}
 
 # Cache page configuration and context data
 def get_context_data():

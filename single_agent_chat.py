@@ -4,7 +4,6 @@ import uuid
 from typing import Annotated
 
 import streamlit as st
-from dotenv import load_dotenv
 from langchain_community.agent_toolkits.sql.toolkit import SQLDatabaseToolkit
 from langchain_community.utilities.sql_database import SQLDatabase
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, ToolMessage
@@ -25,8 +24,6 @@ SCHEMA_TEMPLATE_PATH = os.path.join("utils", "schema_template.txt")
 with open(SCHEMA_TEMPLATE_PATH, "r", encoding="utf-8") as file:
     schema_template = file.read()
 DEBUGGING = st.secrets.get("DEBUGGING", False)
-
-load_dotenv()
 
 # Define available models
 available_models = [

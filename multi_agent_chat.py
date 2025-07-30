@@ -8,7 +8,6 @@ APP_TITLE = "Capital Humain"
 APP_ICON_PATH = "images/deer.png"
 
 
-from dotenv import load_dotenv
 from langchain.callbacks.tracers import LangChainTracer
 from langchain_core.messages import AIMessage, HumanMessage
 from langsmith import Client
@@ -25,8 +24,6 @@ WELCOME_MESSAGE = "Comment puis-je vous aider ? | How can I help you ?"
 SCHEMA_TEMPLATE_PATH = os.path.join("utils", "schema_template.txt")
 DEBUGGING = st.secrets.get("DEBUGGING", False)
 
-# Load environment variables
-load_dotenv()
 
 # Set up page configuration
 
