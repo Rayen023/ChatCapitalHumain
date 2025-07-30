@@ -1,26 +1,26 @@
 import os
 from uuid import uuid4
 
+
 import faiss
 import streamlit as st
 from langchain.docstore.document import Document
 from langchain.retrievers.contextual_compression import ContextualCompressionRetriever
-from langchain_cohere import CohereEmbeddings
+# from langchain_cohere import CohereEmbeddings  # Commented out Cohere
 from langchain_community.docstore.in_memory import InMemoryDocstore
 from langchain_community.vectorstores import FAISS
 from langchain_voyageai import VoyageAIEmbeddings, VoyageAIRerank
 
-embeddings = CohereEmbeddings(
-    model="embed-multilingual-v3.0",
-    cohere_api_key=st.secrets["COHERE_API_KEY"],
-)
+# embeddings = CohereEmbeddings(
+#     model="embed-multilingual-v3.0",
+#     cohere_api_key=st.secrets["COHERE_API_KEY"],
+# )
+embeddings = VoyageAIEmbeddings(model="voyage-3-large")
 
 
 from dotenv import load_dotenv
 
 load_dotenv()
-
-# embeddings = VoyageAIEmbeddings(model="voyage-3-large")
 
 from answerable_questions import questions as data
 

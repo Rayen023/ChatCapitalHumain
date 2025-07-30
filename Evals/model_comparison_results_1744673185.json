@@ -6,7 +6,7 @@
         "answer": "La réponse la plus fréquemment choisie pour le domaine d'études postsecondaires (question 20) à l'école W.-A.-Losier en 2014 était \"Non répondu\" avec un total de 59 réponses.",
         "time_seconds": 19.238465309143066
       },
-      "google/gemini-2.5-pro-preview-03-25": {
+      "google/gemini-2.5-pro": {
         "answer": "Pour l'école W.-A.-Losier en 2014, le domaine d'études postsecondaires le plus fréquemment indiqué était \"Non répondu\", avec 59 élèves ayant choisi cette option.",
         "time_seconds": 15.636691093444824
       },

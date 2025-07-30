@@ -2,7 +2,7 @@ import streamlit as st
 from langchain.retrievers.contextual_compression import ContextualCompressionRetriever
 from langchain_community.vectorstores import FAISS
 from langchain_voyageai import VoyageAIEmbeddings, VoyageAIRerank
-from langchain_cohere import CohereEmbeddings
+#from langchain_cohere import CohereEmbeddings
 import argparse
 
 
@@ -10,8 +10,8 @@ import argparse
 #@st.cache_data(show_spinner = False)
 def query_vector_store(text_input):
     """Load the vector store for question answering."""
-    #embeddings = VoyageAIEmbeddings(model="voyage-3-large")
-    embeddings = CohereEmbeddings(model="embed-multilingual-v3.0")
+    # embeddings = CohereEmbeddings(model="embed-multilingual-v3.0")  # Commented out Cohere
+    embeddings = VoyageAIEmbeddings(model="voyage-3-large")
 
     vector_store = FAISS.load_local(
         "answerable-questions-index-cohere",

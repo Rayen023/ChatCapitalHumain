@@ -2,7 +2,7 @@
   {
     "question": "En 2017, pour l'école Roland-Pépin, quelle était la part des élèves se déclarant 'Satisfait/e' de leurs relations avec le personnel de l'école (question 18) ?",
     "models": {
-      "google/gemini-2.5-flash-preview-05-20:thinking": {
+      "google/gemini-2.5-flash:thinking": {
         "answer": "En 2017, pour l'école Roland-Pépin, 39 élèves se sont déclarés 'Satisfait/e' de leurs relations avec le personnel de l'école sur un total de 66 questionnaires complétés.\n\nCela représente une part de 59.09%.",
         "time_seconds": 7.552950859069824
       },
@@ -15,7 +15,7 @@
   {
     "question": "Comparer la proportion d'élèves prévoyant des 'Études collégiales' (question 19) en 2019 entre l'école Aux quatre vents et l'école Secondaire Népisiguit.",
     "models": {
-      "google/gemini-2.5-flash-preview-05-20:thinking": {
+      "google/gemini-2.5-flash:thinking": {
         "answer": "En 2019, aucune des écoles \"Aux quatre vents\" et \"Secondaire Népisiguit\" n'a enregistré d'élèves prévoyant des \"Études collégiales\" (question 19).\n\nPour l'école Aux quatre vents, sur un total de 47 questionnaires complétés en 2019, 0 élève a indiqué cette option.\nPour l'école Secondaire Népisiguit, sur un total de 201 questionnaires complétés en 2019, 0 élève a indiqué cette option.\n\nLa proportion est donc de 0% pour les deux écoles concernant cette option de réponse en 2019.",
         "time_seconds": 11.120128870010376
       },
@@ -28,7 +28,7 @@
   {
     "question": "Pour l'école W.-A.-Losier en 2014, quel était le domaine d'études postsecondaires (question 20) le plus fréquemment choisi ?",
     "models": {
-      "google/gemini-2.5-flash-preview-05-20:thinking": {
+      "google/gemini-2.5-flash:thinking": {
         "answer": "Pour l'école W.-A.-Losier en 2014, la réponse la plus fréquente à la question 20 était \"Non répondu\". Je vais chercher le domaine d'études le plus fréquemment choisi en excluant cette option.",
         "time_seconds": 6.482055187225342
       },
@@ -41,7 +41,7 @@
   {
     "question": "Quelle est l'évolution du pourcentage d'élèves répondant 'Pas utilisés' aux services d'orientation (question 21) pour l'école Louis-Mailloux entre 2014 et 2019 ?",
     "models": {
-      "google/gemini-2.5-flash-preview-05-20:thinking": {
+      "google/gemini-2.5-flash:thinking": {
         "answer": "Pour l'école Louis-Mailloux, le nombre d'élèves ayant répondu 'Pas utilisés' à la question 21 (\"Est-ce que les services d'orientation que vous avez utilisés ont répondu à vos besoins ?\") et le nombre total de réponses pour cette question sont les suivants :\n\n*   **2014:** 14 élèves ont répondu 'Pas utilisés' sur un total de 127 réponses. (11.02%)\n*   **2015:** 18 élèves ont répondu 'Pas utilisés' sur un total de 126 réponses. (14.29%)\n*   **2016:** 16 élèves ont répondu 'Pas utilisés' sur un total de 117 réponses. (13.68%)\n*   **2017:** 6 élèves ont répondu 'Pas utilisés' sur un total de 121 réponses. (4.96%)\n*   **2018:** 8 élèves ont répondu 'Pas utilisés' sur un total de 101 réponses. (7.92%)\n*   **2019:** 9 élèves ont répondu 'Pas utilisés' sur un total de 101 réponses. (8.91%)\n\nOn observe une fluctuation du pourcentage d'élèves n'ayant pas utilisé les services d'orientation au fil des ans pour cette école.",
         "time_seconds": 10.29353952407837
       },
@@ -54,7 +54,7 @@
   {
     "question": "En 2015, pour l'école Marie-Esther, quelle proportion d'élèves a répondu 'Je ne sais pas' concernant l'acceptation d'une offre d'emploi dans la Péninsule (question 22) ?",
     "models": {
-      "google/gemini-2.5-flash-preview-05-20:thinking": {
+      "google/gemini-2.5-flash:thinking": {
         "answer": "En 2015, pour l'école Marie-Esther, 27 élèves ont répondu \"Je ne sais pas\" à la question 22. Le nombre total de questionnaires complétés pour cette école et cette année était de 89.\n\nLa proportion d'élèves ayant répondu \"Je ne sais pas\" est donc de 27/89, soit environ 30,34%.",
         "time_seconds": 9.56805944442749
       },
@@ -67,7 +67,7 @@
   {
     "question": "Pour l'année 2008, quelle proportion des répondants du Centre La Fontaine prévoyait travailler 'Dans la Péninsule acadienne' après leurs études postsecondaires (question 23) ?",
     "models": {
-      "google/gemini-2.5-flash-preview-05-20:thinking": {
+      "google/gemini-2.5-flash:thinking": {
         "answer": "Pour l'année 2008, 5 des 161 répondants du Centre La Fontaine, soit environ 3,11%, prévoyaient travailler 'Dans la Péninsule acadienne' après leurs études postsecondaires.",
         "time_seconds": 19.856830596923828
       },
@@ -80,7 +80,7 @@
   {
     "question": "En 2010, pour l'école Louis-Mailloux, quel pourcentage d'élèves pensait fréquenter l''Université de Moncton - campus Shippagan' (question 24) ?",
     "models": {
-      "google/gemini-2.5-flash-preview-05-20:thinking": {
+      "google/gemini-2.5-flash:thinking": {
         "answer": "En 2010, pour l'école Louis-Mailloux, 4.77% des élèves pensaient fréquenter l'Université de Moncton - campus Shippagan.",
         "time_seconds": 7.253051042556763
       },
@@ -93,7 +93,7 @@
   {
     "question": "Comment la source de financement 'Contribution des parents' (question 25) a-t-elle varié pour les élèves de W.-A.-Losier entre 2014 et 2017 ?",
     "models": {
-      "google/gemini-2.5-flash-preview-05-20:thinking": {
+      "google/gemini-2.5-flash:thinking": {
         "answer": "Pour l'école W.-A.-Losier, la source de financement 'Contribution des parents' (question 25) a varié comme suit entre 2014 et 2017 :\n\n*   **2014 :** 53 élèves\n*   **2015 :** 95 élèves\n*   **2016 :** 71 élèves\n*   **2017 :** 60 élèves",
         "time_seconds": 10.214463472366333
       },
@@ -106,7 +106,7 @@
   {
     "question": "Pour l'école Marie-Esther en 2016, quel était le moyen de transport local le plus envisagé parmi 'Voiture de mes parents' et 'À pied' (question 26) ?",
     "models": {
-      "google/gemini-2.5-flash-preview-05-20:thinking": {
+      "google/gemini-2.5-flash:thinking": {
         "answer": "Je suis désolé, mais il n'y a pas de données disponibles pour l'école Marie-Esther en 2016 concernant la question sur le moyen de transport local (question 26) avec les options 'Voiture de mes parents' et 'À pied'. Il est possible qu'aucun élève n'ait choisi ces options ou que les données ne soient pas enregistrées pour cette combinaison spécifique.",
         "time_seconds": 11.341223001480103
       },
@@ -119,7 +119,7 @@
   {
     "question": "En 2018, pour l'école Secondaire Népisiguit, la raison 'Manque d’intérêt pour les études/formation' (question 27) était-elle plus fréquente que 'Problèmes monétaires' pour ne pas poursuivre les études ?",
     "models": {
-      "google/gemini-2.5-flash-preview-05-20:thinking": {
+      "google/gemini-2.5-flash:thinking": {
         "answer": "En 2018, pour l'école Secondaire Népisiguit, la raison 'Problèmes monétaires' (6 réponses) était plus fréquente que 'Manque d’intérêt pour les études/formation' (3 réponses) pour ne pas poursuivre les études.",
         "time_seconds": 8.289257526397705
       },
@@ -132,7 +132,7 @@
   {
     "question": "Quelle est l'évolution de l'emploi rémunéré 'Temps partiel à la semaine' (question 28) pour les élèves de l'école Roland-Pépin de 2014 à 2018 ?",
     "models": {
-      "google/gemini-2.5-flash-preview-05-20:thinking": {
+      "google/gemini-2.5-flash:thinking": {
         "answer": "Il semble qu'il n'y ait pas de données disponibles pour l'option de réponse 'Temps partiel à la semaine' pour l'école Roland-Pépin entre 2014 et 2018.",
         "time_seconds": 7.405897855758667
       },
@@ -145,7 +145,7 @@
   {
     "question": "Comparer le pourcentage d'élèves jugeant l'obtention de la 12e année 'Important' (question 29) en 2019 entre Aux quatre vents et Roland-Pépin.",
     "models": {
-      "google/gemini-2.5-flash-preview-05-20:thinking": {
+      "google/gemini-2.5-flash:thinking": {
         "answer": "En 2019, le pourcentage d'élèves jugeant l'obtention de la 12e année 'Important' est le suivant :\n\n*   **Aux quatre vents** : 19,15 % (9 élèves sur 47)\n*   **Roland-Pépin** : 39,66 % (23 élèves sur 58)\n\nAinsi, un pourcentage plus élevé d'élèves à l'école Roland-Pépin a jugé l'obtention de la 12e année 'Important' par rapport à l'école Aux quatre vents en 2019.",
         "time_seconds": 10.767312049865723
       },
@@ -158,7 +158,7 @@
   {
     "question": "En 2014, pour l'école Secondaire Népisiguit, quelle proportion d'élèves avait des résultats scolaires 'de 95 % à 100 %' (question 30) ?",
     "models": {
-      "google/gemini-2.5-flash-preview-05-20:thinking": {
+      "google/gemini-2.5-flash:thinking": {
         "answer": "En 2014, pour l'école Secondaire Népisiguit, 15 élèves sur 208 (soit environ 7.21%) avaient des résultats scolaires 'de 95 % à 100 %'.",
         "time_seconds": 6.388538360595703
       },
@@ -171,7 +171,7 @@
   {
     "question": "Comment la proportion d'élèves suivant des cours de niveau 'Régulier' (question 31) a-t-elle changé pour l'école Marie-Esther entre 2014 et 2019 ?",
     "models": {
-      "google/gemini-2.5-flash-preview-05-20:thinking": {
+      "google/gemini-2.5-flash:thinking": {
         "answer": "Voici la proportion d'élèves suivant des cours de niveau 'Régulier' à l'école Marie-Esther entre 2014 et 2019 :\n\n*   **2014 :** 86,2 %\n*   **2015 :** 75,3 %\n*   **2016 :** 80,2 %\n*   **2017 :** 74,7 %\n*   **2018 :** 74,7 %\n*   **2019 :** 74,7 %\n\nLa proportion d'élèves suivant des cours de niveau 'Régulier' à l'école Marie-Esther a diminué de 2014 à 2015, puis a légèrement augmenté en 2016 avant de se stabiliser autour de 74,7% de 2017 à 2019.",
         "time_seconds": 11.083637714385986
       },
@@ -184,7 +184,7 @@
   {
     "question": "Pour l'école W.-A.-Losier en 2015, quel pourcentage d'élèves était 'Très satisfait/e' de ses résultats scolaires (question 32) ?",
     "models": {
-      "google/gemini-2.5-flash-preview-05-20:thinking": {
+      "google/gemini-2.5-flash:thinking": {
         "answer": "Pour l'école W.-A.-Losier en 2015, 12.83% des élèves étaient 'Très satisfait/e' de leurs résultats scolaires.",
         "time_seconds": 11.550777673721313
       },
@@ -197,7 +197,7 @@
   {
     "question": "En 2004, pour les répondants de l'école Louis-Mailloux, quelle proportion demeurait hors Péninsule depuis 'moins d'un an' (question 45) ?",
     "models": {
-      "google/gemini-2.5-flash-preview-05-20:thinking": {
+      "google/gemini-2.5-flash:thinking": {
         "answer": "En 2004, pour l'école Louis-Mailloux, la proportion des répondants qui demeuraient hors Péninsule depuis 'moins d'un an' (question 45) est de 0%.",
         "time_seconds": 10.053266525268555
       },
@@ -210,7 +210,7 @@
   {
     "question": "Quelle était la raison principale ('Travail', 'Étude', 'Autre' - question 46) pour avoir quitté la Péninsule pour les répondants de Marie-Esther en 2010 ?",
     "models": {
-      "google/gemini-2.5-flash-preview-05-20:thinking": {
+      "google/gemini-2.5-flash:thinking": {
         "answer": "La raison principale pour laquelle les répondants de l'école Marie-Esther ont quitté la Péninsule en 2010 était pour les **Études**, avec 23 réponses.",
         "time_seconds": 6.945120096206665
       },
@@ -223,7 +223,7 @@
   {
     "question": "Comment l'intention de s'établir dans la Péninsule ('Oui' vs 'Non' - question 47) a-t-elle évolué pour les répondants de W.-A.-Losier entre 2004 et 2012 ?",
     "models": {
-      "google/gemini-2.5-flash-preview-05-20:thinking": {
+      "google/gemini-2.5-flash:thinking": {
         "answer": "Pour l'école W.-A.-Losier, voici l'évolution du nombre de répondants ayant l'intention de s'établir dans la Péninsule ('Oui' vs 'Non') entre 2004 et 2012 :\n\n*   **2004:** Non : 47, Oui : 11\n*   **2005:** Non : 46, Oui : 24\n*   **2006:** Non : 38, Oui : 20\n*   **2007:** Non : 48, Oui : 17\n*   **2008:** Non : 35, Oui : 20\n*   **2009:** Non : 57, Oui : 14\n*   **2010:** Non : 36, Oui : 9\n*   **2011:** Non : 24, Oui : 12\n*   **2012:** Non : 31, Oui : 8",
         "time_seconds": 5.9426116943359375
       },
