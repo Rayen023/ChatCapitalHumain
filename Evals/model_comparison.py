@@ -1,14 +1,19 @@
 import json
 import os
+import sys
 import time
 import uuid
+from pathlib import Path
 from typing import Annotated, Any, Dict, List
 
 import streamlit as st
 
+# Add parent directory to path to import config
+sys.path.append(str(Path(__file__).parent.parent))
+from config import Config
+
 # Import the questions from answerable_questions.py
 from answerable_questions import questions as data
-from dotenv import load_dotenv
 from langchain_community.agent_toolkits.sql.toolkit import SQLDatabaseToolkit
 from langchain_community.utilities.sql_database import SQLDatabase
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage
@@ -29,8 +34,6 @@ data = data[2:20].copy()
 SCHEMA_TEMPLATE_PATH = os.path.join("utils", "schema_template.txt")
 with open(SCHEMA_TEMPLATE_PATH, "r", encoding="utf-8") as file:
     schema_template = file.read()
-
-load_dotenv()
 
 # Define the models to test
 MODELS = [
@@ -59,7 +62,7 @@ class State(MessagesState):
 
 def setup_database():
     """Set up the database connection."""
-    engine = create_engine(st.secrets["db_url"])
+    engine = create_engine(Config.get_database_url())
     db = SQLDatabase(engine)
     return db
 
@@ -72,8 +75,7 @@ def create_agent(model_name, db):
 
     # Initialize the LLM
     llm = ChatOpenAI(
-        openai_api_key=st.secrets["OPENROUTER_API_KEY"],
-        openai_api_base=st.secrets["OPENROUTER_BASE_URL"],
+        **Config.get_openrouter_config(),
         **model_config,
     )
 

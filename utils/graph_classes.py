@@ -1,6 +1,7 @@
 from typing import Dict, List, Optional
 
 import streamlit as st
+from config import Config
 from langchain_anthropic import ChatAnthropic
 from langchain_community.agent_toolkits.sql.toolkit import SQLDatabaseToolkit
 from langchain_community.utilities.sql_database import SQLDatabase
@@ -20,8 +21,7 @@ from typing_extensions import TypedDict
 # Default LLM (anthropic/claude-sonnet-4)
 default_llm = ChatOpenAI(
     model_name="anthropic/claude-sonnet-4",
-    openai_api_key=st.secrets["OPENROUTER_API_KEY"],
-    openai_api_base=st.secrets["OPENROUTER_BASE_URL"],
+    **Config.get_openrouter_config(),
     temperature=0,
     max_tokens=8096,
     streaming=True,
@@ -30,8 +30,7 @@ default_llm = ChatOpenAI(
 # Flash LLM for specific nodes
 flash_llm = ChatOpenAI(
     model_name="google/gemini-2.5-flash",
-    openai_api_key=st.secrets["OPENROUTER_API_KEY"],
-    openai_api_base=st.secrets["OPENROUTER_BASE_URL"],
+    **Config.get_openrouter_config(),
     temperature=0,
     max_tokens=8096,
     streaming=True,
@@ -315,7 +314,7 @@ def run_query(state: DatabaseQueryState):
     - Format de sortie : {{"query_results": "votre_résultat"}} # liste des valeurs de résultats bruts
         """
 
-    engine = create_engine(st.secrets["db_url"])
+    engine = create_engine(Config.get_database_url())
     db = SQLDatabase(engine)
 
     toolkit = SQLDatabaseToolkit(db=db, llm=query_llm)

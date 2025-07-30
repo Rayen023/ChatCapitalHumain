@@ -3,6 +3,7 @@ import uuid
 from typing import Any, Dict
 
 import streamlit as st
+from config import Config
 
 APP_TITLE = "Capital Humain"
 APP_ICON_PATH = "images/deer.png"
@@ -22,7 +23,7 @@ from utils.utils import add_visualization_buttons_to_message, format_response
 USER_AVATAR_PATH = "images/avataruser.png"
 WELCOME_MESSAGE = "Comment puis-je vous aider ? | How can I help you ?"
 SCHEMA_TEMPLATE_PATH = os.path.join("utils", "schema_template.txt")
-DEBUGGING = st.secrets.get("DEBUGGING", False)
+DEBUGGING = Config.is_debugging()
 
 
 # Set up page configuration

@@ -1,46 +1,9 @@
 import asyncio
 import uuid
 from functools import wraps
-import os
 
 import streamlit as st
-from dotenv import load_dotenv
-load_dotenv()
-
-
-# Create a temporary secrets file from env vars only if file doesn't exist
-if os.getenv('AUTH_CLIENT_ID') and not os.path.exists('.streamlit/secrets.toml'):
-    # Ensure the .streamlit directory exists
-    os.makedirs('.streamlit', exist_ok=True)
-    
-    secrets_content = f"""
-# API Keys and URLs
-OPENROUTER_API_KEY = "{os.getenv('OPENROUTER_API_KEY')}"
-OPENROUTER_BASE_URL = "{os.getenv('OPENROUTER_BASE_URL')}"
-LANGSMITH_API_KEY = "{os.getenv('LANGSMITH_API_KEY')}"
-LANGSMITH_ENDPOINT = "{os.getenv('LANGSMITH_ENDPOINT')}"
-VOYAGE_API_KEY = "{os.getenv('VOYAGE_API_KEY')}"
-ANTHROPIC_API_KEY = "{os.getenv('ANTHROPIC_API_KEY')}"
-GOOGLE_API_KEY = "{os.getenv('GOOGLE_API_KEY')}"
-MONGO_URI = "{os.getenv('MONGO_URI')}"
-COHERE_API_KEY = "{os.getenv('COHERE_API_KEY')}"
-LANGSMITH_TRACING = true
-LANGSMITH_PROJECT = "CapitalHumain"
-
-# Database
-db_url = "{os.getenv('db_url')}"
-
-# Debug settings
-DEBUGGING = false    
-[auth]
-redirect_uri = "{os.getenv('AUTH_REDIRECT_URI')}"
-cookie_secret = "{os.getenv('AUTH_COOKIE_SECRET')}"
-client_id = "{os.getenv('AUTH_CLIENT_ID')}"
-client_secret = "{os.getenv('AUTH_CLIENT_SECRET')}"
-server_metadata_url = "{os.getenv('AUTH_SERVER_METADATA_URL')}"
-"""
-    with open('.streamlit/secrets.toml', 'w') as f:
-        f.write(secrets_content)
+from config import Config
 
 APP_TITLE = "Capital Humain"
 APP_ICON_PATH = "images/deer.png"
@@ -86,7 +49,7 @@ def get_context_data():
 # Constants (kept outside of functions for cleaner code)
 WELCOME_MESSAGE = "Comment puis-je vous aider ? | How can I help you ?"
 USER_AVATAR_PATH = "images/avataruser.png"
-DEBUGGING = st.secrets.get("DEBUGGING", False)
+DEBUGGING = Config.is_debugging()
 
 
 # Initialize session state variables

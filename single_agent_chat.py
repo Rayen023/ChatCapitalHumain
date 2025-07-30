@@ -4,6 +4,7 @@ import uuid
 from typing import Annotated
 
 import streamlit as st
+from config import Config
 from langchain_community.agent_toolkits.sql.toolkit import SQLDatabaseToolkit
 from langchain_community.utilities.sql_database import SQLDatabase
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, ToolMessage
@@ -23,7 +24,7 @@ WELCOME_MESSAGE = "Comment puis-je vous aider ? | How can I help you ?"
 SCHEMA_TEMPLATE_PATH = os.path.join("utils", "schema_template.txt")
 with open(SCHEMA_TEMPLATE_PATH, "r", encoding="utf-8") as file:
     schema_template = file.read()
-DEBUGGING = st.secrets.get("DEBUGGING", False)
+DEBUGGING = Config.is_debugging()
 
 # Define available models
 available_models = [
@@ -68,8 +69,7 @@ MODEL_CONFIG = {
 }
 
 llm = ChatOpenAI(
-    openai_api_key=st.secrets["OPENROUTER_API_KEY"],
-    openai_api_base=st.secrets["OPENROUTER_BASE_URL"],
+    **Config.get_openrouter_config(),
     **MODEL_CONFIG,
 )
 
@@ -82,7 +82,7 @@ class State(MessagesState):
 
 
 if "db" not in st.session_state:
-    engine = create_engine(st.secrets["db_url"])
+    engine = create_engine(Config.get_database_url())
     st.session_state.db = SQLDatabase(engine)
 
 if "single_messages" not in st.session_state:
@@ -143,7 +143,7 @@ def chatbot(state: State) -> dict:
 
     # Setup SQL tools
     if "db" not in st.session_state:
-        engine = create_engine(st.secrets["db_url"])
+        engine = create_engine(Config.get_database_url())
         st.session_state.db = SQLDatabase(engine)
 
     toolkit = SQLDatabaseToolkit(db=st.session_state.db, llm=llm)

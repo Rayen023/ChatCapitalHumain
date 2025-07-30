@@ -2,6 +2,7 @@ import streamlit as st
 from langchain.retrievers.contextual_compression import ContextualCompressionRetriever
 from langchain_community.vectorstores import FAISS
 from langchain_voyageai import VoyageAIEmbeddings, VoyageAIRerank
+from config import Config
 #from langchain_cohere import CohereEmbeddings
 import argparse
 
@@ -11,7 +12,10 @@ import argparse
 def query_vector_store(text_input):
     """Load the vector store for question answering."""
     # embeddings = CohereEmbeddings(model="embed-multilingual-v3.0")  # Commented out Cohere
-    embeddings = VoyageAIEmbeddings(model="voyage-3-large")
+    embeddings = VoyageAIEmbeddings(
+        model="voyage-3-large",
+        voyage_api_key=Config.get_voyage_api_key()
+    )
 
     vector_store = FAISS.load_local(
         "answerable-questions-index-cohere",
@@ -19,7 +23,11 @@ def query_vector_store(text_input):
         allow_dangerous_deserialization=True,
     )
     compression_retriever = ContextualCompressionRetriever(
-        base_compressor=VoyageAIRerank(model="rerank-2", top_k=10),
+        base_compressor=VoyageAIRerank(
+            model="rerank-2", 
+            top_k=10,
+            voyage_api_key=Config.get_voyage_api_key()
+        ),
         base_retriever=vector_store.as_retriever(search_kwargs={"k": 20}),
     )
     results = compression_retriever.invoke(text_input)
@@ -128,7 +136,10 @@ def search_documents_callback():
     # Only proceed if at least one field has content
     if text_input or type_id or question_id:
         # Initialize embeddings
-        embeddings = VoyageAIEmbeddings(model="voyage-3-large")
+        embeddings = VoyageAIEmbeddings(
+            model="voyage-3-large",
+            voyage_api_key=Config.get_voyage_api_key()
+        )
 
         # Load the vector store
         new_vector_store = FAISS.load_local(
@@ -139,7 +150,11 @@ def search_documents_callback():
 
         # Set up the retriever with compression
         compression_retriever = ContextualCompressionRetriever(
-            base_compressor=VoyageAIRerank(model="rerank-2", top_k=6),
+            base_compressor=VoyageAIRerank(
+                model="rerank-2", 
+                top_k=6,
+                voyage_api_key=Config.get_voyage_api_key()
+            ),
             base_retriever=new_vector_store.as_retriever(search_kwargs={"k": 8}),
         )
 

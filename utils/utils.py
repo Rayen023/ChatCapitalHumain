@@ -7,6 +7,7 @@ import uuid
 from contextlib import redirect_stderr, redirect_stdout
 
 import streamlit as st
+from config import Config
 
 APP_ICON_PATH = "images/deer.png"
 
@@ -21,18 +22,11 @@ logger = logging.getLogger(__name__)
 
 # Helper to get environment variables
 def get_env_variable(var_name):
-    try:
-        if var_name in os.environ:
-            return os.environ[var_name]
-        if var_name in st.secrets:
-            return st.secrets[var_name]
-    except Exception as e:
-        logger.error(
-            "An error occurred retrieving the environment variable %s: %s",
-            var_name,
-            str(e),
-        )
-    return None
+    """
+    Get environment variable using centralized config.
+    This function is kept for backward compatibility.
+    """
+    return Config.get_env_variable(var_name)
 
 
 def find_code_blocks(markdown_text):
