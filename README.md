@@ -4,7 +4,7 @@
 
 ChatCapitalHumain is an LLM-powered agent-based chatbot designed to analyze and provide insights on student survey data from Acadian schools in Atlantic Canada. The application connects to a PostgreSQL database containing questionnaire responses collected between 2004 and 2019 across seven schools in the region. 
 
-[https://chatcapitalhumain.streamlit.app/](https://chatcapitalhumain.streamlit.app/) to interact with the system directly. The sidebar provides access to example questions and the database schema to help formulate effective queries.
+[https://chatcapitalhumain.ca/](https://chatcapitalhumain.ca/) to interact with the system directly. The sidebar provides access to example questions and the database schema to help formulate effective queries.
 
 ## Features
 
