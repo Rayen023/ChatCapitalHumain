@@ -24,7 +24,7 @@ data = data[2:20].copy()
 # data = data.copy()
 # data = [
 #     "Pour l'école W.-A.-Losier en 2014, quel était les 4 domaines d'études postsecondaires (question 20) le plus fréquemment choisi ? ",
-# ]
+# ] 
 # Load schema template
 SCHEMA_TEMPLATE_PATH = os.path.join("utils", "schema_template.txt")
 with open(SCHEMA_TEMPLATE_PATH, "r", encoding="utf-8") as file:
