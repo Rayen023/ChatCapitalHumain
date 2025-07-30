@@ -4,22 +4,6 @@ from functools import wraps
 import os
 
 import streamlit as st
-
-APP_TITLE = "Capital Humain"
-APP_ICON_PATH = "images/deer.png"
-
-st.set_page_config(
-    page_title=APP_TITLE,
-    page_icon=APP_ICON_PATH,
-)
-
-
-from langchain_core.messages import AIMessage, HumanMessage
-from streamlit.runtime.scriptrunner import get_script_run_ctx
-
-from utils.schema import show_questions_in_sidebar, show_schema_in_sidebar
-from utils.sidebar import enable_login
-from utils.sidebar_search import search_documents, search_questions
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -38,6 +22,22 @@ server_metadata_url = "{os.getenv('AUTH_SERVER_METADATA_URL')}"
 """
     with open('.streamlit/secrets.toml', 'w') as f:
         f.write(secrets_content)
+
+APP_TITLE = "Capital Humain"
+APP_ICON_PATH = "images/deer.png"
+
+st.set_page_config(
+    page_title=APP_TITLE,
+    page_icon=APP_ICON_PATH,
+)
+
+
+from langchain_core.messages import AIMessage, HumanMessage
+from streamlit.runtime.scriptrunner import get_script_run_ctx
+
+from utils.schema import show_questions_in_sidebar, show_schema_in_sidebar
+from utils.sidebar import enable_login
+from utils.sidebar_search import search_documents, search_questions
 
 
 def get_context_data():
