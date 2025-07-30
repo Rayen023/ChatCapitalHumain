@@ -149,7 +149,7 @@ class Config:
         """Check if debugging mode is enabled."""
         debug_value = Config.get_env_variable("DEBUGGING")
         if debug_value:
-            return debug_value.lower() in ['true', '1', 'yes', 'on']
+            return debug_value ==True
         return Config.DEBUGGING
 
 
