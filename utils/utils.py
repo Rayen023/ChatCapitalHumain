@@ -56,17 +56,21 @@ def plot_school_data(code_content):
     stderr_buffer = io.StringIO()
 
     # Add imports for data visualization to the global namespace
-    globals_dict = {"st": st, "plt": None, "pd": None, "np": None}
+    globals_dict = {"st": st, "plt": None, "pd": None, "np": None, "px": None, "go": None}
 
     # Try to import common data visualization libraries
     try:
         # import matplotlib.pyplot as plt
         import numpy as np
         import pandas as pd
+        import plotly.express as px
+        import plotly.graph_objects as go
 
         # globals_dict["plt"] = plt
         globals_dict["pd"] = pd
         globals_dict["np"] = np
+        globals_dict["px"] = px
+        globals_dict["go"] = go
     except ImportError as e:
         st.warning(f"Some visualization libraries couldn't be imported: {e}")
 
