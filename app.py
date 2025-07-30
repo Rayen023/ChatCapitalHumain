@@ -13,13 +13,7 @@ if os.getenv('AUTH_CLIENT_ID') and not os.path.exists('.streamlit/secrets.toml')
     # Ensure the .streamlit directory exists
     os.makedirs('.streamlit', exist_ok=True)
     
-    secrets_content = f"""[auth]
-redirect_uri = "{os.getenv('AUTH_REDIRECT_URI')}"
-cookie_secret = "{os.getenv('AUTH_COOKIE_SECRET')}"
-client_id = "{os.getenv('AUTH_CLIENT_ID')}"
-client_secret = "{os.getenv('AUTH_CLIENT_SECRET')}"
-server_metadata_url = "{os.getenv('AUTH_SERVER_METADATA_URL')}"
-
+    secrets_content = f"""
 # API Keys and URLs
 OPENROUTER_API_KEY = "{os.getenv('OPENROUTER_API_KEY')}"
 OPENROUTER_BASE_URL = "{os.getenv('OPENROUTER_BASE_URL')}"
@@ -37,7 +31,13 @@ LANGSMITH_PROJECT = "CapitalHumain"
 db_url = "{os.getenv('db_url')}"
 
 # Debug settings
-DEBUGGING = false
+DEBUGGING = false    
+[auth]
+redirect_uri = "{os.getenv('AUTH_REDIRECT_URI')}"
+cookie_secret = "{os.getenv('AUTH_COOKIE_SECRET')}"
+client_id = "{os.getenv('AUTH_CLIENT_ID')}"
+client_secret = "{os.getenv('AUTH_CLIENT_SECRET')}"
+server_metadata_url = "{os.getenv('AUTH_SERVER_METADATA_URL')}"
 """
     with open('.streamlit/secrets.toml', 'w') as f:
         f.write(secrets_content)
