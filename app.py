@@ -30,7 +30,7 @@ ANTHROPIC_API_KEY = "{os.getenv('ANTHROPIC_API_KEY')}"
 GOOGLE_API_KEY = "{os.getenv('GOOGLE_API_KEY')}"
 MONGO_URI = "{os.getenv('MONGO_URI')}"
 COHERE_API_KEY = "{os.getenv('COHERE_API_KEY')}"
-LANGSMITH_TRACING = True
+LANGSMITH_TRACING = true
 LANGSMITH_PROJECT = "CapitalHumain"
 
 # Database
