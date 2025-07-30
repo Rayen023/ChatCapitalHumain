@@ -1,0 +1,8 @@
+2025-07-30 14:03:11,149 - faiss.loader - INFO - Loading faiss with AVX512 support.
+2025-07-30 14:03:11,150 - faiss.loader - INFO - Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2025-07-30 14:03:11,150 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-07-30 14:03:11,247 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-07-30 14:03:11,268 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes.
+2025-07-30 14:03:18,146 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 14:03:24,085 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
