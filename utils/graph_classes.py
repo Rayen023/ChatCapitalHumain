@@ -351,7 +351,7 @@ def finalize_query(state: DatabaseQueryState):
     TÂCHE :     
     Formatez une réponse complète à partir des résultats fournis par l'agent précédent, en incluant :     
     1. Une réponse textuelle claire qui intègre TOUTES les données et informations des résultats     
-    2. Un script Python pour visualiser ces données avec Plotly UNIQUEMENT lorsque c'est pertinent et approprié
+    2. Un script Python pour visualiser ces données avec streamlit UNIQUEMENT lorsque c'est pertinent et approprié
 
     EXIGENCES :     
     - Présentation des données : Incluez TOUTES les données des résultats, sans sélection partielle, dans votre texte explicatif     
@@ -368,14 +368,24 @@ def finalize_query(state: DatabaseQueryState):
     • Soyez dynamique et utilisez votre jugement pour déterminer si une visualisation est pertinente
 
     • Lorsqu'une visualisation est pertinente:
-        • Utilisez EXCLUSIVEMENT Plotly (plotly.express ou plotly.graph_objects)
-        • Pour les données tabulaires, utilisez st.dataframe()
-        • Pour les graphiques, utilisez st.plotly_chart() avec un paramètre key unique (ex: key='chart1')
-        • N'utilisez PAS matplotlib, seaborn ou autres bibliothèques graphiques
+        • Utilisez EXCLUSIVEMENT des composants Streamlit pour l'affichage
+        • Pour les données tabulaires, utilisez OBLIGATOIREMENT st.dataframe() ou st.table()
+        • Pour les graphiques, utilisez OBLIGATOIREMENT st.plotly_chart() avec Plotly (plotly.express ou plotly.graph_objects) et un paramètre key unique (ex: key='chart1')
+        • Pour le texte et les métriques, utilisez st.write(), st.metric(), st.columns(), etc.
+        • N'utilisez JAMAIS matplotlib ou seaborn ou plt.show() ou fig.show() ou autres bibliothèques graphiques. Utilisez UNIQUEMENT les composants Streamlit pour tous les affichages
+        • N'utilisez JAMAIS print() - utilisez uniquement les composants Streamlit pour l'affichage
+        • Tous les outputs doivent être rendus via les composants Streamlit (st.*)
 
     FORMAT DE RÉPONSE :     
     1. Texte explicatif complet répondant à la demande utilisateur avec tous les résultats     
     2. Bloc de code Python complet entre ```python et ``` contenant le code de visualisation UNIQUEMENT si pertinent
+    
+    IMPORTANT - CONTRAINTES DE CODE :
+    • Le code Python doit utiliser UNIQUEMENT les composants Streamlit pour tous les affichages
+    • Remplacez TOUS les print() par st.write() ou st.text()
+    • Utilisez st.plotly_chart() pour tous les graphiques (pas plt.show() ou fig.show())
+    • Utilisez st.dataframe() ou st.table() pour toutes les données tabulaires
+    • Assurez-vous que le code est directement exécutable dans un environnement Streamlit
     """
 
     final_result = final_llm.invoke(finalize_query_template)
