@@ -19,6 +19,25 @@ cookie_secret = "{os.getenv('AUTH_COOKIE_SECRET')}"
 client_id = "{os.getenv('AUTH_CLIENT_ID')}"
 client_secret = "{os.getenv('AUTH_CLIENT_SECRET')}"
 server_metadata_url = "{os.getenv('AUTH_SERVER_METADATA_URL')}"
+
+# API Keys and URLs
+OPENROUTER_API_KEY = "{os.getenv('OPENROUTER_API_KEY')}"
+OPENROUTER_BASE_URL = "{os.getenv('OPENROUTER_BASE_URL')}"
+LANGSMITH_API_KEY = "{os.getenv('LANGSMITH_API_KEY')}"
+LANGSMITH_ENDPOINT = "{os.getenv('LANGSMITH_ENDPOINT')}"
+VOYAGE_API_KEY = "{os.getenv('VOYAGE_API_KEY')}"
+ANTHROPIC_API_KEY = "{os.getenv('ANTHROPIC_API_KEY')}"
+GOOGLE_API_KEY = "{os.getenv('GOOGLE_API_KEY')}"
+MONGO_URI = "{os.getenv('MONGO_URI')}"
+COHERE_API_KEY = "{os.getenv('COHERE_API_KEY')}"
+LANGSMITH_TRACING = True
+LANGSMITH_PROJECT = "CapitalHumain"
+
+# Database
+db_url = "{os.getenv('db_url')}"
+
+# Debug settings
+DEBUGGING = false
 """
     with open('.streamlit/secrets.toml', 'w') as f:
         f.write(secrets_content)
