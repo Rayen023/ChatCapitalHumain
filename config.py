@@ -137,7 +137,8 @@ class Config:
     @staticmethod
     def get_database_url() -> Optional[str]:
         """Get database URL."""
-        return Config.get_env_variable(Config.DB_URL)
+        # return Config.get_env_variable(Config.DB_URL)
+        return "sqlite:///local_database.db"
     
     @staticmethod
     def get_voyage_api_key() -> Optional[str]:

@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+local_db/
 
 .streamlit/secrets.toml
 logs.log
