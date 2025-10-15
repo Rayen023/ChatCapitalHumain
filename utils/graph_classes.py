@@ -13,8 +13,9 @@ from pydantic import BaseModel, Field
 from sqlalchemy import create_engine
 from typing_extensions import TypedDict
 
+
 default_llm = ChatOpenAI(
-    model_name="anthropic/claude-sonnet-4.5",
+    model_name="anthropic/claude-sonnet-4",
     **Config.get_openrouter_config(),
     temperature=0,
     max_tokens=8096,
@@ -22,7 +23,7 @@ default_llm = ChatOpenAI(
 )
 
 flash_llm = ChatOpenAI(
-    model_name="anthropic/claude-haiku-4.5",
+    model_name="google/gemini-2.5-flash-preview-09-2025",
     **Config.get_openrouter_config(),
     temperature=0,
     max_tokens=8096,
