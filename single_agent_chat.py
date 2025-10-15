@@ -30,14 +30,14 @@ DEBUGGING = Config.is_debugging()
 available_models = [
     "google/gemini-2.5-pro",
     "google/gemini-2.5-flash",
-    "openai/o3-mini",
-    "anthropic/claude-sonnet-4",
+    "anthropic/claude-sonnet-4.5",
+    "anthropic/claude-haiku-4.5",
     "openai/gpt-4.1",
 ]
 
 # Initialize the selected model in session state if it doesn't exist
 if "sa_selected_model" not in st.session_state:
-    st.session_state.sa_selected_model = "anthropic/claude-sonnet-4"  # Default model
+    st.session_state.sa_selected_model = "anthropic/claude-haiku-4.5"  # Default model
 
 
 # Define callback for model selection changes

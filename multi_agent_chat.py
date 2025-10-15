@@ -167,9 +167,7 @@ if st.session_state["messages"] and isinstance(
         "configurable": {"thread_id": st.session_state["thread_id"]},
     }
 
-    # Handle initial user message or human feedback
     if not st.session_state.get("in_human_feedback_state", False):
-        # Process initial user request
         input_data = {
             "user_request": user_message,
             "message_history": st.session_state["messages"],
@@ -184,8 +182,6 @@ if st.session_state["messages"] and isinstance(
                     ):
                         process_graph_event(event, response_placeholder)
             except Exception as e:
-                # st.session_state["selected_model"] = "anthropic/claude-3.7-sonnet" # This return errorss
-                # update_model()
                 st.error(
                     "Une erreur temporaire s'est produite. Veuillez rafraîchir la page ou commencer un nouveau chat. Si l'erreur persiste, n'hésitez pas à nous contacter."
                 )
@@ -194,7 +190,6 @@ if st.session_state["messages"] and isinstance(
                 process_graph_event(event, response_placeholder)
 
     elif user_message:
-        # Process human feedback
         graph.update_state(
             config,
             {"human_analyst_feedback": user_message},
