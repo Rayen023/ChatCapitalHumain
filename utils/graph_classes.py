@@ -38,7 +38,7 @@ schema_llm = flash_llm
 query_llm = default_llm
 
 # LLM for finalizing results
-final_llm = flash_llm
+final_llm = default_llm
 
 
 # Define our structured data models
