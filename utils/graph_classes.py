@@ -2,13 +2,9 @@ from typing import Dict, List, Optional
 
 import streamlit as st
 from config import Config
-from langchain_anthropic import ChatAnthropic
 from langchain_community.agent_toolkits.sql.toolkit import SQLDatabaseToolkit
 from langchain_community.utilities.sql_database import SQLDatabase
-from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
-from langchain_core.tools import Tool
-from langchain_experimental.utilities import PythonREPL
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_core.messages import AIMessage, HumanMessage
 from langchain_openai import ChatOpenAI
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, START, StateGraph
@@ -17,35 +13,21 @@ from pydantic import BaseModel, Field
 from sqlalchemy import create_engine
 from typing_extensions import TypedDict
 
-# Predefined LLM instances for different nodes
-# Default LLM (anthropic/claude-sonnet-4)
 default_llm = ChatOpenAI(
-    model_name="anthropic/claude-sonnet-4",
+    model_name="anthropic/claude-sonnet-4.5",
     **Config.get_openrouter_config(),
     temperature=0,
     max_tokens=8096,
     streaming=True,
 )
 
-# Flash LLM for specific nodes
 flash_llm = ChatOpenAI(
-    model_name="google/gemini-2.5-flash",
+    model_name="anthropic/claude-haiku-4.5",
     **Config.get_openrouter_config(),
     temperature=0,
     max_tokens=8096,
     streaming=True,
 )
-# anthropic_llm = ChatAnthropic(
-#     model="claude-3-7-sonnet-latest",
-#     temperature=0,
-#     max_tokens=8096,
-#     timeout=None,
-#     max_retries=2,
-#     streaming=True
-#     # other params...
-# )
-
-# LLM for analyzing requests
 analysis_llm = default_llm
 
 # LLM for schema checking and query formulation
