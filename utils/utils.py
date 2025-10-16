@@ -43,6 +43,76 @@ def find_code_blocks(markdown_text):
     return list(re.finditer(code_block_pattern, markdown_text, re.DOTALL))
 
 
+def remove_code_blocks(markdown_text):
+    """
+    Remove Python code blocks from markdown text.
+
+    Args:
+        markdown_text (str): The markdown text to process
+
+    Returns:
+        str: Text with code blocks removed
+    """
+    code_block_pattern = r"```python\s*.*?```"
+    return re.sub(code_block_pattern, "", markdown_text, flags=re.DOTALL).strip()
+
+
+def execute_code_inline(code_content):
+    """
+    Executes the code and returns whether it was successful.
+
+    Args:
+        code_content (str): The Python code to execute
+
+    Returns:
+        bool: True if execution was successful, False otherwise
+    """
+    # Create string buffers to capture stdout and stderr
+    stdout_buffer = io.StringIO()
+    stderr_buffer = io.StringIO()
+
+    # Add imports for data visualization to the global namespace
+    globals_dict = {"st": st, "plt": None, "pd": None, "np": None, "px": None, "go": None}
+
+    # Try to import common data visualization libraries
+    try:
+        import numpy as np
+        import pandas as pd
+        import plotly.express as px
+        import plotly.graph_objects as go
+
+        globals_dict["pd"] = pd
+        globals_dict["np"] = np
+        globals_dict["px"] = px
+        globals_dict["go"] = go
+    except ImportError as e:
+        st.warning(f"Some visualization libraries couldn't be imported: {e}")
+        return False
+
+    # Execute the code with redirected output
+    try:
+        with redirect_stdout(stdout_buffer), redirect_stderr(stderr_buffer):
+            # Execute in a controlled environment
+            exec(code_content, globals_dict)
+
+        # Display standard output if any
+        stdout_content = stdout_buffer.getvalue()
+        if stdout_content.strip():
+            st.text("Output:")
+            st.code(stdout_content)
+
+        return True
+
+    except Exception as e:
+        st.error(f"Error executing code: {e}")
+        # Display errors if any
+        stderr_content = stderr_buffer.getvalue()
+        if stderr_content.strip():
+            st.error("Details:")
+            st.code(stderr_content)
+        return False
+
+
 @st.dialog("School Data Visualization")
 def plot_school_data(code_content):
     """

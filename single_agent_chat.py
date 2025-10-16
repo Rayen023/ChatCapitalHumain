@@ -17,6 +17,7 @@ from langgraph.prebuilt import create_react_agent
 from sqlalchemy import create_engine
 
 from utils.database import save_chat_logs
+from utils.utils import find_code_blocks, remove_code_blocks, execute_code_inline
 
 APP_ICON_PATH = "images/deer.png"
 USER_AVATAR_PATH = "images/avataruser.png"
@@ -129,6 +130,31 @@ def chatbot(state: State) -> dict:
     "Je suis désolé, je ne peux pas répondre à cette question. La base de données ne conserve pas les réponses individuelles des élèves. Je peux uniquement vous fournir des statistiques agrégées par école, année, questionnaire et sexe. Tenter de déterminer combien d'élèves qui utilisent un certain moyen de transport ont de bonnes notes nécessiterait de connaître les réponses individuelles, ce qui n'est pas possible."
     
     Si la reponse la plus frequente pour une question est "Non répondu", continuer la recherche à l'option suivante et informer l'utilisateur.
+    
+    **Visualisation de Données:**
+    
+    Pour créer des visualisations afin de représenter vos résultats et les afficher à l'utilisateur, générez du code Python utilisant **Streamlit** (st), **Plotly Express** (px), ou **Plotly Graph Objects** (go) pour créer des visualisations interactives.
+    
+    *   Utilisez `st.plotly_chart()` pour afficher les graphiques Plotly dans l'interface.
+    *   Les bibliothèques disponibles sont : `streamlit` (st), `pandas` (pd), `numpy` (np), `plotly.express` (px), et `plotly.graph_objects` (go).
+    *   Encapsulez le code de visualisation dans un bloc de code Python (```python ... ```).
+    *   Le code sera automatiquement exécuté et la visualisation affichée directement dans l'interface.
+    *   Assurez-vous que le code est complet et exécutable tel quel, sans dépendances externes supplémentaires.
+
+    **Exemple de réponse avec visualisation :** 
+    
+    "Voici les résultats de votre requête : [explication des résultats]
+    
+    ```python
+    import streamlit as st
+    import plotly.express as px
+    import pandas as pd
+    
+    # Votre code de visualisation ici
+    fig = px.bar(...)
+    st.plotly_chart(fig)
+    ```"
+    IMPORTANT : Génère toujours des plots !!!
     """
 
     # Create a chat template with system message, history, and user input
@@ -188,9 +214,35 @@ graph_runnable = graph_builder.compile(checkpointer=memory)
 
 @st.fragment
 def display_message_history():
-    for message in st.session_state["single_messages"]:
+    for idx, message in enumerate(st.session_state["single_messages"]):
         if isinstance(message, AIMessage):
-            st.chat_message("assistant", avatar=APP_ICON_PATH).write(message.content)
+            chat_container = st.chat_message("assistant", avatar=APP_ICON_PATH)
+            
+            # Check for code blocks
+            code_matches = find_code_blocks(message.content)
+            
+            if code_matches:
+                # Remove code blocks from the displayed message
+                clean_content = remove_code_blocks(message.content)
+                if clean_content:
+                    chat_container.write(clean_content)
+                
+                # Display each code block with its visualization
+                for i, match in enumerate(code_matches):
+                    code_content = match.group(1)
+                    
+                    # Try to execute the code inline to show the plot directly
+                    with chat_container:
+                        #st.markdown("---")
+                        success = execute_code_inline(code_content)
+                        
+                        # Show code in an expander
+                        with st.expander("📝 View Code", expanded=False):
+                            st.code(code_content, language="python")
+            else:
+                # No code blocks, display message as is
+                chat_container.write(message.content)
+                
         elif isinstance(message, HumanMessage):
             st.chat_message("user", avatar=USER_AVATAR_PATH).write(message.content)
 
@@ -207,34 +259,56 @@ async def invoke_our_graph(user_input, callables, thread_id):
     input_message = HumanMessage(content=user_input)
 
     # Create a message container for streaming that will be cleaned up after
-    with st.chat_message("assistant", avatar=APP_ICON_PATH):
-        message_placeholder = st.empty()
-        accumulated_content = ""
+    assistant_message = st.chat_message("assistant", avatar=APP_ICON_PATH)
+    message_placeholder = assistant_message.empty()
+    accumulated_content = ""
 
-        async for event in graph_runnable.astream(
-            {"messages": [input_message]},
-            config={
-                "callbacks": callables,
-                "configurable": {"thread_id": thread_id},
-            },
-            stream_mode="messages",
+    async for event in graph_runnable.astream(
+        {"messages": [input_message]},
+        config={
+            "callbacks": callables,
+            "configurable": {"thread_id": thread_id},
+        },
+        stream_mode="messages",
+    ):
+        if (
+            not isinstance(event[0], ToolMessage)
+            and event[0].content
+            and event[1]["langgraph_node"] == "agent"
         ):
-            if (
-                not isinstance(event[0], ToolMessage)
-                and event[0].content
-                and event[1]["langgraph_node"] == "agent"
-            ):
-                content = event[0].content
-                accumulated_content += content
-                message_placeholder.write(accumulated_content)
+            content = event[0].content
+            accumulated_content += content
+            message_placeholder.write(accumulated_content)
 
-            if event[1]["langgraph_node"] != "agent":
-                accumulated_content = ""
+        if event[1]["langgraph_node"] != "agent":
+            accumulated_content = ""
 
     # After streaming completes, add the final message to session state if it has content
     if accumulated_content:
         ai_message = AIMessage(content=accumulated_content)
         st.session_state["single_messages"].append(ai_message)
+
+        # Check for code blocks and display them with inline execution
+        code_matches = find_code_blocks(accumulated_content)
+        if code_matches:
+            # Clear the placeholder and show clean content without code blocks
+            clean_content = remove_code_blocks(accumulated_content)
+            if clean_content:
+                message_placeholder.write(clean_content)
+            else:
+                message_placeholder.empty()
+            
+            # Display each code block with its visualization
+            for i, match in enumerate(code_matches):
+                code_content = match.group(1)
+                
+                # Execute the code inline to show the plot directly
+                #assistant_message.markdown("---")
+                success = execute_code_inline(code_content)
+                
+                # Show code in an expander
+                with assistant_message.expander("📝 View Code", expanded=False):
+                    st.code(code_content, language="python")
 
         # Force display of messages to update with the new message
         st.rerun()

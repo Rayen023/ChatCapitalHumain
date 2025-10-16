@@ -273,28 +273,38 @@ def run_query(state: DatabaseQueryState):
     explanation = query_proposal.explanation
 
     run_query_template = f"""
-    Système : Vous êtes un agent de requête PostgreSQL spécialisé dans l'extraction de données.
+    Système : Vous êtes un agent de requête SQL spécialisé dans l'extraction de données.
 
-    ENTRÉE :
-    - Demande utilisateur : {reformulated_request}
-
+    CONTEXTE IMPORTANT - DONNÉES PRÉ-ANALYSÉES :
+    L'agent précédent a déjà analysé la demande utilisateur et identifié EXACTEMENT les éléments de base de données nécessaires.
+    Vous avez reçu :
+    
+    1. DEMANDE UTILISATEUR (après validation) : {reformulated_request}
+       → C'est la requête validée et possiblement ajustée après feedback humain
+    
+    2. QUESTIONS ET RÉPONSES IDENTIFIÉES : {questions_responses}
+       → Ce sont les question_id, type_id, question_text et response_options EXACTS à utiliser
+       → Ces informations ont été extraites du schéma de la base de données
+       → Utilisez ces valeurs TELLES QUELLES dans vos requêtes SQL (pas besoin de chercher ou deviner)
+    
+    3. EXPLICATION SQL : {explanation}
+       → Guide concis des fonctions SQL à utiliser et sur quelles colonnes
+       → Suivez cette recommandation pour construire votre requête
+    
     TÂCHE :
     Générez et exécutez des requêtes SQL qui répondent précisément à la demande de l'utilisateur.
 
     DIRECTIVES ESSENTIELLES :
     1. Utilisez UNIQUEMENT les outils fournis pour interagir avec la base de données
-    2. Créez des requêtes PostgreSQL syntaxiquement correctes
+    2. Créez des requêtes SQL syntaxiquement correctes
     3. En cas d'erreur, réécrire puis réessayer la requête.
     4. N'exécutez JAMAIS d'instructions DML (INSERT, UPDATE, DELETE, DROP, etc.)
-    5. Utilisez ces chaînes de texte EXACTES pour accélérer vos requêtes : {questions_responses}, {explanation}
     6. Transmettez les résultats COMPLETS de votre dernière requête SQL dans votre réponse finale
 
     SORTIE ATTENDUE :
-    - Retournez les résultats bruts et complets du dernier appel d'outil dans un format de liste en texte brut.
-    - Ne formatez pas et n'analysez pas les résultats
-    - Ne résumez pas et n'échantillonnez pas les données
-    - Expect output to be only the full results values of last successful SQL query execution that answers user response, in a list format en texte brut and must include all values.
-    - Format de sortie : {{"query_results": "votre_résultat"}} # liste des valeurs de résultats bruts
+    - Retournez les résultats bruts et complets de votre requête SQL
+    - Format : liste ou tableau des valeurs, sans formatage supplémentaire
+    - Incluez TOUTES les valeurs retournées par la requête
         """
 
     engine = create_engine(Config.get_database_url())
