@@ -98,7 +98,6 @@ def execute_code_inline(code_content):
         # Display standard output if any
         stdout_content = stdout_buffer.getvalue()
         if stdout_content.strip():
-            st.text("Output:")
             st.code(stdout_content)
 
         return True

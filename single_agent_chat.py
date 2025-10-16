@@ -214,7 +214,7 @@ graph_runnable = graph_builder.compile(checkpointer=memory)
 
 @st.fragment
 def display_message_history():
-    for idx, message in enumerate(st.session_state["single_messages"]):
+    for message in st.session_state["single_messages"]:
         if isinstance(message, AIMessage):
             chat_container = st.chat_message("assistant", avatar=APP_ICON_PATH)
             
@@ -228,7 +228,7 @@ def display_message_history():
                     chat_container.write(clean_content)
                 
                 # Display each code block with its visualization
-                for i, match in enumerate(code_matches):
+                for match in code_matches:
                     code_content = match.group(1)
                     
                     # Try to execute the code inline to show the plot directly
@@ -299,7 +299,7 @@ async def invoke_our_graph(user_input, callables, thread_id):
                 message_placeholder.empty()
             
             # Display each code block with its visualization
-            for i, match in enumerate(code_matches):
+            for match in code_matches:
                 code_content = match.group(1)
                 
                 # Execute the code inline to show the plot directly
