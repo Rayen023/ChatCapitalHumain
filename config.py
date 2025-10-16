@@ -51,17 +51,16 @@ class Config:
         Returns:
             Value of the environment variable or None if not found
         """
+        if var_name in os.environ:
+            return os.environ[var_name]
+        
+        # Fallback to Streamlit secrets (if secrets.toml exists)
+        # Note: Accessing st.secrets triggers file lookup, which raises an error if secrets.toml doesn't exist
         try:
-            # First check environment variables
-            if var_name in os.environ:
-                return os.environ[var_name]
-            
-            # Fallback to Streamlit secrets
-            if hasattr(st, 'secrets') and var_name in st.secrets:
+            if var_name in st.secrets:
                 return st.secrets[var_name]
-                
-        except Exception as e:
-            st.error(f"Error retrieving environment variable {var_name}: {str(e)}")
+        except (FileNotFoundError, KeyError, AttributeError):
+            pass
         
         return None
     
