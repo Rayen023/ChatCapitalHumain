@@ -147,6 +147,7 @@ def main():
 
     # Create sidebar
     with st.sidebar:
+        
         if not DEBUGGING:
             if (
                 ctx_data["ctx"].page_script_hash == ctx_data["single_agent_chat_hash"]
@@ -162,14 +163,22 @@ def main():
             ctx_data["single_agent_chat_hash"],
             ctx_data["current_page"],
         )
+        st.markdown(
+        "<div style='text-align: center; color: gray; font-size: 0.8em;'>"
+        "© R. Ghali et S. A. Selouani 2025."
+        "</div>",
+        unsafe_allow_html=True
+        )
         st.info(sidebar_info)
         # Reset chat button
+        
         st.button(
             "Nouveau chat",
             on_click=reset_chat_history,
             icon=":material/edit_square:",
             use_container_width=True,
         )
+        
         # Debug panel toggle
         if DEBUGGING:
             st.button(
@@ -185,11 +194,13 @@ def main():
                 for key in sorted(st.session_state.keys()):
                     with st.expander(f"Key: {key}"):
                         st.write(st.session_state[key])
+            
 
         # Search questions
         st.header("Questions répondables")
         search_questions()
-        search_documents()
+        search_documents()       
+
 
         # Show schema in sidebar
     if DEBUGGING:
