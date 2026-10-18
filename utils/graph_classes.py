@@ -15,7 +15,7 @@ from typing_extensions import TypedDict
 
 
 default_llm = ChatOpenAI(
-    model_name="anthropic/claude-sonnet-4.6",
+    model_name="~anthropic/claude-haiku-latest",
     **Config.get_openrouter_config(),
     temperature=0,
     max_tokens=8096,
@@ -23,7 +23,7 @@ default_llm = ChatOpenAI(
 )
 
 flash_llm = ChatOpenAI(
-    model_name="google/gemini-3-flash-preview",
+    model_name="~anthropic/claude-haiku-latest",
     **Config.get_openrouter_config(),
     temperature=0,
     max_tokens=8096,
